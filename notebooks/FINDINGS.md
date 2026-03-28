@@ -308,3 +308,24 @@ No other dataset achieves this across all frames.
 
 **What it means:** Entropy ranks the datasets from most ordered (near-pure periodic signal, sunspot) to most complex (multi-scale noisy trend, temperature). The two ends of this spectrum are maximally far in spectral complexity. The COVID datasets sit near the middle — they are bursty but not maximally disordered. This ordering is independent of any clustering and represents a single continuous axis of spectral structure that runs through the entire corpus.
 
+
+---
+
+### Finding 27: Sea level is a noisy monotone — nearest to COVID, not keeling_trend
+
+**Claim:** Global mean sea level (monthly, 10-year windows) is nearest to covid_first_wave by TD centroid distance (1.467), not keeling_trend (2.653) as predicted. 48% of instances fall into noise.
+
+**Evidence:** Key discriminating features vs keeling_trend: zero_crossings=0.104 (vs 0.008), baseline_delta=1.100 (vs 3.111), lag1_autocorr=0.919 (vs 0.9999). Spectral features are similar to keeling_trend (power_low=0.920, dom_freq=0.019) but time-domain diverges. HDBSCAN places majority of sea_level instances in noise.
+
+**What it means:** "Monotone rise" is not a single shape class. The taxonomy distinguishes two subtypes: (a) clean monotone — CO2 accumulates so smoothly that zero_crossings ≈ 0 and baseline_delta is very large relative to variance; (b) noisy monotone — sea level rises steadily but inter-annual forcing (ENSO, volcanic events) creates regular oscillations around the trend, giving zero_crossings ≈ 0.10. Sub-type (b) currently has no class in the taxonomy and lands in noise. This is a gap in the existing 7 classes.
+
+---
+
+### Finding 28: The taxonomy has a gap — "noisy directional" sits between keeling_trend and temperature
+
+**Claim:** Sea level occupies a shape space between keeling_trend (clean monotone) and temperature (noisy drift) that no existing class covers.
+
+**Evidence:** keeling_trend: zero_crossings=0.008, baseline_delta=3.111, lag1_autocorr=0.9999. Sea_level: zero_crossings=0.104, baseline_delta=1.100, lag1_autocorr=0.919. Temperature: zero_crossings=0.302, baseline_delta=0.997, lag1_autocorr=0.464. Sea level sits between these two on every relevant feature. 48% noise placement confirms it belongs to neither existing class.
+
+**What it means:** A potential 8th shape class — "noisy directional with strong memory" — characterized by: moderate zero_crossings (0.05–0.15), moderate-high baseline_delta (0.8–1.5), high lag1_autocorr (0.85–0.95), low spectral entropy (~0.43), high power_low (~0.92). Physical systems that trend in one direction but are also subject to recurring forcing (sea level, ice extent, perhaps population under periodic stress) would land here.
+

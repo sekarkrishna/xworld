@@ -37,7 +37,7 @@ Finish the questions Phase 0 opened before moving to learned embeddings.
 ### 1b — New datasets: stress-test the taxonomy (Notebooks 15–17)
 Each notebook is a prediction made before running. Land where expected → taxonomy holds. Land somewhere new → new class.
 
-- [ ] Notebook 15: Global mean sea level (NASA) — monotone rise, predicted: keeling_trend cluster
+- [x] Notebook 15: Global mean sea level (NASA) — predicted keeling_trend, landed nearest COVID (1.467). 48% noise. Gap found: "noisy directional" class. → Findings 27–28
 - [ ] Notebook 16: ENSO ONI (NOAA) — quasi-periodic irregular, predicted: between sunspot and lynx_hare
 - [ ] Notebook 17: VIX volatility (FRED) — spiky bursts, predicted: COVID or ECG cluster
 - [ ] Each prediction written down *before* running, scored after

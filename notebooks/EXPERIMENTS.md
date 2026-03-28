@@ -471,3 +471,23 @@ Shape similarity as a vector holds. But centroid L2 is not the right tool to see
 
 **Total findings after nb14:** 26
 
+
+---
+
+## 2026-03-28 — Session 4 cont.: Notebook 15 (Sea Level)
+
+**Prediction:** land in keeling_trend cluster
+**Result:** nearest = covid_first_wave (1.467), not keeling_trend (2.653). 48% noise.
+
+| Feature | sea_level | keeling_trend | COVID1 |
+|---------|-----------|---------------|--------|
+| lag1_autocorr | 0.919 | 0.9999 | 0.954 |
+| zero_crossings | 0.104 | 0.008 | 0.023 |
+| baseline_delta | 1.100 | 3.111 | 0.610 |
+| spectral_entropy | 0.429 | 0.389 | 0.338 |
+| power_low | 0.920 | 0.953 | 0.949 |
+
+**Prediction: WRONG — but it's a finding.** Sea level is a noisy monotone — trending but with inter-annual ENSO oscillation that gives zero_crossings=0.104 (vs keeling_trend's 0.008). This pushed it closer to COVID in feature space and into noise in HDBSCAN. Reveals a gap between keeling_trend and temperature: "noisy directional with strong memory" — potential 8th shape class. → Findings 27–28
+
+**Methodological note:** First attempt used 8 annual windows (only 13 instances, bad spectral features). Fixed by using monthly data with 120-pt windows (1557 points → 120 instances). Lesson: window size must be consistent with existing datasets for spectral features to be comparable.
+
