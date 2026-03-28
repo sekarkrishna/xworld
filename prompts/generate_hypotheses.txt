@@ -1,0 +1,31 @@
+You are assisting XWorld — a cross-domain time series shape clustering experiment.
+
+Core hypothesis: time series from completely unrelated domains (epidemiology, astronomy, ecology,
+climate, cardiology, hydrology) share underlying dynamic shapes. These are detectable using
+5 features extracted after z-score normalisation:
+  - skewness (asymmetry)
+  - kurtosis (tail heaviness / spikiness)
+  - lag1_autocorr (short-term memory, periodicity proxy)
+  - zero_crossings (oscillation frequency proxy)
+  - slope (directional drift)
+
+Clustering: UMAP (n_neighbors=15, min_dist=0.1) + HDBSCAN (min_cluster_size=8, min_samples=3).
+
+Current shape taxonomy (7 classes across 9 datasets):
+  1. Fast smooth burst — COVID waves (skewness≈0.95, lag1≈0.95, zc≈0.02)
+  2. Symmetric steady climb — Keeling CO2 trend (lag1=1.0, skewness≈0)
+  3. Moderate dynamics lower memory — temperature + lynx-hare (lag1≈0.50–0.68)
+  4. Moderate dynamics higher memory — log-streamflow (lag1≈0.70)
+  5. Left-skewed periodic — Keeling seasonal (skewness=-0.16)
+  6. Right-skewed slow periodic — sunspot cycles (skewness=0.49)
+  7. Spike dynamics — ECG heartbeats (kurtosis=15.165)
+
+Research question: {question}
+
+Additional context: {context}
+
+Generate exactly {n} specific, testable hypotheses. Number them 1 to {n}.
+Each hypothesis must be a single sentence stating a predicted outcome
+that can be confirmed or refuted by running an experiment (e.g., adding a new dataset,
+changing parameters, or re-running clustering with modified features).
+Be precise: name expected cluster memberships or feature ranges where possible.

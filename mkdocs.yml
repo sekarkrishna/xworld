@@ -1,0 +1,44 @@
+site_name: XWorld Research Log
+site_description: Cross-domain time series shape clustering — does a glacier melting and a turtle breathing share the same numerical signature?
+docs_dir: notebooks
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+    - content.code.copy
+
+markdown_extensions:
+  - tables
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - attr_list
+  - md_in_html
+
+nav:
+  - Home: index.md
+  - Findings: FINDINGS.md
+  - Milestones: MILESTONES.md
+  - Experiments: EXPERIMENTS.md
+  - Decisions: DECISIONS.md
+  - Sessions:
+      - "28 Mar 2026": summary_28MAR2026.md
+      - "24 Mar 2026": summary_24MAR2026.md

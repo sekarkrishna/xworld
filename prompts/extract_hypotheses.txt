@@ -1,0 +1,8 @@
+The following is a conversation about formulating hypotheses for a research question.
+Extract every testable hypothesis that was proposed, refined, or agreed upon during the conversation.
+
+Return a numbered list only. No preamble, no explanation, no summary.
+Each item: one clear sentence stating a testable hypothesis that could be confirmed or refuted by an experiment.
+
+Conversation:
+{thread}

@@ -1,0 +1,8 @@
+The following is a conversation about designing experiments to test a hypothesis.
+Extract every concrete experiment that was proposed or agreed upon during the conversation.
+
+Return a numbered list only. No preamble, no explanation, no summary.
+Each item: one clear sentence describing the experiment, including the key approach, dataset, or parameter being varied.
+
+Conversation:
+{thread}

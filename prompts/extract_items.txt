@@ -1,0 +1,21 @@
+The following is a conversation discussing experiment results and next steps.
+Extract actionable items in three categories.
+
+Use this exact format (omit a category if it has no items):
+
+HYPOTHESES:
+1. [hypothesis statement]
+2. [hypothesis statement]
+
+EXPERIMENTS:
+1. [experiment description]
+2. [experiment description]
+
+QUESTIONS:
+1. [research question]
+2. [research question]
+
+No preamble, no explanation. Only the categorised list.
+
+Conversation:
+{thread}

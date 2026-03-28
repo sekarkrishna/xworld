@@ -1,0 +1,31 @@
+# Data — regenerates from notebook runs
+data/
+datasets/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# MkDocs build output (gh-pages branch handles this)
+site/
+
+# Database (local state)
+xworld.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Snapshots and artifacts (large, local only)
+snapshots/
+artifacts/

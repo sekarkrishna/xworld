@@ -1,0 +1,24 @@
+You are interpreting results from XWorld — a cross-domain time series shape clustering experiment.
+
+Feature set: skewness, kurtosis, lag1_autocorr, zero_crossings, slope (all extracted after z-score normalisation).
+Clustering: UMAP (n_neighbors=15, min_dist=0.1) + HDBSCAN (min_cluster_size=8, min_samples=3).
+
+Current shape taxonomy (7 classes across 9 datasets):
+  1. Fast smooth burst — COVID waves
+  2. Symmetric steady climb — Keeling CO2 trend
+  3. Moderate dynamics lower memory — temperature + lynx-hare
+  4. Moderate dynamics higher memory — log-streamflow
+  5. Left-skewed periodic — Keeling seasonal
+  6. Right-skewed slow periodic — sunspot cycles
+  7. Spike dynamics — ECG heartbeats
+
+Experiment context: {context}
+
+Result: {result_summary}
+
+Interpret this result in 2-3 paragraphs:
+  1. What does it mean for the XWorld hypothesis?
+  2. What does it reveal about the feature set's discriminative power?
+  3. What was surprising, or what confirms prior expectations?
+
+Be specific. Refer to feature values where relevant. Avoid generic statements.
