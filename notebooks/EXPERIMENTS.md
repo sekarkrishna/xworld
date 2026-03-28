@@ -420,3 +420,43 @@ All three predictions confirmed. The feature set successfully separates three di
 **Key insight:** The original hypothesis conflated "directional burst" and "slow directional drift" as one shape class. The feature set discriminates them — autocorrelation and zero_crossings together separate fast-smooth from slow-noisy directional dynamics. This is a stronger result than the original hypothesis.
 
 ---
+
+---
+
+## 2026-03-28 — Session 4: Pairwise shape distances (Notebook 14)
+
+**Question:** Do the "problem pairs" from nb11–12 land in opposite off-diagonal quadrants of a (td_dist, spectral_dist) scatter plot?
+
+**Method:** Compute per-dataset centroids in normalized TD-6f and spectral-5f feature spaces. Compute all C(9,2)=36 pairwise L2 distances. Plot each pair as a 2D point.
+
+### Quadrant check results
+
+| Pair | td_dist | sp_dist | Actual quadrant | Predicted | Status |
+|------|---------|---------|-----------------|-----------|--------|
+| COVID1 ↔ sunspot | 0.852 | 1.309 | (near, near) | (near, far) | UNEXPECTED |
+| sunspot ↔ keeling_seasonal | 4.459 | 2.383 | (far, near) | (far, near) | CONFIRMED |
+| COVID1 ↔ COVID2 | 0.282 | 0.226 | (near, near) | (near, near) | CONFIRMED |
+| COVID1 ↔ keeling_trend | 2.810 | 0.240 | (near, near) | (far, far) | UNEXPECTED |
+| keeling_seasonal ↔ keeling_trend | 6.277 | 2.495 | (far, near) | (far, far) | UNEXPECTED |
+| ECG ↔ keeling_seasonal | 4.515 | 3.623 | (far, far) | (far, near) | UNEXPECTED |
+
+**Predictions confirmed: 2/6**
+
+### Why COVID-sunspot came out (near, near)
+
+Spectral distance=1.309 is below median because both have `power_low≈0.95+` and `dominant_freq≈0.01`. The entropy difference (0.338 vs 0.076) — which drove their separation in nb12's HDBSCAN — is only 1 of 5 spectral features. In centroid L2, the four power-band features outvote entropy. Cluster separation ≠ centroid distance. The duality is real but only visible at the instance/density level.
+
+### Why COVID1 ↔ keeling_trend appeared near
+
+TD distance=2.810 is above the within-COVID range (COVID1↔COVID2=0.282) but below the global median (3.814). Baseline_delta did triple the separation vs 5-feature space — it's just that many cross-domain pairs have even larger distances, pulling the median up.
+
+### Key structural findings
+
+- **sunspot ↔ keeling_seasonal (far, near)** confirmed robustly — the spectral frame's blind spot holds at centroid level
+- **keeling_seasonal ↔ keeling_trend (far, near)** — unexpected: both concentrate power at low frequencies; power bands cannot distinguish "periodic cycle" from "slow trend"
+- **Temperature** is the most isolated dataset in both frames — largest distances to nearly everything
+
+### What changed in the thesis
+
+Shape similarity as a vector holds. But centroid L2 is not the right tool to see the COVID-sunspot split — that requires either entropy-only distance or instance-level clustering. Follow-up: recompute spectral distance using entropy alone to test if the (near, far) prediction holds for that single feature.
+

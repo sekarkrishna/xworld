@@ -1,3 +1,6 @@
+# UI / app code — separate concern, not part of research repo
+xworld_ui/
+
 # Data — regenerates from notebook runs
 data/
 datasets/
@@ -21,6 +24,9 @@ site/
 
 # Database (local state)
 xworld.db
+
+# Claude Code local settings
+.claude/
 
 # OS
 .DS_Store

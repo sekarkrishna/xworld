@@ -235,14 +235,55 @@ No other dataset achieves this across all frames.
 
 ---
 
-## Open Questions (as of 28 March 2026)
+## Open Questions (updated 28 March 2026)
 
-1. **The sunspot-COVID duality** — they share a time-domain fingerprint but not a spectral one. They are the same shape in one dimension and different shapes in another. The question "are they the same shape class?" has no single answer. This might be the correct finding: shape is multi-dimensional, and two series can be simultaneously similar and different depending on the axis. The right framing may be shape distance as a vector, not a scalar.
+1. **The sunspot-COVID duality — partially answered by nb14.** They are (near, near) at the centroid L2 level but separate under HDBSCAN in spectral space (nb12). The duality is real but metric-dependent: entropy distance separates them; L2 on all 5 spectral features does not. Open question: does entropy-only distance recover (near, far)? → Follow-up cell planned for nb14.
 
 2. **Why does combining frames lower ARI?** The spectral features add within-class variance (particularly ECG and COVID) that destabilizes HDBSCAN. A weighted combination — down-weighting noisy spectral features — might recover the improvement. Or a different clustering algorithm (e.g. Gaussian mixture) that handles variable-density clusters better.
 
 3. **What is the right number of shape classes?** It depends on the frame and the parameters. keeling_seasonal and keeling_trend are always perfectly isolated (2 stable classes). COVID + COVID2 are always together (1 stable class). Everything else is resolution-dependent. The taxonomy is not a fixed object — it is a projection of continuous shape space at a particular resolution.
 
-4. **Sunspot and keeling_seasonal are spectrally near-identical** (L2=0.141 in nb12). Two physically unrelated periodic systems with nearly the same spectral signature. Is this a coincidence of their observation window lengths, or a genuine shape similarity at the frequency-domain level?
+4. **Sunspot and keeling_seasonal are spectrally near (L2=2.383 centroid, L2=0.141 instance in nb12).** Confirmed by nb14. Both concentrate power at very low frequencies. Whether this is a genuine shape similarity or an artefact of both being observed over similar time windows remains open.
 
 5. **Runner vs substrate** — is the shape in the participant or in the exchange relationship between them? Requires designing a new dataset around an interaction rather than a system variable.
+
+---
+
+### Finding 21: Centroid L2 distance cannot reproduce the entropy-driven COVID-sunspot separation from nb12
+
+**Claim:** At the centroid level, COVID1 and sunspot are spectrally *near* (L2=1.309, below median 3.268), contradicting nb12's finding that they cluster separately in spectral space.
+
+**Evidence:** Both have `power_low ≈ 0.95+` and `dominant_freq ≈ 0.01`. The entropy difference (COVID=0.338 vs sunspot=0.076) is real but is one of five spectral features. In L2 centroid distance, the four power-band features (which look similar for both) outvote entropy.
+
+**What it means:** Cluster separation ≠ centroid distance. HDBSCAN in nb12 separated them because entropy alone drove their local density apart. Averaging across all five spectral features dissolves that signal. The COVID-sunspot duality is real but only observable at the instance level, not the centroid level. This is a methodological finding: the choice of distance metric (L2 on centroids vs density-based clustering) determines what distinctions are visible.
+
+---
+
+### Finding 22: sunspot ↔ keeling_seasonal is the clearest cross-frame duality in the corpus
+
+**Claim:** Sunspot and keeling_seasonal are TD-far (L2=4.459, above median 3.814) but spectrally near (L2=2.383, below median 3.268) — confirmed at the centroid level.
+
+**Evidence:** Nb14 quadrant check: (far, near), confirmed. TD distance driven by skewness/kurtosis differences. Spectral nearness driven by both being power-concentrated at low frequencies (power_low: sunspot=0.998, keeling_seasonal=0.925).
+
+**What it means:** Two physically unrelated periodic systems — 11-year solar cycles and seasonal CO2 oscillations — look completely different in time-domain statistics but nearly identical in their spectral power distribution. This is the spectral frame's blind spot: it sees that both oscillate regularly at low frequency but cannot see that one is smooth-sinusoidal and one is left-skewed with a sharp shoulder. This finding is robust across nb12 (clustering) and nb14 (centroid distance).
+
+---
+
+### Finding 23: keeling_seasonal ↔ keeling_trend are spectrally near despite being the most TD-distant pair
+
+**Claim:** keeling_seasonal and keeling_trend have the largest TD distance in the corpus (L2=6.277) but are spectrally near (L2=2.495, below median).
+
+**Evidence:** Both concentrate most power at very low frequencies (power_low: keeling_seasonal=0.925, keeling_trend=0.953). The spectral frame treats "annual periodic cycle" and "slow permanent trend" as similar because both manifest as low-frequency power concentration.
+
+**What it means:** The spectral frame's power-band decomposition (low/mid/high) cannot distinguish a periodic oscillation from a monotone trend — both look like "mostly low-frequency energy." This requires either entropy (which does distinguish them: 0.154 vs 0.389) or the time-domain frame. A reminder that power bands and entropy carry different information even within the spectral frame.
+
+---
+
+### Finding 24: Temperature is the most isolated dataset in both frames simultaneously
+
+**Claim:** Temperature has the largest distances to nearly all other datasets in both TD and spectral frames. Every pair involving temperature lands near or at the top of the distance ranking.
+
+**Evidence:** Top 5 largest distances in both frames involve temperature. Spectral distances: sunspot↔temperature=8.109 (largest), keeling_trend↔temperature=7.251, COVID2↔temperature=7.335. TD distances: keeling_trend↔temperature=7.012 (largest).
+
+**What it means:** Slow noisy upward drift with increasing variance is the most structurally isolated shape in the corpus — it matches nothing closely in either frame. The combination of high zero_crossings (0.302), moderate-high spectral entropy (0.763), and significant power across all frequency bands makes it an outlier by every available metric.
+
