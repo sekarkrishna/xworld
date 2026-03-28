@@ -329,3 +329,27 @@ No other dataset achieves this across all frames.
 
 **What it means:** A potential 8th shape class — "noisy directional with strong memory" — characterized by: moderate zero_crossings (0.05–0.15), moderate-high baseline_delta (0.8–1.5), high lag1_autocorr (0.85–0.95), low spectral entropy (~0.43), high power_low (~0.92). Physical systems that trend in one direction but are also subject to recurring forcing (sea level, ice extent, perhaps population under periodic stress) would land here.
 
+
+---
+
+### Finding 29: ENSO is equidistant from COVID and sunspot simultaneously — a new in-between region
+
+**Claim:** ENSO ONI is nearest to covid_second_wave (0.970), sunspot_cycle (0.996), and covid_first_wave (1.022) — a three-way tie within 0.05. 72% of instances fall into noise. It is not a member of any existing class.
+
+**Evidence:** Feature profile: lag1_autocorr=0.956, zero_crossings=0.074, baseline_delta=0.078, spectral_entropy=0.367. ENSO shares baseline_delta≈0 with sunspot (0.055) — both return to zero between events. ENSO shares spectral_entropy≈0.34 with COVID (0.338) — both are irregular. The combination is unique: high-memory, irregular, reversible oscillation.
+
+**What it means:** ENSO is not classifiable by the existing 7-class taxonomy. It occupies a new region of shape space: "irregular reversible memory oscillator" — characterized by high autocorr (events persist), near-zero baseline_delta (system returns to baseline), and moderate spectral entropy (irregular periodicity). This is different from sunspot (regular, low entropy) and COVID (irreversible, high baseline_delta). A potential 9th shape class.
+
+---
+
+### Finding 30: Three datasets now occupy genuine in-between shape regions — the taxonomy has structural gaps
+
+**Claim:** Sea level (nb15), ENSO (nb16), and the COVID-sunspot pair (nb11-14) all demonstrate that the existing 7-class taxonomy has gaps between classes that real physical systems inhabit.
+
+**Evidence:** 
+- Sea level: sits between keeling_trend and temperature ("noisy directional")
+- ENSO: sits between sunspot and COVID ("irregular reversible oscillator")
+- COVID-sunspot: same class in TD frame, different class in spectral frame (not a gap but an ambiguity)
+
+**What it means:** The 7 classes are not a complete partition of shape space — they are the densest regions of a continuous shape manifold sampled with the original 9 datasets. Adding new datasets is filling in the spaces between existing classes. The taxonomy may need to grow to 9 or 10 classes, or alternatively be reframed as a continuous embedding rather than discrete classes. Phase 2 (autoencoder embeddings) will test this directly.
+

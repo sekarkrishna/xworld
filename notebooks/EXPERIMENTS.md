@@ -491,3 +491,21 @@ Shape similarity as a vector holds. But centroid L2 is not the right tool to see
 
 **Methodological note:** First attempt used 8 annual windows (only 13 instances, bad spectral features). Fixed by using monthly data with 120-pt windows (1557 points → 120 instances). Lesson: window size must be consistent with existing datasets for spectral features to be comparable.
 
+
+---
+
+## 2026-03-28 — Session 4 cont.: Notebook 16 (ENSO)
+
+**Prediction:** between sunspot and lynx_hare, or new class
+**Result:** three-way tie — covid_second_wave (0.970), sunspot (0.996), covid_first_wave (1.022). 72% noise.
+
+**Prediction direction wrong (lynx_hare), new class call correct.**
+
+ENSO sits between COVID and sunspot on two different axes:
+- baseline_delta=0.078 ≈ sunspot (0.055) — returns to zero, unlike COVID (0.610)
+- spectral_entropy=0.367 ≈ COVID (0.338) — irregular, unlike sunspot (0.076)
+
+This combination is unique: high-memory, irregular, reversible oscillation → potential new class. → Findings 29–30
+
+Second dataset after sea_level to fall mostly into noise — confirms the taxonomy has structural gaps between existing classes. A continuous embedding (Phase 2) may be more appropriate than discrete classes.
+
