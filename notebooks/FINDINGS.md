@@ -353,3 +353,27 @@ No other dataset achieves this across all frames.
 
 **What it means:** The 7 classes are not a complete partition of shape space — they are the densest regions of a continuous shape manifold sampled with the original 9 datasets. Adding new datasets is filling in the spaces between existing classes. The taxonomy may need to grow to 9 or 10 classes, or alternatively be reframed as a continuous embedding rather than discrete classes. Phase 2 (autoencoder embeddings) will test this directly.
 
+
+---
+
+### Finding 31: VIX (financial volatility) landed nearest lynx_hare (0.594) — not COVID or ECG as predicted
+
+**Claim:** CBOE VIX with 24-month windows is nearest to lynx_hare by TD centroid distance (0.594), followed by streamflow (0.726). COVID1 is 3.374 away. ECG is 3.381 away. 69% of instances fall into noise.
+
+**Evidence:** Key features: skewness=0.947, kurtosis=0.582, lag1_autocorr=0.650, zero_crossings=0.205. Lynx_hare: skewness=1.025, kurtosis=-0.302, lag1_autocorr=0.680, zero_crossings=0.172. Near-identical moderate-memory oscillator profiles. COVID disqualified by lag1_autocorr (0.650 vs 0.954 — VIX is not sustained enough). ECG disqualified by kurtosis (0.582 vs 15.165 — VIX spikes are not pathologically sharp at monthly resolution).
+
+**What it means:** Financial market volatility (VIX) and ecological predator-prey dynamics (lynx_hare) share the same time-domain shape class — both are "irregular moderate-memory oscillators with positive skewness." Market crises boom and revert; predator-prey populations boom and collapse. The domain is different; the dynamic is the same. This is a direct confirmation of the research hypothesis at the taxonomy level.
+
+---
+
+### Finding 32: All three Phase 1b datasets landed mostly in noise — confirms the taxonomy has structural gaps
+
+**Claim:** Sea level (48% noise), ENSO (72% noise), VIX (69% noise) all failed to find a clean class membership. All three landed nearest to unexpected existing datasets.
+
+**Evidence:**
+- Sea level: predicted keeling_trend, nearest COVID (1.467) — "noisy monotone" gap
+- ENSO: predicted lynx_hare, nearest COVID/sunspot three-way tie (0.97–1.02) — "irregular reversible oscillator" gap
+- VIX: predicted COVID/ECG, nearest lynx_hare (0.594) — fits best but still 69% noise
+
+**What it means:** The 7 classes are the dense cores of a continuous shape manifold, not a complete partition. Adding datasets from new domains consistently finds the gaps between existing classes. Two implications: (1) the taxonomy should expand to 9–10 classes; (2) a continuous embedding (Phase 2) is more appropriate than discrete HDBSCAN clusters for describing the full shape space.
+

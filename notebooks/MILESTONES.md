@@ -39,7 +39,7 @@ Each notebook is a prediction made before running. Land where expected → taxon
 
 - [x] Notebook 15: Global mean sea level (NASA) — predicted keeling_trend, landed nearest COVID (1.467). 48% noise. Gap found: "noisy directional" class. → Findings 27–28
 - [x] Notebook 16: ENSO ONI (NOAA) — predicted sunspot/lynx_hare, landed equidistant COVID+sunspot (0.97-1.02). 72% noise. New region found. → Findings 29–30
-- [ ] Notebook 17: VIX volatility (FRED) — spiky bursts, predicted: COVID or ECG cluster
+- [x] Notebook 17: VIX volatility (CBOE) — predicted COVID/ECG, landed nearest lynx_hare (0.594). 69% noise. Cross-domain: finance ↔ ecology. → Findings 31–32
 - [ ] Each prediction written down *before* running, scored after
 
 **Why this matters:** All 9 current datasets were chosen somewhat intentionally. External validation from datasets chosen without knowing where they'll land is stronger evidence.

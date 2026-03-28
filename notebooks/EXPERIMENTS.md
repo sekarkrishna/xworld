@@ -509,3 +509,27 @@ This combination is unique: high-memory, irregular, reversible oscillation → p
 
 Second dataset after sea_level to fall mostly into noise — confirms the taxonomy has structural gaps between existing classes. A continuous embedding (Phase 2) may be more appropriate than discrete classes.
 
+
+---
+
+## 2026-03-28 — Session 4 cont.: Notebook 17 (VIX)
+
+**Prediction:** COVID or ECG cluster
+**Result:** nearest = lynx_hare (0.594), streamflow (0.726). COVID is 3.374 away. 69% noise.
+
+**Prediction: WRONG — and the correct answer is more interesting.**
+
+VIX (financial volatility) matches lynx_hare (ecological predator-prey) — both are irregular moderate-memory oscillators with positive skewness. lag1_autocorr=0.650 disqualifies COVID (too noisy). kurtosis=0.582 disqualifies ECG (not sharp enough at monthly scale).
+
+Cross-domain finding: market crisis cycles and population boom-bust cycles share a shape fingerprint. → Findings 31–32
+
+**Phase 1b summary (nb15–17):**
+All three datasets landed in unexpected places and mostly in noise. 0/3 clean confirmations, but 3 structural findings:
+- Sea level: "noisy directional" gap between keeling_trend and temperature
+- ENSO: "irregular reversible oscillator" gap between COVID and sunspot
+- VIX: fits lynx_hare best (cross-domain confirmation) but still 69% noise
+
+The consistent noise placement across all three confirms Phase 2 hypothesis: discrete HDBSCAN classes are insufficient; a continuous embedding will describe the shape manifold better.
+
+**Total findings: 32**
+
