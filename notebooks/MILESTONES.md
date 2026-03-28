@@ -110,7 +110,29 @@ The burst class (COVID) exists because of exponential growth followed by resourc
 ---
 
 ## Current status
-**Active phase:** Phase 1 — starting with Notebook 14 (pairwise shape distances)
+**Active phase:** Phase 1 — 1a and 1b complete, 1c next
 **Last updated:** 28 March 2026
-**Total findings:** 20 (see FINDINGS.md)
-**Notebooks completed:** 01–13
+**Total findings:** 32 (see FINDINGS.md)
+**Notebooks completed:** 01–17
+
+---
+
+## Next session — pick up here
+
+**Phase 1c: Stability test (Notebook 18)**
+
+Vary HDBSCAN parameters and score which classes are granite vs sand.
+
+- Vary `min_cluster_size` across [4, 6, 8, 12, 16] and `min_samples` across [2, 3, 5]
+- For each parameter set, record which datasets stay in their expected cluster vs drift
+- Produce a stability score per dataset — % of runs where it lands in its expected class
+- Use the original 9 datasets only (nb11 baseline) for clean comparison
+- Expected: keeling_seasonal and keeling_trend = 100% stable. Sunspot = unstable.
+- New question from Phase 1b: are sea_level, ENSO, VIX always in noise regardless of params?
+
+**After 1c → Phase 2**
+
+Phase 1b showed all new datasets land in noise under the current discrete clustering approach.
+This is the strongest argument yet for Phase 2: replace hand-crafted features + HDBSCAN with
+a continuous learned embedding (autoencoder or foundation model). The gaps between classes
+that discrete clustering can't describe will become visible as geometry in the embedding space.
