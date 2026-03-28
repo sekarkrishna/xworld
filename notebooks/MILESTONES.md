@@ -34,11 +34,12 @@ Finish the questions Phase 0 opened before moving to learned embeddings.
 
 **Why this matters:** The sunspot-COVID duality is not a bug. It's the finding. Shape similarity is a vector. This notebook makes that explicit.
 
-### 1b — New datasets: stress-test the taxonomy (Notebooks 15–18)
+### 1b — New datasets: stress-test the taxonomy (Notebooks 15–17)
 Each notebook is a prediction made before running. Land where expected → taxonomy holds. Land somewhere new → new class.
 
-- [ ] Glacier mass balance — slow monotone decline, should land near keeling_trend but negative slope
-- [ ] One more dataset of your choosing (financial volatility? bird populations? volcanic eruptions?)
+- [ ] Notebook 15: Global mean sea level (NASA) — monotone rise, predicted: keeling_trend cluster
+- [ ] Notebook 16: ENSO ONI (NOAA) — quasi-periodic irregular, predicted: between sunspot and lynx_hare
+- [ ] Notebook 17: VIX volatility (FRED) — spiky bursts, predicted: COVID or ECG cluster
 - [ ] Each prediction written down *before* running, scored after
 
 **Why this matters:** All 9 current datasets were chosen somewhat intentionally. External validation from datasets chosen without knowing where they'll land is stronger evidence.
