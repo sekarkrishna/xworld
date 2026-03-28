@@ -460,3 +460,14 @@ TD distance=2.810 is above the within-COVID range (COVID1↔COVID2=0.282) but be
 
 Shape similarity as a vector holds. But centroid L2 is not the right tool to see the COVID-sunspot split — that requires either entropy-only distance or instance-level clustering. Follow-up: recompute spectral distance using entropy alone to test if the (near, far) prediction holds for that single feature.
 
+
+### Entropy-only follow-up (nb14 extension)
+
+**Result:** COVID-sunspot entropy distance = 0.2622, median = 0.2628. Missed (near, far) by 0.0006 — exactly at the boundary.
+
+**Conclusion:** The COVID-sunspot duality cannot be recovered by any centroid distance (5-feature L2 or entropy-only). It is a density effect visible only at the instance level through HDBSCAN. This closes the open question from Finding 21.
+
+**Entropy ordering discovered:** sunspot (0.076) < keeling_seasonal (0.154) < COVID2 (0.297) < COVID1 (0.338) < keeling_trend (0.389) < lynx_hare (0.436) < streamflow (0.596) < ECG (0.699) < temperature (0.763). A clean spectral complexity axis through the corpus.
+
+**Total findings after nb14:** 26
+

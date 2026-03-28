@@ -287,3 +287,24 @@ No other dataset achieves this across all frames.
 
 **What it means:** Slow noisy upward drift with increasing variance is the most structurally isolated shape in the corpus — it matches nothing closely in either frame. The combination of high zero_crossings (0.302), moderate-high spectral entropy (0.763), and significant power across all frequency bands makes it an outlier by every available metric.
 
+
+---
+
+### Finding 25: COVID-sunspot entropy distance is exactly at the corpus median — the duality lives at the clustering level, not the distance level
+
+**Claim:** COVID1-sunspot entropy distance (0.2622) is 0.0006 below the median entropy distance (0.2628) across all 36 pairs. Entropy-only spectral distance does not recover (near, far) for this pair.
+
+**Evidence:** Per-dataset spectral entropy: sunspot=0.076, COVID1=0.338. |0.338 − 0.076| = 0.2622. Median of all 36 pairwise entropy distances = 0.2628. COVID-sunspot lands at the median, not above it.
+
+**What it means:** The COVID-sunspot separation in nb12 was not caused by a large entropy gap — it was a density effect. HDBSCAN found them in separate clusters because their individual-instance entropy distributions do not overlap (sunspot instances are tightly clustered at low entropy; COVID instances are spread at higher entropy). Centroid distance misses this because it compares means, not distributions. This closes the follow-up question from Finding 21: no simple centroid distance — L2 or entropy-only — can reproduce the nb12 separation. The duality is real but only observable through instance-level density-based methods.
+
+---
+
+### Finding 26: Entropy ordering reveals spectral complexity spectrum of the corpus
+
+**Claim:** The 9 datasets form a clear order of spectral complexity by mean entropy: sunspot (0.076) < keeling_seasonal (0.154) < COVID2 (0.297) < COVID1 (0.338) < keeling_trend (0.389) < lynx_hare (0.436) < streamflow (0.596) < ECG (0.699) < temperature (0.763).
+
+**Evidence:** Per-dataset mean spectral entropy computed across all instances in nb14 entropy follow-up.
+
+**What it means:** Entropy ranks the datasets from most ordered (near-pure periodic signal, sunspot) to most complex (multi-scale noisy trend, temperature). The two ends of this spectrum are maximally far in spectral complexity. The COVID datasets sit near the middle — they are bursty but not maximally disordered. This ordering is independent of any clustering and represents a single continuous axis of spectral structure that runs through the entire corpus.
+
