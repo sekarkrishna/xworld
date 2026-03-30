@@ -533,3 +533,162 @@ The consistent noise placement across all three confirms Phase 2 hypothesis: dis
 
 **Total findings: 32**
 
+---
+
+## 2026-03-30 — Session 5: Phase 1c Stability Test (Notebook 18)
+
+### Goal
+Stress-test the taxonomy: vary HDBSCAN `min_cluster_size` ∈ [4,6,8,12,16] and `min_samples` ∈ [2,3,5] (15 combinations). Score each dataset as granite / robust / sand / always-noise based on how consistently it finds a clean cluster assignment. Also test whether Phase 1b datasets (sea_level, ENSO, VIX) are permanently in noise or just parameter-sensitive.
+
+### Datasets
+All 9 original + 3 Phase 1b (sea_level, enso_oni, vix) = 12 datasets total.
+
+### Stability score definition
+% of 15 runs where the dataset's majority-cluster placement captures ≥50% of its instances.
+
+### Pre-run predictions
+
+| Dataset | Predicted stability | Label |
+|---|---|---|
+| keeling_seasonal | 100% | GRANITE |
+| keeling_trend | 100% | GRANITE |
+| ecg | ~100% | GRANITE |
+| covid_first_wave | ~80% | ROBUST |
+| covid_second_wave | ~80% | ROBUST |
+| lynx_hare | ~60% | MODERATE |
+| streamflow | ~60% | MODERATE |
+| temperature | ~40% | SAND |
+| sunspot_cycle | ~40% | SAND |
+| vix | ~30% | MOSTLY NOISE |
+| sea_level | ~20% | MOSTLY NOISE |
+| enso_oni | ~10% | ALWAYS NOISE |
+
+### Results
+
+Grid: 15 combinations. Total instances: 1930 (9 orig + 3 Phase 1b).
+Global noise across all runs: 38–50% of instances.
+
+**Stability scores:**
+
+| Class | Dataset | Score | Notes |
+|---|---|---|---|
+| GRANITE | keeling_seasonal | 100% | 0% noise in all 15 runs |
+| GRANITE | keeling_trend | 100% | 0% noise in all 15 runs |
+| STABLE/borrowed | sunspot_cycle | 100% | Collapses with COVID in 73% of runs |
+| SAND | covid_second_wave | 33% | Partial stability |
+| FRAGMENTED | ecg | 0% | Low noise (26.5%) but 884 instances split into many sub-clusters |
+| FRAGMENTED | covid_first_wave | 0% | 202 country waves — diverse burst family |
+| SIZE-FLOORED | lynx_hare | 0% | n=26 — below threshold arithmetic |
+| SIZE-FLOORED | streamflow | 0% | n=24 — below threshold arithmetic |
+| SIZE-FLOORED | temperature | 0% | n=31 — always noise by count |
+| STRUCTURAL GAP | sea_level | 0% | Best: 39.2% noise, majority_pct=0.29 |
+| STRUCTURAL GAP | enso_oni | 0% | Best: 50.3% noise, majority_pct=0.07 |
+| STRUCTURAL GAP | vix | 0% | Best: 71.5% noise, majority_pct=0.07 |
+
+**Sunspot collapse:** collapses into COVID cluster in 73% of runs (11/15). Pattern: mcs=4 separates (1/3 collapse), mcs≥12 always collapses (6/6).
+
+**Phase 1b:** no parameter setting rescues any of the three. Structural gaps confirmed as real.
+
+### Findings
+
+Findings 33–38 added to FINDINGS.md. Total findings: 38.
+
+
+---
+
+## 2026-03-30 — Session 5 cont.: Phase 2 setup
+
+### Environment change
+Switched venv from Python 3.14 → Python 3.13 to enable TensorFlow installation.
+TensorFlow 2.21.0 installed via `uv add tensorflow`. All existing packages (numpy, scipy, sklearn, umap, hdbscan) confirmed working on Python 3.13. `.python-version` pinned to 3.13.
+
+### Notebook 19 — Autoencoder (built, ready to run)
+Two Keras autoencoders:
+- **Dense AE:** 64 → 32 → 16 → 8 (latent) → 16 → 32 → 64
+- **Conv AE:** Conv1D(32) → pool → Conv1D(16) → pool → Dense(8) (latent) → unpool → ConvT
+
+Both trained on all 12 datasets (1930 instances), raw resampled series (64 points).
+Four-way UMAP comparison: feature-space | raw-series | dense latent | conv latent.
+
+### Pre-run predictions (nb19)
+- keeling_seasonal / keeling_trend: will remain isolated (predicted YES)
+- Sunspot ↔ COVID: may separate in conv latent (frequency info survives resampling)
+- Phase 1b: will fill gaps as continuous geometry (no cluster threshold)
+- ECG: sub-structure will become visible in latent UMAP
+
+---
+
+## 2026-03-30 — Session 5 cont.: Notebook 19 results (Phase 2 Autoencoder)
+
+### Architecture
+- Dense AE: 64 → 32 → 16 → **8** → 16 → 32 → 64 (MLP, Adam, MSE, 200 epochs)
+- Conv AE: Conv1D(32,k=8) → MaxPool → Conv1D(16,k=4) → MaxPool → Flatten → **Dense(8)** → Dense(256) → Reshape → Upsample × 2 → Conv1D output
+- Input: all 12 datasets, raw series resampled to 64 pts (z-scored), n=1930
+
+### Key results — pairwise centroid distances (Conv latent)
+
+| Pair | Feature-6f | Latent-8d | Ratio | Result |
+|---|---|---|---|---|
+| sunspot ↔ covid1 | 0.769 | 4.451 | 5.79x | SEPARATED — TD collapse was feature failure |
+| enso ↔ sunspot | 0.859 | 6.040 | 7.03x | Largest expansion — regularity vs irregularity |
+| covid1 ↔ covid2 | 0.250 | 2.256 | 9.02x | Within-COVID variation now visible |
+| lynx_hare ↔ vix | 0.616 | 0.944 | 1.53x | Smallest expansion — cross-domain match robust |
+| temperature ↔ sea_level | 4.607 | 0.777 | 0.17x | **ONLY CONTRACTION** — noisy directional class confirmed |
+
+### Findings
+Findings 39–42 added to FINDINGS.md. Total findings: 42.
+
+---
+
+## 2026-03-30 — Session 5 cont. cont.: Notebook 20 (Phase 2b Chronos Foundation Model)
+
+### Setup
+- PyTorch 2.11.0+cu130 already installed
+- `uv add chronos-forecasting` → chronos-forecasting 2.2.2 installed
+- Model: amazon/chronos-t5-small (46 M params, 512-dim encoder hidden states)
+- Embeddings: mean-pooled T5 encoder output (masked) over tokenized series
+- Input: same 1930 instances, same 64-pt resampled z-scored series as nb19
+- Zero-shot: no fine-tuning, no training on our data
+
+### Pre-run predictions (nb20)
+- Sunspot-COVID: predict separation (foundation model should distinguish cycle vs burst)
+- Temperature-sea_level: uncertain — Chronos may contract (both noisy trends) or separate (different noise structure)
+- VIX-lynx_hare: predict near-neighbors remain close
+- ENSO: predict near sunspot (both oscillatory, Chronos has seen many)
+- Phase 1b: predict fills gaps rather than isolated (no cluster threshold)
+
+### Results — HDBSCAN clusters (min_cluster_size=8, min_samples=3)
+
+| Cluster | Primary dataset | Purity |
+|---|---|---|
+| cl7 | keeling_seasonal | 100% |
+| cl4 | keeling_trend | 100% |
+| cl2 | ECG | 99% |
+| cl3 | sea_level | 97% |
+| cl1 | streamflow | 79% |
+| cl5 | sunspot_cycle | 54% (46% noise) |
+| cl6 | VIX (28%) + ENSO (24%) + temperature (23%) | mixed |
+| cl0 | COVID first+second (19%+17%, rest noise) | partial |
+
+Overall noise: 32.2% (622/1930)
+
+### Key pairwise centroid distances (Chronos 512-dim, raw Euclidean)
+
+| Pair | Feat-6f | Conv AE (nb19) | Chronos |
+|---|---|---|---|
+| sunspot ↔ covid1 | 1.988 | 4.451 (5.79x) | **0.301 — FARTHEST pair** |
+| covid1 ↔ covid2 | 0.871 | 2.256 (9.02x) | **0.059 — CLOSEST pair** |
+| enso ↔ sunspot | 0.818 | 6.040 (7.03x) | 0.094 |
+| lynx_hare ↔ vix | 0.893 | 0.944 (1.53x) | 0.119 |
+| temperature ↔ sea_level | 0.655 | 0.777 (0.17x) | 0.140 |
+
+### Notable divergences between Conv AE and Chronos
+- **Temperature-sea_level**: Conv AE says same class (0.17x contraction); Chronos separates them (sea_level in own pure cluster cl3, temperature mostly noise)
+- **ENSO-sunspot**: Conv AE says maximally different (7.03x); Chronos says very close (0.094 centroid distance, though they land in different HDBSCAN clusters)
+- **VIX-lynx_hare**: Conv AE says cross-domain match holds; Chronos puts VIX in cl6 (irregular), lynx_hare all noise
+
+### ECG sub-structure
+Chronos HDBSCAN ARI vs UCR labels: **0.742** — highest ARI of any sub-cluster analysis in experiment
+
+### Findings
+Findings 43–46 added to FINDINGS.md. Total findings: 46.

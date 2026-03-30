@@ -15,6 +15,11 @@ dependencies = [
     "mkdocs>=1.6.0",
     "mkdocs-material>=9.5.0",
     "httpx>=0.27.0",
+    "tensorflow>=2.21.0",
+    "statsmodels>=0.14.6",
+    "torch>=2.11.0",
+    "chronos-forecasting>=2.2.2",
+    "nbconvert>=7.17.0",
 ]
 
 [tool.uv]

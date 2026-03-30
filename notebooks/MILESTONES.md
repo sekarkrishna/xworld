@@ -68,10 +68,10 @@ The 6 features you chose are a measurement frame — your decision about what to
 **Why this matters:** If yes — the classes are real in a deeper sense. The network found them without being told what skewness or kurtosis is. If no — the classes depend on the specific measurement frame and the question shifts to why this frame works.
 
 ### 2b — Foundation model embeddings
-- [ ] Run all 9 datasets through a pre-trained time series model (TimesFM or Chronos)
-- [ ] Extract hidden state embeddings — no fine-tuning, zero-shot
-- [ ] Cluster the embeddings, compare to the hand-crafted taxonomy
-- [ ] Key question: does a model trained on millions of unrelated series organize your 9 datasets the same way?
+- [x] Run all 12 datasets through Chronos-T5-Small (Amazon, 46 M params) — zero-shot
+- [x] Extract mean-pooled T5 encoder embeddings (512-dim)
+- [x] Cluster with HDBSCAN, compare to TD features and Conv AE
+- [x] Key finding: sunspot-COVID confirmed as maximally separated (3 methods agree); sea_level isolated as its own cluster; ECG ARI=0.742 vs UCR labels; VIX+ENSO+temperature form a new cross-domain irregular cluster
 
 **Why this matters:** These models have never seen your data. If they reproduce the same groupings, that's the strongest possible evidence that the taxonomy reflects something real about how time series structure is organized — not something specific to your feature choices.
 
@@ -110,29 +110,30 @@ The burst class (COVID) exists because of exponential growth followed by resourc
 ---
 
 ## Current status
-**Active phase:** Phase 1 — 1a and 1b complete, 1c next
-**Last updated:** 28 March 2026
-**Total findings:** 32 (see FINDINGS.md)
-**Notebooks completed:** 01–17
+**Active phase:** Phase 2 — Notebooks 19–20 complete
+**Last updated:** 30 March 2026
+**Total findings:** 46 (see FINDINGS.md)
+**Notebooks completed:** 01–20
 
 ---
 
 ## Next session — pick up here
 
-**Phase 1c: Stability test (Notebook 18)**
+**Phase 2 complete. Open questions for nb21:**
 
-Vary HDBSCAN parameters and score which classes are granite vs sand.
+nb20 (Chronos) key results:
+- Sunspot-COVID farthest pair in Chronos (0.301) — three independent methods now agree (TD features, Conv AE, Chronos)
+- Sea_level gets its own pure cluster in Chronos (97%) — diverges from Conv AE contraction; "noisy directional" 8th class needs splitting
+- VIX+ENSO+temperature form a cross-domain irregular cluster — VIX-lynx_hare match doesn't survive into Chronos space
+- ECG ARI=0.742 vs UCR labels — highest sub-cluster alignment in experiment
 
-- Vary `min_cluster_size` across [4, 6, 8, 12, 16] and `min_samples` across [2, 3, 5]
-- For each parameter set, record which datasets stay in their expected cluster vs drift
-- Produce a stability score per dataset — % of runs where it lands in its expected class
-- Use the original 9 datasets only (nb11 baseline) for clean comparison
-- Expected: keeling_seasonal and keeling_trend = 100% stable. Sunspot = unstable.
-- New question from Phase 1b: are sea_level, ENSO, VIX always in noise regardless of params?
+**Open questions for nb21:**
+1. **"Noisy directional" class refinement** — three sub-types emerging (clean monotonic: sea_level; noisy directional: temperature; irregular oscillatory: ENSO). Test with targeted new datasets: glacier mass balance (clean trend?), ocean heat content (noisy trend?), Arctic sea ice extent (declining trend with seasonal oscillation?)
+2. **Why do Conv AE and Chronos disagree on temperature-sea_level?** Is sea_level truly a distinct class, or is it a data-quantity artifact (120 dense instances vs 31 scattered)?
+3. **What is cl6 exactly?** VIX + ENSO + temperature share a Chronos cluster — what property do their raw waveforms share that Chronos is responding to?
+4. **Mirror distortions (synthetic invariance test)** — take existing shape classes, apply time-reversal, amplitude-flip, speed distortion — do they stay in the same cluster?
 
-**After 1c → Phase 2**
-
-Phase 1b showed all new datasets land in noise under the current discrete clustering approach.
-This is the strongest argument yet for Phase 2: replace hand-crafted features + HDBSCAN with
-a continuous learned embedding (autoencoder or foundation model). The gaps between classes
-that discrete clustering can't describe will become visible as geometry in the embedding space.
+**Future directions (Phase 2+ and beyond) — recorded 30 March 2026:**
+1. Mirror distortions (synthetic) — invariance test on existing shapes
+2. Audio / whale calls — predator-prey vocalizations as time series
+3. Video / amoeba chemotaxis — new extraction pipeline (highest effort, highest payoff)
