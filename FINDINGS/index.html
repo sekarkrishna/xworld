@@ -1,0 +1,1716 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Cross-domain time series shape clustering — does a glacier melting and a turtle breathing share the same numerical signature?">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../MILESTONES/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Findings - XWorld Research Log</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#xworld-findings" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="XWorld Research Log" class="md-header__button md-logo" aria-label="XWorld Research Log" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            XWorld Research Log
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Findings
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="XWorld Research Log" class="md-nav__button md-logo" aria-label="XWorld Research Log" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    XWorld Research Log
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Findings
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Findings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#session-12-2324-march-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 1–2 — 23–24 March 2026
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 1–2 — 23–24 March 2026">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-1-cross-domain-shape-clustering-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 1: Cross-domain shape clustering works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-2-directional-is-not-one-shape-class-skewness-is-the-burst-discriminator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 2: "Directional" is not one shape class — skewness is the burst discriminator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-3-periodic-is-not-one-shape-class-three-periodic-datasets-land-in-three-different-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 3: "Periodic" is not one shape class — three periodic datasets land in three different clusters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-4-ecg-is-distinguished-by-kurtosis-not-oscillation-frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 4: ECG is distinguished by kurtosis, not oscillation frequency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-5-moderate-dynamics-is-a-genuine-shape-region-not-a-catch-all" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 5: "Moderate dynamics" is a genuine shape region, not a catch-all
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-6-the-hdbscan-calibration-finding-the-measurement-tools-baseline-is-a-variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 6: The HDBSCAN calibration finding — the measurement tool's baseline is a variable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-3-28-march-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 3 — 28 March 2026
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 3 — 28 March 2026">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-7-covid-waves-are-event-with-memory-burst-returns-to-baseline-was-wrong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 7: COVID waves are event-with-memory — "burst returns to baseline" was wrong
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-8-baseline_delta-is-genuinely-independent-of-slope-for-non-monotone-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 8: baseline_delta is genuinely independent of slope for non-monotone series
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-9-baseline_delta-tripled-the-distance-between-covid-and-keeling_trend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 9: baseline_delta tripled the distance between COVID and keeling_trend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-10-sunspot-cycles-lost-their-independent-cluster-when-baseline_delta-was-added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 10: Sunspot cycles lost their independent cluster when baseline_delta was added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-11-keeling_trend-forms-the-most-isolated-cluster-in-the-entire-taxonomy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 11: keeling_trend forms the most isolated cluster in the entire taxonomy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-3-continued-notebook-12-observer-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 3 continued — Notebook 12: Observer Independence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 3 continued — Notebook 12: Observer Independence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-12-observer-independence-holds-cross-frame-ari-0484" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 12: Observer-independence holds — cross-frame ARI = 0.484
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-13-the-sunspot-covid-collapse-was-a-frame-limitation-sunspot-separates-in-spectral-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 13: The sunspot-COVID collapse was a frame limitation — sunspot separates in spectral space
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-14-keeling_seasonal-is-the-most-spectrally-pure-signal-in-the-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 14: keeling_seasonal is the most spectrally pure signal in the dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-15-sunspot-and-keeling_seasonal-look-nearly-identical-in-spectral-space-the-inverse-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 15: Sunspot and keeling_seasonal look nearly identical in spectral space — the inverse problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-16-spectral-features-are-sensitive-to-series-length-before-interpolation-a-methodological-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 16: Spectral features are sensitive to series length before interpolation — a methodological limit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-3-continued-notebook-13-combined-feature-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 3 continued — Notebook 13: Combined Feature Frame
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 3 continued — Notebook 13: Combined Feature Frame">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-17-combining-feature-frames-does-not-improve-on-time-domain-alone-spectral-features-add-noise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 17: Combining feature frames does not improve on time-domain alone — spectral features add noise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-18-sunspot-covid-collapse-is-persistent-across-all-time-domain-weighted-frames" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 18: Sunspot-COVID collapse is persistent across all time-domain-weighted frames
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-19-the-spectral-interpolation-fix-correctly-placed-streamflow-with-lynx_hare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 19: The spectral interpolation fix correctly placed streamflow with lynx_hare
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-20-keeling_seasonal-and-keeling_trend-are-the-two-most-robustly-isolated-shape-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 20: keeling_seasonal and keeling_trend are the two most robustly isolated shape classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-questions-updated-28-march-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Questions (updated 28 March 2026)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Open Questions (updated 28 March 2026)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-21-centroid-l2-distance-cannot-reproduce-the-entropy-driven-covid-sunspot-separation-from-nb12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 21: Centroid L2 distance cannot reproduce the entropy-driven COVID-sunspot separation from nb12
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-22-sunspot-keeling_seasonal-is-the-clearest-cross-frame-duality-in-the-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 22: sunspot ↔ keeling_seasonal is the clearest cross-frame duality in the corpus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-23-keeling_seasonal-keeling_trend-are-spectrally-near-despite-being-the-most-td-distant-pair" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 23: keeling_seasonal ↔ keeling_trend are spectrally near despite being the most TD-distant pair
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-24-temperature-is-the-most-isolated-dataset-in-both-frames-simultaneously" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 24: Temperature is the most isolated dataset in both frames simultaneously
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-25-covid-sunspot-entropy-distance-is-exactly-at-the-corpus-median-the-duality-lives-at-the-clustering-level-not-the-distance-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 25: COVID-sunspot entropy distance is exactly at the corpus median — the duality lives at the clustering level, not the distance level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-26-entropy-ordering-reveals-spectral-complexity-spectrum-of-the-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 26: Entropy ordering reveals spectral complexity spectrum of the corpus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-27-sea-level-is-a-noisy-monotone-nearest-to-covid-not-keeling_trend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 27: Sea level is a noisy monotone — nearest to COVID, not keeling_trend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-28-the-taxonomy-has-a-gap-noisy-directional-sits-between-keeling_trend-and-temperature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 28: The taxonomy has a gap — "noisy directional" sits between keeling_trend and temperature
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-29-enso-is-equidistant-from-covid-and-sunspot-simultaneously-a-new-in-between-region" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 29: ENSO is equidistant from COVID and sunspot simultaneously — a new in-between region
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-30-three-datasets-now-occupy-genuine-in-between-shape-regions-the-taxonomy-has-structural-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 30: Three datasets now occupy genuine in-between shape regions — the taxonomy has structural gaps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-31-vix-financial-volatility-landed-nearest-lynx_hare-0594-not-covid-or-ecg-as-predicted" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 31: VIX (financial volatility) landed nearest lynx_hare (0.594) — not COVID or ECG as predicted
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-32-all-three-phase-1b-datasets-landed-mostly-in-noise-confirms-the-taxonomy-has-structural-gaps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 32: All three Phase 1b datasets landed mostly in noise — confirms the taxonomy has structural gaps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-5-30-march-2026-notebook-18-phase-1c-stability-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 5 — 30 March 2026 (Notebook 18: Phase 1c Stability Test)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 5 — 30 March 2026 (Notebook 18: Phase 1c Stability Test)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-33-keeling_seasonal-and-keeling_trend-are-the-only-truly-parameter-independent-shape-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 33: keeling_seasonal and keeling_trend are the only truly parameter-independent shape classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-34-sunspot-is-stable-but-parasitic-it-has-no-independent-shape-class-in-the-td-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 34: Sunspot is stable but parasitic — it has no independent shape class in the TD frame
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-35-ecg-has-internal-sub-structure-ecg-class-is-a-family-not-a-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 35: ECG has internal sub-structure — "ECG class" is a family, not a shape
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-36-small-n-datasets-are-noise-by-arithmetic-not-by-shape-the-stability-test-has-a-size-floor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 36: Small-n datasets are noise by arithmetic, not by shape — the stability test has a size floor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-37-covid-first-wave-across-countries-is-not-a-single-shape-the-burst-class-is-a-heterogeneous-family" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 37: COVID first wave across countries is not a single shape — the burst class is a heterogeneous family
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-38-phase-1b-datasets-remain-structurally-outside-the-taxonomy-at-every-parameter-setting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 38: Phase 1b datasets remain structurally outside the taxonomy at every parameter setting
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-5-cont-30-march-2026-notebook-19-phase-2-autoencoder-pairwise-distances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 5 cont. — 30 March 2026 (Notebook 19: Phase 2 Autoencoder — pairwise distances)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 5 cont. — 30 March 2026 (Notebook 19: Phase 2 Autoencoder — pairwise distances)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-39-the-conv-ae-separates-sunspot-from-covid-the-td-collapse-was-a-feature-resolution-failure-not-a-real-shape-ambiguity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 39: The Conv AE separates sunspot from COVID — the TD collapse was a feature resolution failure, not a real shape ambiguity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-40-enso-and-sunspot-are-dramatically-separated-in-latent-space-the-largest-ratio-expansion-in-the-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 40: ENSO and sunspot are dramatically separated in latent space — the largest ratio expansion in the corpus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-41-temperature-and-sea_level-contract-to-near-neighbors-in-latent-space-the-autoencoder-merges-what-td-features-split" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 41: Temperature and sea_level contract to near-neighbors in latent space — the autoencoder merges what TD features split
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-42-vix-lynx_hare-proximity-survives-the-move-to-latent-space-the-cross-domain-shape-match-is-robust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 42: VIX-lynx_hare proximity survives the move to latent space — the cross-domain shape match is robust
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-5-cont-cont-30-march-2026-notebook-20-phase-2b-chronos-foundation-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 5 cont. cont. — 30 March 2026 (Notebook 20: Phase 2b Chronos Foundation Model)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 5 cont. cont. — 30 March 2026 (Notebook 20: Phase 2b Chronos Foundation Model)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-43-chronos-confirms-sunspotcovid-as-the-maximally-separated-pair-three-independent-methods-agree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 43: Chronos confirms sunspot–COVID as the maximally separated pair — three independent methods agree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-44-chronos-separates-sea_level-from-temperature-conv-ae-and-chronos-disagree-noisy-directional-class-needs-splitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 44: Chronos separates sea_level from temperature — Conv AE and Chronos disagree, "noisy directional" class needs splitting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-45-chronos-discovers-a-cross-domain-irregular-cluster-vix-enso-temperature-cl6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 45: Chronos discovers a cross-domain irregular cluster — VIX + ENSO + temperature (cl6)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-46-ecg-sub-structure-aligns-with-ucr-true-labels-at-ari0742-chronos-recovers-clinical-class-structure-zero-shot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 46: ECG sub-structure aligns with UCR true labels at ARI=0.742 — Chronos recovers clinical class structure zero-shot
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-6-31-march-2026-notebook-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 6 — 31 March 2026 (Notebook 21)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 6 — 31 March 2026 (Notebook 21)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#finding-47-ch4-trend-and-keeling_trend-share-a-chronos-cluster-clean-monotonic-is-a-general-shape-class-not-co2-specific" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 47: CH4 trend and keeling_trend share a Chronos cluster — clean monotonic is a general shape class, not CO2-specific
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-48-ocean-heat-content-lands-with-sea_level-not-temperature-clean-integrated-trend-sub-type-defined-by-measurement-smoothness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 48: Ocean heat content lands with sea_level, not temperature — "clean integrated trend" sub-type defined by measurement smoothness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-49-arctic-sea-ice-forms-its-own-pure-chronos-cluster-8th-shape-class-confirmed-declining-oscillator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 49: Arctic sea ice forms its own pure Chronos cluster — 8th shape class confirmed: "declining oscillator"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-50-sea-level-chronos-isolation-is-structural-not-a-density-artifact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 50: Sea-level Chronos isolation is structural, not a density artifact
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-51-cl7-vix-enso-temperature-characterised-by-moderate-positive-skewness-and-intermediate-autocorrelation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 51: cl7 (VIX + ENSO + temperature) characterised by moderate positive skewness and intermediate autocorrelation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finding-52-chronos-is-invariant-to-time-reversal-and-amplitude-flip-for-all-shape-classes-sensitive-to-temporal-speed-only-for-periodic-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding 52: Chronos is invariant to time-reversal and amplitude-flip for all shape classes — sensitive to temporal speed only for periodic classes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MILESTONES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milestones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EXPERIMENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Experiments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DECISIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sessions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sessions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30MAR2026_nb20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Mar 2026 (nb20)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_28MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_24MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="xworld-findings">XWorld — Findings</h1>
+<p>Cumulative record of what has been discovered, in the order it was discovered. Each finding is stated as a claim, the evidence that supports it, and what it means.</p>
+<hr />
+<h2 id="session-12-2324-march-2026">Session 1–2 — 23–24 March 2026</h2>
+<h3 id="finding-1-cross-domain-shape-clustering-works">Finding 1: Cross-domain shape clustering works</h3>
+<p><strong>Claim:</strong> Time series from completely unrelated domains cluster by dynamic shape, not by domain of origin.</p>
+<p><strong>Evidence:</strong> Nine datasets from epidemiology, astronomy, ecology, climate science, hydrology, and cardiology. After z-score normalisation and extraction of 5 shape features, HDBSCAN finds clusters that span domain boundaries. COVID first wave and second wave cluster together (confirmed, 55–67% cohesion). Temperature and lynx-hare cluster together despite being a climate anomaly record and a predator-prey population count from the 1800s.</p>
+<p><strong>What it means:</strong> The domain is the costume. The shape is real and detectable with simple math.</p>
+<hr />
+<h3 id="finding-2-directional-is-not-one-shape-class-skewness-is-the-burst-discriminator">Finding 2: "Directional" is not one shape class — skewness is the burst discriminator</h3>
+<p><strong>Claim:</strong> A fast asymmetric burst and a slow symmetric climb are mathematically distinct shapes, separated primarily by skewness.</p>
+<p><strong>Evidence:</strong> COVID first wave (skewness ≈ 0.95) and Keeling CO2 trend (skewness ≈ 0.07) both have high lag1-autocorrelation (~0.95–1.0) and very low zero-crossings (~0.02). In 5-feature space they were nearly touching (L2 distance = 0.975). Skewness alone separates them: COVID rises fast and falls asymmetrically; Keeling trend rises smoothly without a return.</p>
+<p><strong>What it means:</strong> Skewness captures the asymmetry of the burst — whether energy accumulates and releases unevenly. A symmetric rise is a different physical process from an asymmetric one.</p>
+<hr />
+<h3 id="finding-3-periodic-is-not-one-shape-class-three-periodic-datasets-land-in-three-different-clusters">Finding 3: "Periodic" is not one shape class — three periodic datasets land in three different clusters</h3>
+<p><strong>Claim:</strong> Periodicity is not a single shape. Keeling seasonal, sunspot cycles, and lynx-hare are all roughly periodic but genuinely distinct shapes.</p>
+<p><strong>Evidence:</strong> In 5-feature clustering: keeling_seasonal → Cluster 0 (100%). Sunspot → own cluster. Lynx-hare → Cluster 1 with temperature. All three avoided the COVID burst cluster as predicted, but did not cluster together.</p>
+<p><strong>Discriminating features:</strong>
+- Keeling seasonal: skewness = −0.16 (left-skewed), consistent 12-month rhythm
+- Sunspot: skewness = +0.49 (right-skewed), ~132-month cycle, rises faster than it falls
+- Lynx-hare: moderate skewness, moderate autocorr (0.68), moderate zero crossings — lands in the "moderate dynamics" region, not a "periodic" class</p>
+<p><strong>What it means:</strong> The label "periodic" describes recurrence. It says nothing about shape. The asymmetry of the cycle, the memory between cycles, and the ratio of rise to fall time all vary independently of whether something repeats.</p>
+<hr />
+<h3 id="finding-4-ecg-is-distinguished-by-kurtosis-not-oscillation-frequency">Finding 4: ECG is distinguished by kurtosis, not oscillation frequency</h3>
+<p><strong>Claim:</strong> ECG heartbeat segments are isolated in feature space by extreme kurtosis (15.165), not by high zero crossings as originally assumed.</p>
+<p><strong>Evidence:</strong> ECG zero crossings = 0.078 — actually lower than keeling_seasonal (0.167) and lynx-hare (0.172). The QRS spike on a flat isoelectric baseline produces extreme kurtosis. The clustering correctly isolated ECG but for a different reason than assumed.</p>
+<p><strong>What it means:</strong> A sharp impulse on a flat baseline is a fundamentally different shape from an oscillation. Kurtosis captures the ratio of spike height to baseline flatness. The feature set found the right discriminator without being told what to look for.</p>
+<hr />
+<h3 id="finding-5-moderate-dynamics-is-a-genuine-shape-region-not-a-catch-all">Finding 5: "Moderate dynamics" is a genuine shape region, not a catch-all</h3>
+<p><strong>Claim:</strong> The cluster containing temperature and lynx-hare is not noise or a residual bin — it is a real shape class, confirmed by independent prediction.</p>
+<p><strong>Evidence:</strong> River streamflow was predicted before clustering to have moderate features (lag1 ≈ 0.5–0.7, zero crossings ≈ 0.15–0.25, flat kurtosis). All four features landed in range after log-transformation. Streamflow formed its own density peak adjacent to temperature/lynx-hare — same region, but slightly higher autocorrelation (0.70 vs 0.50–0.68). Two sub-classes within the moderate region, separated by memory.</p>
+<p><strong>What it means:</strong> "Moderate dynamics" means no single physical forcing dominates. Temperature, ecology, and hydrology all produce moderate-memory moderate-oscillation series — for different physical reasons, but with the same mathematical fingerprint. Catchment memory (streamflow) is slightly stronger than ecological or interannual climate memory.</p>
+<hr />
+<h3 id="finding-6-the-hdbscan-calibration-finding-the-measurement-tools-baseline-is-a-variable">Finding 6: The HDBSCAN calibration finding — the measurement tool's baseline is a variable</h3>
+<p><strong>Claim:</strong> The choice of clustering parameters is itself a finding, not just a technical detail.</p>
+<p><strong>Evidence:</strong> <code>min_cluster_size=3</code> produced 76 clusters and 31% noise. <code>min_cluster_size=8</code> produced coherent macro shape clusters. <code>min_cluster_size=15</code> caused temperature (26 points) to go 100% noise even when internally tight. The algorithm's definition of "enough density to count as a cluster" was the variable — not the shape of the data.</p>
+<p><strong>What it means:</strong> Any measurement of structure is partly a measurement of the tool's sensitivity. The calibration of the tool must be reported alongside the result.</p>
+<hr />
+<h2 id="session-3-28-march-2026">Session 3 — 28 March 2026</h2>
+<h3 id="finding-7-covid-waves-are-event-with-memory-burst-returns-to-baseline-was-wrong">Finding 7: COVID waves are event-with-memory — "burst returns to baseline" was wrong</h3>
+<p><strong>Claim:</strong> The COVID epidemic burst did not return to its starting level. It ended at a new elevated floor. Epidemics leave a residue.</p>
+<p><strong>Evidence:</strong> baseline_delta (mean last 10% − mean first 10% of normalized series): COVID first wave = +0.610, COVID second wave = +0.392. Slope ≈ 0 for both. These two features diverge completely — slope says no directional trend; baseline_delta says the endpoint is 0.6 SD above the start. The series rises, partially falls, then plateaus.</p>
+<p><strong>What it means:</strong> The original hypothesis that a burst is "event-without-memory" was wrong for this domain. Epidemics do not fully resolve — endemic transmission persists at a new floor. More generally: whether a burst returns to baseline or settles at a new level is a real physical distinction, and baseline_delta captures it where slope cannot.</p>
+<hr />
+<h3 id="finding-8-baseline_delta-is-genuinely-independent-of-slope-for-non-monotone-series">Finding 8: baseline_delta is genuinely independent of slope for non-monotone series</h3>
+<p><strong>Claim:</strong> baseline_delta and slope are not redundant features. They measure different things for series that are not monotone.</p>
+<p><strong>Evidence:</strong> COVID first wave: slope ≈ −0.001, baseline_delta = +0.610. Zero slope, significant positive delta. For keeling_trend (monotone): slope = +0.029, baseline_delta = +3.111 — these are proportional as expected. For COVID (non-monotone burst): they completely diverge. Per-dataset correlations confirm the pattern.</p>
+<p><strong>What it means:</strong> Slope measures the average rate of change across the full window. baseline_delta measures where the series ended relative to where it started. For a series that rises and partially falls, these are orthogonal. The 6th feature is not redundant.</p>
+<hr />
+<h3 id="finding-9-baseline_delta-tripled-the-distance-between-covid-and-keeling_trend">Finding 9: baseline_delta tripled the distance between COVID and keeling_trend</h3>
+<p><strong>Claim:</strong> Adding baseline_delta as a 6th feature dramatically increased the separation between the two most confusable shape classes.</p>
+<p><strong>Evidence:</strong> L2 distance in standardized feature space:</p>
+<table>
+<thead>
+<tr>
+<th>Pair</th>
+<th>5-feature</th>
+<th>6-feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COVID ↔ keeling_trend</td>
+<td>0.975</td>
+<td>2.810</td>
+</tr>
+<tr>
+<td>COVID ↔ temperature</td>
+<td>6.315</td>
+<td>6.329</td>
+</tr>
+<tr>
+<td>keeling_trend ↔ temperature</td>
+<td>6.649</td>
+<td>7.012</td>
+</tr>
+</tbody>
+</table>
+<p>COVID and keeling_trend were nearly touching at 0.975 — the smallest inter-class distance in the taxonomy. Adding baseline_delta tripled it to 2.810.</p>
+<p><strong>What it means:</strong> The 6th feature did exactly the job it was designed for. The two series that shared high autocorrelation, low zero crossings, and low slope are now clearly separated because they have fundamentally different residue profiles (0.61 vs 3.11).</p>
+<hr />
+<h3 id="finding-10-sunspot-cycles-lost-their-independent-cluster-when-baseline_delta-was-added">Finding 10: Sunspot cycles lost their independent cluster when baseline_delta was added</h3>
+<p><strong>Claim:</strong> The sunspot cluster that existed in 5-feature space was fragile — it collapsed into the COVID cluster when a 6th feature was added.</p>
+<p><strong>Evidence:</strong> In 5-feature clustering, sunspot had its own cluster. In 6-feature clustering, sunspot joined COVID's Cluster 13 (100% of sunspot points). Sunspot baseline_delta = +0.055 — close to zero, unlike COVID's +0.488 cluster mean. But the other 5 features (high autocorr, right-skewed, low zero crossings) made it too similar to COVID for the density-based algorithm to separate them.</p>
+<p><strong>What it means:</strong> The sunspot-COVID separation in 5-feature space was a density artefact — a borderline case that sat just far enough from the COVID mass to form a separate cluster under those specific parameters. This is an open question for the observer-independence test (notebook 12): if spectral features also fail to separate sunspot from COVID, the two shapes may genuinely be close.</p>
+<hr />
+<h3 id="finding-11-keeling_trend-forms-the-most-isolated-cluster-in-the-entire-taxonomy">Finding 11: keeling_trend forms the most isolated cluster in the entire taxonomy</h3>
+<p><strong>Claim:</strong> Permanent monotone accumulation is the most distinct shape class — no other dataset approaches it in feature space.</p>
+<p><strong>Evidence:</strong> Cluster 12 in 6-feature clustering: 100% keeling_trend (58 points), mean baseline_delta = 3.106, lag1 = 1.000, slope = 0.028, skewness ≈ 0. The cluster is pure, tight, and maximally separated from all other classes.</p>
+<p><strong>What it means:</strong> A system that only accumulates and never releases — CO2 building in the atmosphere — has a unique mathematical signature. No other natural process in this dataset produces that combination of features. Permanence is detectable.</p>
+<hr />
+<hr />
+<h2 id="session-3-continued-notebook-12-observer-independence">Session 3 continued — Notebook 12: Observer Independence</h2>
+<h3 id="finding-12-observer-independence-holds-cross-frame-ari-0484">Finding 12: Observer-independence holds — cross-frame ARI = 0.484</h3>
+<p><strong>Claim:</strong> The shape taxonomy is a property of the data, not an artefact of the time-domain feature frame. A completely different measurement approach (spectral features) reproduces the same major structural groupings.</p>
+<p><strong>Evidence:</strong> 5 spectral features (dominant_freq, spectral_entropy, power_low, power_mid, power_high) computed via FFT on 1526 series. Clustered independently. Cross-frame ARI between spectral and time-domain assignments = 0.484. Well above the 0.3 meaningful-agreement threshold. 4 of 5 key structural tests passed independently.</p>
+<p><strong>What it means:</strong> The domain is the costume; the dynamic is real — and it's detectable with more than one kind of ruler. The classes aren't a mathematical hallucination produced by the choice of five time-domain statistics.</p>
+<hr />
+<h3 id="finding-13-the-sunspot-covid-collapse-was-a-frame-limitation-sunspot-separates-in-spectral-space">Finding 13: The sunspot-COVID collapse was a frame limitation — sunspot separates in spectral space</h3>
+<p><strong>Claim:</strong> Sunspot cycles and COVID waves are genuinely different shapes. Their collapse into the same cluster in 6-feature time-domain space (Finding 10) was because the time-domain features couldn't see the distinction, not because the shapes are similar.</p>
+<p><strong>Evidence:</strong> In spectral space: sunspot spectral_entropy = 0.081 (power highly concentrated — near-pure periodic signal). COVID spectral_entropy = 0.330 (more broadband — energy spread across frequencies by the rise and fall of the burst). L2 distance COVID ↔ sunspot in spectral space = 1.052. They land in different clusters.</p>
+<p><strong>What it means:</strong> A periodic signal and a one-time burst look similar when you measure autocorrelation and slope — both are smooth, both have low zero crossings. But in frequency space they're completely different: the periodic signal has a sharp spectral peak; the burst spreads its energy across many frequencies. The shape distinction is real; the time-domain frame had a blind spot.</p>
+<hr />
+<h3 id="finding-14-keeling_seasonal-is-the-most-spectrally-pure-signal-in-the-dataset">Finding 14: keeling_seasonal is the most spectrally pure signal in the dataset</h3>
+<p><strong>Claim:</strong> The annual CO2 seasonal cycle is the closest thing to a perfect sine wave in the entire 9-dataset corpus.</p>
+<p><strong>Evidence:</strong> Cluster 25 in spectral clustering: 100% keeling_seasonal (68/68 points), spectral_entropy = 0.045 (lowest of any dataset), power_low = 0.9995. The 12-month atmospheric CO2 cycle driven by Northern Hemisphere photosynthesis and respiration is an extraordinarily regular signal — nearly all its power concentrated at a single frequency.</p>
+<p><strong>What it means:</strong> The biosphere has a clock. It runs at exactly 1 year, almost without variation. No other system in this dataset — not the heartbeat, not the sunspot cycle, not the predator-prey oscillation — produces as concentrated a spectral signature.</p>
+<hr />
+<h3 id="finding-15-sunspot-and-keeling_seasonal-look-nearly-identical-in-spectral-space-the-inverse-problem">Finding 15: Sunspot and keeling_seasonal look nearly identical in spectral space — the inverse problem</h3>
+<p><strong>Claim:</strong> Two datasets that are well-separated in time-domain space are nearly indistinguishable in spectral space.</p>
+<p><strong>Evidence:</strong> L2 distance sunspot ↔ keeling_seasonal in spectral space = 0.141 — the smallest inter-class distance in the spectral taxonomy. Both have very low spectral entropy and near-unity power_low. In time-domain space they were clearly separated (different kurtosis, skewness, zero crossings).</p>
+<p><strong>What it means:</strong> No single feature frame separates everything cleanly. The time-domain frame separates sunspot from keeling_seasonal (they have different skewness and kurtosis profiles) but confuses sunspot with COVID. The spectral frame separates sunspot from COVID but makes sunspot and keeling_seasonal look similar. The full shape taxonomy requires both frames together. This is evidence that shape is multi-dimensional in a way that neither frame alone covers completely.</p>
+<hr />
+<h3 id="finding-16-spectral-features-are-sensitive-to-series-length-before-interpolation-a-methodological-limit">Finding 16: Spectral features are sensitive to series length before interpolation — a methodological limit</h3>
+<p><strong>Claim:</strong> The 100-point interpolation used before FFT does not preserve correct relative frequencies across series of very different lengths.</p>
+<p><strong>Evidence:</strong> Streamflow dominant_freq = 0.3533 — by far the highest of any dataset, pushing it into a high-frequency cluster completely disconnected from its actual dynamics. Streamflow has ~480 monthly observations. The annual cycle (period = 12 months) maps to 12/480 × 100 = 2.5 interpolated points → normalized frequency ≈ 0.4. This is correct math, but it places the annual cycle at a completely different spectral position than keeling_seasonal, which uses 12-point series where the annual cycle is at frequency = 1/12.</p>
+<p><strong>What it means:</strong> The spectral feature extraction needs length-aware frequency normalization to be fully comparable across series of different durations. The current approach is valid for comparing series of similar lengths but conflates "short series with high-frequency oscillation" with "long series with low-frequency oscillation." This is a design note for the next version of the spectral feature set.</p>
+<hr />
+<hr />
+<h2 id="session-3-continued-notebook-13-combined-feature-frame">Session 3 continued — Notebook 13: Combined Feature Frame</h2>
+<h3 id="finding-17-combining-feature-frames-does-not-improve-on-time-domain-alone-spectral-features-add-noise">Finding 17: Combining feature frames does not improve on time-domain alone — spectral features add noise</h3>
+<p><strong>Claim:</strong> For this dataset composition, the 6 time-domain features are more discriminative than either the 5 spectral features or the 11-feature combination.</p>
+<p><strong>Evidence:</strong> ARI — time-domain 6f: 0.165, spectral-fixed 5f: 0.144, combined 11f: 0.133. Combined ARI is the lowest. Cross-frame ARI combined↔td = 0.871 — the 11-feature clustering is 87% similar to the 6-feature time-domain clustering. Adding spectral features neither changed the topology meaningfully nor improved domain alignment.</p>
+<p><strong>Why:</strong> The spectral features have high within-class variance for ECG (884 segments, spectrally diverse) and COVID (202 countries, varying burst shapes). This within-class variance inflates the feature space and destabilizes the density-based clustering. The time-domain features happen to capture the class-separating structure more cleanly for this particular dataset composition.</p>
+<p><strong>What it means:</strong> Observer-independence (Finding 12) showed the classes are real. This finding clarifies that the time-domain frame is a more efficient ruler for this dataset — not that the spectral frame is wrong, but that it adds more noise than signal here. The right feature set is not always more features.</p>
+<hr />
+<h3 id="finding-18-sunspot-covid-collapse-is-persistent-across-all-time-domain-weighted-frames">Finding 18: Sunspot-COVID collapse is persistent across all time-domain-weighted frames</h3>
+<p><strong>Claim:</strong> Sunspot cycles and COVID waves share a time-domain fingerprint strong enough to override spectral separation when both frames are combined.</p>
+<p><strong>Evidence:</strong> In all three runs: time-domain alone → sunspot joins COVID. Spectral alone → sunspot separates. Combined 11f → sunspot joins COVID (96% of points in Cluster 24 with COVID). The combined frame cross-ARI with time-domain = 0.871. The 6 time-domain features have more weight in the 11-dimensional space than the 5 spectral features, so the time-domain signal dominates.</p>
+<p><strong>What it means:</strong> The question "are sunspot and COVID the same shape?" has a frame-dependent answer. In the time-domain: yes — both are smooth, high-memory, right-skewed, low-oscillation signals that rise and fall. In frequency space: no — sunspot is a near-pure periodic signal; COVID is a broadband burst. They are genuinely similar in one dimension of shape and genuinely different in another. There is no single true answer; the answer depends on which aspect of shape you are measuring.</p>
+<hr />
+<h3 id="finding-19-the-spectral-interpolation-fix-correctly-placed-streamflow-with-lynx_hare">Finding 19: The spectral interpolation fix correctly placed streamflow with lynx_hare</h3>
+<p><strong>Claim:</strong> With the 100-point interpolation artefact removed, streamflow groups with lynx_hare (moderate dynamics), not in an isolated high-frequency bin.</p>
+<p><strong>Evidence:</strong> Fixed dominant_freq for streamflow = 0.0799 (was 0.353 in nb12). In combined clustering: Cluster 2 = 15 lynx_hare + 22 streamflow. The moderate dynamics pairing (both have annual-ish cycles, moderate memory, no trend) correctly emerges once the spectral features reflect actual signal content.</p>
+<p><strong>What it means:</strong> The spectral feature set is valid — the streamflow result in nb12 was a measurement error, not a shape finding. When correctly measured, the annual cycle in streamflow and the oscillation structure in lynx_hare look similar in frequency space, consistent with their time-domain similarity.</p>
+<hr />
+<h3 id="finding-20-keeling_seasonal-and-keeling_trend-are-the-two-most-robustly-isolated-shape-classes">Finding 20: keeling_seasonal and keeling_trend are the two most robustly isolated shape classes</h3>
+<p><strong>Claim:</strong> The symmetric steady climb (keeling_trend) and the left-skewed annual cycle (keeling_seasonal) are perfectly isolated in every single frame tested.</p>
+<p><strong>Evidence:</strong> Across all three runs in nb13, and in nb11 and nb12:
+- keeling_seasonal: 100% in one cluster, in every frame
+- keeling_trend: 100% in one cluster, in every frame</p>
+<p>No other dataset achieves this across all frames.</p>
+<p><strong>What it means:</strong> These two shapes are the most structurally distinct in the corpus. Permanent monotone accumulation (keeling_trend) and the most spectrally pure oscillation in the dataset (keeling_seasonal) are maximally separated from everything else regardless of how you hold the ruler. They represent the two extremes of the taxonomy — one never returns, one returns perfectly.</p>
+<hr />
+<h2 id="open-questions-updated-28-march-2026">Open Questions (updated 28 March 2026)</h2>
+<ol>
+<li>
+<p><strong>The sunspot-COVID duality — partially answered by nb14.</strong> They are (near, near) at the centroid L2 level but separate under HDBSCAN in spectral space (nb12). The duality is real but metric-dependent: entropy distance separates them; L2 on all 5 spectral features does not. Open question: does entropy-only distance recover (near, far)? → Follow-up cell planned for nb14.</p>
+</li>
+<li>
+<p><strong>Why does combining frames lower ARI?</strong> The spectral features add within-class variance (particularly ECG and COVID) that destabilizes HDBSCAN. A weighted combination — down-weighting noisy spectral features — might recover the improvement. Or a different clustering algorithm (e.g. Gaussian mixture) that handles variable-density clusters better.</p>
+</li>
+<li>
+<p><strong>What is the right number of shape classes?</strong> It depends on the frame and the parameters. keeling_seasonal and keeling_trend are always perfectly isolated (2 stable classes). COVID + COVID2 are always together (1 stable class). Everything else is resolution-dependent. The taxonomy is not a fixed object — it is a projection of continuous shape space at a particular resolution.</p>
+</li>
+<li>
+<p><strong>Sunspot and keeling_seasonal are spectrally near (L2=2.383 centroid, L2=0.141 instance in nb12).</strong> Confirmed by nb14. Both concentrate power at very low frequencies. Whether this is a genuine shape similarity or an artefact of both being observed over similar time windows remains open.</p>
+</li>
+<li>
+<p><strong>Runner vs substrate</strong> — is the shape in the participant or in the exchange relationship between them? Requires designing a new dataset around an interaction rather than a system variable.</p>
+</li>
+</ol>
+<hr />
+<h3 id="finding-21-centroid-l2-distance-cannot-reproduce-the-entropy-driven-covid-sunspot-separation-from-nb12">Finding 21: Centroid L2 distance cannot reproduce the entropy-driven COVID-sunspot separation from nb12</h3>
+<p><strong>Claim:</strong> At the centroid level, COVID1 and sunspot are spectrally <em>near</em> (L2=1.309, below median 3.268), contradicting nb12's finding that they cluster separately in spectral space.</p>
+<p><strong>Evidence:</strong> Both have <code>power_low ≈ 0.95+</code> and <code>dominant_freq ≈ 0.01</code>. The entropy difference (COVID=0.338 vs sunspot=0.076) is real but is one of five spectral features. In L2 centroid distance, the four power-band features (which look similar for both) outvote entropy.</p>
+<p><strong>What it means:</strong> Cluster separation ≠ centroid distance. HDBSCAN in nb12 separated them because entropy alone drove their local density apart. Averaging across all five spectral features dissolves that signal. The COVID-sunspot duality is real but only observable at the instance level, not the centroid level. This is a methodological finding: the choice of distance metric (L2 on centroids vs density-based clustering) determines what distinctions are visible.</p>
+<hr />
+<h3 id="finding-22-sunspot-keeling_seasonal-is-the-clearest-cross-frame-duality-in-the-corpus">Finding 22: sunspot ↔ keeling_seasonal is the clearest cross-frame duality in the corpus</h3>
+<p><strong>Claim:</strong> Sunspot and keeling_seasonal are TD-far (L2=4.459, above median 3.814) but spectrally near (L2=2.383, below median 3.268) — confirmed at the centroid level.</p>
+<p><strong>Evidence:</strong> Nb14 quadrant check: (far, near), confirmed. TD distance driven by skewness/kurtosis differences. Spectral nearness driven by both being power-concentrated at low frequencies (power_low: sunspot=0.998, keeling_seasonal=0.925).</p>
+<p><strong>What it means:</strong> Two physically unrelated periodic systems — 11-year solar cycles and seasonal CO2 oscillations — look completely different in time-domain statistics but nearly identical in their spectral power distribution. This is the spectral frame's blind spot: it sees that both oscillate regularly at low frequency but cannot see that one is smooth-sinusoidal and one is left-skewed with a sharp shoulder. This finding is robust across nb12 (clustering) and nb14 (centroid distance).</p>
+<hr />
+<h3 id="finding-23-keeling_seasonal-keeling_trend-are-spectrally-near-despite-being-the-most-td-distant-pair">Finding 23: keeling_seasonal ↔ keeling_trend are spectrally near despite being the most TD-distant pair</h3>
+<p><strong>Claim:</strong> keeling_seasonal and keeling_trend have the largest TD distance in the corpus (L2=6.277) but are spectrally near (L2=2.495, below median).</p>
+<p><strong>Evidence:</strong> Both concentrate most power at very low frequencies (power_low: keeling_seasonal=0.925, keeling_trend=0.953). The spectral frame treats "annual periodic cycle" and "slow permanent trend" as similar because both manifest as low-frequency power concentration.</p>
+<p><strong>What it means:</strong> The spectral frame's power-band decomposition (low/mid/high) cannot distinguish a periodic oscillation from a monotone trend — both look like "mostly low-frequency energy." This requires either entropy (which does distinguish them: 0.154 vs 0.389) or the time-domain frame. A reminder that power bands and entropy carry different information even within the spectral frame.</p>
+<hr />
+<h3 id="finding-24-temperature-is-the-most-isolated-dataset-in-both-frames-simultaneously">Finding 24: Temperature is the most isolated dataset in both frames simultaneously</h3>
+<p><strong>Claim:</strong> Temperature has the largest distances to nearly all other datasets in both TD and spectral frames. Every pair involving temperature lands near or at the top of the distance ranking.</p>
+<p><strong>Evidence:</strong> Top 5 largest distances in both frames involve temperature. Spectral distances: sunspot↔temperature=8.109 (largest), keeling_trend↔temperature=7.251, COVID2↔temperature=7.335. TD distances: keeling_trend↔temperature=7.012 (largest).</p>
+<p><strong>What it means:</strong> Slow noisy upward drift with increasing variance is the most structurally isolated shape in the corpus — it matches nothing closely in either frame. The combination of high zero_crossings (0.302), moderate-high spectral entropy (0.763), and significant power across all frequency bands makes it an outlier by every available metric.</p>
+<hr />
+<h3 id="finding-25-covid-sunspot-entropy-distance-is-exactly-at-the-corpus-median-the-duality-lives-at-the-clustering-level-not-the-distance-level">Finding 25: COVID-sunspot entropy distance is exactly at the corpus median — the duality lives at the clustering level, not the distance level</h3>
+<p><strong>Claim:</strong> COVID1-sunspot entropy distance (0.2622) is 0.0006 below the median entropy distance (0.2628) across all 36 pairs. Entropy-only spectral distance does not recover (near, far) for this pair.</p>
+<p><strong>Evidence:</strong> Per-dataset spectral entropy: sunspot=0.076, COVID1=0.338. |0.338 − 0.076| = 0.2622. Median of all 36 pairwise entropy distances = 0.2628. COVID-sunspot lands at the median, not above it.</p>
+<p><strong>What it means:</strong> The COVID-sunspot separation in nb12 was not caused by a large entropy gap — it was a density effect. HDBSCAN found them in separate clusters because their individual-instance entropy distributions do not overlap (sunspot instances are tightly clustered at low entropy; COVID instances are spread at higher entropy). Centroid distance misses this because it compares means, not distributions. This closes the follow-up question from Finding 21: no simple centroid distance — L2 or entropy-only — can reproduce the nb12 separation. The duality is real but only observable through instance-level density-based methods.</p>
+<hr />
+<h3 id="finding-26-entropy-ordering-reveals-spectral-complexity-spectrum-of-the-corpus">Finding 26: Entropy ordering reveals spectral complexity spectrum of the corpus</h3>
+<p><strong>Claim:</strong> The 9 datasets form a clear order of spectral complexity by mean entropy: sunspot (0.076) &lt; keeling_seasonal (0.154) &lt; COVID2 (0.297) &lt; COVID1 (0.338) &lt; keeling_trend (0.389) &lt; lynx_hare (0.436) &lt; streamflow (0.596) &lt; ECG (0.699) &lt; temperature (0.763).</p>
+<p><strong>Evidence:</strong> Per-dataset mean spectral entropy computed across all instances in nb14 entropy follow-up.</p>
+<p><strong>What it means:</strong> Entropy ranks the datasets from most ordered (near-pure periodic signal, sunspot) to most complex (multi-scale noisy trend, temperature). The two ends of this spectrum are maximally far in spectral complexity. The COVID datasets sit near the middle — they are bursty but not maximally disordered. This ordering is independent of any clustering and represents a single continuous axis of spectral structure that runs through the entire corpus.</p>
+<hr />
+<h3 id="finding-27-sea-level-is-a-noisy-monotone-nearest-to-covid-not-keeling_trend">Finding 27: Sea level is a noisy monotone — nearest to COVID, not keeling_trend</h3>
+<p><strong>Claim:</strong> Global mean sea level (monthly, 10-year windows) is nearest to covid_first_wave by TD centroid distance (1.467), not keeling_trend (2.653) as predicted. 48% of instances fall into noise.</p>
+<p><strong>Evidence:</strong> Key discriminating features vs keeling_trend: zero_crossings=0.104 (vs 0.008), baseline_delta=1.100 (vs 3.111), lag1_autocorr=0.919 (vs 0.9999). Spectral features are similar to keeling_trend (power_low=0.920, dom_freq=0.019) but time-domain diverges. HDBSCAN places majority of sea_level instances in noise.</p>
+<p><strong>What it means:</strong> "Monotone rise" is not a single shape class. The taxonomy distinguishes two subtypes: (a) clean monotone — CO2 accumulates so smoothly that zero_crossings ≈ 0 and baseline_delta is very large relative to variance; (b) noisy monotone — sea level rises steadily but inter-annual forcing (ENSO, volcanic events) creates regular oscillations around the trend, giving zero_crossings ≈ 0.10. Sub-type (b) currently has no class in the taxonomy and lands in noise. This is a gap in the existing 7 classes.</p>
+<hr />
+<h3 id="finding-28-the-taxonomy-has-a-gap-noisy-directional-sits-between-keeling_trend-and-temperature">Finding 28: The taxonomy has a gap — "noisy directional" sits between keeling_trend and temperature</h3>
+<p><strong>Claim:</strong> Sea level occupies a shape space between keeling_trend (clean monotone) and temperature (noisy drift) that no existing class covers.</p>
+<p><strong>Evidence:</strong> keeling_trend: zero_crossings=0.008, baseline_delta=3.111, lag1_autocorr=0.9999. Sea_level: zero_crossings=0.104, baseline_delta=1.100, lag1_autocorr=0.919. Temperature: zero_crossings=0.302, baseline_delta=0.997, lag1_autocorr=0.464. Sea level sits between these two on every relevant feature. 48% noise placement confirms it belongs to neither existing class.</p>
+<p><strong>What it means:</strong> A potential 8th shape class — "noisy directional with strong memory" — characterized by: moderate zero_crossings (0.05–0.15), moderate-high baseline_delta (0.8–1.5), high lag1_autocorr (0.85–0.95), low spectral entropy (~0.43), high power_low (~0.92). Physical systems that trend in one direction but are also subject to recurring forcing (sea level, ice extent, perhaps population under periodic stress) would land here.</p>
+<hr />
+<h3 id="finding-29-enso-is-equidistant-from-covid-and-sunspot-simultaneously-a-new-in-between-region">Finding 29: ENSO is equidistant from COVID and sunspot simultaneously — a new in-between region</h3>
+<p><strong>Claim:</strong> ENSO ONI is nearest to covid_second_wave (0.970), sunspot_cycle (0.996), and covid_first_wave (1.022) — a three-way tie within 0.05. 72% of instances fall into noise. It is not a member of any existing class.</p>
+<p><strong>Evidence:</strong> Feature profile: lag1_autocorr=0.956, zero_crossings=0.074, baseline_delta=0.078, spectral_entropy=0.367. ENSO shares baseline_delta≈0 with sunspot (0.055) — both return to zero between events. ENSO shares spectral_entropy≈0.34 with COVID (0.338) — both are irregular. The combination is unique: high-memory, irregular, reversible oscillation.</p>
+<p><strong>What it means:</strong> ENSO is not classifiable by the existing 7-class taxonomy. It occupies a new region of shape space: "irregular reversible memory oscillator" — characterized by high autocorr (events persist), near-zero baseline_delta (system returns to baseline), and moderate spectral entropy (irregular periodicity). This is different from sunspot (regular, low entropy) and COVID (irreversible, high baseline_delta). A potential 9th shape class.</p>
+<hr />
+<h3 id="finding-30-three-datasets-now-occupy-genuine-in-between-shape-regions-the-taxonomy-has-structural-gaps">Finding 30: Three datasets now occupy genuine in-between shape regions — the taxonomy has structural gaps</h3>
+<p><strong>Claim:</strong> Sea level (nb15), ENSO (nb16), and the COVID-sunspot pair (nb11-14) all demonstrate that the existing 7-class taxonomy has gaps between classes that real physical systems inhabit.</p>
+<p><strong>Evidence:</strong> 
+- Sea level: sits between keeling_trend and temperature ("noisy directional")
+- ENSO: sits between sunspot and COVID ("irregular reversible oscillator")
+- COVID-sunspot: same class in TD frame, different class in spectral frame (not a gap but an ambiguity)</p>
+<p><strong>What it means:</strong> The 7 classes are not a complete partition of shape space — they are the densest regions of a continuous shape manifold sampled with the original 9 datasets. Adding new datasets is filling in the spaces between existing classes. The taxonomy may need to grow to 9 or 10 classes, or alternatively be reframed as a continuous embedding rather than discrete classes. Phase 2 (autoencoder embeddings) will test this directly.</p>
+<hr />
+<h3 id="finding-31-vix-financial-volatility-landed-nearest-lynx_hare-0594-not-covid-or-ecg-as-predicted">Finding 31: VIX (financial volatility) landed nearest lynx_hare (0.594) — not COVID or ECG as predicted</h3>
+<p><strong>Claim:</strong> CBOE VIX with 24-month windows is nearest to lynx_hare by TD centroid distance (0.594), followed by streamflow (0.726). COVID1 is 3.374 away. ECG is 3.381 away. 69% of instances fall into noise.</p>
+<p><strong>Evidence:</strong> Key features: skewness=0.947, kurtosis=0.582, lag1_autocorr=0.650, zero_crossings=0.205. Lynx_hare: skewness=1.025, kurtosis=-0.302, lag1_autocorr=0.680, zero_crossings=0.172. Near-identical moderate-memory oscillator profiles. COVID disqualified by lag1_autocorr (0.650 vs 0.954 — VIX is not sustained enough). ECG disqualified by kurtosis (0.582 vs 15.165 — VIX spikes are not pathologically sharp at monthly resolution).</p>
+<p><strong>What it means:</strong> Financial market volatility (VIX) and ecological predator-prey dynamics (lynx_hare) share the same time-domain shape class — both are "irregular moderate-memory oscillators with positive skewness." Market crises boom and revert; predator-prey populations boom and collapse. The domain is different; the dynamic is the same. This is a direct confirmation of the research hypothesis at the taxonomy level.</p>
+<hr />
+<h3 id="finding-32-all-three-phase-1b-datasets-landed-mostly-in-noise-confirms-the-taxonomy-has-structural-gaps">Finding 32: All three Phase 1b datasets landed mostly in noise — confirms the taxonomy has structural gaps</h3>
+<p><strong>Claim:</strong> Sea level (48% noise), ENSO (72% noise), VIX (69% noise) all failed to find a clean class membership. All three landed nearest to unexpected existing datasets.</p>
+<p><strong>Evidence:</strong>
+- Sea level: predicted keeling_trend, nearest COVID (1.467) — "noisy monotone" gap
+- ENSO: predicted lynx_hare, nearest COVID/sunspot three-way tie (0.97–1.02) — "irregular reversible oscillator" gap
+- VIX: predicted COVID/ECG, nearest lynx_hare (0.594) — fits best but still 69% noise</p>
+<p><strong>What it means:</strong> The 7 classes are the dense cores of a continuous shape manifold, not a complete partition. Adding datasets from new domains consistently finds the gaps between existing classes. Two implications: (1) the taxonomy should expand to 9–10 classes; (2) a continuous embedding (Phase 2) is more appropriate than discrete HDBSCAN clusters for describing the full shape space.</p>
+<hr />
+<h2 id="session-5-30-march-2026-notebook-18-phase-1c-stability-test">Session 5 — 30 March 2026 (Notebook 18: Phase 1c Stability Test)</h2>
+<h3 id="finding-33-keeling_seasonal-and-keeling_trend-are-the-only-truly-parameter-independent-shape-classes">Finding 33: keeling_seasonal and keeling_trend are the only truly parameter-independent shape classes</h3>
+<p><strong>Claim:</strong> keeling_seasonal and keeling_trend achieve 100% stability with 0% noise across all 15 parameter combinations. No other dataset in the corpus achieves this.</p>
+<p><strong>Evidence:</strong> Both datasets have noise_frac = 0.0 in every run (mean ± std = 0.0 ± 0.0%). majority_pct ≥ 0.5 in all 15 runs. Every other dataset has either non-zero noise variance, or majority_pct &lt; 0.5 in at least some runs. These two are the only datasets where HDBSCAN finds a single coherent cluster, regardless of resolution.</p>
+<p><strong>What it means:</strong> The perfectly regular annual CO2 oscillation and the perfectly smooth accumulation trend are the two most structurally unambiguous shapes in the corpus. They represent the two poles of the taxonomy — one never returns, one returns perfectly — and this polarity is the most robust structural fact in XWorld. If only two shape classes survive complete parameter independence, these are the ones. This was predicted; it is now confirmed against a 15-run adversarial test.</p>
+<hr />
+<h3 id="finding-34-sunspot-is-stable-but-parasitic-it-has-no-independent-shape-class-in-the-td-frame">Finding 34: Sunspot is stable but parasitic — it has no independent shape class in the TD frame</h3>
+<p><strong>Claim:</strong> Sunspot_cycle achieves 100% stability (finds a clean cluster in all 15 runs) but collapses into the same cluster as COVID instances in 73% of those runs. Sunspot's stability is borrowed, not earned.</p>
+<p><strong>Evidence:</strong> All 15 runs show sunspot majority_pct = 58–92%. But 11 of those 15 runs place sunspot in the same cluster as at least a fraction of COVID first wave instances. The collapse is resolution-dependent: at mcs=4 (fine resolution) only 1/3 runs collapse; at mcs ≥ 12 (coarse resolution) all 6/6 collapse. Mean sunspot noise = 17.2% ± 8.0%.</p>
+<p><strong>What it means:</strong> The sunspot-COVID TD fingerprint similarity (Finding 18) is not a centroid-level artifact — it is the dominant organizational fact about sunspot across parameter regimes. At coarse resolution HDBSCAN cannot maintain them as separate clusters; the TD similarity wins. Sunspot does not have a stable independent class in the 6-feature TD frame. It is a satellite of the burst class — close enough to merge at most resolutions, separable only when HDBSCAN is forced to operate at fine grain. This is the clearest demonstration yet that the 7-class taxonomy needs either spectral features to separate sunspot from COVID, or a continuous embedding.</p>
+<hr />
+<h3 id="finding-35-ecg-has-internal-sub-structure-ecg-class-is-a-family-not-a-shape">Finding 35: ECG has internal sub-structure — "ECG class" is a family, not a shape</h3>
+<p><strong>Claim:</strong> ECG achieves 0% stability despite extreme kurtosis (15.165) that was predicted to isolate it. Low mean noise (26.5% ± 6.3%) confirms ECG is NOT being rejected — it is being fragmented into many sub-clusters.</p>
+<p><strong>Evidence:</strong> ECG has 884 instances — the largest dataset by far. In every run, ECG instances cluster successfully (low noise) but distribute across many small clusters, no single one capturing ≥50% of 884 instances. At mcs=4, the total run produces up to 115 clusters globally. ECG contributes sub-structure to many of them.</p>
+<p><strong>What it means:</strong> ECG is not one shape — it is a family of heartbeat morphologies that all share extreme kurtosis (sharp spike on flat baseline) but differ in spike width, symmetry, and inter-beat structure. The kurtosis feature correctly isolates the ECG region of shape space, but within that region there is genuine sub-structure that HDBSCAN resolves. For Phase 2, ECG may need to be treated as multiple shape sub-classes. The stability metric reveals something the single-run nb11 could not: apparent "one class" datasets may contain sub-classes invisible at the 9-dataset scale.</p>
+<hr />
+<h3 id="finding-36-small-n-datasets-are-noise-by-arithmetic-not-by-shape-the-stability-test-has-a-size-floor">Finding 36: Small-n datasets are noise by arithmetic, not by shape — the stability test has a size floor</h3>
+<p><strong>Claim:</strong> lynx_hare (n=26), streamflow (n=24), and temperature (n=31) show "always noise" or near-zero stability. This is an artifact of the min_cluster_size threshold, not evidence of weak shape structure.</p>
+<p><strong>Evidence:</strong> All three have very high noise fractions (lynx_hare 96.2%, streamflow 92.8%, temperature 96.6%). But their centroid positions in feature space (nb14) confirmed they occupy distinct, structurally real locations. A dataset with 24–31 instances cannot reliably form a majority cluster when min_cluster_size ranges from 4 to 16 — the threshold arithmetic works against them even when shape structure is present.</p>
+<p><strong>What it means:</strong> The stability metric has an implicit size floor. Datasets with fewer than ~50 instances will fail the ≥50% majority test for structural reasons unrelated to shape distinctness. This is a methodological finding: HDBSCAN stability testing is only informative for datasets with sufficient instance counts. The small datasets (lynx_hare, streamflow, temperature) need either more instances (longer windows, more stations) or a different validation method. Phase 2's continuous embedding approach has no minimum cluster size — every point gets a position regardless of count.</p>
+<hr />
+<h3 id="finding-37-covid-first-wave-across-countries-is-not-a-single-shape-the-burst-class-is-a-heterogeneous-family">Finding 37: COVID first wave across countries is not a single shape — the burst class is a heterogeneous family</h3>
+<p><strong>Claim:</strong> COVID first wave (n=202 country waves) achieves 0% stability with 58.5% ± 8.9% mean noise. Countries cluster locally by wave shape similarity, not as a single global burst class.</p>
+<p><strong>Evidence:</strong> In every run, the 202 first-wave instances distribute across many clusters with no single cluster capturing ≥50%. The majority cluster for COVID1 captures only 8–35% of instances. Mean noise is 58.5% — over half the waves are not being captured by any cluster at any parameter setting.</p>
+<p><strong>What it means:</strong> The burst shape (rapid asymmetric rise and fall) is a category, not a single fingerprint. Each country's COVID wave has a different rise rate, peak timing, and decay shape. HDBSCAN correctly identifies that they are not all the same curve. The 202 waves populate a region of shape space — the burst zone — but that zone has significant internal variance. This is consistent with the physical reality: countries with different demographics, intervention policies, and wave timing produced genuinely different wave shapes. Finding 1 (cross-domain clustering works) remains valid — COVID waves all cluster in the same region of shape space — but the region is not a tight point, it is a diffuse cloud.</p>
+<hr />
+<h3 id="finding-38-phase-1b-datasets-remain-structurally-outside-the-taxonomy-at-every-parameter-setting">Finding 38: Phase 1b datasets remain structurally outside the taxonomy at every parameter setting</h3>
+<p><strong>Claim:</strong> sea_level, ENSO, and VIX never achieve clean cluster placement across any of the 15 parameter combinations. Lowering min_cluster_size does not rescue them.</p>
+<p><strong>Evidence:</strong>
+- enso_oni: best case is 50.3% noise (mcs=4, ms=2), majority_pct=0.07 — even when not in noise, it doesn't consolidate
+- sea_level: best case is 39.2% noise (mcs=4, ms=3), majority_pct=0.29 — partial consolidation but never clean
+- vix: best case is 71.5% noise (mcs=4, ms=2), majority_pct=0.07 — mostly noise at every setting
+- All three improve slightly at mcs=4 vs mcs=16, but none crosses into clean placement</p>
+<p><strong>What it means:</strong> The structural gaps identified in Phase 1b (Findings 27–32) are not parameter artifacts. These datasets occupy regions of shape space that are genuinely between the existing dense clusters — and no HDBSCAN resolution recovers them. This is the definitive closing argument for Phase 2: the continuous shape manifold cannot be adequately described by discrete clusters, even with optimized parameters. The gaps are real, and a continuous embedding is the only method that will place these datasets meaningfully.</p>
+<hr />
+<h2 id="session-5-cont-30-march-2026-notebook-19-phase-2-autoencoder-pairwise-distances">Session 5 cont. — 30 March 2026 (Notebook 19: Phase 2 Autoencoder — pairwise distances)</h2>
+<h3 id="finding-39-the-conv-ae-separates-sunspot-from-covid-the-td-collapse-was-a-feature-resolution-failure-not-a-real-shape-ambiguity">Finding 39: The Conv AE separates sunspot from COVID — the TD collapse was a feature resolution failure, not a real shape ambiguity</h3>
+<p><strong>Claim:</strong> Sunspot-COVID centroid distance increases 5.79x from feature space (0.769) to Conv AE latent space (4.451). The autoencoder places them far apart without any supervision.</p>
+<p><strong>Evidence:</strong> Feature-space distance = 0.769 — close enough that HDBSCAN collapsed them in 73% of parameter combinations (Finding 34). Latent-space distance = 4.451. The ratio (5.79x) is one of the largest expansions in the corpus, exceeded only by ENSO-sunspot and COVID1-COVID2.</p>
+<p><strong>What it means:</strong> The sunspot-COVID collapse in nb18 was not a fundamental shape similarity — it was a consequence of the 6-feature TD frame lacking sufficient resolution. The 11-year solar cycle, when fed as a raw 64-point waveform to a convolutional encoder, is structurally distinguishable from a 60–180-day COVID burst. The Conv AE captures local temporal texture — the multi-cycle structure of sunspot vs. the single-spike structure of COVID — that the 6 scalar statistics cannot represent. The sunspot class is not a satellite of the COVID class; it simply needed a richer representation to stand alone.</p>
+<hr />
+<h3 id="finding-40-enso-and-sunspot-are-dramatically-separated-in-latent-space-the-largest-ratio-expansion-in-the-corpus">Finding 40: ENSO and sunspot are dramatically separated in latent space — the largest ratio expansion in the corpus</h3>
+<p><strong>Claim:</strong> ENSO-sunspot distance increases 7.03x (0.859 → 6.040) — the largest ratio increase among all pairs tested. ENSO and sunspot were misleadingly close in feature space and are now maximally far in the autoencoder's representation.</p>
+<p><strong>Evidence:</strong> Feature-space distance = 0.859 (4th closest pair in the corpus, near-neighbor territory). Latent-space distance = 6.040 (among the most distant pairs). 7.03x expansion is the largest ratio in the test set.</p>
+<p><strong>What it means:</strong> Both ENSO and sunspot have high lag1_autocorr and near-zero baseline_delta in the TD frame — they look alike on those two dominant axes. But their raw waveforms are fundamentally different: sunspot is a near-pure periodic signal (regular ~11-year oscillations), while ENSO is an irregular reversible oscillator (El Niño events at 2–7 year intervals with variable amplitude). The convolutional encoder learned to distinguish regularity from irregularity — something 6 scalar statistics cannot capture. This is the most dramatic example in the corpus of the TD feature frame actively misleading clustering.</p>
+<hr />
+<h3 id="finding-41-temperature-and-sea_level-contract-to-near-neighbors-in-latent-space-the-autoencoder-merges-what-td-features-split">Finding 41: Temperature and sea_level contract to near-neighbors in latent space — the autoencoder merges what TD features split</h3>
+<p><strong>Claim:</strong> Temperature-sea_level centroid distance DECREASES from 4.607 (feature space) to 0.777 (latent space) — a 0.17x ratio. This is the only tested pair that contracts significantly, and the contraction is extreme.</p>
+<p><strong>Evidence:</strong> Feature-space distance = 4.607 (one of the largest distances in the corpus — near maximum separation). Latent-space distance = 0.777 (near-neighbor territory). The direction reverses: from "most different" to "most similar."</p>
+<p>The TD features disagreed on: zero_crossings (temperature=0.302 vs sea_level=0.104) and spectral entropy (temperature=0.763 vs sea_level ~0.43). These differences drove the large feature-space distance. But both series are, at their core, noisy upward drifts — a slow monotone rise with oscillatory noise around it.</p>
+<p><strong>What it means:</strong> The autoencoder independently confirmed and strengthened Finding 28's prediction of a "noisy directional" shape class sitting between keeling_trend (clean monotone) and temperature (noisy drift). The TD frame used zero_crossings and entropy to declare these dissimilar. The raw waveform says they are the same kind of thing: a trend being pushed around by recurring forcing. This is a case where a learned representation overturn a hand-crafted feature conclusion. Finding 28 proposed an 8th shape class. Finding 41 provides the strongest evidence yet that this class exists — and that temperature belongs to it alongside sea_level, not in isolation.</p>
+<hr />
+<h3 id="finding-42-vix-lynx_hare-proximity-survives-the-move-to-latent-space-the-cross-domain-shape-match-is-robust">Finding 42: VIX-lynx_hare proximity survives the move to latent space — the cross-domain shape match is robust</h3>
+<p><strong>Claim:</strong> lynx_hare ↔ VIX remains one of the closest inter-domain pairs in latent space (0.944), with the smallest ratio expansion (1.53x) of any non-trivial pair tested.</p>
+<p><strong>Evidence:</strong> Feature-space distance = 0.616 → Latent-space distance = 0.944. While all other pairs expand significantly (2x–9x), this pair barely moves. The autoencoder, learning from raw waveforms without any domain knowledge, confirms that financial volatility cycles and ecological predator-prey cycles occupy the same region of shape space.</p>
+<p><strong>What it means:</strong> Finding 31 (VIX matches lynx_hare) is not a feature-selection artifact. It holds when the representation is learned from scratch. Irregular moderate-memory oscillators with positive skewness are a real shape class — robust to changes in how the feature representation is constructed. This is the strongest cross-domain validation in the corpus: the same answer emerged independently from hand-crafted TD statistics and from a convolutional autoencoder trained on raw waveforms.</p>
+<hr />
+<h2 id="session-5-cont-cont-30-march-2026-notebook-20-phase-2b-chronos-foundation-model">Session 5 cont. cont. — 30 March 2026 (Notebook 20: Phase 2b Chronos Foundation Model)</h2>
+<h3 id="finding-43-chronos-confirms-sunspotcovid-as-the-maximally-separated-pair-three-independent-methods-agree">Finding 43: Chronos confirms sunspot–COVID as the maximally separated pair — three independent methods agree</h3>
+<p><strong>Claim:</strong> Sunspot↔COVID first wave is the farthest centroid pair in Chronos embedding space (0.301 Euclidean in 512-dim space), while ENSO↔sunspot and covid1↔covid2 are among the closest pairs (0.094 and 0.059 respectively).</p>
+<p><strong>Evidence:</strong> Amazon Chronos-T5-Small (46 M params, trained on millions of unrelated time series, zero-shot on our data) embeds all 1930 instances. Pairwise centroid distances in 512-dim encoder output space place sunspot↔covid1 at 0.301 — the maximum over 10 measured pairs. The Conv AE (nb19) showed a 5.79x expansion for this pair. TD features placed them near each other (1.988 raw, driving the nb18 collapse). Now all three frames agree: different direction, different magnitude, same qualitative verdict.</p>
+<p><strong>What it means:</strong> Three measurement systems (6 time-domain statistics, trained 1D Conv autoencoder, zero-shot foundation model) independently agree that the 11-year solar cycle and the epidemic burst are the most structurally distinct pair in this corpus. This is the strongest evidence yet that the sunspot-COVID separation is a real property of the shapes, not an artifact of any particular representation choice.</p>
+<hr />
+<h3 id="finding-44-chronos-separates-sea_level-from-temperature-conv-ae-and-chronos-disagree-noisy-directional-class-needs-splitting">Finding 44: Chronos separates sea_level from temperature — Conv AE and Chronos disagree, "noisy directional" class needs splitting</h3>
+<p><strong>Claim:</strong> Sea_level forms its own pure cluster in Chronos HDBSCAN (cl3, 97% pure), while temperature is 77% noise and 23% in the irregular cl6 cluster. Chronos pairwise distance temperature↔sea_level = 0.140 — not among the closest pairs.</p>
+<p><strong>Evidence:</strong> The Conv AE (nb19) contracted temperature-sea_level to 0.17x (from 4.607 feature distance to 0.777 latent), proposing both belong to a single "noisy directional" 8th class. Chronos disagrees: sea_level is isolated in cl3 (120 instances, 97% pure) while temperature scatters. Chronos HDBSCAN finds 8 distinct clusters total; sea_level earns one of them on its own.</p>
+<p><strong>What it means:</strong> The Conv AE was trained on our 1930-instance corpus and learned "upward drift" as the dominant shared shape. Chronos, trained on millions of unrelated series, has seen many types of trends and learned to distinguish sub-types: smooth monotonic satellite altimetry (sea_level: 1993–present, nearly linear) vs. temperature records with multi-decadal oscillations and regional noise. The "noisy directional" 8th class likely needs to be split into at least two sub-types: clean monotonic trend and noisy trend-with-oscillation. Finding 41's conclusion was a step in the right direction but went one level too coarse.</p>
+<hr />
+<h3 id="finding-45-chronos-discovers-a-cross-domain-irregular-cluster-vix-enso-temperature-cl6">Finding 45: Chronos discovers a cross-domain irregular cluster — VIX + ENSO + temperature (cl6)</h3>
+<p><strong>Claim:</strong> Cluster cl6 in Chronos HDBSCAN contains instances from VIX (28%), ENSO ONI (24%), and temperature (23%). No single dataset dominates. The nb17 VIX↔lynx_hare cross-domain match does not survive into Chronos space.</p>
+<p><strong>Evidence:</strong> With min_cluster_size=8, Chronos produces 8 clusters. Cluster cl6 mixes finance (VIX), climate oscillation (ENSO), and global temperature — three datasets with no domain connection. Meanwhile lynx_hare (the nb17 VIX match partner) is 100% noise in Chronos space. VIX and lynx_hare, which were near-neighbors in both TD feature space (0.893) and Conv AE latent space (0.944), are separated in Chronos space: VIX goes to cl6, lynx_hare scatters to noise.</p>
+<p><strong>What it means:</strong> The VIX-lynx_hare cross-domain match is not frame-invariant. In TD features and the Conv AE, both are irregular moderate-memory oscillators. In Chronos space, VIX's time windows look more like ENSO oscillations and noisy temperature signals. This does not invalidate Finding 42 — it reveals that the shape match operates at a different level of abstraction in different embeddings. The cross-domain finding is real but the specific grouping partner changes with the measurement frame. Cross-domain shape similarity is richer than a single pairing.</p>
+<hr />
+<h3 id="finding-46-ecg-sub-structure-aligns-with-ucr-true-labels-at-ari0742-chronos-recovers-clinical-class-structure-zero-shot">Finding 46: ECG sub-structure aligns with UCR true labels at ARI=0.742 — Chronos recovers clinical class structure zero-shot</h3>
+<p><strong>Claim:</strong> Chronos HDBSCAN on ECG instances finds 3 sub-clusters, with non-noise instances matching UCR class labels at ARI=0.742. ECG is 99% pure in cluster cl2.</p>
+<p><strong>Evidence:</strong> ECG has 884 instances from the UCR ECGFiveDays dataset with two clinical classes (class 1, class 2). Chronos HDBSCAN (mcs=8, ms=3) on 512-dim embeddings returns 3 clusters with 676 noise points. Among the non-noise subset, the cluster assignments align with UCR true labels at ARI=0.742 — a high agreement for unsupervised discovery. ECG forms cluster cl2 at 99% purity in the full corpus clustering.</p>
+<p><strong>What it means:</strong> The ECG fragmentation in nb18 (shapes break into many sub-clusters under parameter variation) has real, label-aligned structure. The sub-clusters are not statistical noise — they correspond to clinically distinct heartbeat morphologies. A foundation model trained on completely unrelated time series has implicitly learned to distinguish ECG waveform classes without domain knowledge, supervision, or access to the labels. This is the highest ARI of any sub-cluster analysis in this experiment, and confirms that the ECG "family" (Finding 35) has at least two distinct members.</p>
+<hr />
+<h2 id="session-6-31-march-2026-notebook-21">Session 6 — 31 March 2026 (Notebook 21)</h2>
+<h3 id="finding-47-ch4-trend-and-keeling_trend-share-a-chronos-cluster-clean-monotonic-is-a-general-shape-class-not-co2-specific">Finding 47: CH4 trend and keeling_trend share a Chronos cluster — clean monotonic is a general shape class, not CO2-specific</h3>
+<p><strong>Evidence:</strong> Chronos pairwise distance ch4_trend ↔ keeling_trend = 0.078 (smallest in corpus). HDBSCAN: keeling_trend 100% in cl6, ch4_trend 58% in cl6. Deseasonalised atmospheric methane (NOAA GML) placed in the same class as CO2 trend by a foundation model trained on neither.</p>
+<p><strong>What it means:</strong> The clean-monotonic shape class generalises across molecules and forcing mechanisms. It is defined by signal smoothness, not by the specific physical process producing the rise. Any smooth, unidirectional accumulation signal — regardless of domain — will land in this class.</p>
+<hr />
+<h3 id="finding-48-ocean-heat-content-lands-with-sea_level-not-temperature-clean-integrated-trend-sub-type-defined-by-measurement-smoothness">Finding 48: Ocean heat content lands with sea_level, not temperature — "clean integrated trend" sub-type defined by measurement smoothness</h3>
+<p><strong>Evidence:</strong> Chronos distances: ocean_heat ↔ sea_level = 0.080, ocean_heat ↔ temperature = 0.163. HDBSCAN: ocean_heat (77%) and sea_level (97%) share cl4. Prediction was temperature-like (noisy directional); result is sea_level-like (clean integrated).</p>
+<p><strong>What it means:</strong> The sub-type boundary inside the "noisy directional" region is measurement smoothness. Spatially averaged / depth-integrated instruments (sea_level, ocean_heat) cancel noise through physical integration. Point-surface records (temperature) retain weather-scale variability. The revised taxonomy: clean integrated trend (cl4/cl6) vs noisy surface trend (temperature) vs declining oscillator (arctic_sea_ice, Finding 49).</p>
+<hr />
+<h3 id="finding-49-arctic-sea-ice-forms-its-own-pure-chronos-cluster-8th-shape-class-confirmed-declining-oscillator">Finding 49: Arctic sea ice forms its own pure Chronos cluster — 8th shape class confirmed: "declining oscillator"</h3>
+<p><strong>Evidence:</strong> Arctic sea ice 100% in cl0 — a pure cluster it occupies alone. Pairwise distances: arctic_sea_ice ↔ keeling_seasonal = 0.261, arctic_sea_ice ↔ sea_level = 0.257. Equidistant between oscillator and trend classes.</p>
+<p><strong>What it means:</strong> Long-term decline embedded inside a strong annual cycle creates a shape class distinct from both pure oscillators and pure trends. This is the 8th shape class. It is the first class in this corpus defined by the superposition of two dynamics (trend + cycle) rather than one dominant mode. More datasets in the same region needed to confirm class boundaries.</p>
+<hr />
+<h3 id="finding-50-sea-level-chronos-isolation-is-structural-not-a-density-artifact">Finding 50: Sea-level Chronos isolation is structural, not a density artifact</h3>
+<p><strong>Evidence:</strong> Sea_level subsampled to n=31 (matching temperature count) → 90.32% still in own cluster. Temperature at n=31 → 77.42% noise. Equal sample sizes, opposite clustering behaviour.</p>
+<p><strong>What it means:</strong> The nb20 concern that sea_level's isolation might reflect having 120 instances vs temperature's 31 is resolved. The smooth altimetry signal is structurally distinct regardless of instance count.</p>
+<hr />
+<h3 id="finding-51-cl7-vix-enso-temperature-characterised-by-moderate-positive-skewness-and-intermediate-autocorrelation">Finding 51: cl7 (VIX + ENSO + temperature) characterised by moderate positive skewness and intermediate autocorrelation</h3>
+<p><strong>Evidence:</strong> Feature comparison of in-cluster vs out-of-cluster instances across the three datasets. In-cluster skewness: VIX 0.695, ENSO 0.210, temperature 0.153. ENSO out-of-cluster skewness: 0.006. In-cluster lag1_autocorr: VIX 0.631, temperature 0.420 (intermediate). ENSO out-of-cluster lag1: 0.976 (near-monotone windows).</p>
+<p><strong>What it means:</strong> Chronos cl7 captures a specific dynamic regime: irregular oscillation with positive amplitude asymmetry (excursions above the mean are larger than below). The out-of-cluster instances from the same datasets are the near-monotone, low-skewness windows. This is a within-dataset split as much as a cross-domain grouping. The VIX-ENSO-temperature match is frame-dependent: TD-6f matched VIX with lynx_hare (ecology); Chronos matches VIX with ENSO and temperature (irregular asymmetric oscillators). Both are real; they reflect different aspects of the same dynamics.</p>
+<hr />
+<h3 id="finding-52-chronos-is-invariant-to-time-reversal-and-amplitude-flip-for-all-shape-classes-sensitive-to-temporal-speed-only-for-periodic-classes">Finding 52: Chronos is invariant to time-reversal and amplitude-flip for all shape classes — sensitive to temporal speed only for periodic classes</h3>
+<p><strong>Evidence:</strong> Mirror distortion test on 7 representative series. Time-reversal: INV for all 7. Amplitude-flip: INV for all 7. Speed-2x: SEN for oscillator, seasonal, irregular; INV for burst_event, eco_cycle, clean_trend, noisy_dir.</p>
+<p><strong>What it means:</strong> Chronos does not encode time direction or amplitude polarity. A reversed keeling_trend is not placed near COVID (prediction was wrong). What Chronos encodes is frequency structure: stretching a periodic series changes its dominant period relative to context length, and Chronos detects this. Non-periodic series (trends, bursts) are insensitive to temporal scale because their structure is not period-dependent. Chronos shape classes are defined by frequency content and amplitude structure, not by direction or polarity. This has a practical implication: two systems with opposite trend directions (one rising, one falling) will be placed in the same Chronos shape class.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
