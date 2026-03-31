@@ -531,3 +531,53 @@ The TD features disagreed on: zero_crossings (temperature=0.302 vs sea_level=0.1
 
 **What it means:** The ECG fragmentation in nb18 (shapes break into many sub-clusters under parameter variation) has real, label-aligned structure. The sub-clusters are not statistical noise — they correspond to clinically distinct heartbeat morphologies. A foundation model trained on completely unrelated time series has implicitly learned to distinguish ECG waveform classes without domain knowledge, supervision, or access to the labels. This is the highest ARI of any sub-cluster analysis in this experiment, and confirms that the ECG "family" (Finding 35) has at least two distinct members.
 
+
+---
+
+## Session 6 — 31 March 2026 (Notebook 21)
+
+### Finding 47: CH4 trend and keeling_trend share a Chronos cluster — clean monotonic is a general shape class, not CO2-specific
+
+**Evidence:** Chronos pairwise distance ch4_trend ↔ keeling_trend = 0.078 (smallest in corpus). HDBSCAN: keeling_trend 100% in cl6, ch4_trend 58% in cl6. Deseasonalised atmospheric methane (NOAA GML) placed in the same class as CO2 trend by a foundation model trained on neither.
+
+**What it means:** The clean-monotonic shape class generalises across molecules and forcing mechanisms. It is defined by signal smoothness, not by the specific physical process producing the rise. Any smooth, unidirectional accumulation signal — regardless of domain — will land in this class.
+
+---
+
+### Finding 48: Ocean heat content lands with sea_level, not temperature — "clean integrated trend" sub-type defined by measurement smoothness
+
+**Evidence:** Chronos distances: ocean_heat ↔ sea_level = 0.080, ocean_heat ↔ temperature = 0.163. HDBSCAN: ocean_heat (77%) and sea_level (97%) share cl4. Prediction was temperature-like (noisy directional); result is sea_level-like (clean integrated).
+
+**What it means:** The sub-type boundary inside the "noisy directional" region is measurement smoothness. Spatially averaged / depth-integrated instruments (sea_level, ocean_heat) cancel noise through physical integration. Point-surface records (temperature) retain weather-scale variability. The revised taxonomy: clean integrated trend (cl4/cl6) vs noisy surface trend (temperature) vs declining oscillator (arctic_sea_ice, Finding 49).
+
+---
+
+### Finding 49: Arctic sea ice forms its own pure Chronos cluster — 8th shape class confirmed: "declining oscillator"
+
+**Evidence:** Arctic sea ice 100% in cl0 — a pure cluster it occupies alone. Pairwise distances: arctic_sea_ice ↔ keeling_seasonal = 0.261, arctic_sea_ice ↔ sea_level = 0.257. Equidistant between oscillator and trend classes.
+
+**What it means:** Long-term decline embedded inside a strong annual cycle creates a shape class distinct from both pure oscillators and pure trends. This is the 8th shape class. It is the first class in this corpus defined by the superposition of two dynamics (trend + cycle) rather than one dominant mode. More datasets in the same region needed to confirm class boundaries.
+
+---
+
+### Finding 50: Sea-level Chronos isolation is structural, not a density artifact
+
+**Evidence:** Sea_level subsampled to n=31 (matching temperature count) → 90.32% still in own cluster. Temperature at n=31 → 77.42% noise. Equal sample sizes, opposite clustering behaviour.
+
+**What it means:** The nb20 concern that sea_level's isolation might reflect having 120 instances vs temperature's 31 is resolved. The smooth altimetry signal is structurally distinct regardless of instance count.
+
+---
+
+### Finding 51: cl7 (VIX + ENSO + temperature) characterised by moderate positive skewness and intermediate autocorrelation
+
+**Evidence:** Feature comparison of in-cluster vs out-of-cluster instances across the three datasets. In-cluster skewness: VIX 0.695, ENSO 0.210, temperature 0.153. ENSO out-of-cluster skewness: 0.006. In-cluster lag1_autocorr: VIX 0.631, temperature 0.420 (intermediate). ENSO out-of-cluster lag1: 0.976 (near-monotone windows).
+
+**What it means:** Chronos cl7 captures a specific dynamic regime: irregular oscillation with positive amplitude asymmetry (excursions above the mean are larger than below). The out-of-cluster instances from the same datasets are the near-monotone, low-skewness windows. This is a within-dataset split as much as a cross-domain grouping. The VIX-ENSO-temperature match is frame-dependent: TD-6f matched VIX with lynx_hare (ecology); Chronos matches VIX with ENSO and temperature (irregular asymmetric oscillators). Both are real; they reflect different aspects of the same dynamics.
+
+---
+
+### Finding 52: Chronos is invariant to time-reversal and amplitude-flip for all shape classes — sensitive to temporal speed only for periodic classes
+
+**Evidence:** Mirror distortion test on 7 representative series. Time-reversal: INV for all 7. Amplitude-flip: INV for all 7. Speed-2x: SEN for oscillator, seasonal, irregular; INV for burst_event, eco_cycle, clean_trend, noisy_dir.
+
+**What it means:** Chronos does not encode time direction or amplitude polarity. A reversed keeling_trend is not placed near COVID (prediction was wrong). What Chronos encodes is frequency structure: stretching a periodic series changes its dominant period relative to context length, and Chronos detects this. Non-periodic series (trends, bursts) are insensitive to temporal scale because their structure is not period-dependent. Chronos shape classes are defined by frequency content and amplitude structure, not by direction or polarity. This has a practical implication: two systems with opposite trend directions (one rising, one falling) will be placed in the same Chronos shape class.

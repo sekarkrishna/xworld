@@ -4,6 +4,35 @@ Chronological record of what was tried, what happened, and why each direction wa
 
 ---
 
+## 2026-03-31 — Session 6: "Noisy directional" refinement + open questions (Notebook 21)
+
+### Goal
+Four open questions from nb20 (Chronos Phase 2b):
+1. "Noisy directional" class refinement — 3 sub-types emerging; test with targeted new datasets
+2. Sea-level density artifact test — is sea_level's Chronos isolation structural or a count artifact?
+3. cl6 characterization — what do VIX + ENSO + temperature share that Chronos is responding to?
+4. Mirror distortion invariance — do time-reversal / amplitude-flip preserve Chronos cluster membership?
+
+### New datasets added (Phase 2b)
+- **Glacier mass balance** (WGMS global cumulative, via OWID GitHub) — predicted: keeling_trend-like (clean monotonic)
+- **Ocean heat content 0–700m** (NOAA WOA quarterly) — predicted: temperature-like (noisy directional)
+- **Arctic sea ice extent** (NSIDC monthly) — predicted: new class "declining oscillator"
+
+### Pre-run predictions (written before running)
+
+| Dataset | Predicted class | Reasoning |
+|---|---|---|
+| Glacier mass balance | keeling_trend-like | Smooth cumulative decline, low noise, unidirectional |
+| Ocean heat content | temperature-like | Same forcing, similar interannual noise |
+| Arctic sea ice | NEW class | Long-term decline + strong seasonal cycle = neither pure trend nor pure oscillator |
+
+### Structural questions being tested
+- If sea_level subsampled to n=31 still isolates → structural class (not density artifact)
+- cl6 in-cluster vs out-of-cluster feature comparison: what makes VIX/ENSO/temperature similar to Chronos?
+- Mirror distortion: is Chronos time-direction sensitive? (prediction: yes for trends, no for symmetric oscillators)
+
+---
+
 ## 2026-03-28 — Session 3: baseline_delta + observer-independence (Notebooks 11–12)
 
 ### Goal

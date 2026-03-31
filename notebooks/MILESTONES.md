@@ -110,30 +110,27 @@ The burst class (COVID) exists because of exponential growth followed by resourc
 ---
 
 ## Current status
-**Active phase:** Phase 2 — Notebooks 19–20 complete
-**Last updated:** 30 March 2026
-**Total findings:** 46 (see FINDINGS.md)
-**Notebooks completed:** 01–20
+**Active phase:** Phase 2b complete — Notebook 21 complete (31 March 2026)
+**Last updated:** 31 March 2026
+**Total findings:** 52 (see FINDINGS.md)
+**Notebooks completed:** 01–21
 
 ---
 
 ## Next session — pick up here
 
-**Phase 2 complete. Open questions for nb21:**
+**Notebook 21 complete. 8th shape class confirmed. Open questions for nb22:**
 
-nb20 (Chronos) key results:
-- Sunspot-COVID farthest pair in Chronos (0.301) — three independent methods now agree (TD features, Conv AE, Chronos)
-- Sea_level gets its own pure cluster in Chronos (97%) — diverges from Conv AE contraction; "noisy directional" 8th class needs splitting
-- VIX+ENSO+temperature form a cross-domain irregular cluster — VIX-lynx_hare match doesn't survive into Chronos space
-- ECG ARI=0.742 vs UCR labels — highest sub-cluster alignment in experiment
+Key results from nb21:
+- Arctic sea ice = 8th shape class: "declining oscillator" (pure cluster, 100%)
+- Ocean heat + sea_level share a cluster — "clean integrated trend" defined by measurement smoothness
+- CH4 + keeling_trend share a cluster — clean monotonic generalises across molecules
+- Chronos invariant to time-reversal and amplitude-flip for ALL classes; sensitive to speed only for periodic classes
+- cl7 (VIX + ENSO + temperature) = irregular oscillation with positive amplitude asymmetry
 
-**Open questions for nb21:**
-1. **"Noisy directional" class refinement** — three sub-types emerging (clean monotonic: sea_level; noisy directional: temperature; irregular oscillatory: ENSO). Test with targeted new datasets: glacier mass balance (clean trend?), ocean heat content (noisy trend?), Arctic sea ice extent (declining trend with seasonal oscillation?)
-2. **Why do Conv AE and Chronos disagree on temperature-sea_level?** Is sea_level truly a distinct class, or is it a data-quantity artifact (120 dense instances vs 31 scattered)?
-3. **What is cl6 exactly?** VIX + ENSO + temperature share a Chronos cluster — what property do their raw waveforms share that Chronos is responding to?
-4. **Mirror distortions (synthetic invariance test)** — take existing shape classes, apply time-reversal, amplitude-flip, speed distortion — do they stay in the same cluster?
-
-**Future directions (Phase 2+ and beyond) — recorded 30 March 2026:**
-1. Mirror distortions (synthetic) — invariance test on existing shapes
-2. Audio / whale calls — predator-prey vocalizations as time series
-3. Video / amoeba chemotaxis — new extraction pipeline (highest effort, highest payoff)
+**Open questions for nb22+:**
+1. **More "declining oscillator" datasets** — confirm Arctic sea ice class with similar systems: Greenland ice sheet mass, global snow cover extent, permafrost active layer depth
+2. **Why is Chronos time-direction invariant?** — A reversed trend looks the same as the original to Chronos. Is this a training data artifact, or does it reflect genuine shape equivalence?
+3. **cl7 positive-asymmetry class** — test with datasets known to have positive skew: commodity prices, river flood events, volcanic activity indices
+4. **Audio / whale calls** — predator-prey vocalizations as time series
+5. **Video / amoeba chemotaxis** — new extraction pipeline (highest effort, highest payoff)
