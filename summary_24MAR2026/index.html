@@ -1,0 +1,1186 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Cross-domain time series shape clustering — does a glacier melting and a turtle breathing share the same numerical signature?">
+      
+      
+      
+      
+        <link rel="prev" href="../summary_28MAR2026/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>24 Mar 2026 - XWorld Research Log</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#xworld-progress-summary" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="XWorld Research Log" class="md-header__button md-logo" aria-label="XWorld Research Log" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            XWorld Research Log
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              24 Mar 2026
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="XWorld Research Log" class="md-nav__button md-logo" aria-label="XWorld Research Log" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    XWorld Research Log
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FINDINGS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Findings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MILESTONES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milestones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EXPERIMENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Experiments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DECISIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sessions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sessions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb28/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb28)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb27)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb26/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb26)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb25/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb25)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb24)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb23)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb22)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30MAR2026_nb20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Mar 2026 (nb20)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_28MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#where-we-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where We Started
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-1-23-march-2026-building-the-foundation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 1 — 23 March 2026: Building the Foundation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 1 — 23 March 2026: Building the Foundation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#choosing-the-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Choosing the datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-shape-was-measured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How shape was measured
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clustering-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clustering approach
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-2-24-march-2026-extending-debugging-and-discovering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session 2 — 24 March 2026: Extending, Debugging, and Discovering
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session 2 — 24 March 2026: Extending, Debugging, and Discovering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-ecg-as-a-new-test-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding ECG as a new test case
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#first-run-of-the-extended-clustering-three-bugs-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First run of the extended clustering — three bugs found
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results-after-fixes-all-three-confirmed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results after fixes — all three confirmed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#discovering-what-actually-separates-ecg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Discovering what actually separates ECG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-the-periodic-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing the periodic datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing-whether-moderate-dynamics-is-genuine-streamflow-experiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing whether "moderate dynamics" is genuine — streamflow experiment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-we-ended-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where We Ended Up
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-questions-for-next-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open Questions for Next Sessions
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="xworld-progress-summary">XWorld — Progress Summary</h1>
+<p><strong>Date:</strong> 24 March 2026
+<strong>Covers:</strong> 23 March 2026 (Session 1) through 24 March 2026 (Session 2)</p>
+<hr />
+<h2 id="where-we-started">Where We Started</h2>
+<p>The starting point was a question that came out of a longer philosophical conversation: if you strip away what a time series <em>represents</em> — whether it is a pandemic, a sunspot cycle, a predator-prey population, or a heartbeat — and look only at the <em>shape</em> of how it moves through time, do series from completely unrelated domains cluster together?</p>
+<p>The hypothesis was simple: a COVID wave and an atmospheric CO2 trend and a sunspot cycle are all different things, but some of them might share the same underlying mathematical shape. If they do, a clustering algorithm working purely on shape features should group them together, blind to their domain of origin.</p>
+<p>This is the XWorld experiment. The name reflects the ambition — to find cross-domain shape signatures that exist independently of what the world is measuring.</p>
+<hr />
+<h2 id="session-1-23-march-2026-building-the-foundation">Session 1 — 23 March 2026: Building the Foundation</h2>
+<h3 id="choosing-the-datasets">Choosing the datasets</h3>
+<p>Five initial datasets were chosen to represent clearly distinct dynamic shapes:</p>
+<ul>
+<li><strong>COVID first wave</strong> — 202 countries, from the Our World in Data dataset. Each country's case curve rises fast and then falls. The shape is an asymmetric burst.</li>
+<li><strong>Sunspot cycles</strong> — monthly records going back to 1749. An approximately 11-year cycle with a characteristic asymmetric shape (rises faster than it falls).</li>
+<li><strong>Lynx and hare populations</strong> — Hudson Bay Company fur trading records from 1845 to 1935. Classic predator-prey oscillation where the two populations chase each other in roughly 10-year cycles.</li>
+<li><strong>Keeling CO2</strong> — the famous Mauna Loa measurements since 1958. This one was immediately split into two because it contains two distinct dynamics superimposed: an annual seasonal oscillation (CO2 goes up in winter, down in summer) and a long-run rising trend driven by emissions. Treating them as one dataset would blur two genuinely different shapes, so they became two separate entities.</li>
+<li><strong>Global temperature</strong> — NASA GISS station anomalies from 26 stations worldwide. These are departures from a long-run baseline, showing the slow warming trend with year-to-year variability around it.</li>
+</ul>
+<p>Two additional datasets were added later in the same session:
+- <strong>COVID second wave</strong> — same structure as the first wave but a different period. Added as an internal consistency check: if the clustering is working, both COVID waves should land in the same cluster.
+- <strong>Temperature</strong> was also added at this stage (notebook 07).</p>
+<h3 id="how-shape-was-measured">How shape was measured</h3>
+<p>Each time series was first z-score normalised — meaning the scale and average were removed, leaving only the shape of how the series moves. A country with a million cases and a country with a thousand cases would then look identical if their outbreak followed the same pattern.</p>
+<p>Five features were then extracted from each normalised series:
+- <strong>Skewness</strong> — whether the distribution leans left or right. A COVID wave is right-skewed because it rises fast and falls more slowly.
+- <strong>Kurtosis</strong> — how extreme the peaks and troughs are relative to a normal bell curve.
+- <strong>Lag-1 autocorrelation</strong> — how much today's value predicts tomorrow's. A smooth, slowly-changing series has high autocorrelation. A noisy, jumpy series has low autocorrelation.
+- <strong>Zero crossings</strong> — how often the series crosses its own mean. Something oscillating rapidly crosses its mean often. Something that rises steadily almost never crosses it.
+- <strong>Slope</strong> — the overall direction of travel across the whole series.</p>
+<p>These five numbers were the fingerprint for every time series in the experiment.</p>
+<h3 id="clustering-approach">Clustering approach</h3>
+<p>UMAP was used to compress those five features into two dimensions for visualisation, and HDBSCAN was used to find density-based clusters. HDBSCAN was chosen because the number of shape classes was unknown — unlike k-means it does not require you to specify how many clusters to look for. It also marks points that do not belong to any cluster as noise (label -1).</p>
+<p>The initial clustering broadly confirmed the hypothesis. Series from different domains with similar shapes did group together in the UMAP space. The directional burst (COVID), the slow drift, and the oscillatory series separated visually.</p>
+<hr />
+<h2 id="session-2-24-march-2026-extending-debugging-and-discovering">Session 2 — 24 March 2026: Extending, Debugging, and Discovering</h2>
+<h3 id="adding-ecg-as-a-new-test-case">Adding ECG as a new test case</h3>
+<p>A ninth dataset was added: the ECGFiveDays dataset from the UCR Time Series archive — 884 heartbeat segments from an electrocardiogram. The hypothesis was that ECG, being fast and oscillatory (heartbeats), should cluster away from the directional datasets.</p>
+<p><strong>Download problem encountered.</strong> The download cell used the standard Python requests library, which silently received an HTML error page from the data provider's website instead of the actual zip file. The server returned a 200 OK status (success) but the content was not a zip — so the check passed but the extraction failed silently. The data directory ended up empty.</p>
+<p>The fix was to switch to Python's urllib library, which behaved consistently with curl. A validation step was also added to check that the downloaded content was actually a zip before attempting to extract it. Additionally, the check that prevented re-downloading ("directory already exists") was updated to also verify that the directory actually contains files, so a failed previous attempt would not block a fresh download.</p>
+<p>The site was also returning 502 errors on the day, so the zip that had been cached from an earlier test was extracted manually into the right location.</p>
+<h3 id="first-run-of-the-extended-clustering-three-bugs-found">First run of the extended clustering — three bugs found</h3>
+<p>Once ECG data was loaded, the extended clustering notebook was run. Three problems appeared together:</p>
+<p><strong>Bug 1 — too many tiny clusters.</strong> The clustering algorithm had been configured with a minimum cluster size of 3. With over 600 time series in the dataset, this produced 76 clusters — far too many to be meaningful shape classes. Most of them contained just a handful of series. The minimum cluster size was raised to 15, which forced the algorithm to only recognise clusters large enough to represent a genuine shape pattern.</p>
+<p><strong>Bug 2 — noise was being used as the reference.</strong> HDBSCAN assigns the label -1 to points that do not belong to any cluster — these are called noise. With 76 tiny clusters and many unclassified points, the most common label for the COVID first wave turned out to be -1 (noise), not a real cluster. The scoring logic then used this as its reference point, comparing everything against noise. ECG being 17% noise looked like a match. The fix was to skip the noise label when finding the reference cluster.</p>
+<p><strong>Bug 3 — temperature was going to noise.</strong> After the above fixes, temperature was 100% noise. This initially looked like another bug, but feature analysis showed it was actually correct: temperature (slow, noisy, multi-decadal warming) and COVID (fast, smooth, 2-month burst) have very different mathematical fingerprints. The autocorrelation is different (0.95 for COVID vs 0.50 for temperature), the skewness is different (0.95 vs 0.01), and the zero crossings are different (0.02 vs 0.28). The original hypothesis had lumped "directional burst" and "slow directional drift" together as one shape — the data showed they are two distinct shapes. The minimum cluster size was also a contributing factor: with only 26 temperature stations and a minimum cluster size of 15, temperature could not form its own cluster even if it wanted to. Lowering to 8 fixed this. The hypothesis for temperature was updated: it should form its own cluster, not join the COVID cluster.</p>
+<h3 id="results-after-fixes-all-three-confirmed">Results after fixes — all three confirmed</h3>
+<p>With the fixes in place, all three new datasets behaved as the revised hypothesis predicted:
+- COVID second wave landed in the same cluster as COVID first wave (55% of points).
+- Temperature formed its own tight cluster, separate from COVID (92% cohesion).
+- ECG landed in a completely different cluster from COVID.</p>
+<h3 id="discovering-what-actually-separates-ecg">Discovering what actually separates ECG</h3>
+<p>Looking more carefully at ECG's features revealed something unexpected. ECG was assumed to be "oscillatory" and therefore would have high zero crossings. In fact ECG's zero crossings (0.078) are <em>lower</em> than keeling seasonal (0.167) and lynx-hare (0.172). What actually distinguishes ECG is its kurtosis: 15.165. A heartbeat signal has a very sharp spike (the QRS complex) surrounded by a long flat baseline. That spike-and-flat pattern produces extreme kurtosis, not high zero crossings. The clustering found it for the right reason, but not the reason originally assumed.</p>
+<h3 id="testing-the-periodic-datasets">Testing the periodic datasets</h3>
+<p>Attention turned to the datasets that were expected to be "periodic" — keeling seasonal, sunspot cycles, and lynx-hare. The hypothesis had been that these would cluster together as a periodic shape class. Several specific predictions were made:</p>
+<ul>
+<li><strong>Keeling trend</strong> (the rising CO2 line, not the seasonal wobble) was expected to land with COVID, because both have high autocorrelation and very low zero crossings.</li>
+<li><strong>Keeling seasonal, sunspot, and lynx-hare</strong> were all expected to stay away from the COVID cluster.</li>
+</ul>
+<p>Results:
+- <strong>Keeling trend did not land with COVID.</strong> It formed its own cluster. The reason: both keeling trend and COVID have high autocorrelation and low zero crossings, but COVID is right-skewed (it rises fast then falls), while keeling trend is symmetric (it just rises). Skewness is what separates a burst from a steady climb.
+- <strong>Keeling seasonal, sunspot, and lynx-hare</strong> all correctly avoided the COVID cluster, but they also did not cluster <em>together</em>. Each landed in its own separate cluster. The three "slow periodic" shapes are more different from each other than expected.
+- <strong>Lynx-hare ended up in the same cluster as temperature.</strong> A predator-prey oscillation from the 1800s and slow climate drift from modern weather stations share a shape class. What they have in common: no feature is extreme. Moderate autocorrelation, moderate zero crossings, flat kurtosis, low skewness. The cluster represents "no extremes" — moderate dynamics. This was an unexpected cross-domain pairing.</p>
+<p>The shape taxonomy at this point had grown to six classes, each with a different primary discriminating feature.</p>
+<h3 id="testing-whether-moderate-dynamics-is-genuine-streamflow-experiment">Testing whether "moderate dynamics" is genuine — streamflow experiment</h3>
+<p>The lynx-hare and temperature pairing raised a question: is their shared cluster a genuine shape class, or just a catch-all for everything that does not fit elsewhere? The way to test this is to bring in a new dataset that should have moderate dynamics <em>by design</em> — before seeing where it clusters.</p>
+<p>River streamflow from 25 USGS gauging stations across the United States was chosen. Rivers have physical properties that should produce moderate dynamics: the catchment acts as a memory buffer (moderate autocorrelation), seasonal rainfall and snowmelt drive a regular annual cycle (moderate zero crossings), and most rivers have no strong long-term trend. The features were predicted before running: zero crossings between 0.15 and 0.25, autocorrelation between 0.50 and 0.70, near-flat kurtosis, moderate skewness.</p>
+<p><strong>Download problem encountered.</strong> The USGS website has separate API endpoints for monthly and daily data. The monthly endpoint turned out to return a 404 error. The daily endpoint worked. The fix was to download daily discharge and compute monthly averages from that.</p>
+<p><strong>First run — prediction partially wrong.</strong> Zero crossings and autocorrelation landed exactly in the predicted range. But skewness came in at 2.09 (predicted 0–0.6) and kurtosis at 6.93 (predicted below zero). The cause: river discharge follows a log-normal distribution. Most months have moderate flow, but occasional flood months create extreme positive spikes. After z-score normalisation those flood spikes remain as extreme outliers, inflating both the skewness and kurtosis far outside the "moderate" range. The temporal dynamics were correct but the distributional shape was not.</p>
+<p>The fix was to log-transform the discharge values before extracting features. This is standard practice in hydrology — flow is almost always analysed on a log scale. After log-transformation, all four features landed in the predicted range: zero crossings 0.222, autocorrelation 0.700, kurtosis -0.308, skewness 0.184.</p>
+<p><strong>Cluster result — not quite as predicted, but informative.</strong> Log-streamflow landed in its own cluster (Cluster 4, 67% of the 24 stations), separate from the temperature + lynx-hare cluster (Cluster 1). The two clusters are neighbours in feature space — streamflow avoided every extreme cluster — but they are distinguishable. The key difference is autocorrelation: streamflow averages 0.700, temperature averages 0.503. The river catchment retains memory of rainfall slightly longer than the year-to-year climate variability in temperature anomalies.</p>
+<p>The conclusion: "moderate dynamics" is a genuine shape region, not a catch-all. It has internal sub-structure. The 24 river stations form a tighter, more coherent group than the mix of temperature stations and lynx-hare population series, so the clustering correctly found two density peaks within the same broad region.</p>
+<hr />
+<h2 id="where-we-ended-up">Where We Ended Up</h2>
+<p>After two days and ten notebooks, a shape taxonomy has emerged across nine datasets from completely unrelated domains:</p>
+<table>
+<thead>
+<tr>
+<th>Shape class</th>
+<th>Datasets</th>
+<th>What defines it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fast smooth burst</td>
+<td>COVID first wave, COVID second wave</td>
+<td>Rises fast, falls, right-skewed, very smooth</td>
+</tr>
+<tr>
+<td>Symmetric steady climb</td>
+<td>Keeling CO2 trend</td>
+<td>Perfectly smooth rise, symmetric, near-perfect memory</td>
+</tr>
+<tr>
+<td>Moderate dynamics — lower memory</td>
+<td>Temperature anomalies, lynx-hare</td>
+<td>No extreme features; moderate autocorrelation</td>
+</tr>
+<tr>
+<td>Moderate dynamics — higher memory</td>
+<td>River streamflow (log-scale)</td>
+<td>Same moderate character but slightly stronger memory</td>
+</tr>
+<tr>
+<td>Left-skewed periodic</td>
+<td>Keeling CO2 seasonal</td>
+<td>Regular annual cycle, slightly left-skewed</td>
+</tr>
+<tr>
+<td>Right-skewed slow periodic</td>
+<td>Sunspot cycles</td>
+<td>Roughly 11-year cycle, right-skewed</td>
+</tr>
+<tr>
+<td>Spike dynamics</td>
+<td>ECG heartbeats</td>
+<td>Extreme kurtosis from sharp spikes on flat baseline</td>
+</tr>
+</tbody>
+</table>
+<p>Several things were not known at the start and became clear through the experiment:</p>
+<ol>
+<li>"Directional" is not one shape class — fast burst and steady climb are different shapes, separated by skewness.</li>
+<li>"Periodic" is not one shape class — keeling seasonal, sunspot, and lynx-hare all ended up in different clusters despite all being roughly periodic.</li>
+<li>ECG is distinguished by kurtosis (spike shape), not by oscillation frequency as originally assumed.</li>
+<li>"Moderate dynamics" is a genuine region, confirmed by an independent dataset (streamflow) landing nearby, and with internal sub-structure driven by autocorrelation (memory).</li>
+<li>Raw river discharge is log-normal and must be log-transformed before shape features are extracted — the temporal dynamics are moderate but the distributional shape is not.</li>
+</ol>
+<p>No single feature does all the work. Skewness separates burst from climb. Kurtosis isolates ECG. Autocorrelation and zero crossings together separate directional from periodic. The combination of five simple features is enough to distinguish seven shape classes across datasets that have nothing in common in their domain of origin.</p>
+<hr />
+<h2 id="open-questions-for-next-sessions">Open Questions for Next Sessions</h2>
+<ul>
+<li>Are the three separate periodic clusters (keeling seasonal, sunspot, lynx-hare) genuinely different shapes, or an artefact of the clustering parameters?</li>
+<li>The keeling trend forming its own cluster (separate from COVID) — what does that shape class represent in the broader taxonomy?</li>
+<li>What would happen with more datasets added to the moderate dynamics region — would more sub-clusters emerge, or would they all fold into the existing two?</li>
+<li>Can the shape taxonomy be given interpretable names that hold across domains?</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

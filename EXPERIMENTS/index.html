@@ -1,0 +1,4152 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Cross-domain time series shape clustering — does a glacier melting and a turtle breathing share the same numerical signature?">
+      
+      
+      
+      
+        <link rel="prev" href="../MILESTONES/">
+      
+      
+        <link rel="next" href="../DECISIONS/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Experiments - XWorld Research Log</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#xworld-experiment-log" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="XWorld Research Log" class="md-header__button md-logo" aria-label="XWorld Research Log" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            XWorld Research Log
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Experiments
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="XWorld Research Log" class="md-nav__button md-logo" aria-label="XWorld Research Log" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    XWorld Research Log
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FINDINGS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Findings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MILESTONES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milestones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Experiments
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Experiments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#2026-04-19-session-13-declining-oscillator-necessary-conditions-notebook-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-04-19 — Session 13: Declining oscillator necessary conditions (Notebook 28)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-04-19 — Session 13: Declining oscillator necessary conditions (Notebook 28)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-run-predictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-run predictions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-04-19-session-12-real-data-transfer-6-feature-grokking-notebook-27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-04-19 — Session 12: Real data transfer + 6-feature grokking (Notebook 27)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-04-19 — Session 12: Real data transfer + 6-feature grokking (Notebook 27)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goal_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-run-predictions_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-run predictions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-04-19-session-11-contrastive-shape-manifold-notebook-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-04-19 — Session 11: Contrastive shape manifold (Notebook 26)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-04-19 — Session 11: Contrastive shape manifold (Notebook 26)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goal_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-run-predictions_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-run predictions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-04-19-session-10-xworld-grokking-experiment-notebook-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-04-19 — Session 10: XWorld grokking experiment (Notebook 25)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-04-19 — Session 10: XWorld grokking experiment (Notebook 25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proposed-experiment-nb25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed experiment (nb25)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-run-predictions_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-run predictions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-04-19-session-9-pdo-window-test-nh-snow-cover-orientation-invariant-features-notebook-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-04-19 — Session 9: PDO window test + NH Snow Cover + orientation-invariant features (Notebook 24)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-04-19 — Session 9: PDO window test + NH Snow Cover + orientation-invariant features (Notebook 24)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goal_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-datasets-nb24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New datasets (nb24)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-run-predictions_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-run predictions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-04-19-session-8-theoretical-latent-arithmetic-space-and-xworld-connection-no-notebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-04-19 — Session 8: Theoretical — Latent arithmetic space and XWorld connection (no notebook)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-04-19 — Session 8: Theoretical — Latent arithmetic space and XWorld connection (no notebook)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-happened" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What happened
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notebook-23-created-23_latent_arithmetic_xworldipynb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notebook 23 created: 23_latent_arithmetic_xworld.ipynb
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-31-session-7-declining-oscillator-confirmation-cl7-test-notebook-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-31 — Session 7: Declining oscillator confirmation + cl7 test (Notebook 22)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-03-31 — Session 7: Declining oscillator confirmation + cl7 test (Notebook 22)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goal_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-datasets-nb22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New datasets (nb22)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-run-predictions_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-run predictions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-31-session-6-noisy-directional-refinement-open-questions-notebook-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-31 — Session 6: "Noisy directional" refinement + open questions (Notebook 21)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-03-31 — Session 6: &#34;Noisy directional&#34; refinement + open questions (Notebook 21)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goal_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-datasets-added-phase-2b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New datasets added (Phase 2b)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-run-predictions-written-before-running" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-run predictions (written before running)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structural-questions-being-tested" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structural questions being tested
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-28-session-3-baseline_delta-observer-independence-notebooks-1112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-28 — Session 3: baseline_delta + observer-independence (Notebooks 11–12)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-03-28 — Session 3: baseline_delta + observer-independence (Notebooks 11–12)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goal_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notebook-11-pre-run-predictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notebook 11 pre-run predictions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structural-question-being-tested" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structural question being tested
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notebook-13-pre-run-predictions-combined-feature-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notebook 13 pre-run predictions (combined feature frame)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Notebook 13 pre-run predictions (combined feature frame)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ari-combining-frames-did-not-improve-on-time-domain-alone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ARI — combining frames did NOT improve on time-domain alone
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamflow-fix-confirmed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Streamflow fix confirmed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-three-way-problem-sunspot-persists-in-covid-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The three-way problem — sunspot persists in COVID cluster
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clean-successes-in-combined-frame" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clean successes in combined frame
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spectral-features-add-noise-not-signal-for-this-dataset-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spectral features add noise, not signal — for this dataset composition
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notebook-12-pre-run-predictions-observer-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notebook 12 pre-run predictions (observer-independence)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results-notebook-12-complete-28-march-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results — Notebook 12 complete (28 March 2026)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results — Notebook 12 complete (28 March 2026)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cross-frame-ari-0484" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-frame ARI: 0.484
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-pairing-tests-45-passed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key pairing tests: 4/5 passed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sunspot-confirmed-separated-finding-10-was-a-frame-limitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sunspot confirmed separated — Finding 10 was a frame limitation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#covid1-covid2-split-in-spectral-space-unexpected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COVID1 + COVID2 split in spectral space — unexpected
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keeling_seasonal-perfectly-isolated-cleanest-spectral-signature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        keeling_seasonal perfectly isolated — cleanest spectral signature
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sunspot-and-keeling_seasonal-are-spectrally-close" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sunspot and keeling_seasonal are spectrally close
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#streamflow-isolated-to-its-own-unique-cluster-spectral-artefact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Streamflow isolated to its own unique cluster — spectral artefact
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#covid-keeling_trend-spectrally-close-time-domain-far" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COVID ↔ keeling_trend: spectrally close, time-domain far
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observer-independence-verdict-holds-with-caveats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observer-independence verdict: HOLDS (with caveats)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-pandas-2x-fillnamethod-removed-notebook-11-sunspot-cell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug — pandas 2.x fillna(method=) removed (Notebook 11, sunspot cell)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results-notebook-11-complete-28-march-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results — Notebook 11 complete (28 March 2026)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results — Notebook 11 complete (28 March 2026)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#baseline_delta-per-dataset-mean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        baseline_delta per dataset (mean)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#covid-is-not-event-without-memory-most-significant-unexpected-finding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COVID is not event-without-memory — most significant unexpected finding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keeling_seasonal-ends-lower-than-it-starts-0337" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        keeling_seasonal ends lower than it starts (-0.337)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keeling_trend-separated-from-covid-key-structural-success" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        keeling_trend separated from COVID — key structural success
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sunspot-collapsed-into-covid-cluster-unexpected" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sunspot collapsed into COVID cluster — unexpected
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clustering-improved-overall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clustering improved overall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-feature-cluster-12-keeling_trend-in-pure-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6-feature cluster 12 — keeling_trend in pure isolation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hypothesis-scoring-89-confirmed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hypothesis scoring — 8/9 confirmed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temperature-and-keeling_trend-did-not-merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Temperature and keeling_trend did not merge
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-23-session-1-foundation-notebooks-0107" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-23 — Session 1: Foundation (Notebooks 01–07)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-03-23 — Session 1: Foundation (Notebooks 01–07)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goal_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datasets-built" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datasets built
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feature-set-settled" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature set (settled)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keeling-split" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keeling split
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clustering-setup-v1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clustering setup (v1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outcome-05_cluster_all" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outcome (05_cluster_all)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-24-session-2-ecg-extension-bug-fixes-notebooks-0809" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-24 — Session 2: ECG Extension + Bug Fixes (Notebooks 08–09)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-03-24 — Session 2: ECG Extension + Bug Fixes (Notebooks 08–09)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataset-added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset added
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-1-ecg-download-silently-failed-notebook-08-cell-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug 1 — ECG download silently failed (Notebook 08, Cell 2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-2-hdbscan-over-fragmentation-notebook-09-cell-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug 2 — HDBSCAN over-fragmentation (Notebook 09, Cell 5)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-3-scoring-logic-used-noise-as-reference-notebook-09-cell-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bug 3 — Scoring logic used noise as reference (Notebook 09, Cell 9)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results-after-fixes-run-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results after fixes (run 2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#temperature-finding-hypothesis-revised" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Temperature finding — hypothesis revised
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results-after-scoring-fix-run-3-min_cluster_size8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results after scoring fix (run 3, min_cluster_size=8)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-2-milestone-all-three-new-datasets-confirmed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✓ Session 2 milestone — all three new datasets confirmed
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-24-session-2-continued-periodic-dataset-hypotheses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-24 — Session 2 continued: Periodic dataset hypotheses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-03-24 — Session 2 continued: Periodic dataset hypotheses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-insight-ecg-is-not-oscillatory-by-zero_crossings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New insight: ECG is not oscillatory by zero_crossings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revised-shape-taxonomy-5-classes-emerging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revised shape taxonomy (5 classes emerging)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hypotheses-for-next-run-periodic-datasets-already-in-notebook-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hypotheses for next run (periodic datasets, already in notebook 09)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-1-raw-discharge-2425-stations-loaded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run 1 — raw discharge (24/25 stations loaded)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-2-log-transformed-discharge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run 2 — log-transformed discharge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#moderate-dynamics-is-a-genuine-shape-region-with-internal-sub-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✓ "Moderate dynamics" is a genuine shape region with internal sub-structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results-periodic-dataset-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results — periodic dataset run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keeling_trend-finding-skewness-is-the-burst-discriminator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        keeling_trend finding — skewness is the burst discriminator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lynx_hare-temperature-pairing-moderate-dynamics-is-a-shape-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        lynx_hare + temperature pairing — "moderate dynamics" is a shape class
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revised-shape-taxonomy-6-classes-identified" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revised shape taxonomy — 6 classes identified
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-finding-so-far" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core finding so far
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-28-session-4-pairwise-shape-distances-notebook-14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-28 — Session 4: Pairwise shape distances (Notebook 14)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-03-28 — Session 4: Pairwise shape distances (Notebook 14)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quadrant-check-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quadrant check results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-covid-sunspot-came-out-near-near" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why COVID-sunspot came out (near, near)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-covid1-keeling_trend-appeared-near" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why COVID1 ↔ keeling_trend appeared near
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-structural-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key structural findings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-changed-in-the-thesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What changed in the thesis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entropy-only-follow-up-nb14-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Entropy-only follow-up (nb14 extension)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-28-session-4-cont-notebook-15-sea-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-28 — Session 4 cont.: Notebook 15 (Sea Level)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-28-session-4-cont-notebook-16-enso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-28 — Session 4 cont.: Notebook 16 (ENSO)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-28-session-4-cont-notebook-17-vix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-28 — Session 4 cont.: Notebook 17 (VIX)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-30-session-5-phase-1c-stability-test-notebook-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-30 — Session 5: Phase 1c Stability Test (Notebook 18)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-03-30 — Session 5: Phase 1c Stability Test (Notebook 18)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#goal_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stability-score-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stability score definition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-run-predictions_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-run predictions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Findings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-30-session-5-cont-phase-2-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-30 — Session 5 cont.: Phase 2 setup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-03-30 — Session 5 cont.: Phase 2 setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Environment change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notebook-19-autoencoder-built-ready-to-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notebook 19 — Autoencoder (built, ready to run)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-run-predictions-nb19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-run predictions (nb19)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-30-session-5-cont-notebook-19-results-phase-2-autoencoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-30 — Session 5 cont.: Notebook 19 results (Phase 2 Autoencoder)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-03-30 — Session 5 cont.: Notebook 19 results (Phase 2 Autoencoder)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-results-pairwise-centroid-distances-conv-latent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key results — pairwise centroid distances (Conv latent)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findings_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Findings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2026-03-30-session-5-cont-cont-notebook-20-phase-2b-chronos-foundation-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2026-03-30 — Session 5 cont. cont.: Notebook 20 (Phase 2b Chronos Foundation Model)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2026-03-30 — Session 5 cont. cont.: Notebook 20 (Phase 2b Chronos Foundation Model)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pre-run-predictions-nb20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-run predictions (nb20)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results-hdbscan-clusters-min_cluster_size8-min_samples3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results — HDBSCAN clusters (min_cluster_size=8, min_samples=3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-pairwise-centroid-distances-chronos-512-dim-raw-euclidean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key pairwise centroid distances (Chronos 512-dim, raw Euclidean)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notable-divergences-between-conv-ae-and-chronos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notable divergences between Conv AE and Chronos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ecg-sub-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ECG sub-structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findings_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Findings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DECISIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sessions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sessions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb28/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb28)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb27)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb26/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb26)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb25/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb25)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb24)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb23)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb22)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30MAR2026_nb20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Mar 2026 (nb20)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_28MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_24MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="xworld-experiment-log">XWorld — Experiment Log</h1>
+<p>Chronological record of what was tried, what happened, and why each direction was taken.</p>
+<hr />
+<h2 id="2026-04-19-session-13-declining-oscillator-necessary-conditions-notebook-28">2026-04-19 — Session 13: Declining oscillator necessary conditions (Notebook 28)</h2>
+<h3 id="goal">Goal</h3>
+<p>Two-part investigation of the minimum conditions required to produce declining oscillator (cl0) shape class:</p>
+<p><strong>Part A — WGMS glacier mass balance:</strong> Annual global glacier mass balance (1950–present). Strong monotonic decline, no annual oscillation. Predicted: trend class (cl5). Tests whether oscillation is a <em>necessary</em> condition — if WGMS lands in declining_osc despite having no oscillation, the oscillation criterion is wrong.</p>
+<p><strong>Part B — Synthetic phase diagram:</strong> 20×20 parameter sweep (n_cycles = 0.5–7.0, decline_strength = 0.0–1.5), 20 synthetic instances per cell. Maps which (oscillation, decline) parameter combinations produce which shape class — reveals the attractor basin boundaries for declining_osc.</p>
+<h3 id="pre-run-predictions">Pre-run predictions</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Prediction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WGMS glacier → class</td>
+<td>cl5 (trend) — no oscillation means no declining_osc</td>
+</tr>
+<tr>
+<td>Phase diagram: declining_osc basin</td>
+<td>Requires n_cycles &gt; ~2 AND decline &gt; ~0.3</td>
+</tr>
+<tr>
+<td>Phase diagram: pure oscillator region</td>
+<td>n_cycles high, decline ≈ 0</td>
+</tr>
+<tr>
+<td>Phase diagram: trend region</td>
+<td>decline high, n_cycles low</td>
+</tr>
+</tbody>
+</table>
+<h3 id="results">Results</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Prediction</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WGMS glacier → class</td>
+<td>cl5 (trend)</td>
+<td><strong>WRONG</strong> — cumulative → eco_cycle (3.26); annual → irregular_osc (3.90). Declining_osc 3rd at 3.76.</td>
+</tr>
+<tr>
+<td>Oscillation necessary for declining_osc</td>
+<td>Yes — WGMS should miss declining_osc</td>
+<td><strong>CORRECT</strong> — WGMS cumulative zero_crossings=0.016 (vs declining_osc centroid 0.120); fingerprint correctly rejects declining_osc.</td>
+</tr>
+<tr>
+<td>Phase diagram declining_osc basin</td>
+<td>n_cycles &gt; ~2, decline &gt; ~0.3</td>
+<td><strong>APPROXIMATELY CORRECT</strong> — actual thresholds: n_cycles &gt; ~1.87, decline &gt; ~0.63. Basin larger than expected (42.2%).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Part A — WGMS:</strong> The prediction of "trend" failed because the signed fingerprint has no class for "declining monotonic trend." WGMS cumulative (slope=−0.052, baseline_delta=−3.289) is the exact mirror of integrated_trend (slope=+0.054, baseline_delta=+3.140) but lands in eco_cycle — the nearest class with negative baseline_delta. This is a structural gap in the 8-class corpus: all monotonic trend datasets trend upward; no declining counterpart exists. WGMS is the natural candidate for a 9th class (F76).</p>
+<p><strong>Part B — Phase diagram:</strong> Declining_osc dominates 42.2% of the (n_cycles × decline) parameter space at 94.2% mean purity — the largest and purest basin in the diagram. Three distinct phase boundaries: (1) decline &lt; 0.6 → seasonal; (2) n_cycles &lt; 1.5 → eco_cycle/oscillator; (3) n_cycles &gt; 5 → seasonal → irregular_osc. Extreme corner (high decline, mid n_cycles) → burst. The high-n_cycles ceiling explains why snow cover (high-frequency annual cycle) missed the declining_osc class despite having long-term decline: too many cycles per window → seasonal fingerprint dominates.</p>
+<p><strong>New findings:</strong> F73–F76. Total: 76.</p>
+<hr />
+<h2 id="2026-04-19-session-12-real-data-transfer-6-feature-grokking-notebook-27">2026-04-19 — Session 12: Real data transfer + 6-feature grokking (Notebook 27)</h2>
+<h3 id="goal_1">Goal</h3>
+<p><strong>Part A:</strong> Apply the nb26 contrastive encoder to real XWorld datasets (lynx-hare, sunspot, Keeling CO2, ENSO, VIX, arctic sea ice). Window to 64 samples, embed, project into the synthetic UMAP, compare nearest synthetic class to Chronos assignments from nb20-24.</p>
+<p><strong>Part B:</strong> 6-feature grokking. Train a small MLP (6→256→256→128→8) on 6-feature vectors (not raw waveforms) with weight_decay=0.1. 100 training instances/class (800 total), 200 val/class. The 6D feature space has genuine ambiguity — forces memorization then potential grokking.</p>
+<h3 id="pre-run-predictions_1">Pre-run predictions</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Prediction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Part A: real data transfer</td>
+<td>All 6 datasets land near expected synthetic class region</td>
+</tr>
+<tr>
+<td>Sunspot at 64-month windows</td>
+<td>May land near trend/integrated_trend (half-cycle visible — timescale effect from F60)</td>
+</tr>
+<tr>
+<td>Part B: grokking</td>
+<td>Present — MLP memorizes 800 instances, weight decay forces discovery of 6D boundaries</td>
+</tr>
+</tbody>
+</table>
+<h3 id="results_1">Results</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Prediction</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Real data transfer</td>
+<td>All 6 correct</td>
+<td><strong>WRONG — 1/5 correct (VIX only)</strong>. Lynx-hare: no valid windows (annual, 21 pts). Sunspot/keeling/enso/arctic all mismatch.</td>
+</tr>
+<tr>
+<td>Sunspot at 64-month windows</td>
+<td>Trend/integrated_trend</td>
+<td><strong>WRONG class, correct mechanism</strong> — sunspot → irregular_osc. &lt;0.5 of 11-yr cycle visible per window. F60 replicated by independent method.</td>
+</tr>
+<tr>
+<td>6-feature grokking</td>
+<td>Present</td>
+<td><strong>WRONG — no grokking</strong>. Val acc ≈ 95% from epoch 50, gap = 0. 97.5% final. Boundaries findable immediately at 100 instances/class.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key finding:</strong> Synthetic-to-real transfer fails because synthetic generators produce pure archetypes; real data is composite (oscillation inside trend etc.). The contrastive manifold is a map of ideal shapes, not real dynamics. Chronos transfers because it trained on real series. For a transferable contrastive encoder, it would need to be trained on real windowed data, not synthetic generators.</p>
+<p><strong>No grokking in any representation</strong> (raw waveforms nb25, 6-feature vectors nb27 Part B). XWorld shape classes are syntactically separable on the surface of every representation tested — no latent algebraic structure to grok.</p>
+<p><strong>New findings:</strong> F70–F72. Total: 72.</p>
+<hr />
+<h2 id="2026-04-19-session-11-contrastive-shape-manifold-notebook-26">2026-04-19 — Session 11: Contrastive shape manifold (Notebook 26)</h2>
+<h3 id="goal_2">Goal</h3>
+<p>nb25 produced ρ = −0.31 between transformer (CE loss) and 6-feature pairwise distances. Cross-entropy only asks "route to the right corner" — it has no incentive to place similar classes nearby. The fix: Supervised Contrastive Loss (SupCon, Khosla et al. 2020). Train the transformer to pull same-class instances close and push different-class instances far, using all pairs in each batch.</p>
+<h3 id="pre-run-predictions_2">Pre-run predictions</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Prediction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spearman ρ vs 6-feature</td>
+<td>&gt; 0 (positive), ideally &gt; 0.4</td>
+</tr>
+<tr>
+<td>Distance range (max/min)</td>
+<td>&gt; 3x (vs nb25's 1.27x)</td>
+</tr>
+<tr>
+<td>Closest pair</td>
+<td>eco_cycle↔seasonal or trend↔integrated_trend</td>
+</tr>
+<tr>
+<td>Manifold continuity</td>
+<td>Visible arc/gradient in UMAP (not isolated islands)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="results_2">Results</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Prediction</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spearman ρ</td>
+<td>&gt; 0, ideally &gt; 0.4</td>
+<td><strong>CORRECT</strong> — ρ = +0.38 (p = 0.044). Sign flipped from nb25's −0.31. Statistically significant.</td>
+</tr>
+<tr>
+<td>Distance range</td>
+<td>&gt; 3x</td>
+<td><strong>CLOSE</strong> — 2.81x (3.60–10.12). Much wider than nb25's 1.27x. Not quite 3x.</td>
+</tr>
+<tr>
+<td>Closest pair</td>
+<td>eco_cycle↔seasonal or trend↔integrated_trend</td>
+<td><strong>CORRECT</strong> — trend↔integrated_trend (3.60). Exact match with 6-feature top pair.</td>
+</tr>
+<tr>
+<td>Manifold continuity</td>
+<td>Arc/gradient in UMAP</td>
+<td><strong>PARTIAL</strong> — clear differential separation; directional/oscillatory cluster visible.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key finding:</strong> The loss function was the entire source of geometric disagreement between representations. Same transformer + SupCon = ρ +0.38; same transformer + CE = ρ −0.31. trend↔integrated_trend is #1 closest pair in both contrastive and 6-feature space — first cross-representation top-1 agreement. The top of the similarity ordering is in the world; the middle is receptor-dependent.</p>
+<p><strong>New findings:</strong> F67–F69. Total: 69.</p>
+<hr />
+<h2 id="2026-04-19-session-10-xworld-grokking-experiment-notebook-25">2026-04-19 — Session 10: XWorld grokking experiment (Notebook 25)</h2>
+<h3 id="background">Background</h3>
+<p>Grokking (Power et al. 2022): small transformers trained on modular arithmetic initially memorize, then suddenly generalize after thousands of additional steps — discovering Discrete Fourier Transform representations internally (Nanda mechanistic interpretability analysis). Before grokking: arbitrary embeddings. After grokking: embeddings carry the algebraic geometry of the task.</p>
+<p>XWorld and grokking are the same question from opposite ends. Grokking asks: when does a network discover structure? XWorld asks: what structure is already there to be discovered? Chronos is effectively a pre-grokked model trained on millions of series. A small transformer trained <em>only</em> on the 8 shape classes would need to generalize — and the post-grokking embeddings might reveal the continuous manifold between attractors that Phase 3 is after.</p>
+<p>nb23's arithmetic net never grokked — it found a locally optimal linear solution. The missing ingredient: weight decay as regularization pressure, and training long enough past the memorization plateau.</p>
+<h3 id="proposed-experiment-nb25">Proposed experiment (nb25)</h3>
+<ol>
+<li><strong>Generate synthetic shape classes</strong> — 8 classes × N instances (same as nb23 Part B), varied parameterization so the model can't memorize specific instances</li>
+<li><strong>Train small transformer</strong> — input: raw time series segments; output: shape class label. Use weight decay. Track loss and accuracy vs training step.</li>
+<li><strong>Watch for phase transition</strong> — does the model memorize first, then generalize? Plot val accuracy over time; look for the discontinuous jump.</li>
+<li><strong>Analyze post-grokking embeddings</strong> — extract penultimate layer representations. PCA/UMAP. Are the 8 attractors recovered? Is there continuous structure between them?</li>
+<li><strong>Compare to Chronos</strong> — do the post-grokking embeddings agree with Chronos cluster assignments? If yes: the structure is real, not Chronos-specific.</li>
+</ol>
+<h3 id="pre-run-predictions_3">Pre-run predictions</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Prediction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grokking phase transition</td>
+<td>Present — model will memorize specific instances before discovering class structure</td>
+</tr>
+<tr>
+<td>Post-grokking embeddings</td>
+<td>8 clusters with continuous manifold between them (not 8 isolated islands)</td>
+</tr>
+<tr>
+<td>Agreement with Chronos</td>
+<td>Partial — oscillator/trend/burst will agree; irregular_osc/declining_osc may differ</td>
+</tr>
+</tbody>
+</table>
+<h3 id="results_3">Results</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Prediction</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grokking phase transition</td>
+<td>Present — memorization plateau then jump</td>
+<td><strong>WRONG</strong> — val acc = train acc from epoch 50. Zero gap. Immediate generalization.</td>
+</tr>
+<tr>
+<td>Post-grokking embeddings</td>
+<td>8 clusters with continuous manifold</td>
+<td><strong>WRONG</strong> — equidistant address-book geometry. Range 10.3–13.1 (ratio 1.27x). No manifold.</td>
+</tr>
+<tr>
+<td>Agreement with Chronos/6-feature</td>
+<td>ρ &gt; 0.6</td>
+<td><strong>WRONG (negative)</strong> — Spearman ρ = −0.31. Transformer and 6-feature have opposite opinions about inter-class proximity.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why no grokking:</strong> Shape classes are syntactically distinct at the raw waveform level. A burst and an oscillator look completely different as 64-number sequences. No "hidden algebraic structure" needs to be discovered — the signal is on the surface. Grokking requires tasks where surface patterns are insufficient (modular arithmetic looks random without understanding the cyclic group). XWorld shape classes do not.</p>
+<p><strong>The key finding:</strong> Both receptors (transformer, 6-feature fingerprint) separate all 8 classes with &gt;99% accuracy. The 8 boundaries are robust across completely different measurement architectures. But the geometry <em>between</em> classes is receptor-dependent — Spearman ρ = −0.31 means the two representations actively disagree on which classes are similar. The thunder hypothesis: the 8 separations are in the world; the manifold between them is in the measurement.</p>
+<p><strong>New findings:</strong> F64–F66. Total: 66.</p>
+<hr />
+<h2 id="2026-04-19-session-9-pdo-window-test-nh-snow-cover-orientation-invariant-features-notebook-24">2026-04-19 — Session 9: PDO window test + NH Snow Cover + orientation-invariant features (Notebook 24)</h2>
+<h3 id="goal_3">Goal</h3>
+<p>Three targeted follow-ups from nb22 open questions:
+1. <strong>PDO window-length test</strong> — does PDO at 36-month windows migrate from sea_level cluster to ENSO cluster?
+2. <strong>Declining oscillator outside cryosphere</strong> — NH Snow Cover Extent (Rutgers, monthly 1967–present) predicted to join Arctic/Antarctic in cl0
+3. <strong>Orientation-invariant 6-feature fingerprint</strong> — replace slope + baseline_delta with |slope| + |baseline_delta|; test whether directionally-defined class count drops</p>
+<h3 id="new-datasets-nb24">New datasets (nb24)</h3>
+<ul>
+<li><strong>PDO at 36-month windows</strong> (same source as nb22, different window) — predicted: migrates toward ENSO cluster</li>
+<li><strong>NH Snow Cover Extent</strong> (Rutgers University, moncov.nhland.txt) — predicted: cl0 (declining oscillator)</li>
+</ul>
+<h3 id="pre-run-predictions_4">Pre-run predictions</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Prediction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pdo_36mo ↔ enso distance</td>
+<td>Smaller than pdo_60mo ↔ enso (window-length effect confirmed)</td>
+</tr>
+<tr>
+<td>NH Snow Cover cluster</td>
+<td>cl0 (same as Arctic/Antarctic sea ice)</td>
+</tr>
+<tr>
+<td>Orientation-invariant clustering</td>
+<td>Fewer clusters; directional pairs collapse</td>
+</tr>
+</tbody>
+</table>
+<h3 id="results_4">Results</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Prediction</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pdo_36mo ↔ enso</td>
+<td>Smaller than pdo_60mo ↔ enso</td>
+<td><strong>CORRECT</strong> — 0.137 vs 0.181</td>
+</tr>
+<tr>
+<td>NH Snow Cover cluster</td>
+<td>cl0 (declining oscillator)</td>
+<td><strong>WRONG</strong> — 52% cl7; 0% cl0; no long-term decline, positive skewness</td>
+</tr>
+<tr>
+<td>Orientation-invariant features</td>
+<td>Fewer clusters; directional pairs collapse</td>
+<td><strong>PARTIAL</strong> — snow cover 52%→99% pure; sea ice unchanged</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key finding:</strong> Annual cycle frequency is necessary but not sufficient for declining oscillator class — long-term amplitude decline is also required. |slope|+|baseline_delta| confirms snow cover as orientation-invariant (seasonal), not directional. Two valid fingerprint variants now established: signed (direction-sensitive) and absolute (orientation-invariant, Chronos-consistent).</p>
+<p><strong>New findings:</strong> F61–F63. Total: 63.</p>
+<hr />
+<h2 id="2026-04-19-session-8-theoretical-latent-arithmetic-space-and-xworld-connection-no-notebook">2026-04-19 — Session 8: Theoretical — Latent arithmetic space and XWorld connection (no notebook)</h2>
+<h3 id="what-happened">What happened</h3>
+<p>No notebook run. A conversation traced a single idea from mental arithmetic (place-value decomposition with a child) through binary computation, transformer mechanics, and the question of minimal primitives, arriving at a research direction adjacent to XWorld.</p>
+<p>The core idea: arithmetic results and cross-domain shape classes may be the same phenomenon — both are attractors in a structured latent geometry, not stored facts. The XWorld 6-feature fingerprint is already a latent embedding that strips domain and keeps only relational dynamics. The grokking parallel is the sharpest version: Chronos generalises zero-shot across domains; a grokked arithmetic model generalises beyond its training range. Both suggest discovered structure, not memorised examples.</p>
+<h3 id="notebook-23-created-23_latent_arithmetic_xworldipynb">Notebook 23 created: <code>23_latent_arithmetic_xworld.ipynb</code></h3>
+<p><strong>Part A — Arithmetic latent space:</strong> Structured 4D encoder [log(n), n/max, parity, residue] vs raw scalar encoder. Trained on +−×÷ up to n=1000 with MSE + inverse-consistency + commutativity losses. Extrapolation tested at 5k, 50k, 1M. PCA of learned embeddings to check for number-line geometry.</p>
+<p><strong>Part B — XWorld shape distortions:</strong> 8 synthetic shape classes (50 instances each). Four distortions: time-reverse, amplitude-flip, noise (σ=0.1/0.3/0.7), time-warp (factor=0.7/1.4). Measures feature drift and boundary crossing rate per class. Stability ranking answers: which shape classes are structural attractors vs fragile surface fits?</p>
+<p><strong>Findings to be logged:</strong> 53–57</p>
+<p>See summary_19APR2026.md for full theoretical development.</p>
+<hr />
+<h2 id="2026-03-31-session-7-declining-oscillator-confirmation-cl7-test-notebook-22">2026-03-31 — Session 7: Declining oscillator confirmation + cl7 test (Notebook 22)</h2>
+<h3 id="goal_4">Goal</h3>
+<p>Two questions from nb21:
+1. Confirm the 8th shape class (declining oscillator) with an independent dataset — Antarctic sea ice
+2. Test whether commodity prices land in the cl7 positive-asymmetry cluster — WTI crude oil + copper</p>
+<h3 id="new-datasets-nb22">New datasets (nb22)</h3>
+<ul>
+<li><strong>Antarctic sea ice</strong> (NSIDC monthly, same source as Arctic) — predicted: joins cl0 with Arctic</li>
+<li><strong>WTI crude oil</strong> (FRED daily → monthly) — predicted: cl7 (positive skew, asymmetric oscillation)</li>
+<li><strong>Copper price</strong> (FRED monthly) — predicted: cl7 or VIX-adjacent</li>
+</ul>
+<h3 id="pre-run-predictions_5">Pre-run predictions</h3>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Predicted class</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Antarctic sea ice</td>
+<td>cl0 — same as Arctic</td>
+<td>Same annual cycle + long-term decline structure</td>
+</tr>
+<tr>
+<td>WTI crude oil</td>
+<td>cl7</td>
+<td>Positive skew: sharp price spikes, slow declines</td>
+</tr>
+<tr>
+<td>Copper</td>
+<td>cl7 or VIX-adjacent</td>
+<td>Industrial demand cycles, similar asymmetry</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2026-03-31-session-6-noisy-directional-refinement-open-questions-notebook-21">2026-03-31 — Session 6: "Noisy directional" refinement + open questions (Notebook 21)</h2>
+<h3 id="goal_5">Goal</h3>
+<p>Four open questions from nb20 (Chronos Phase 2b):
+1. "Noisy directional" class refinement — 3 sub-types emerging; test with targeted new datasets
+2. Sea-level density artifact test — is sea_level's Chronos isolation structural or a count artifact?
+3. cl6 characterization — what do VIX + ENSO + temperature share that Chronos is responding to?
+4. Mirror distortion invariance — do time-reversal / amplitude-flip preserve Chronos cluster membership?</p>
+<h3 id="new-datasets-added-phase-2b">New datasets added (Phase 2b)</h3>
+<ul>
+<li><strong>Glacier mass balance</strong> (WGMS global cumulative, via OWID GitHub) — predicted: keeling_trend-like (clean monotonic)</li>
+<li><strong>Ocean heat content 0–700m</strong> (NOAA WOA quarterly) — predicted: temperature-like (noisy directional)</li>
+<li><strong>Arctic sea ice extent</strong> (NSIDC monthly) — predicted: new class "declining oscillator"</li>
+</ul>
+<h3 id="pre-run-predictions-written-before-running">Pre-run predictions (written before running)</h3>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Predicted class</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Glacier mass balance</td>
+<td>keeling_trend-like</td>
+<td>Smooth cumulative decline, low noise, unidirectional</td>
+</tr>
+<tr>
+<td>Ocean heat content</td>
+<td>temperature-like</td>
+<td>Same forcing, similar interannual noise</td>
+</tr>
+<tr>
+<td>Arctic sea ice</td>
+<td>NEW class</td>
+<td>Long-term decline + strong seasonal cycle = neither pure trend nor pure oscillator</td>
+</tr>
+</tbody>
+</table>
+<h3 id="structural-questions-being-tested">Structural questions being tested</h3>
+<ul>
+<li>If sea_level subsampled to n=31 still isolates → structural class (not density artifact)</li>
+<li>cl6 in-cluster vs out-of-cluster feature comparison: what makes VIX/ENSO/temperature similar to Chronos?</li>
+<li>Mirror distortion: is Chronos time-direction sensitive? (prediction: yes for trends, no for symmetric oscillators)</li>
+</ul>
+<hr />
+<h2 id="2026-03-28-session-3-baseline_delta-observer-independence-notebooks-1112">2026-03-28 — Session 3: baseline_delta + observer-independence (Notebooks 11–12)</h2>
+<h3 id="goal_6">Goal</h3>
+<p>Test two open questions from Session 2:
+1. <strong>baseline_delta as 6th feature</strong> (notebook 11) — does "where did the series end relative to where it started" add information beyond slope? Does it split the burst class into event-with-memory vs event-without?
+2. <strong>Observer-independence</strong> (notebook 12) — do alternative feature sets (spectral/wavelet) reproduce the same 7 shape classes, or are some classes artefacts of this specific feature frame?</p>
+<h3 id="context">Context</h3>
+<p>Clean reinstall. No data files exist. Notebooks are self-contained — they re-download all datasets.</p>
+<h3 id="notebook-11-pre-run-predictions">Notebook 11 pre-run predictions</h3>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Expected baseline_delta</th>
+<th>Reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>covid_first_wave / second_wave</td>
+<td>≈ 0</td>
+<td>Burst rises and falls — endpoints both "low" on normalized scale</td>
+</tr>
+<tr>
+<td>keeling_trend</td>
+<td>&gt;&gt; 0 (large positive)</td>
+<td>Monotone CO2 rise — first 10% far below mean, last 10% far above</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td>&gt; 0 (moderate)</td>
+<td>20-yr windows show warming within window</td>
+</tr>
+<tr>
+<td>keeling_seasonal / sunspot / lynx_hare / ecg / streamflow</td>
+<td>≈ 0</td>
+<td>Cyclical — returns to where it started</td>
+</tr>
+</tbody>
+</table>
+<h3 id="structural-question-being-tested">Structural question being tested</h3>
+<p>Is <code>baseline_delta</code> independent of <code>slope</code>? For smooth monotone series: proportional → redundant. For noisy/non-monotone series (COVID, temperature): may diverge → genuine 6th dimension.</p>
+<h3 id="notebook-13-pre-run-predictions-combined-feature-frame">Notebook 13 pre-run predictions (combined feature frame)</h3>
+<p>11 features: 6 time-domain (from nb11) + 5 spectral fixed (no interpolation — frequency correctly comparable across series lengths). Key fix: streamflow dominant_freq should be ~0.083 (annual cycle), not 0.353 (nb12 artefact from 100-pt interpolation of 480-pt series).</p>
+<p><strong>The three-way problem being tested:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Pair</th>
+<th>td-6f</th>
+<th>spectral-5f</th>
+<th>expected in combined</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COVID ↔ sunspot</td>
+<td>SAME (blind spot)</td>
+<td>diff</td>
+<td>diff</td>
+</tr>
+<tr>
+<td>sunspot ↔ keeling_seasonal</td>
+<td>diff</td>
+<td>SAME (blind spot)</td>
+<td>diff</td>
+</tr>
+<tr>
+<td>COVID ↔ keeling_seasonal</td>
+<td>diff</td>
+<td>diff</td>
+<td>diff</td>
+</tr>
+</tbody>
+</table>
+<p>All three should separate in the combined frame — each pair is distinguishable by at least one frame. The combined clustering should resolve what neither individual frame could alone.</p>
+<p><strong>ARI target:</strong> &gt; 0.165 (nb11 time-domain best) and &gt; 0.132 (nb12 spectral)</p>
+<p><strong>Results — Notebook 13 complete (28 March 2026)</strong></p>
+<h4 id="ari-combining-frames-did-not-improve-on-time-domain-alone">ARI — combining frames did NOT improve on time-domain alone</h4>
+<table>
+<thead>
+<tr>
+<th>Frame</th>
+<th>Clusters</th>
+<th>Noise</th>
+<th>ARI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>time-domain 6f</td>
+<td>22</td>
+<td>25.4%</td>
+<td><strong>0.165</strong></td>
+</tr>
+<tr>
+<td>spectral-fixed 5f</td>
+<td>32</td>
+<td>19.5%</td>
+<td>0.144</td>
+</tr>
+<tr>
+<td>combined 11f</td>
+<td>25</td>
+<td>23.8%</td>
+<td>0.133</td>
+</tr>
+</tbody>
+</table>
+<p>Combined ARI (0.133) is LOWER than time-domain alone (0.165). The spectral features added noise rather than signal. Cross-frame ARI combined↔td = 0.871 — the combined clustering is 87% similar to time-domain. The 11-feature space is dominated by the time-domain signal.</p>
+<h4 id="streamflow-fix-confirmed">Streamflow fix confirmed</h4>
+<p>streamflow dominant_freq = 0.0799 (nb12 had 0.353 due to 100-pt interpolation distortion). Fixed. Streamflow now correctly groups with lynx_hare in Cluster 2 (15 lynx_hare + 22 streamflow) — the moderate dynamics pairing that was predicted.</p>
+<h4 id="the-three-way-problem-sunspot-persists-in-covid-cluster">The three-way problem — sunspot persists in COVID cluster</h4>
+<table>
+<thead>
+<tr>
+<th>Pair</th>
+<th>td-6f</th>
+<th>spectral-5f</th>
+<th>combined-11f</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COVID ↔ sunspot</td>
+<td>SAME</td>
+<td>diff</td>
+<td>SAME</td>
+</tr>
+<tr>
+<td>sunspot ↔ keeling_seasonal</td>
+<td>diff</td>
+<td>diff</td>
+<td>diff</td>
+</tr>
+<tr>
+<td>COVID ↔ keeling_seasonal</td>
+<td>diff</td>
+<td>diff</td>
+<td>diff</td>
+</tr>
+</tbody>
+</table>
+<p>Sunspot collapsed into COVID in both the time-domain and combined frames. Combined Cluster 24: 101 covid_first_wave + 140 covid_second_wave + 23 sunspot. 96% of sunspot points land with COVID. The combined frame is time-domain dominated (cross-ARI 0.871) so the spectral separation of sunspot from COVID is overridden.</p>
+<h4 id="clean-successes-in-combined-frame">Clean successes in combined frame</h4>
+<ul>
+<li>Cluster 1: 100% keeling_seasonal (68/68) — perfectly isolated in all three frames</li>
+<li>Cluster 22: 100% keeling_trend (58/58) — perfectly isolated in all three frames</li>
+<li>Cluster 2: lynx_hare + streamflow together — moderate dynamics correctly grouped after spectral fix</li>
+<li>Cluster 24: COVID1 + COVID2 together (67% cohesion) — confirmed across all frames</li>
+</ul>
+<h4 id="spectral-features-add-noise-not-signal-for-this-dataset-composition">Spectral features add noise, not signal — for this dataset composition</h4>
+<p>The spectral features have high within-class variance for ECG (884 segments varying spectrally) and COVID (202 countries varying in burst shape). This variance creates density instability in HDBSCAN, lowering ARI. The time-domain features are more discriminative for the specific class structure we have. Adding 5 spectral features dilutes the 6 time-domain features rather than complementing them.</p>
+<hr />
+<h3 id="notebook-12-pre-run-predictions-observer-independence">Notebook 12 pre-run predictions (observer-independence)</h3>
+<p>Feature set: 5 spectral features via FFT — <code>dominant_freq</code>, <code>spectral_entropy</code>, <code>power_low</code>, <code>power_mid</code>, <code>power_high</code>. Series interpolated to 100 points before FFT for consistent frequency resolution.</p>
+<p>Key predictions:
+- COVID1 + COVID2 still together (both near-DC, low entropy)
+- <strong>Sunspot separates from COVID</strong> — sunspot has a clear periodic peak; COVID does not. If this holds, the time-domain collapse (nb11 Finding 10) was a frame limitation.
+- keeling_seasonal forms the cleanest isolated cluster (sharpest spectral peak of any dataset)
+- ECG isolated — fastest signal, unique frequency band
+- streamflow may group with keeling_seasonal (both have annual cycles in monthly data)
+- keeling_trend stays separate from COVID (both near-DC but trend is DC-only)</p>
+<h3 id="results-notebook-12-complete-28-march-2026">Results — Notebook 12 complete (28 March 2026)</h3>
+<h4 id="cross-frame-ari-0484">Cross-frame ARI: 0.484</h4>
+<p>Well above the &gt;0.3 meaningful threshold. The spectral and time-domain frames agree substantially on the structure of the data.</p>
+<h4 id="key-pairing-tests-45-passed">Key pairing tests: 4/5 passed</h4>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COVID1 + COVID2 together in spectral space</td>
+<td>FAIL</td>
+</tr>
+<tr>
+<td>Sunspot separates from COVID in spectral space</td>
+<td>PASS ✓</td>
+</tr>
+<tr>
+<td>keeling_seasonal isolated</td>
+<td>PASS ✓</td>
+</tr>
+<tr>
+<td>keeling_trend separate from COVID</td>
+<td>PASS ✓</td>
+</tr>
+<tr>
+<td>ECG isolated from COVID</td>
+<td>PASS ✓</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sunspot-confirmed-separated-finding-10-was-a-frame-limitation">Sunspot confirmed separated — Finding 10 was a frame limitation</h4>
+<p>Sunspot spectral_entropy = 0.081 (power very concentrated). COVID spectral_entropy = 0.330 (more broadband from the rise and fall). L2 distance in spectral space: COVID ↔ sunspot = 1.052. In time-domain (nb11) they shared a cluster. The separation is real — the time-domain feature set couldn't see it because both have high autocorr and low zero crossings. The spectral frame sees the difference: sunspot is a near-pure periodic signal; COVID is a one-time broadband burst.</p>
+<h4 id="covid1-covid2-split-in-spectral-space-unexpected">COVID1 + COVID2 split in spectral space — unexpected</h4>
+<p>Both landed in different clusters (C27 vs C26) despite being the same shape class. This is over-fragmentation, not genuine shape difference — their spectral profiles are nearly identical (dominant_freq ≈ 0.011, entropy ≈ 0.33, power_low ≈ 0.95). HDBSCAN created 37 clusters total (too many) — the COVID split is a density artefact within the same shape class, not a real distinction.</p>
+<h4 id="keeling_seasonal-perfectly-isolated-cleanest-spectral-signature">keeling_seasonal perfectly isolated — cleanest spectral signature</h4>
+<p>Cluster 25: 100% keeling_seasonal (68 points), spectral_entropy = 0.045 (lowest of any dataset), power_low = 0.9995. The annual CO2 cycle is the most spectrally pure signal in the entire dataset — a near-perfect sine wave.</p>
+<h4 id="sunspot-and-keeling_seasonal-are-spectrally-close">Sunspot and keeling_seasonal are spectrally close</h4>
+<p>L2 distance sunspot ↔ keeling_seasonal = 0.141 — the smallest inter-class distance in the entire spectral taxonomy. Both have very low entropy and near-unity power_low. They were well separated in time-domain space (different kurtosis, different skewness) but spectrally they look almost identical. This is the inverse of the sunspot-COVID situation: two series that looked different in one frame look similar in another.</p>
+<h4 id="streamflow-isolated-to-its-own-unique-cluster-spectral-artefact">Streamflow isolated to its own unique cluster — spectral artefact</h4>
+<p>Streamflow dominant_freq = 0.3533 — by far the highest of any dataset. This is a methodological finding: the 100-point interpolation compresses long series. Streamflow has ~480 months; the annual cycle (12-month period) becomes 12/480 × 100 = 2.5 points after interpolation → frequency ≈ 0.4. This pushes streamflow into the high-frequency band and lands it in Cluster 0 (power_high dominant), completely separated from keeling_seasonal. The spectral features are sensitive to series length before interpolation. This is a design limitation of the current spectral feature extraction — not a shape finding.</p>
+<h4 id="covid-keeling_trend-spectrally-close-time-domain-far">COVID ↔ keeling_trend: spectrally close, time-domain far</h4>
+<p>L2 distance COVID ↔ keeling_trend in spectral space = 0.328 (close). In 6-feature time-domain space = 2.810 (far). The two frames disagree on this pair. Spectrally they look similar (both near-DC, both high power_low). Time-domain baseline_delta was the key discriminator. Neither frame is wrong — they're measuring different aspects of the same shape.</p>
+<h4 id="observer-independence-verdict-holds-with-caveats">Observer-independence verdict: HOLDS (with caveats)</h4>
+<p>ARI = 0.484. The shape classes are not artefacts of the time-domain frame. The major cross-domain pairings (COVID waves together, keeling_seasonal isolated, ECG isolated, keeling_trend separate) are reproduced independently. The one regression (COVID1+COVID2 split) is HDBSCAN over-fragmentation at 37 clusters, not a genuine shape distinction.</p>
+<hr />
+<h3 id="bug-pandas-2x-fillnamethod-removed-notebook-11-sunspot-cell">Bug — pandas 2.x <code>fillna(method=)</code> removed (Notebook 11, sunspot cell)</h3>
+<p><code>fillna(method='bfill')</code> and <code>fillna(method='ffill')</code> raise <code>TypeError</code> in pandas 2.x — the <code>method</code> keyword was removed. Fix: use <code>.bfill().ffill()</code> chained directly on the Series.</p>
+<p>Affected lines: <code>series_full</code> and <code>smoothed</code> assignments in the sunspot dataset cell.</p>
+<h3 id="results-notebook-11-complete-28-march-2026">Results — Notebook 11 complete (28 March 2026)</h3>
+<h4 id="baseline_delta-per-dataset-mean">baseline_delta per dataset (mean)</h4>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Predicted</th>
+<th>Actual</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>covid_first_wave</td>
+<td>≈ 0</td>
+<td>+0.610</td>
+<td>UNEXPECTED</td>
+</tr>
+<tr>
+<td>covid_second_wave</td>
+<td>≈ 0</td>
+<td>+0.392</td>
+<td>UNEXPECTED</td>
+</tr>
+<tr>
+<td>keeling_trend</td>
+<td>&gt;&gt; 0</td>
+<td>+3.111</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>keeling_seasonal</td>
+<td>≈ 0</td>
+<td>-0.337</td>
+<td>UNEXPECTED</td>
+</tr>
+<tr>
+<td>sunspot_cycle</td>
+<td>≈ 0</td>
+<td>+0.055</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>lynx_hare</td>
+<td>≈ 0</td>
+<td>-0.100</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td>&gt; 0</td>
+<td>+0.997</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>ecg</td>
+<td>≈ 0</td>
+<td>-0.155</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>streamflow</td>
+<td>≈ 0</td>
+<td>+0.194</td>
+<td>CONFIRMED</td>
+</tr>
+</tbody>
+</table>
+<p>6 confirmed, 3 unexpected.</p>
+<h4 id="covid-is-not-event-without-memory-most-significant-unexpected-finding">COVID is not event-without-memory — most significant unexpected finding</h4>
+<p>COVID first wave baseline_delta = +0.610 with slope ≈ −0.001. These diverge completely: slope says the series has no overall trend; baseline_delta says it ends 0.6 SD above where it started. The burst did not fully return to baseline — it plateaued above its starting level. "Event-with-memory." This was not predicted.</p>
+<p>COVID second wave = +0.392. Same pattern, slightly less pronounced.</p>
+<p><strong>Implication:</strong> The burst class is NOT event-without-memory. The epidemic ends at a new floor — ongoing transmission, not a return to zero. This is epidemiologically real, not a measurement artefact.</p>
+<h4 id="keeling_seasonal-ends-lower-than-it-starts-0337">keeling_seasonal ends lower than it starts (-0.337)</h4>
+<p>The annual CO2 cycle extracted as 12-point yearly segments starts in January (Northern Hemisphere winter, high CO2) and ends in December. The seasonal cycle is asymmetric in its phase relationship to the calendar year — the trough is deeper relative to the normalized mean than the starting point. Small but consistent across all 68 years.</p>
+<h4 id="keeling_trend-separated-from-covid-key-structural-success">keeling_trend separated from COVID — key structural success</h4>
+<p>L2 distance in standardized feature space:</p>
+<table>
+<thead>
+<tr>
+<th>Pair</th>
+<th>5-feature</th>
+<th>6-feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COVID ↔ keeling_trend</td>
+<td>0.975</td>
+<td>2.810</td>
+</tr>
+<tr>
+<td>COVID ↔ temperature</td>
+<td>6.315</td>
+<td>6.329</td>
+</tr>
+<tr>
+<td>keeling_trend ↔ temperature</td>
+<td>6.649</td>
+<td>7.012</td>
+</tr>
+</tbody>
+</table>
+<p>In 5-feature space, COVID and keeling_trend were nearly touching (0.975). The 6th feature tripled that distance to 2.810. baseline_delta is doing exactly the job it was designed for — separating "burst that ends high" from "permanent accumulation that ends even higher."</p>
+<h4 id="sunspot-collapsed-into-covid-cluster-unexpected">Sunspot collapsed into COVID cluster — unexpected</h4>
+<p>In 5-feature clustering sunspot was its own cluster. In 6-feature clustering it joins Cluster 13 with COVID (100% of sunspot points). Sunspot baseline_delta = +0.055 — nearly zero, unlike COVID's +0.610. The merge is driven by the other 5 features (high autocorr, low zero crossings, right-skewed) being too similar; baseline_delta of 0.055 vs 0.488 (cluster mean) doesn't push it out. The 6th feature did not help discriminate sunspot from COVID — that separation relied on parameters in 5-feature space that baseline_delta collapsed.</p>
+<h4 id="clustering-improved-overall">Clustering improved overall</h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>5-feature</th>
+<th>6-feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clusters</td>
+<td>31</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Noise</td>
+<td>29.8%</td>
+<td>25.5%</td>
+</tr>
+<tr>
+<td>ARI</td>
+<td>0.121</td>
+<td>0.165</td>
+</tr>
+</tbody>
+</table>
+<p>Fewer micro-clusters, less noise, better domain alignment. The 6th feature is not redundant.</p>
+<h4 id="6-feature-cluster-12-keeling_trend-in-pure-isolation">6-feature cluster 12 — keeling_trend in pure isolation</h4>
+<p>Cluster 12: 100% keeling_trend (58 points), mean baseline_delta = 3.106, lag1 = 1.000, slope = 0.028, skewness ≈ 0. The cleanest cluster in the taxonomy — permanent smooth accumulation with no return. Completely isolated.</p>
+<h4 id="hypothesis-scoring-89-confirmed">Hypothesis scoring — 8/9 confirmed</h4>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Expected</th>
+<th>Got</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>covid_second_wave</td>
+<td>Same cluster as COVID</td>
+<td>Cluster 13 (67%)</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>keeling_trend</td>
+<td>NOT COVID cluster</td>
+<td>Cluster 12 (100%)</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>keeling_seasonal</td>
+<td>NOT COVID cluster</td>
+<td>Cluster 0 (100%)</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>sunspot_cycle</td>
+<td>NOT COVID cluster</td>
+<td>Cluster 13 (100%)</td>
+<td>UNEXPECTED</td>
+</tr>
+<tr>
+<td>lynx_hare</td>
+<td>NOT COVID cluster</td>
+<td>Cluster 0 (27%)</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td>NOT COVID cluster</td>
+<td>Cluster 0 (3%)</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>ecg</td>
+<td>NOT COVID cluster</td>
+<td>Cluster 9 (20%)</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>streamflow</td>
+<td>NOT COVID cluster</td>
+<td>Cluster 1 (100%)</td>
+<td>CONFIRMED</td>
+</tr>
+</tbody>
+</table>
+<h4 id="temperature-and-keeling_trend-did-not-merge">Temperature and keeling_trend did not merge</h4>
+<p>keeling_trend → Cluster 12 (pure accumulation). Temperature → Cluster 0 (with keeling_seasonal + lynx_hare). Still separate. The 6th feature widened their distance slightly (6.649 → 7.012) rather than closing it.</p>
+<hr />
+<h2 id="2026-03-23-session-1-foundation-notebooks-0107">2026-03-23 — Session 1: Foundation (Notebooks 01–07)</h2>
+<h3 id="goal_7">Goal</h3>
+<p>Test the core hypothesis: time series from completely different domains share underlying dynamic shapes that cluster across domain boundaries. A COVID wave and a sunspot cycle should cluster together if they share the same mathematical signature — regardless of what they represent.</p>
+<h3 id="datasets-built">Datasets built</h3>
+<table>
+<thead>
+<tr>
+<th>Notebook</th>
+<th>Dataset</th>
+<th>Shape hypothesis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>COVID first wave (OWID, 202 countries)</td>
+<td>Directional burst — rises fast, falls</td>
+</tr>
+<tr>
+<td>02</td>
+<td>Sunspot cycles (monthly 1749–present)</td>
+<td>Periodic — ~11yr cycle, asymmetric</td>
+</tr>
+<tr>
+<td>03</td>
+<td>Lynx-hare (Hudson Bay 1845–1935)</td>
+<td>Predator-prey oscillation</td>
+</tr>
+<tr>
+<td>04</td>
+<td>Keeling CO2 (Mauna Loa 1958–present)</td>
+<td>Two components: seasonal + slow trend</td>
+</tr>
+<tr>
+<td>05</td>
+<td>Clustering all 5 (UMAP + HDBSCAN)</td>
+<td>Cross-domain shape clusters</td>
+</tr>
+<tr>
+<td>06</td>
+<td>COVID second wave (209 countries)</td>
+<td>Should land with first wave — same burst shape</td>
+</tr>
+<tr>
+<td>07</td>
+<td>Global temperature (NASA GISS, 26 stations)</td>
+<td>Slow directional drift</td>
+</tr>
+</tbody>
+</table>
+<h3 id="feature-set-settled">Feature set (settled)</h3>
+<p>5 features extracted per time series after z-score normalisation:
+- <code>mean</code>, <code>std</code>, <code>skewness</code>, <code>kurtosis</code> — distributional shape
+- <code>lag1_autocorr</code> — memory / periodicity proxy
+- <code>zero_crossings</code> — oscillation frequency proxy
+- <code>slope</code> — directional drift</p>
+<h3 id="keeling-split">Keeling split</h3>
+<p>Keeling CO2 decomposed into two sub-datasets: <code>keeling_seasonal</code> (annual oscillation) and <code>keeling_trend</code> (long-run drift). Treated as separate entities in clustering — they have genuinely different shapes.</p>
+<h3 id="clustering-setup-v1">Clustering setup (v1)</h3>
+<ul>
+<li>UMAP: <code>n_neighbors=15, min_dist=0.1, n_components=2</code></li>
+<li>HDBSCAN: <code>min_cluster_size=3, min_samples=1</code> ← <strong>later found to be too fragmented</strong></li>
+</ul>
+<h3 id="outcome-05_cluster_all">Outcome (05_cluster_all)</h3>
+<p>Initial clustering broadly confirmed cross-domain shape groupings. Directional burst (COVID), slow drift (temperature) and oscillatory series separated in UMAP space.</p>
+<hr />
+<h2 id="2026-03-24-session-2-ecg-extension-bug-fixes-notebooks-0809">2026-03-24 — Session 2: ECG Extension + Bug Fixes (Notebooks 08–09)</h2>
+<h3 id="dataset-added">Dataset added</h3>
+<table>
+<thead>
+<tr>
+<th>Notebook</th>
+<th>Dataset</th>
+<th>Shape hypothesis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>08</td>
+<td>ECGFiveDays (UCR archive, 884 heartbeat segments)</td>
+<td>Oscillatory — should NOT cluster with directional datasets</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bug-1-ecg-download-silently-failed-notebook-08-cell-2">Bug 1 — ECG download silently failed (Notebook 08, Cell 2)</h3>
+<p><code>requests.get()</code> was returning an HTML error page from timeseriesclassification.com with HTTP 200, which passed the status check but failed at <code>zipfile.ZipFile()</code>. The exception was caught but no clear error was shown, leaving <code>dest_dir</code> empty.</p>
+<p><strong>Fix:</strong> Switched to <code>urllib.request</code> (same behaviour as <code>curl</code>). Added <code>zipfile.is_zipfile()</code> validation before extraction. Added cleanup of empty/partial directories so the <code>if not dest_dir.exists()</code> guard doesn't block re-download.</p>
+<p><strong>Verified:</strong> zip at <code>timeseriesclassification.com/aeon-toolkit/ECGFiveDays.zip</code> contains <code>ECGFiveDays_TRAIN.ts</code> and <code>ECGFiveDays_TEST.ts</code> (also <code>.arff</code> and <code>.txt</code>).</p>
+<blockquote>
+<p>Note: on 2026-03-24 the site returned 502. Zip was already cached at <code>/tmp/ECGFiveDays.zip</code> from an earlier <code>curl</code> call and extracted manually.</p>
+</blockquote>
+<h3 id="bug-2-hdbscan-over-fragmentation-notebook-09-cell-5">Bug 2 — HDBSCAN over-fragmentation (Notebook 09, Cell 5)</h3>
+<p><code>min_cluster_size=3</code> with 612 points produced <strong>76 clusters</strong> and <strong>31.5% noise</strong>. The majority cluster for COVID first wave was <code>-1</code> (noise), making all downstream comparisons against noise rather than a real shape cluster.</p>
+<p><strong>Fix:</strong> <code>min_cluster_size=15, min_samples=5</code>. Produces fewer, more cohesive macro shape clusters.</p>
+<h3 id="bug-3-scoring-logic-used-noise-as-reference-notebook-09-cell-9">Bug 3 — Scoring logic used noise as reference (Notebook 09, Cell 9)</h3>
+<p><code>cluster1_ref</code> was set to the most common cluster for COVID first wave — which was <code>-1</code> (noise). All three checks then compared against noise, making ECG's 17% noise membership appear as a match to the reference.</p>
+<p><strong>Fix:</strong> Skip <code>-1</code> when finding the reference cluster. Also skip <code>-1</code> when finding each dataset's majority cluster for comparison.</p>
+<h3 id="results-after-fixes-run-2">Results after fixes (run 2)</h3>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Expected</th>
+<th>Got</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>covid_second_wave</td>
+<td>Cluster 10 (burst)</td>
+<td>Cluster 10 (57%)</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td>Cluster 10 (drift)</td>
+<td>Cluster -1 (100% noise)</td>
+<td>UNEXPECTED → hypothesis revised</td>
+</tr>
+<tr>
+<td>ecg</td>
+<td>NOT Cluster 10</td>
+<td>Cluster 6 (29%)</td>
+<td>CONFIRMED</td>
+</tr>
+</tbody>
+</table>
+<h3 id="temperature-finding-hypothesis-revised">Temperature finding — hypothesis revised</h3>
+<p>Temperature being 100% noise is not a clustering failure. Feature analysis shows temperature and COVID first wave are genuinely different in feature space:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>COVID</th>
+<th>Temperature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>skewness</td>
+<td>0.95</td>
+<td>0.01</td>
+</tr>
+<tr>
+<td>lag1_autocorr</td>
+<td>0.95</td>
+<td>0.50</td>
+</tr>
+<tr>
+<td>zero_crossings</td>
+<td>0.023</td>
+<td>0.277</td>
+</tr>
+</tbody>
+</table>
+<p>Temperature stations fluctuate around a slow warming trend, producing moderate zero_crossings and lower autocorr. COVID is a smooth one-way burst with near-zero crossings. <strong>"Directional burst" and "slow directional drift" are two distinct shapes</strong>, not one.</p>
+<p>The 100% noise result is also partly a parameter problem: 26 points with <code>min_cluster_size=15</code> cannot form their own cluster even if internally coherent. Lowered to <code>min_cluster_size=8, min_samples=3</code> to allow small but tight datasets to cluster.</p>
+<p><strong>Updated hypothesis for temperature:</strong> should form its own cluster (slow noisy drift), distinct from COVID (fast smooth burst) and ECG (oscillatory).</p>
+<h3 id="results-after-scoring-fix-run-3-min_cluster_size8">Results after scoring fix (run 3, min_cluster_size=8)</h3>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Expected</th>
+<th>Got</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>covid_second_wave</td>
+<td>Cluster 33 (burst)</td>
+<td>Cluster 33 (55%)</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td>NOT Cluster 33 (own cluster)</td>
+<td>Cluster 1 (92%)</td>
+<td>CONFIRMED — once scoring updated</td>
+</tr>
+<tr>
+<td>ecg</td>
+<td>NOT Cluster 33</td>
+<td>Cluster 12 (33%)</td>
+<td>CONFIRMED</td>
+</tr>
+</tbody>
+</table>
+<p>Temperature formed Cluster 1 at 92% cohesion — extremely tight grouping. All three predictions now confirmed with revised hypothesis. Scoring logic updated: temperature <code>should_match=False</code>.</p>
+<h3 id="session-2-milestone-all-three-new-datasets-confirmed">✓ Session 2 milestone — all three new datasets confirmed</h3>
+<hr />
+<h2 id="2026-03-24-session-2-continued-periodic-dataset-hypotheses">2026-03-24 — Session 2 continued: Periodic dataset hypotheses</h2>
+<h3 id="new-insight-ecg-is-not-oscillatory-by-zero_crossings">New insight: ECG is not oscillatory by zero_crossings</h3>
+<p>ECG zero_crossings = 0.078 — actually lower than keeling_seasonal (0.167) and lynx_hare (0.172). ECG is distinguished by <strong>kurtosis = 15.165</strong> (sharp QRS spike + flat baseline). The clustering correctly isolated it, but for a different reason than assumed.</p>
+<h3 id="revised-shape-taxonomy-5-classes-emerging">Revised shape taxonomy (5 classes emerging)</h3>
+<table>
+<thead>
+<tr>
+<th>Shape class</th>
+<th>Datasets</th>
+<th>Key discriminators</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Smooth directional burst</td>
+<td>covid_first_wave, covid_second_wave</td>
+<td>skewness≈0.95, lag1≈0.95, zc≈0.02</td>
+</tr>
+<tr>
+<td>Slow noisy drift</td>
+<td>temperature</td>
+<td>lag1≈0.50, zc≈0.28, low skewness</td>
+</tr>
+<tr>
+<td>Spike-oscillatory</td>
+<td>ecg</td>
+<td>kurtosis=15.165 — uniquely extreme</td>
+</tr>
+<tr>
+<td>Smooth directional trend (?)</td>
+<td>keeling_trend</td>
+<td>lag1=1.00, zc=0.008 — may land with COVID</td>
+</tr>
+<tr>
+<td>Slow periodic</td>
+<td>keeling_seasonal, lynx_hare, sunspot?</td>
+<td>zc≈0.10–0.17, negative kurtosis</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hypotheses-for-next-run-periodic-datasets-already-in-notebook-09">Hypotheses for next run (periodic datasets, already in notebook 09)</h3>
+<ul>
+<li><strong>keeling_trend</strong> → Cluster with COVID (both: high autocorr, very low zc, near-zero slope)</li>
+<li><strong>keeling_seasonal</strong> → NOT COVID cluster (higher zc, flat kurtosis)</li>
+<li><strong>sunspot_cycle</strong> → NOT COVID cluster</li>
+<li><strong>lynx_hare</strong> → NOT COVID cluster</li>
+<li><strong>keeling_seasonal + lynx_hare</strong> → likely same cluster (similar zc≈0.17, similar kurtosis)</li>
+<li><strong>ecg</strong> → continues to stay isolated from all of the above</li>
+<li><strong>streamflow</strong> → predicted to land in Cluster 1 with temperature + lynx_hare (moderate dynamics by design). Pre-run feature predictions: <code>zero_crossings ≈ 0.15–0.25</code>, <code>lag1_autocorr ≈ 0.50–0.70</code>, <code>kurtosis &lt; 0</code>, <code>skewness ≈ 0–0.6</code>.</li>
+</ul>
+<h3 id="run-1-raw-discharge-2425-stations-loaded">Run 1 — raw discharge (24/25 stations loaded)</h3>
+<p>Streamflow → Cluster -1 (100% noise). Features: zc=0.228 ✓, lag1=0.574 ✓, kurtosis=6.931 ✗, skewness=2.090 ✗. Root cause: log-normal discharge; flood spikes inflate tails. Fix: log-transform.</p>
+<h3 id="run-2-log-transformed-discharge">Run 2 — log-transformed discharge</h3>
+<p>Streamflow landed in <strong>Cluster -1 (100% noise)</strong>. Feature check:
+- <code>zero_crossings</code>: 0.228 → IN RANGE ✓  <code>lag1_autocorr</code>: 0.574 → IN RANGE ✓
+- <code>kurtosis</code>: <strong>6.931 → OUT OF RANGE</strong>  <code>skewness</code>: <strong>2.090 → OUT OF RANGE</strong></p>
+<p><strong>Root cause:</strong> Discharge is log-normally distributed. Flood months create extreme positive spikes that inflate skewness/kurtosis well outside "moderate" range despite temporal dynamics being correct. Fix: <code>np.log1p()</code> transform before feature extraction — standard hydrology practice, collapses flood tail, preserves autocorr/zc/slope.</p>
+<p>All features IN RANGE after log-transform: zc=0.222 ✓, lag1=0.700 ✓, kurtosis=-0.308 ✓, skewness=0.184 ✓.</p>
+<p><strong>Cluster result: Cluster 4 (67%), NOT Cluster 1 (temperature + lynx_hare).</strong></p>
+<p>Streamflow avoided all extreme clusters. "Moderate dynamics" hypothesis broadly confirmed — but streamflow formed its own density peak rather than joining Cluster 1. Key discriminator: <code>lag1_autocorr</code> = 0.700 (streamflow) vs 0.503 (temperature) / 0.680 (lynx_hare). Catchment memory is slightly higher than climate/ecological memory.</p>
+<h3 id="moderate-dynamics-is-a-genuine-shape-region-with-internal-sub-structure">✓ "Moderate dynamics" is a genuine shape region with internal sub-structure</h3>
+<p>Two sub-types identified within the moderate dynamics region:
+- <strong>C1</strong>: lower-memory moderate dynamics — temperature anomalies + lynx_hare (lag1 ≈ 0.50–0.68)
+- <strong>C4</strong>: higher-memory moderate dynamics — log-streamflow (lag1 ≈ 0.70), 67% cohesion across 24 diverse rivers</p>
+<p>The 24 streamflow stations form a tighter, more cohesive core than the mixed temperature/lynx_hare group, so HDBSCAN correctly finds two density peaks within the broad moderate region. "Moderate dynamics" is not a catch-all — it is a genuine shape region that the feature set resolves with sub-structure.</p>
+<h3 id="results-periodic-dataset-run">Results — periodic dataset run</h3>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Expected</th>
+<th>Got</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keeling_trend</td>
+<td>Cluster 33 (with COVID)</td>
+<td>Cluster 29 (100%)</td>
+<td>UNEXPECTED → own cluster</td>
+</tr>
+<tr>
+<td>keeling_seasonal</td>
+<td>NOT Cluster 33</td>
+<td>Cluster 0 (100%)</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>sunspot_cycle</td>
+<td>NOT Cluster 33</td>
+<td>Cluster 13 (58%)</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>lynx_hare</td>
+<td>NOT Cluster 33</td>
+<td>Cluster 1 (65%)</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>ecg</td>
+<td>NOT Cluster 33</td>
+<td>Cluster 12 (33%)</td>
+<td>CONFIRMED</td>
+</tr>
+</tbody>
+</table>
+<p>Cross-dataset affinity: keeling_seasonal (C0) / sunspot_cycle (C13) / lynx_hare (C1) — all in DIFFERENT clusters.</p>
+<h3 id="keeling_trend-finding-skewness-is-the-burst-discriminator">keeling_trend finding — skewness is the burst discriminator</h3>
+<p>keeling_trend and COVID look similar on autocorr and zero_crossings. But COVID skewness = 0.95 (asymmetric — rises fast, falls), keeling_trend skewness = 0.075 (symmetric monotonic rise). Skewness correctly separates "burst" from "steady climb."</p>
+<h3 id="lynx_hare-temperature-pairing-moderate-dynamics-is-a-shape-class">lynx_hare + temperature pairing — "moderate dynamics" is a shape class</h3>
+<p>Predator-prey oscillation (lynx_hare) and slow climate drift (temperature) share Cluster 1. Common features: no skewness extreme, moderate autocorr (~0.5–0.68), flat kurtosis, moderate zero_crossings. The cluster represents "no extreme features" — generic moderate dynamics. Domain-blind.</p>
+<h3 id="revised-shape-taxonomy-6-classes-identified">Revised shape taxonomy — 6 classes identified</h3>
+<table>
+<thead>
+<tr>
+<th>Cluster</th>
+<th>Datasets</th>
+<th>Key character</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>33</td>
+<td>covid_first_wave, covid_second_wave</td>
+<td>Right-skewed burst — skewness≈0.95</td>
+</tr>
+<tr>
+<td>29</td>
+<td>keeling_trend</td>
+<td>Symmetric monotonic rise — lag1=1.0, skewness≈0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>temperature, lynx_hare</td>
+<td>Moderate dynamics — no extreme features</td>
+</tr>
+<tr>
+<td>0</td>
+<td>keeling_seasonal</td>
+<td>Left-skewed periodic — skewness=-0.16</td>
+</tr>
+<tr>
+<td>13</td>
+<td>sunspot_cycle</td>
+<td>Right-skewed low-zc periodic</td>
+</tr>
+<tr>
+<td>12</td>
+<td>ecg</td>
+<td>Spike dynamics — kurtosis=15.165</td>
+</tr>
+</tbody>
+</table>
+<h3 id="core-finding-so-far">Core finding so far</h3>
+<p>The 5-feature set discriminates 6 shape classes across 8 datasets from completely unrelated domains. The discriminating features vary by class — skewness separates burst from steady-climb, kurtosis isolates ECG spikes, zero_crossings + autocorr separate periodic from directional. No single feature does all the work.</p>
+<p>All three predictions confirmed. The feature set successfully separates three distinct shape families:</p>
+<table>
+<thead>
+<tr>
+<th>Shape class</th>
+<th>Datasets</th>
+<th>Key discriminators</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fast smooth burst</td>
+<td>covid_first_wave, covid_second_wave</td>
+<td>high skewness (0.95), high lag1_autocorr (0.95), very low zero_crossings (0.02)</td>
+</tr>
+<tr>
+<td>Slow noisy drift</td>
+<td>temperature (92% in one cluster)</td>
+<td>low skewness, moderate autocorr (0.50), moderate zero_crossings (0.28)</td>
+</tr>
+<tr>
+<td>Oscillatory</td>
+<td>ecg</td>
+<td>high zero_crossings, low slope</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key insight:</strong> The original hypothesis conflated "directional burst" and "slow directional drift" as one shape class. The feature set discriminates them — autocorrelation and zero_crossings together separate fast-smooth from slow-noisy directional dynamics. This is a stronger result than the original hypothesis.</p>
+<hr />
+<hr />
+<h2 id="2026-03-28-session-4-pairwise-shape-distances-notebook-14">2026-03-28 — Session 4: Pairwise shape distances (Notebook 14)</h2>
+<p><strong>Question:</strong> Do the "problem pairs" from nb11–12 land in opposite off-diagonal quadrants of a (td_dist, spectral_dist) scatter plot?</p>
+<p><strong>Method:</strong> Compute per-dataset centroids in normalized TD-6f and spectral-5f feature spaces. Compute all C(9,2)=36 pairwise L2 distances. Plot each pair as a 2D point.</p>
+<h3 id="quadrant-check-results">Quadrant check results</h3>
+<table>
+<thead>
+<tr>
+<th>Pair</th>
+<th>td_dist</th>
+<th>sp_dist</th>
+<th>Actual quadrant</th>
+<th>Predicted</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COVID1 ↔ sunspot</td>
+<td>0.852</td>
+<td>1.309</td>
+<td>(near, near)</td>
+<td>(near, far)</td>
+<td>UNEXPECTED</td>
+</tr>
+<tr>
+<td>sunspot ↔ keeling_seasonal</td>
+<td>4.459</td>
+<td>2.383</td>
+<td>(far, near)</td>
+<td>(far, near)</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>COVID1 ↔ COVID2</td>
+<td>0.282</td>
+<td>0.226</td>
+<td>(near, near)</td>
+<td>(near, near)</td>
+<td>CONFIRMED</td>
+</tr>
+<tr>
+<td>COVID1 ↔ keeling_trend</td>
+<td>2.810</td>
+<td>0.240</td>
+<td>(near, near)</td>
+<td>(far, far)</td>
+<td>UNEXPECTED</td>
+</tr>
+<tr>
+<td>keeling_seasonal ↔ keeling_trend</td>
+<td>6.277</td>
+<td>2.495</td>
+<td>(far, near)</td>
+<td>(far, far)</td>
+<td>UNEXPECTED</td>
+</tr>
+<tr>
+<td>ECG ↔ keeling_seasonal</td>
+<td>4.515</td>
+<td>3.623</td>
+<td>(far, far)</td>
+<td>(far, near)</td>
+<td>UNEXPECTED</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Predictions confirmed: 2/6</strong></p>
+<h3 id="why-covid-sunspot-came-out-near-near">Why COVID-sunspot came out (near, near)</h3>
+<p>Spectral distance=1.309 is below median because both have <code>power_low≈0.95+</code> and <code>dominant_freq≈0.01</code>. The entropy difference (0.338 vs 0.076) — which drove their separation in nb12's HDBSCAN — is only 1 of 5 spectral features. In centroid L2, the four power-band features outvote entropy. Cluster separation ≠ centroid distance. The duality is real but only visible at the instance/density level.</p>
+<h3 id="why-covid1-keeling_trend-appeared-near">Why COVID1 ↔ keeling_trend appeared near</h3>
+<p>TD distance=2.810 is above the within-COVID range (COVID1↔COVID2=0.282) but below the global median (3.814). Baseline_delta did triple the separation vs 5-feature space — it's just that many cross-domain pairs have even larger distances, pulling the median up.</p>
+<h3 id="key-structural-findings">Key structural findings</h3>
+<ul>
+<li><strong>sunspot ↔ keeling_seasonal (far, near)</strong> confirmed robustly — the spectral frame's blind spot holds at centroid level</li>
+<li><strong>keeling_seasonal ↔ keeling_trend (far, near)</strong> — unexpected: both concentrate power at low frequencies; power bands cannot distinguish "periodic cycle" from "slow trend"</li>
+<li><strong>Temperature</strong> is the most isolated dataset in both frames — largest distances to nearly everything</li>
+</ul>
+<h3 id="what-changed-in-the-thesis">What changed in the thesis</h3>
+<p>Shape similarity as a vector holds. But centroid L2 is not the right tool to see the COVID-sunspot split — that requires either entropy-only distance or instance-level clustering. Follow-up: recompute spectral distance using entropy alone to test if the (near, far) prediction holds for that single feature.</p>
+<h3 id="entropy-only-follow-up-nb14-extension">Entropy-only follow-up (nb14 extension)</h3>
+<p><strong>Result:</strong> COVID-sunspot entropy distance = 0.2622, median = 0.2628. Missed (near, far) by 0.0006 — exactly at the boundary.</p>
+<p><strong>Conclusion:</strong> The COVID-sunspot duality cannot be recovered by any centroid distance (5-feature L2 or entropy-only). It is a density effect visible only at the instance level through HDBSCAN. This closes the open question from Finding 21.</p>
+<p><strong>Entropy ordering discovered:</strong> sunspot (0.076) &lt; keeling_seasonal (0.154) &lt; COVID2 (0.297) &lt; COVID1 (0.338) &lt; keeling_trend (0.389) &lt; lynx_hare (0.436) &lt; streamflow (0.596) &lt; ECG (0.699) &lt; temperature (0.763). A clean spectral complexity axis through the corpus.</p>
+<p><strong>Total findings after nb14:</strong> 26</p>
+<hr />
+<h2 id="2026-03-28-session-4-cont-notebook-15-sea-level">2026-03-28 — Session 4 cont.: Notebook 15 (Sea Level)</h2>
+<p><strong>Prediction:</strong> land in keeling_trend cluster
+<strong>Result:</strong> nearest = covid_first_wave (1.467), not keeling_trend (2.653). 48% noise.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>sea_level</th>
+<th>keeling_trend</th>
+<th>COVID1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>lag1_autocorr</td>
+<td>0.919</td>
+<td>0.9999</td>
+<td>0.954</td>
+</tr>
+<tr>
+<td>zero_crossings</td>
+<td>0.104</td>
+<td>0.008</td>
+<td>0.023</td>
+</tr>
+<tr>
+<td>baseline_delta</td>
+<td>1.100</td>
+<td>3.111</td>
+<td>0.610</td>
+</tr>
+<tr>
+<td>spectral_entropy</td>
+<td>0.429</td>
+<td>0.389</td>
+<td>0.338</td>
+</tr>
+<tr>
+<td>power_low</td>
+<td>0.920</td>
+<td>0.953</td>
+<td>0.949</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prediction: WRONG — but it's a finding.</strong> Sea level is a noisy monotone — trending but with inter-annual ENSO oscillation that gives zero_crossings=0.104 (vs keeling_trend's 0.008). This pushed it closer to COVID in feature space and into noise in HDBSCAN. Reveals a gap between keeling_trend and temperature: "noisy directional with strong memory" — potential 8th shape class. → Findings 27–28</p>
+<p><strong>Methodological note:</strong> First attempt used 8 annual windows (only 13 instances, bad spectral features). Fixed by using monthly data with 120-pt windows (1557 points → 120 instances). Lesson: window size must be consistent with existing datasets for spectral features to be comparable.</p>
+<hr />
+<h2 id="2026-03-28-session-4-cont-notebook-16-enso">2026-03-28 — Session 4 cont.: Notebook 16 (ENSO)</h2>
+<p><strong>Prediction:</strong> between sunspot and lynx_hare, or new class
+<strong>Result:</strong> three-way tie — covid_second_wave (0.970), sunspot (0.996), covid_first_wave (1.022). 72% noise.</p>
+<p><strong>Prediction direction wrong (lynx_hare), new class call correct.</strong></p>
+<p>ENSO sits between COVID and sunspot on two different axes:
+- baseline_delta=0.078 ≈ sunspot (0.055) — returns to zero, unlike COVID (0.610)
+- spectral_entropy=0.367 ≈ COVID (0.338) — irregular, unlike sunspot (0.076)</p>
+<p>This combination is unique: high-memory, irregular, reversible oscillation → potential new class. → Findings 29–30</p>
+<p>Second dataset after sea_level to fall mostly into noise — confirms the taxonomy has structural gaps between existing classes. A continuous embedding (Phase 2) may be more appropriate than discrete classes.</p>
+<hr />
+<h2 id="2026-03-28-session-4-cont-notebook-17-vix">2026-03-28 — Session 4 cont.: Notebook 17 (VIX)</h2>
+<p><strong>Prediction:</strong> COVID or ECG cluster
+<strong>Result:</strong> nearest = lynx_hare (0.594), streamflow (0.726). COVID is 3.374 away. 69% noise.</p>
+<p><strong>Prediction: WRONG — and the correct answer is more interesting.</strong></p>
+<p>VIX (financial volatility) matches lynx_hare (ecological predator-prey) — both are irregular moderate-memory oscillators with positive skewness. lag1_autocorr=0.650 disqualifies COVID (too noisy). kurtosis=0.582 disqualifies ECG (not sharp enough at monthly scale).</p>
+<p>Cross-domain finding: market crisis cycles and population boom-bust cycles share a shape fingerprint. → Findings 31–32</p>
+<p><strong>Phase 1b summary (nb15–17):</strong>
+All three datasets landed in unexpected places and mostly in noise. 0/3 clean confirmations, but 3 structural findings:
+- Sea level: "noisy directional" gap between keeling_trend and temperature
+- ENSO: "irregular reversible oscillator" gap between COVID and sunspot
+- VIX: fits lynx_hare best (cross-domain confirmation) but still 69% noise</p>
+<p>The consistent noise placement across all three confirms Phase 2 hypothesis: discrete HDBSCAN classes are insufficient; a continuous embedding will describe the shape manifold better.</p>
+<p><strong>Total findings: 32</strong></p>
+<hr />
+<h2 id="2026-03-30-session-5-phase-1c-stability-test-notebook-18">2026-03-30 — Session 5: Phase 1c Stability Test (Notebook 18)</h2>
+<h3 id="goal_8">Goal</h3>
+<p>Stress-test the taxonomy: vary HDBSCAN <code>min_cluster_size</code> ∈ [4,6,8,12,16] and <code>min_samples</code> ∈ [2,3,5] (15 combinations). Score each dataset as granite / robust / sand / always-noise based on how consistently it finds a clean cluster assignment. Also test whether Phase 1b datasets (sea_level, ENSO, VIX) are permanently in noise or just parameter-sensitive.</p>
+<h3 id="datasets">Datasets</h3>
+<p>All 9 original + 3 Phase 1b (sea_level, enso_oni, vix) = 12 datasets total.</p>
+<h3 id="stability-score-definition">Stability score definition</h3>
+<p>% of 15 runs where the dataset's majority-cluster placement captures ≥50% of its instances.</p>
+<h3 id="pre-run-predictions_6">Pre-run predictions</h3>
+<table>
+<thead>
+<tr>
+<th>Dataset</th>
+<th>Predicted stability</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keeling_seasonal</td>
+<td>100%</td>
+<td>GRANITE</td>
+</tr>
+<tr>
+<td>keeling_trend</td>
+<td>100%</td>
+<td>GRANITE</td>
+</tr>
+<tr>
+<td>ecg</td>
+<td>~100%</td>
+<td>GRANITE</td>
+</tr>
+<tr>
+<td>covid_first_wave</td>
+<td>~80%</td>
+<td>ROBUST</td>
+</tr>
+<tr>
+<td>covid_second_wave</td>
+<td>~80%</td>
+<td>ROBUST</td>
+</tr>
+<tr>
+<td>lynx_hare</td>
+<td>~60%</td>
+<td>MODERATE</td>
+</tr>
+<tr>
+<td>streamflow</td>
+<td>~60%</td>
+<td>MODERATE</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td>~40%</td>
+<td>SAND</td>
+</tr>
+<tr>
+<td>sunspot_cycle</td>
+<td>~40%</td>
+<td>SAND</td>
+</tr>
+<tr>
+<td>vix</td>
+<td>~30%</td>
+<td>MOSTLY NOISE</td>
+</tr>
+<tr>
+<td>sea_level</td>
+<td>~20%</td>
+<td>MOSTLY NOISE</td>
+</tr>
+<tr>
+<td>enso_oni</td>
+<td>~10%</td>
+<td>ALWAYS NOISE</td>
+</tr>
+</tbody>
+</table>
+<h3 id="results_5">Results</h3>
+<p>Grid: 15 combinations. Total instances: 1930 (9 orig + 3 Phase 1b).
+Global noise across all runs: 38–50% of instances.</p>
+<p><strong>Stability scores:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Dataset</th>
+<th>Score</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GRANITE</td>
+<td>keeling_seasonal</td>
+<td>100%</td>
+<td>0% noise in all 15 runs</td>
+</tr>
+<tr>
+<td>GRANITE</td>
+<td>keeling_trend</td>
+<td>100%</td>
+<td>0% noise in all 15 runs</td>
+</tr>
+<tr>
+<td>STABLE/borrowed</td>
+<td>sunspot_cycle</td>
+<td>100%</td>
+<td>Collapses with COVID in 73% of runs</td>
+</tr>
+<tr>
+<td>SAND</td>
+<td>covid_second_wave</td>
+<td>33%</td>
+<td>Partial stability</td>
+</tr>
+<tr>
+<td>FRAGMENTED</td>
+<td>ecg</td>
+<td>0%</td>
+<td>Low noise (26.5%) but 884 instances split into many sub-clusters</td>
+</tr>
+<tr>
+<td>FRAGMENTED</td>
+<td>covid_first_wave</td>
+<td>0%</td>
+<td>202 country waves — diverse burst family</td>
+</tr>
+<tr>
+<td>SIZE-FLOORED</td>
+<td>lynx_hare</td>
+<td>0%</td>
+<td>n=26 — below threshold arithmetic</td>
+</tr>
+<tr>
+<td>SIZE-FLOORED</td>
+<td>streamflow</td>
+<td>0%</td>
+<td>n=24 — below threshold arithmetic</td>
+</tr>
+<tr>
+<td>SIZE-FLOORED</td>
+<td>temperature</td>
+<td>0%</td>
+<td>n=31 — always noise by count</td>
+</tr>
+<tr>
+<td>STRUCTURAL GAP</td>
+<td>sea_level</td>
+<td>0%</td>
+<td>Best: 39.2% noise, majority_pct=0.29</td>
+</tr>
+<tr>
+<td>STRUCTURAL GAP</td>
+<td>enso_oni</td>
+<td>0%</td>
+<td>Best: 50.3% noise, majority_pct=0.07</td>
+</tr>
+<tr>
+<td>STRUCTURAL GAP</td>
+<td>vix</td>
+<td>0%</td>
+<td>Best: 71.5% noise, majority_pct=0.07</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sunspot collapse:</strong> collapses into COVID cluster in 73% of runs (11/15). Pattern: mcs=4 separates (1/3 collapse), mcs≥12 always collapses (6/6).</p>
+<p><strong>Phase 1b:</strong> no parameter setting rescues any of the three. Structural gaps confirmed as real.</p>
+<h3 id="findings">Findings</h3>
+<p>Findings 33–38 added to FINDINGS.md. Total findings: 38.</p>
+<hr />
+<h2 id="2026-03-30-session-5-cont-phase-2-setup">2026-03-30 — Session 5 cont.: Phase 2 setup</h2>
+<h3 id="environment-change">Environment change</h3>
+<p>Switched venv from Python 3.14 → Python 3.13 to enable TensorFlow installation.
+TensorFlow 2.21.0 installed via <code>uv add tensorflow</code>. All existing packages (numpy, scipy, sklearn, umap, hdbscan) confirmed working on Python 3.13. <code>.python-version</code> pinned to 3.13.</p>
+<h3 id="notebook-19-autoencoder-built-ready-to-run">Notebook 19 — Autoencoder (built, ready to run)</h3>
+<p>Two Keras autoencoders:
+- <strong>Dense AE:</strong> 64 → 32 → 16 → 8 (latent) → 16 → 32 → 64
+- <strong>Conv AE:</strong> Conv1D(32) → pool → Conv1D(16) → pool → Dense(8) (latent) → unpool → ConvT</p>
+<p>Both trained on all 12 datasets (1930 instances), raw resampled series (64 points).
+Four-way UMAP comparison: feature-space | raw-series | dense latent | conv latent.</p>
+<h3 id="pre-run-predictions-nb19">Pre-run predictions (nb19)</h3>
+<ul>
+<li>keeling_seasonal / keeling_trend: will remain isolated (predicted YES)</li>
+<li>Sunspot ↔ COVID: may separate in conv latent (frequency info survives resampling)</li>
+<li>Phase 1b: will fill gaps as continuous geometry (no cluster threshold)</li>
+<li>ECG: sub-structure will become visible in latent UMAP</li>
+</ul>
+<hr />
+<h2 id="2026-03-30-session-5-cont-notebook-19-results-phase-2-autoencoder">2026-03-30 — Session 5 cont.: Notebook 19 results (Phase 2 Autoencoder)</h2>
+<h3 id="architecture">Architecture</h3>
+<ul>
+<li>Dense AE: 64 → 32 → 16 → <strong>8</strong> → 16 → 32 → 64 (MLP, Adam, MSE, 200 epochs)</li>
+<li>Conv AE: Conv1D(32,k=8) → MaxPool → Conv1D(16,k=4) → MaxPool → Flatten → <strong>Dense(8)</strong> → Dense(256) → Reshape → Upsample × 2 → Conv1D output</li>
+<li>Input: all 12 datasets, raw series resampled to 64 pts (z-scored), n=1930</li>
+</ul>
+<h3 id="key-results-pairwise-centroid-distances-conv-latent">Key results — pairwise centroid distances (Conv latent)</h3>
+<table>
+<thead>
+<tr>
+<th>Pair</th>
+<th>Feature-6f</th>
+<th>Latent-8d</th>
+<th>Ratio</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sunspot ↔ covid1</td>
+<td>0.769</td>
+<td>4.451</td>
+<td>5.79x</td>
+<td>SEPARATED — TD collapse was feature failure</td>
+</tr>
+<tr>
+<td>enso ↔ sunspot</td>
+<td>0.859</td>
+<td>6.040</td>
+<td>7.03x</td>
+<td>Largest expansion — regularity vs irregularity</td>
+</tr>
+<tr>
+<td>covid1 ↔ covid2</td>
+<td>0.250</td>
+<td>2.256</td>
+<td>9.02x</td>
+<td>Within-COVID variation now visible</td>
+</tr>
+<tr>
+<td>lynx_hare ↔ vix</td>
+<td>0.616</td>
+<td>0.944</td>
+<td>1.53x</td>
+<td>Smallest expansion — cross-domain match robust</td>
+</tr>
+<tr>
+<td>temperature ↔ sea_level</td>
+<td>4.607</td>
+<td>0.777</td>
+<td>0.17x</td>
+<td><strong>ONLY CONTRACTION</strong> — noisy directional class confirmed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="findings_1">Findings</h3>
+<p>Findings 39–42 added to FINDINGS.md. Total findings: 42.</p>
+<hr />
+<h2 id="2026-03-30-session-5-cont-cont-notebook-20-phase-2b-chronos-foundation-model">2026-03-30 — Session 5 cont. cont.: Notebook 20 (Phase 2b Chronos Foundation Model)</h2>
+<h3 id="setup">Setup</h3>
+<ul>
+<li>PyTorch 2.11.0+cu130 already installed</li>
+<li><code>uv add chronos-forecasting</code> → chronos-forecasting 2.2.2 installed</li>
+<li>Model: amazon/chronos-t5-small (46 M params, 512-dim encoder hidden states)</li>
+<li>Embeddings: mean-pooled T5 encoder output (masked) over tokenized series</li>
+<li>Input: same 1930 instances, same 64-pt resampled z-scored series as nb19</li>
+<li>Zero-shot: no fine-tuning, no training on our data</li>
+</ul>
+<h3 id="pre-run-predictions-nb20">Pre-run predictions (nb20)</h3>
+<ul>
+<li>Sunspot-COVID: predict separation (foundation model should distinguish cycle vs burst)</li>
+<li>Temperature-sea_level: uncertain — Chronos may contract (both noisy trends) or separate (different noise structure)</li>
+<li>VIX-lynx_hare: predict near-neighbors remain close</li>
+<li>ENSO: predict near sunspot (both oscillatory, Chronos has seen many)</li>
+<li>Phase 1b: predict fills gaps rather than isolated (no cluster threshold)</li>
+</ul>
+<h3 id="results-hdbscan-clusters-min_cluster_size8-min_samples3">Results — HDBSCAN clusters (min_cluster_size=8, min_samples=3)</h3>
+<table>
+<thead>
+<tr>
+<th>Cluster</th>
+<th>Primary dataset</th>
+<th>Purity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cl7</td>
+<td>keeling_seasonal</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>cl4</td>
+<td>keeling_trend</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>cl2</td>
+<td>ECG</td>
+<td>99%</td>
+</tr>
+<tr>
+<td>cl3</td>
+<td>sea_level</td>
+<td>97%</td>
+</tr>
+<tr>
+<td>cl1</td>
+<td>streamflow</td>
+<td>79%</td>
+</tr>
+<tr>
+<td>cl5</td>
+<td>sunspot_cycle</td>
+<td>54% (46% noise)</td>
+</tr>
+<tr>
+<td>cl6</td>
+<td>VIX (28%) + ENSO (24%) + temperature (23%)</td>
+<td>mixed</td>
+</tr>
+<tr>
+<td>cl0</td>
+<td>COVID first+second (19%+17%, rest noise)</td>
+<td>partial</td>
+</tr>
+</tbody>
+</table>
+<p>Overall noise: 32.2% (622/1930)</p>
+<h3 id="key-pairwise-centroid-distances-chronos-512-dim-raw-euclidean">Key pairwise centroid distances (Chronos 512-dim, raw Euclidean)</h3>
+<table>
+<thead>
+<tr>
+<th>Pair</th>
+<th>Feat-6f</th>
+<th>Conv AE (nb19)</th>
+<th>Chronos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sunspot ↔ covid1</td>
+<td>1.988</td>
+<td>4.451 (5.79x)</td>
+<td><strong>0.301 — FARTHEST pair</strong></td>
+</tr>
+<tr>
+<td>covid1 ↔ covid2</td>
+<td>0.871</td>
+<td>2.256 (9.02x)</td>
+<td><strong>0.059 — CLOSEST pair</strong></td>
+</tr>
+<tr>
+<td>enso ↔ sunspot</td>
+<td>0.818</td>
+<td>6.040 (7.03x)</td>
+<td>0.094</td>
+</tr>
+<tr>
+<td>lynx_hare ↔ vix</td>
+<td>0.893</td>
+<td>0.944 (1.53x)</td>
+<td>0.119</td>
+</tr>
+<tr>
+<td>temperature ↔ sea_level</td>
+<td>0.655</td>
+<td>0.777 (0.17x)</td>
+<td>0.140</td>
+</tr>
+</tbody>
+</table>
+<h3 id="notable-divergences-between-conv-ae-and-chronos">Notable divergences between Conv AE and Chronos</h3>
+<ul>
+<li><strong>Temperature-sea_level</strong>: Conv AE says same class (0.17x contraction); Chronos separates them (sea_level in own pure cluster cl3, temperature mostly noise)</li>
+<li><strong>ENSO-sunspot</strong>: Conv AE says maximally different (7.03x); Chronos says very close (0.094 centroid distance, though they land in different HDBSCAN clusters)</li>
+<li><strong>VIX-lynx_hare</strong>: Conv AE says cross-domain match holds; Chronos puts VIX in cl6 (irregular), lynx_hare all noise</li>
+</ul>
+<h3 id="ecg-sub-structure">ECG sub-structure</h3>
+<p>Chronos HDBSCAN ARI vs UCR labels: <strong>0.742</strong> — highest ARI of any sub-cluster analysis in experiment</p>
+<h3 id="findings_2">Findings</h3>
+<p>Findings 43–46 added to FINDINGS.md. Total findings: 46.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
