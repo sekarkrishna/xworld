@@ -793,3 +793,45 @@ The TD features disagreed on: zero_crossings (temperature=0.302 vs sea_level=0.1
 **Evidence:** train_acc = val_acc ≈ 0.95+ from epoch 50. Grokking gap = 0 epochs. Train loss converges to near-zero while val accuracy remains stable at ~97% (val loss eventually drifts up from overconfidence, not from wrong decisions). The MLP has 127x as many parameters as training instances — enough to memorise, but it does not.
 
 **What it means:** The 6-feature fingerprint was specifically designed to separate these 8 shape classes. Even 100 training examples per class are sufficient for a large MLP to find the correct decision boundaries without a memorisation phase. Grokking requires tasks where no surface pattern is sufficient for generalisation — the 6-feature space does not qualify. Combined with nb25 (no grokking on raw waveforms) and nb27 Part B (no grokking on 6-feature vectors), the evidence is consistent: XWorld shape classes are syntactically separable regardless of representation. There is no hidden algebraic structure to grok — the separations are on the surface of whatever representation you choose.
+
+---
+
+## Session 13 — 19 April 2026 (Notebook 28)
+
+### Finding 73: WGMS glacier mass balance → eco_cycle (cumulative) and irregular_osc (annual) — oscillation confirmed necessary for declining_osc; fingerprint reveals a structural gap
+
+**Claim:** WGMS global glacier cumulative mass balance (1950–2025, 76 years of strong monotonic decline) classifies as eco_cycle, not trend or declining_osc. The annual mass balance classifies as irregular_osc. Neither matches the predicted trend class.
+
+**Evidence:** Cumulative WGMS 6-feature fingerprint: skewness=−0.770, lag1_autocorr=0.9997, zero_crossings=0.016, slope=−0.052, baseline_delta=−3.289. Nearest class: eco_cycle (distance 3.26); declining_osc is 3rd at 3.76. Annual WGMS: zero_crossings=0.219, lag1_autocorr=0.703; nearest: irregular_osc (3.90). The cumulative series has zero_crossings=0.016, nearly identical to integrated_trend (0.016), but baseline_delta=−3.289 vs integrated_trend centroid=+3.140 (opposite sign). No class has both near-zero crossings and a large negative baseline_delta.
+
+**What it means:** Two things simultaneously: (1) oscillation IS a necessary condition for declining_osc. WGMS cumulative has zero_crossings=0.016 — far below the declining_osc centroid of 0.120 — and the fingerprint correctly refuses to assign it to declining_osc. (2) The signed 6-feature fingerprint has no class for "strong monotonic decline without oscillation." WGMS cumulative is the structural mirror image of integrated_trend (slope −0.052 vs +0.054, baseline_delta −3.289 vs +3.140) but there is no class to receive it. The 8-class corpus was assembled from datasets that happen to be directionally biased: rising trends dominate, strong declining monotonic signals are absent. The fingerprint inherits this asymmetry.
+
+---
+
+### Finding 74: Phase diagram reveals declining_osc basin occupies 42.2% of (n_cycles × decline) parameter space with 94.2% mean purity — the largest and purest single-class attractor basin
+
+**Claim:** The synthetic phase diagram (20×20 grid: n_cycles 0.5–7.0 × decline 0.0–1.5, 20 instances per cell) shows declining_osc as the dominant class across the central parameter region.
+
+**Evidence:** Basin occupancy: 169 / 400 cells (42.2%), mean purity 0.942. Comparison: seasonal 79 cells (19.8%), oscillator 68 (17.0%), eco_cycle 52 (13.0%), irregular_osc 18 (4.5%), burst 14 (3.5%). The declining_osc basin spans n_cycles 1.53–7.00 and decline 0.00–1.50 at the extremes — but the core of the basin (n_cycles ~2–5, decline ~0.6–1.3) is essentially pure.
+
+**What it means:** Declining oscillator is not a fragile edge case requiring precise parameter tuning — it is the dominant class across a wide region of (oscillation, decline) parameter space. Once a system has enough cyclicity and enough long-term amplitude loss, it consistently produces the declining_osc fingerprint. The 94.2% purity confirms a robust attractor, not a classifier artifact. The large basin size is consistent with the class being recently discovered: real systems that produce declining oscillation are common, but the gap was in the corpus, not in the attractor.
+
+---
+
+### Finding 75: Minimum conditions for declining_osc: decline > ~0.6 AND n_cycles in ~1.9–4.6 range — three distinct phase boundaries with different adjacent classes
+
+**Claim:** The phase diagram reveals three independent boundary conditions for the declining_osc basin, each bordering a different shape class, identifying separate necessary conditions.
+
+**Evidence:** By-decline marginal (averaged over all n_cycles): decline 0.0–0.47 → seasonal; 0.55 → eco_cycle; 0.63+ → declining_osc. Threshold ≈ 0.6. By-n_cycles marginal (averaged over all decline): n_cycles 0.5–1.53 → eco_cycle/oscillator; 1.87–4.6 → declining_osc; 5.3–7.0 → seasonal → irregular_osc. Corner case: n_cycles 2.2–2.6, decline 0.95–1.5 → burst. Three distinct boundaries: (1) low-decline boundary (~0.6): below → seasonal — oscillation without decline; (2) low-n_cycles boundary (~1.5): below → eco_cycle or oscillator — decline without sufficient oscillation; (3) high-n_cycles ceiling (~5): above → seasonal — individual cycles too short for decline envelope to register.
+
+**What it means:** Declining_osc requires two independent conditions: enough oscillation AND enough decline. They are not interchangeable — a strongly declining series with one visible cycle looks like eco_cycle/oscillator; a strongly oscillating series with no decay looks like seasonal. The high-frequency ceiling is interpretable: at n_cycles > 5 in a 64-step window, z-score normalisation can no longer distinguish declining envelope from normal amplitude variation, and the fingerprint reads periodic structure (seasonal) instead of periodic-with-decline. The burst corner is notable: extreme decline (>0.95) collapses the later half of the series to near-zero — which the burst fingerprint is designed to capture (large early amplitude, near-zero later).
+
+---
+
+### Finding 76: The signed fingerprint has no class for "strong monotonic decline without oscillation" — WGMS is the mirror of integrated_trend, pointing to a potential 9th class
+
+**Claim:** The 8-class system cannot receive a strong monotonically declining signal without oscillation. Such a signal (WGMS cumulative) is the mirror image of integrated_trend in every signed feature, but the corpus contains no declining counterpart. The signed fingerprint assigns it to eco_cycle — the nearest available class.
+
+**Evidence:** WGMS cumulative vs integrated_trend centroid: lag1_autocorr 1.000 vs 1.000 (identical), zero_crossings 0.016 vs 0.016 (identical), |slope| 0.052 vs 0.054 (identical magnitude), |baseline_delta| 3.289 vs 3.140 (identical magnitude). Only differences: slope sign (−0.052 vs +0.054) and baseline_delta sign (−3.289 vs +3.140). With absolute fingerprint (|slope|, |baseline_delta|), WGMS would land directly in integrated_trend. Under signed fingerprint, it classifies as eco_cycle at distance 3.26, with declining_osc correctly rejected at 3.76 (zero_crossings mismatch).
+
+**What it means:** The signed fingerprint encodes directionality — a rising integrated trend and a falling one are structurally different classes. This is physically meaningful (glacier retreating IS different from sea level rising). But it requires the corpus to contain both orientations for every structural shape. Currently only rising monotonic trends exist (sea_level, ocean_heat, keeling_trend, ch4_trend). The falling-monotonic-trend basin is unmapped. WGMS is the natural anchor for a potential 9th class. The decision is architectural: add the 9th class (and look for other declining monotonic systems) or switch to absolute fingerprint (which loses directional information but closes the gap automatically).

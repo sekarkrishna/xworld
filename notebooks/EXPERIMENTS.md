@@ -23,7 +23,17 @@ Two-part investigation of the minimum conditions required to produce declining o
 
 ### Results
 
-*(Pending — notebook created, not yet run)*
+| Test | Prediction | Result |
+|---|---|---|
+| WGMS glacier → class | cl5 (trend) | **WRONG** — cumulative → eco_cycle (3.26); annual → irregular_osc (3.90). Declining_osc 3rd at 3.76. |
+| Oscillation necessary for declining_osc | Yes — WGMS should miss declining_osc | **CORRECT** — WGMS cumulative zero_crossings=0.016 (vs declining_osc centroid 0.120); fingerprint correctly rejects declining_osc. |
+| Phase diagram declining_osc basin | n_cycles > ~2, decline > ~0.3 | **APPROXIMATELY CORRECT** — actual thresholds: n_cycles > ~1.87, decline > ~0.63. Basin larger than expected (42.2%). |
+
+**Part A — WGMS:** The prediction of "trend" failed because the signed fingerprint has no class for "declining monotonic trend." WGMS cumulative (slope=−0.052, baseline_delta=−3.289) is the exact mirror of integrated_trend (slope=+0.054, baseline_delta=+3.140) but lands in eco_cycle — the nearest class with negative baseline_delta. This is a structural gap in the 8-class corpus: all monotonic trend datasets trend upward; no declining counterpart exists. WGMS is the natural candidate for a 9th class (F76).
+
+**Part B — Phase diagram:** Declining_osc dominates 42.2% of the (n_cycles × decline) parameter space at 94.2% mean purity — the largest and purest basin in the diagram. Three distinct phase boundaries: (1) decline < 0.6 → seasonal; (2) n_cycles < 1.5 → eco_cycle/oscillator; (3) n_cycles > 5 → seasonal → irregular_osc. Extreme corner (high decline, mid n_cycles) → burst. The high-n_cycles ceiling explains why snow cover (high-frequency annual cycle) missed the declining_osc class despite having long-term decline: too many cycles per window → seasonal fingerprint dominates.
+
+**New findings:** F73–F76. Total: 76.
 
 ---
 
