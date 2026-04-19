@@ -729,3 +729,67 @@ The TD features disagreed on: zero_crossings (temperature=0.302 vs sea_level=0.1
 **Evidence:** Transformer closest pair: eco_cycle↔seasonal (10.27). 6-feature closest pair: trend↔integrated_trend. Transformer most distant pair: irregular_osc↔declining_osc (13.06). In 6-feature space these two classes are the most frequent confusion pair (nb23 F57 — highest boundary crossing rate). The only confusion pairs from the transformer's 3 validation errors: eco_cycle→seasonal (1x) and trend↔integrated_trend (2x) — which happen to be the TOP 2 closest pairs in the 6-feature fingerprint. The two representations agree on which confusions happen but disagree on why.
 
 **What it means:** Both receptors separate all 8 classes (transformer 99.6% accuracy; 6-feature fingerprint achieves class purity in nb23). The separations are robust. But the geometry between the classes — which pairs are similar, which are distant — is entirely receptor-dependent. The transformer sees: irregular_osc and declining_osc are maximally different (raw waveforms: one is noisy asymmetric, the other is amplitude-decaying sinusoidal). The 6-feature fingerprint sees: these two are easily confused (summary statistics overlap). This is the thunder hypothesis made concrete: the 8 class boundaries are in the world (three independent receptors all find them), but the manifold between the classes is in the measurement. The structure of similarity is not a property of the series themselves — it depends on what aspect of the series the receptor is sensitive to.
+
+---
+
+## Session 11 — 19 April 2026 (Notebook 26)
+
+### Finding 67: Contrastive loss recovers positive correlation with 6-feature fingerprint — the loss function was the problem
+
+**Claim:** Replacing cross-entropy with Supervised Contrastive Loss (SupCon) changes the Spearman ρ between transformer and 6-feature pairwise distances from −0.31 (nb25) to +0.38 (p = 0.044). The loss function, not the transformer architecture, was the source of geometric disagreement.
+
+**Evidence:** nb25 (CE loss): ρ = −0.31 (p = 0.107, not significant). nb26 (SupCon, τ = 0.07): ρ = +0.38 (p = 0.044, significant). Same transformer architecture (d_model=64, 2 layers, 4 heads). Same dataset (8 classes × 500 instances). Same seeds. Only the training objective changed.
+
+**What it means:** Cross-entropy training routes each input to the correct corner of embedding space; it has no incentive to place similar classes nearby. SupCon training explicitly forces same-class instances together and different-class instances apart — this is the only way to build a similarity geometry rather than a classification geometry. The transformer is capable of encoding structural similarity; CE just never asks it to. The negative ρ in nb25 was not evidence that the two representations see different structures — it was evidence that CE is the wrong loss for manifold learning.
+
+---
+
+### Finding 68: Contrastive embedding is structured, not an address book — distance range 2.81x
+
+**Claim:** The contrastive embedding has a max/min pairwise centroid distance ratio of 2.81x (3.60–10.12), compared to nb25's 1.27x (10.27–13.06). Classes are differentially separated: burst is isolated (6.1–10.1 from all others); trend↔integrated_trend are the tightest pair (3.60).
+
+**Evidence:** Closest pair: trend↔integrated_trend (3.60). Most distant: burst↔integrated_trend (10.12). The geometry is readable: trend/integrated_trend/seasonal cluster together (directional structure); oscillator/eco_cycle/seasonal form an oscillatory cluster; irregular_osc↔declining_osc are nearby (5.53); burst is structurally isolated from all other classes.
+
+**What it means:** The contrastive loss produces a space where geometric distance reflects structural similarity. The interpretable groupings — trend-like classes near each other, oscillatory classes near each other, burst isolated — match the intuitive hierarchy of the 8 shape classes. This is the first XWorld embedding space to carry relational geometry rather than just classification routing. The loss curve barely moving after epoch ~200 (4.10 → 3.95) confirms the geometry is established early and stable.
+
+---
+
+### Finding 69: trend↔integrated_trend is the closest pair in both contrastive and 6-feature space — first cross-representation top-1 agreement
+
+**Claim:** The contrastive transformer and the 6-feature fingerprint independently identify trend↔integrated_trend as the closest pair of shape classes. This is the first time two completely different measurement architectures have agreed on the #1 most similar pair.
+
+**Evidence:** Contrastive closest pair: trend↔integrated_trend (3.60). 6-feature closest pair: trend↔integrated_trend (confirmed across nb23 and nb26). The #2 pair differs (contrastive: seasonal↔trend; 6-feature: eco_cycle↔seasonal) — agreement is partial, not complete, consistent with ρ = 0.38 rather than ρ = 1.0.
+
+**What it means:** Both representations independently identify trend and integrated_trend as the most structurally similar class pair. Both look at the series from completely different angles — the transformer sees raw temporal sequences; the 6-feature fingerprint sees summary statistics — and arrive at the same answer. This is the strongest cross-representation agreement in the experiment so far, and it partially answers the thunder hypothesis: the similarity geometry between the shape classes is not purely a receptor artifact. At least the top of the similarity ordering is real. The partial agreement (ρ = 0.38, not 1.0) means the middle of the ordering is still receptor-dependent — which pair is "second closest" depends on what you measure.
+
+---
+
+## Session 12 — 19 April 2026 (Notebook 27)
+
+### Finding 70: Synthetic-to-real transfer fails for 4/5 datasets — the contrastive manifold does not generalise to real data
+
+**Claim:** The contrastive encoder trained on synthetic shape classes (nb26) correctly assigns only 1 of 5 real datasets to the Chronos-assigned shape class (VIX → irregular_osc). Sunspot, Keeling CO2, ENSO, and arctic sea ice all land in unexpected regions.
+
+**Evidence:** Nearest synthetic class vs Chronos assignment: sunspot → irregular_osc (expected oscillator); keeling_co2 → irregular_osc (expected seasonal); enso → eco_cycle (expected irregular_osc); arctic_ice → integrated_trend (expected declining_osc); vix → irregular_osc ✓. Lynx-hare produced no valid windows (annual data, 21 points < SEQ_LEN=64).
+
+**What it means:** The synthetic generators produce idealised pure shapes; real data combines multiple shape components simultaneously (oscillation inside a trend, seasonal signal inside a rising baseline). The contrastive encoder was never trained on these composite signals. Chronos transfers because it was pre-trained on millions of real series containing all such combinations. A contrastive encoder trained on real windowed data — rather than synthetic generators — would be needed for reliable real-to-synthetic correspondence. The synthetic manifold is a manifold of pure archetypes, not of real-world dynamics.
+
+---
+
+### Finding 71: Sunspot at 64-month windows lands in irregular_osc, not oscillator — F60 replicated by an independent method
+
+**Claim:** The contrastive encoder assigns sunspot (11-year cycle) to the irregular_osc class at 64-month window lengths. This is consistent with Finding 60 (Chronos assigns PDO to integrated_trend at 60-month windows) and extends the timescale-determines-class result to a completely different measurement architecture.
+
+**Evidence:** Sunspot: 272 windows of 64 months each (≈5.3 years). Each window contains less than 0.5 of the 11-year cycle. Nearest synthetic class: irregular_osc (distance 1.115); second nearest: eco_cycle (3.484). The synthetic oscillator class was trained with 1.5–4.5 full cycles per window — sunspot at 64 months shows no complete cycle. The encoder correctly classifies this partial-cycle signal as irregular, not oscillatory.
+
+**What it means:** The timescale-determines-class effect from nb22/F60 is not specific to Chronos. A contrastive encoder trained on synthetic data with the same window length arrives at the same conclusion through a completely different mechanism. At 64-month windows, sunspot is an irregular signal — the oscillatory structure is only visible at longer windows. Three independent methods (Chronos at 60mo, 6-feature fingerprint at variable windows, contrastive encoder at 64mo) now agree that the apparent shape class of an oscillatory system depends on the ratio of window length to cycle period.
+
+---
+
+### Finding 72: No grokking in 6-feature space — the 8 classes are immediately separable at 100 instances/class
+
+**Claim:** A 101k-parameter MLP trained on 6-feature vectors (100 instances/class, 800 total) achieves >90% validation accuracy at the first checkpoint (epoch 50). No memorisation plateau. Final val accuracy: 97.5%.
+
+**Evidence:** train_acc = val_acc ≈ 0.95+ from epoch 50. Grokking gap = 0 epochs. Train loss converges to near-zero while val accuracy remains stable at ~97% (val loss eventually drifts up from overconfidence, not from wrong decisions). The MLP has 127x as many parameters as training instances — enough to memorise, but it does not.
+
+**What it means:** The 6-feature fingerprint was specifically designed to separate these 8 shape classes. Even 100 training examples per class are sufficient for a large MLP to find the correct decision boundaries without a memorisation phase. Grokking requires tasks where no surface pattern is sufficient for generalisation — the 6-feature space does not qualify. Combined with nb25 (no grokking on raw waveforms) and nb27 Part B (no grokking on 6-feature vectors), the evidence is consistent: XWorld shape classes are syntactically separable regardless of representation. There is no hidden algebraic structure to grok — the separations are on the surface of whatever representation you choose.

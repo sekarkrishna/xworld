@@ -4,6 +4,87 @@ Chronological record of what was tried, what happened, and why each direction wa
 
 ---
 
+## 2026-04-19 — Session 13: Declining oscillator necessary conditions (Notebook 28)
+
+### Goal
+Two-part investigation of the minimum conditions required to produce declining oscillator (cl0) shape class:
+
+**Part A — WGMS glacier mass balance:** Annual global glacier mass balance (1950–present). Strong monotonic decline, no annual oscillation. Predicted: trend class (cl5). Tests whether oscillation is a *necessary* condition — if WGMS lands in declining_osc despite having no oscillation, the oscillation criterion is wrong.
+
+**Part B — Synthetic phase diagram:** 20×20 parameter sweep (n_cycles = 0.5–7.0, decline_strength = 0.0–1.5), 20 synthetic instances per cell. Maps which (oscillation, decline) parameter combinations produce which shape class — reveals the attractor basin boundaries for declining_osc.
+
+### Pre-run predictions
+| Test | Prediction |
+|---|---|
+| WGMS glacier → class | cl5 (trend) — no oscillation means no declining_osc |
+| Phase diagram: declining_osc basin | Requires n_cycles > ~2 AND decline > ~0.3 |
+| Phase diagram: pure oscillator region | n_cycles high, decline ≈ 0 |
+| Phase diagram: trend region | decline high, n_cycles low |
+
+### Results
+
+*(Pending — notebook created, not yet run)*
+
+---
+
+## 2026-04-19 — Session 12: Real data transfer + 6-feature grokking (Notebook 27)
+
+### Goal
+**Part A:** Apply the nb26 contrastive encoder to real XWorld datasets (lynx-hare, sunspot, Keeling CO2, ENSO, VIX, arctic sea ice). Window to 64 samples, embed, project into the synthetic UMAP, compare nearest synthetic class to Chronos assignments from nb20-24.
+
+**Part B:** 6-feature grokking. Train a small MLP (6→256→256→128→8) on 6-feature vectors (not raw waveforms) with weight_decay=0.1. 100 training instances/class (800 total), 200 val/class. The 6D feature space has genuine ambiguity — forces memorization then potential grokking.
+
+### Pre-run predictions
+| Test | Prediction |
+|---|---|
+| Part A: real data transfer | All 6 datasets land near expected synthetic class region |
+| Sunspot at 64-month windows | May land near trend/integrated_trend (half-cycle visible — timescale effect from F60) |
+| Part B: grokking | Present — MLP memorizes 800 instances, weight decay forces discovery of 6D boundaries |
+
+### Results
+
+| Test | Prediction | Result |
+|---|---|---|
+| Real data transfer | All 6 correct | **WRONG — 1/5 correct (VIX only)**. Lynx-hare: no valid windows (annual, 21 pts). Sunspot/keeling/enso/arctic all mismatch. |
+| Sunspot at 64-month windows | Trend/integrated_trend | **WRONG class, correct mechanism** — sunspot → irregular_osc. <0.5 of 11-yr cycle visible per window. F60 replicated by independent method. |
+| 6-feature grokking | Present | **WRONG — no grokking**. Val acc ≈ 95% from epoch 50, gap = 0. 97.5% final. Boundaries findable immediately at 100 instances/class. |
+
+**Key finding:** Synthetic-to-real transfer fails because synthetic generators produce pure archetypes; real data is composite (oscillation inside trend etc.). The contrastive manifold is a map of ideal shapes, not real dynamics. Chronos transfers because it trained on real series. For a transferable contrastive encoder, it would need to be trained on real windowed data, not synthetic generators.
+
+**No grokking in any representation** (raw waveforms nb25, 6-feature vectors nb27 Part B). XWorld shape classes are syntactically separable on the surface of every representation tested — no latent algebraic structure to grok.
+
+**New findings:** F70–F72. Total: 72.
+
+---
+
+## 2026-04-19 — Session 11: Contrastive shape manifold (Notebook 26)
+
+### Goal
+nb25 produced ρ = −0.31 between transformer (CE loss) and 6-feature pairwise distances. Cross-entropy only asks "route to the right corner" — it has no incentive to place similar classes nearby. The fix: Supervised Contrastive Loss (SupCon, Khosla et al. 2020). Train the transformer to pull same-class instances close and push different-class instances far, using all pairs in each batch.
+
+### Pre-run predictions
+| Test | Prediction |
+|---|---|
+| Spearman ρ vs 6-feature | > 0 (positive), ideally > 0.4 |
+| Distance range (max/min) | > 3x (vs nb25's 1.27x) |
+| Closest pair | eco_cycle↔seasonal or trend↔integrated_trend |
+| Manifold continuity | Visible arc/gradient in UMAP (not isolated islands) |
+
+### Results
+
+| Test | Prediction | Result |
+|---|---|---|
+| Spearman ρ | > 0, ideally > 0.4 | **CORRECT** — ρ = +0.38 (p = 0.044). Sign flipped from nb25's −0.31. Statistically significant. |
+| Distance range | > 3x | **CLOSE** — 2.81x (3.60–10.12). Much wider than nb25's 1.27x. Not quite 3x. |
+| Closest pair | eco_cycle↔seasonal or trend↔integrated_trend | **CORRECT** — trend↔integrated_trend (3.60). Exact match with 6-feature top pair. |
+| Manifold continuity | Arc/gradient in UMAP | **PARTIAL** — clear differential separation; directional/oscillatory cluster visible. |
+
+**Key finding:** The loss function was the entire source of geometric disagreement between representations. Same transformer + SupCon = ρ +0.38; same transformer + CE = ρ −0.31. trend↔integrated_trend is #1 closest pair in both contrastive and 6-feature space — first cross-representation top-1 agreement. The top of the similarity ordering is in the world; the middle is receptor-dependent.
+
+**New findings:** F67–F69. Total: 69.
+
+---
+
 ## 2026-04-19 — Session 10: XWorld grokking experiment (Notebook 25)
 
 ### Background
