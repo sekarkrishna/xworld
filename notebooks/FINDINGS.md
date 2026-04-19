@@ -581,3 +581,87 @@ The TD features disagreed on: zero_crossings (temperature=0.302 vs sea_level=0.1
 **Evidence:** Mirror distortion test on 7 representative series. Time-reversal: INV for all 7. Amplitude-flip: INV for all 7. Speed-2x: SEN for oscillator, seasonal, irregular; INV for burst_event, eco_cycle, clean_trend, noisy_dir.
 
 **What it means:** Chronos does not encode time direction or amplitude polarity. A reversed keeling_trend is not placed near COVID (prediction was wrong). What Chronos encodes is frequency structure: stretching a periodic series changes its dominant period relative to context length, and Chronos detects this. Non-periodic series (trends, bursts) are insensitive to temporal scale because their structure is not period-dependent. Chronos shape classes are defined by frequency content and amplitude structure, not by direction or polarity. This has a practical implication: two systems with opposite trend directions (one rising, one falling) will be placed in the same Chronos shape class.
+
+---
+
+## Session 8 — 19 April 2026 (Notebook 23)
+
+### Finding 53: A neural arithmetic net learns linear geometry, not logarithmic — log features are provided but unused
+
+**Claim:** Providing structured 4D inputs [log(n), n/max, parity, residue] does not cause the network to discover log-space multiplication geometry. ×10 shifts in PCA space are non-uniform and grow with n, indicating the linear channel dominated.
+
+**Evidence:** PCA of structured encoder embeddings: ×10 shift in PC1 = −0.73 (1→10), −1.22 (10→100), −5.05 (100→1000). A true log-space representation would produce equal shifts. Instead shifts scale roughly with n. In-range performance: structured encoder slightly better on division (11.4% vs 42.5%) and multiplication (6.8% vs 19.2%). Extrapolation on addition: raw encoder outperforms structured (2.6% vs 12.5% at 5k+3k; 4.1% vs 32% at 50k+70k).
+
+**What it means:** MSE loss alone does not force a network to discover the algebraically correct representation. The network found the locally optimal solution — fit the training range with linear coordinates — which happens to be wrong for multiplication extrapolation. Log-space geometry must be either hardcoded (as in NALU) or enforced by multiplicative consistency loss, not left to emerge from prediction error alone.
+
+---
+
+### Finding 54: Addition extrapolates; multiplication and division do not
+
+**Claim:** Both raw and structured arithmetic nets extrapolate addition to ~4% error at 10× training range, but completely fail on multiplication and division extrapolation.
+
+**Evidence:** 50k+70k = 120k: raw 4.1% error, structured 32%. 400×300 = 120k: both ~98.8–98.6% error. 10000÷50 = 200: both ~4500% error. 1M+250: both ~11–13% error.
+
+**What it means:** Addition extrapolation works because the network learned a roughly correct linear representation, and linear structure extends. Multiplication fails because the network has no log-space geometry — a linear encoding has no natural extrapolation rule for scaling. The training ceiling (n≤1000) means the network has never seen the scale of 400×300=120k and cannot infer it. This confirms the arithmetic analogy for XWorld: a model that memorises examples without discovering structure will not generalise beyond the training distribution.
+
+---
+
+### Finding 55: The 8 shape classes split into directionally-defined and shape-defined attractors
+
+**Claim:** The XWorld 6-feature fingerprint is NOT orientation-invariant. The 8 shape classes divide into two groups: those whose class identity depends on direction (trend direction, amplitude sign) and those whose identity is defined by waveform shape alone.
+
+**Evidence:** Amplitude-flip boundary crossing rates: trend 100%, integrated_trend 100%, seasonal 100%, declining_osc 100% — all directionally-defined classes cross on amplitude reversal. Oscillator 0%, burst 0%, irregular_osc 18%, eco_cycle 18% — shape-defined classes survive. Time-reversal produces the same split: 100% crossing for trend/integrated_trend/seasonal/declining_osc; 0% for oscillator/burst.
+
+**What it means:** "Trend" and "reversed trend" are different classes in the 6-feature space. "Sine wave" and "reversed sine wave" are the same class. The 6-feature fingerprint encodes directionality as a first-class feature via slope and baseline_delta. This is a methodological property of the representation, not a physical property of the shapes. Chronos (nb21 finding 52) is invariant to both operations for all classes — meaning Chronos is reading shape-defined features only, while the 6-feature fingerprint reads both directional and shape features.
+
+---
+
+### Finding 56: Directionally-defined classes are the tightest clusters; shape-defined classes have the widest spread
+
+**Claim:** The most fragile classes under distortion (trend, integrated_trend) are also the purest and tightest in natural feature space. The most robust classes (oscillator, irregular_osc) have the widest natural within-class spread.
+
+**Evidence:** Baseline (within-class spread): integrated_trend = 0.072, trend = 0.096, oscillator = 0.615, irregular_osc = 1.035. Relative drift (drift / baseline): integrated_trend = 37.50, trend = 28.19, oscillator = 2.70, irregular_osc = 2.12. Absolute drift: integrated_trend amplitude_flip = 4.597, oscillator amplitude_flip = 1.144.
+
+**What it means:** Tightness and fragility are the same thing seen from two angles. The trend classes are pure precisely because their defining features (slope, baseline_delta) leave no room for ambiguity within the class — but those same features are completely destroyed by amplitude reversal. The oscillatory classes are robust because their defining features (zero_crossings, lag1_autocorr) are orientation-invariant and tolerate natural variation. A tight cluster in feature space is not necessarily a stable attractor — it may be a narrow region that is easy to leave.
+
+---
+
+### Finding 57: irregular_osc is noise-immune but time_warp-sensitive; the inverse for most classes
+
+**Claim:** Each shape class has a specific distortion type that destroys it, and a specific type that it survives. The pattern reveals what the defining feature of each class actually is.
+
+**Evidence:** irregular_osc: noise crossing rate 1.3% (most noise-immune of all 8), time_warp crossing rate 83% (most time_warp-sensitive). Oscillator: amplitude_flip 0%, time_reverse 0%, noise 59.3%. Crossing destinations: trend → seasonal (100%); declining_osc → irregular_osc (99%); burst → irregular_osc/eco_cycle; oscillator → irregular_osc/eco_cycle.
+
+**What it means:** Irregular oscillation is defined by chaotic amplitude variability — adding noise preserves this. But changing the timescale changes the dominant frequency, moving it into a different frequency regime. Oscillator is defined by symmetry — flipping or reversing it preserves that symmetry. Noise destroys it because it breaks the pure sinusoidal lag structure. The crossing destinations reveal the topology of the feature space: irregular_osc is the central sink that receives most distorted classes, because irregularity is the default when structure is partially destroyed. The 8 shape classes are not equidistant — they form a topology where oscillator/seasonal/trend are peripheral (pure) and irregular_osc is central (generic).
+
+---
+
+## Session 9 — 19 April 2026 (Notebook 22, re-run)
+
+### Finding 58: Antarctic sea ice independently replicates cl0 — declining oscillator confirmed with two hemispheric datasets
+
+**Claim:** Antarctic sea ice joins Arctic sea ice in cl0 at 100% purity. The 8th shape class is not an artefact of one dataset.
+
+**Evidence:** Antarctic sea ice: 100% cl0 (n=38). Arctic sea ice: 100% cl0 (n=38). Pairwise Chronos distance: 0.072 — the smallest distance in the experiment, tighter than any previously measured pair. Distance to nearest other class: keeling_seasonal (0.276), sea_level (0.269).
+
+**What it means:** Two entirely independent datasets — one from the Northern hemisphere, one from the Southern, covering the same 1978–2026 period — are placed identically by Chronos. They are not near each other by coincidence of geography; they share the same structural dynamic: a strong annual oscillation embedded inside a long-term decline. This is the cleanest cross-dataset confirmation of a shape class in the corpus. The declining oscillator class (strong periodic cycle + secular trend in opposite direction) is real, robust, and now has two pure members. The next question is whether it can be found outside the cryosphere.
+
+---
+
+### Finding 59: NAO does not join the VIX/ENSO/temperature cluster — cl8 is Pacific+financial, not generically irregular
+
+**Claim:** The North Atlantic Oscillation, despite being an irregular climate oscillation index, does not land in the Chronos cluster containing VIX, ENSO, and temperature. The irregular asymmetric oscillator class (cl8) is specific to Pacific interannual variability and financial volatility, not a general "irregular oscillation" bin.
+
+**Evidence:** NAO: 79% noise, 0% in cl8. Distances: nao↔vix = 0.192, nao↔enso_oni = 0.240, nao↔temperature = 0.191. For comparison, arctic↔antarctic = 0.072, covid1↔covid2 = ~0.06. NAO is farther from the irregular cluster than any member is from each other. NAO distributes across cl3 (6%) and cl5 (15%) with no dominant cluster membership.
+
+**What it means:** The VIX-ENSO-temperature grouping from nb20 (Finding 45) was not discovering a "generic irregular climate mode" — it was discovering something specific about Pacific basin interannual variability (ENSO), global surface response to it (temperature), and financial volatility (VIX). Adding the Atlantic Oscillation does not extend the class. This narrows the definition of cl8: the shared property is likely positive amplitude asymmetry combined with interannual to multi-year timescale — properties ENSO and VIX share but NAO does not. The shape class is real but narrower than "irregular oscillation."
+
+---
+
+### Finding 60: PDO joins sea_level in cl4, not VIX/ENSO — timescale determines class membership for oscillatory datasets
+
+**Claim:** The Pacific Decadal Oscillation, windowed at 5-year intervals, is placed by Chronos in the same cluster as sea_level (the clean integrated trend class), not alongside ENSO or VIX.
+
+**Evidence:** PDO: 59% cl4, 38% noise, 0% cl8. Sea_level: 47% cl4. Pairwise distances: pdo↔vix = 0.121, pdo↔nao = 0.101, pdo↔sea_level (via cl4 co-membership). ENSO is the same physical basin and related dynamics but lands in cl8 (24%); PDO lands in cl4. The difference is timescale: ENSO operates at interannual (3–7 year) periods while PDO operates at decadal (20–30 year) periods. At 60-month windows, PDO's decadal drift dominates — the oscillation is not completed within the window, so Chronos sees an integrated trend.
+
+**What it means:** The same physical system (Pacific Ocean surface temperature) maps to different shape classes depending on the timescale of observation. ENSO's full oscillatory cycle fits inside a 36-month window; PDO's cycle does not fit inside a 60-month window. This is not a failure of the classification — it is a correct observation that the dynamical regime relevant to a 5-year observer is different from the regime relevant to a 3-year observer. The shape class is not a property of the physical system alone; it is a property of the system as seen from a specific temporal vantage point. This reinforces the nb18 finding that shape classes are observer-relative.

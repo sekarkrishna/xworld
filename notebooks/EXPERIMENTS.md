@@ -4,6 +4,47 @@ Chronological record of what was tried, what happened, and why each direction wa
 
 ---
 
+## 2026-04-19 — Session 8: Theoretical — Latent arithmetic space and XWorld connection (no notebook)
+
+### What happened
+
+No notebook run. A conversation traced a single idea from mental arithmetic (place-value decomposition with a child) through binary computation, transformer mechanics, and the question of minimal primitives, arriving at a research direction adjacent to XWorld.
+
+The core idea: arithmetic results and cross-domain shape classes may be the same phenomenon — both are attractors in a structured latent geometry, not stored facts. The XWorld 6-feature fingerprint is already a latent embedding that strips domain and keeps only relational dynamics. The grokking parallel is the sharpest version: Chronos generalises zero-shot across domains; a grokked arithmetic model generalises beyond its training range. Both suggest discovered structure, not memorised examples.
+
+### Notebook 23 created: `23_latent_arithmetic_xworld.ipynb`
+
+**Part A — Arithmetic latent space:** Structured 4D encoder [log(n), n/max, parity, residue] vs raw scalar encoder. Trained on +−×÷ up to n=1000 with MSE + inverse-consistency + commutativity losses. Extrapolation tested at 5k, 50k, 1M. PCA of learned embeddings to check for number-line geometry.
+
+**Part B — XWorld shape distortions:** 8 synthetic shape classes (50 instances each). Four distortions: time-reverse, amplitude-flip, noise (σ=0.1/0.3/0.7), time-warp (factor=0.7/1.4). Measures feature drift and boundary crossing rate per class. Stability ranking answers: which shape classes are structural attractors vs fragile surface fits?
+
+**Findings to be logged:** 53–57
+
+See summary_19APR2026.md for full theoretical development.
+
+---
+
+## 2026-03-31 — Session 7: Declining oscillator confirmation + cl7 test (Notebook 22)
+
+### Goal
+Two questions from nb21:
+1. Confirm the 8th shape class (declining oscillator) with an independent dataset — Antarctic sea ice
+2. Test whether commodity prices land in the cl7 positive-asymmetry cluster — WTI crude oil + copper
+
+### New datasets (nb22)
+- **Antarctic sea ice** (NSIDC monthly, same source as Arctic) — predicted: joins cl0 with Arctic
+- **WTI crude oil** (FRED daily → monthly) — predicted: cl7 (positive skew, asymmetric oscillation)
+- **Copper price** (FRED monthly) — predicted: cl7 or VIX-adjacent
+
+### Pre-run predictions
+| Dataset | Predicted class | Reasoning |
+|---|---|---|
+| Antarctic sea ice | cl0 — same as Arctic | Same annual cycle + long-term decline structure |
+| WTI crude oil | cl7 | Positive skew: sharp price spikes, slow declines |
+| Copper | cl7 or VIX-adjacent | Industrial demand cycles, similar asymmetry |
+
+---
+
 ## 2026-03-31 — Session 6: "Noisy directional" refinement + open questions (Notebook 21)
 
 ### Goal
