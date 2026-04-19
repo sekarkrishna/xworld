@@ -4,6 +4,80 @@ Chronological record of what was tried, what happened, and why each direction wa
 
 ---
 
+## 2026-04-19 — Session 10: XWorld grokking experiment (Notebook 25)
+
+### Background
+
+Grokking (Power et al. 2022): small transformers trained on modular arithmetic initially memorize, then suddenly generalize after thousands of additional steps — discovering Discrete Fourier Transform representations internally (Nanda mechanistic interpretability analysis). Before grokking: arbitrary embeddings. After grokking: embeddings carry the algebraic geometry of the task.
+
+XWorld and grokking are the same question from opposite ends. Grokking asks: when does a network discover structure? XWorld asks: what structure is already there to be discovered? Chronos is effectively a pre-grokked model trained on millions of series. A small transformer trained *only* on the 8 shape classes would need to generalize — and the post-grokking embeddings might reveal the continuous manifold between attractors that Phase 3 is after.
+
+nb23's arithmetic net never grokked — it found a locally optimal linear solution. The missing ingredient: weight decay as regularization pressure, and training long enough past the memorization plateau.
+
+### Proposed experiment (nb25)
+
+1. **Generate synthetic shape classes** — 8 classes × N instances (same as nb23 Part B), varied parameterization so the model can't memorize specific instances
+2. **Train small transformer** — input: raw time series segments; output: shape class label. Use weight decay. Track loss and accuracy vs training step.
+3. **Watch for phase transition** — does the model memorize first, then generalize? Plot val accuracy over time; look for the discontinuous jump.
+4. **Analyze post-grokking embeddings** — extract penultimate layer representations. PCA/UMAP. Are the 8 attractors recovered? Is there continuous structure between them?
+5. **Compare to Chronos** — do the post-grokking embeddings agree with Chronos cluster assignments? If yes: the structure is real, not Chronos-specific.
+
+### Pre-run predictions
+| Test | Prediction |
+|---|---|
+| Grokking phase transition | Present — model will memorize specific instances before discovering class structure |
+| Post-grokking embeddings | 8 clusters with continuous manifold between them (not 8 isolated islands) |
+| Agreement with Chronos | Partial — oscillator/trend/burst will agree; irregular_osc/declining_osc may differ |
+
+### Results
+
+| Test | Prediction | Result |
+|---|---|---|
+| Grokking phase transition | Present — memorization plateau then jump | **WRONG** — val acc = train acc from epoch 50. Zero gap. Immediate generalization. |
+| Post-grokking embeddings | 8 clusters with continuous manifold | **WRONG** — equidistant address-book geometry. Range 10.3–13.1 (ratio 1.27x). No manifold. |
+| Agreement with Chronos/6-feature | ρ > 0.6 | **WRONG (negative)** — Spearman ρ = −0.31. Transformer and 6-feature have opposite opinions about inter-class proximity. |
+
+**Why no grokking:** Shape classes are syntactically distinct at the raw waveform level. A burst and an oscillator look completely different as 64-number sequences. No "hidden algebraic structure" needs to be discovered — the signal is on the surface. Grokking requires tasks where surface patterns are insufficient (modular arithmetic looks random without understanding the cyclic group). XWorld shape classes do not.
+
+**The key finding:** Both receptors (transformer, 6-feature fingerprint) separate all 8 classes with >99% accuracy. The 8 boundaries are robust across completely different measurement architectures. But the geometry *between* classes is receptor-dependent — Spearman ρ = −0.31 means the two representations actively disagree on which classes are similar. The thunder hypothesis: the 8 separations are in the world; the manifold between them is in the measurement.
+
+**New findings:** F64–F66. Total: 66.
+
+---
+
+## 2026-04-19 — Session 9: PDO window test + NH Snow Cover + orientation-invariant features (Notebook 24)
+
+### Goal
+Three targeted follow-ups from nb22 open questions:
+1. **PDO window-length test** — does PDO at 36-month windows migrate from sea_level cluster to ENSO cluster?
+2. **Declining oscillator outside cryosphere** — NH Snow Cover Extent (Rutgers, monthly 1967–present) predicted to join Arctic/Antarctic in cl0
+3. **Orientation-invariant 6-feature fingerprint** — replace slope + baseline_delta with |slope| + |baseline_delta|; test whether directionally-defined class count drops
+
+### New datasets (nb24)
+- **PDO at 36-month windows** (same source as nb22, different window) — predicted: migrates toward ENSO cluster
+- **NH Snow Cover Extent** (Rutgers University, moncov.nhland.txt) — predicted: cl0 (declining oscillator)
+
+### Pre-run predictions
+| Test | Prediction |
+|---|---|
+| pdo_36mo ↔ enso distance | Smaller than pdo_60mo ↔ enso (window-length effect confirmed) |
+| NH Snow Cover cluster | cl0 (same as Arctic/Antarctic sea ice) |
+| Orientation-invariant clustering | Fewer clusters; directional pairs collapse |
+
+### Results
+
+| Test | Prediction | Result |
+|---|---|---|
+| pdo_36mo ↔ enso | Smaller than pdo_60mo ↔ enso | **CORRECT** — 0.137 vs 0.181 |
+| NH Snow Cover cluster | cl0 (declining oscillator) | **WRONG** — 52% cl7; 0% cl0; no long-term decline, positive skewness |
+| Orientation-invariant features | Fewer clusters; directional pairs collapse | **PARTIAL** — snow cover 52%→99% pure; sea ice unchanged |
+
+**Key finding:** Annual cycle frequency is necessary but not sufficient for declining oscillator class — long-term amplitude decline is also required. |slope|+|baseline_delta| confirms snow cover as orientation-invariant (seasonal), not directional. Two valid fingerprint variants now established: signed (direction-sensitive) and absolute (orientation-invariant, Chronos-consistent).
+
+**New findings:** F61–F63. Total: 63.
+
+---
+
 ## 2026-04-19 — Session 8: Theoretical — Latent arithmetic space and XWorld connection (no notebook)
 
 ### What happened

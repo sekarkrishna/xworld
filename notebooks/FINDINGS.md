@@ -665,3 +665,67 @@ The TD features disagreed on: zero_crossings (temperature=0.302 vs sea_level=0.1
 **Evidence:** PDO: 59% cl4, 38% noise, 0% cl8. Sea_level: 47% cl4. Pairwise distances: pdo↔vix = 0.121, pdo↔nao = 0.101, pdo↔sea_level (via cl4 co-membership). ENSO is the same physical basin and related dynamics but lands in cl8 (24%); PDO lands in cl4. The difference is timescale: ENSO operates at interannual (3–7 year) periods while PDO operates at decadal (20–30 year) periods. At 60-month windows, PDO's decadal drift dominates — the oscillation is not completed within the window, so Chronos sees an integrated trend.
 
 **What it means:** The same physical system (Pacific Ocean surface temperature) maps to different shape classes depending on the timescale of observation. ENSO's full oscillatory cycle fits inside a 36-month window; PDO's cycle does not fit inside a 60-month window. This is not a failure of the classification — it is a correct observation that the dynamical regime relevant to a 5-year observer is different from the regime relevant to a 3-year observer. The shape class is not a property of the physical system alone; it is a property of the system as seen from a specific temporal vantage point. This reinforces the nb18 finding that shape classes are observer-relative.
+
+---
+
+## Session 9 (continued) — 19 April 2026 (Notebook 24)
+
+### Finding 61: PDO window-length shift confirmed — shorter window moves PDO toward ENSO, not away from sea_level
+
+**Claim:** Changing PDO from 60-month to 36-month windows moves it closer to ENSO/VIX in Chronos space and farther from sea_level, confirming the timescale-determines-class hypothesis from Finding 60.
+
+**Evidence:** pdo_36mo↔enso = 0.137 vs pdo_60mo↔enso = 0.181. pdo_36mo↔vix = 0.076 vs pdo_60mo↔vix = 0.121. Reversed for sea_level: pdo_60mo↔sea_level = 0.063 vs pdo_36mo↔sea_level = 0.092. The two PDO window lengths are themselves very close (distance = 0.057, tighter than arctic↔antarctic = 0.072). pdo_36mo cluster membership: 39% cl17 (ENSO/VIX region), 60% noise — closer to ENSO but not fully joining the cluster.
+
+**What it means:** The window length is a receiver parameter that determines which dynamical mode of PDO is visible. At 60 months, the decadal drift dominates — Chronos sees an integrated trend. At 36 months, the interannual variability becomes more visible — Chronos partially places it with ENSO. But PDO and ENSO are not the same signal: even at matched timescales, PDO remains 60% noise while ENSO is 24% in the same cluster. The physical oscillations are structurally different despite sharing the Pacific basin. The thunder hypothesis (Finding 60) is correct directionally but the receptor alone does not fully explain the difference — there is genuine structural divergence between PDO and ENSO beyond the timescale effect.
+
+---
+
+### Finding 62: NH Snow Cover does not join the declining oscillator class — the annual frequency is necessary but not sufficient
+
+**Claim:** NH Snow Cover has an identical annual oscillation frequency to Arctic/Antarctic sea ice but is placed by Chronos in completely different clusters (0% overlap with cl7). The declining oscillator class requires two properties to co-occur: strong annual cycle AND embedded long-term decline.
+
+**Evidence:** TD-6f: zero_crossings = 0.168 (snow cover) vs 0.169 (arctic sea ice) — identical. But skewness = +0.999 (snow cover) vs −0.377 (arctic sea ice) — opposite sign. Slope ≈ 0 and baseline_delta ≈ 0 for snow cover (no trend), vs slope = −0.0031 and bd = −0.138 for arctic sea ice (clear decline). Chronos distances: snow_cover↔arctic_sea_ice = 0.317, snow_cover↔antarctic_sea_ice = 0.311 — farther from sea ice than sea ice is from many unrelated datasets. In Chronos space, snow cover scatters across 7 different clusters (cl0–cl6) with no dominant membership.
+
+**What it means:** The annual cycle alone is not enough to join the declining oscillator class. Sea ice peaks in summer melt and builds gradually through winter (negative skewness — gradual rise, sharp peak). Snow cover spikes sharply in winter and melts fast in spring (positive skewness — opposite asymmetry). Same period, different shape within the cycle. Additionally, NH snow cover has no consistent long-term trend across the 1967–present record — some decades show spring decline, others partial recovery. The Chronos fragmentation across 7 clusters reflects this: each 10-year window has a different trend direction, so each looks like a different class. The declining oscillator class (cl7) requires the secular decline to be present and consistent within the observation window.
+
+---
+
+### Finding 63: Orientation-invariant features collapse snow cover but leave sea ice unchanged — directionality is the source of snow cover's fragmentation
+
+**Claim:** Replacing slope and baseline_delta with their absolute values (removing directional information) makes NH Snow Cover cluster at 99% purity in a single TD-6f cluster (up from 52%), while Arctic/Antarctic sea ice remain 100% pure and completely unchanged. The overall cluster count drops by only one (18→17).
+
+**Evidence:** Original TD-6f: nh_snow_cover = 52% cl11, arctic_sea_ice = 100% cl12, antarctic_sea_ice = 100% cl12. Invariant TD-6f: nh_snow_cover = 99% cl10, arctic_sea_ice = 100% cl12, antarctic_sea_ice = 100% cl12. Noise count drops from 1191 to 1015. ARI between original and invariant clusterings = 0.712 (substantial agreement, not identity). keeling_trend and keeling_seasonal: both 100% stable. ENSO: 99% noise → 77% noise.
+
+**What it means:** Snow cover's fragmentation across 7 Chronos clusters and its 48% impurity in TD-6f space are both caused by its lack of consistent trend direction — some time windows slope up, some down, some flat, and both Chronos and the 6-feature fingerprint treat these as different classes. When direction is removed, the underlying annual oscillation shape is revealed and snow cover clusters cleanly. Arctic/Antarctic sea ice are immune to this because their long-term decline is consistent and structural — removing directionality does not change their class because their shape identity does not depend on slope sign. This directly supports the nb23 finding (F55): shape-defined classes (oscillator, burst) are stable under orientation changes; directionally-defined classes are not. Snow cover is revealed to be shape-defined at its core, with directional fragmentation as a surface artifact of the representation.
+
+---
+
+## Session 10 — 19 April 2026 (Notebook 25)
+
+### Finding 64: No grokking — XWorld shape classes are immediately generalizable, not algebraically latent
+
+**Claim:** A small transformer (2 layers, d_model=64, ~100k parameters) trained on 3200 synthetic shape class instances achieves >90% validation accuracy at the very first logging checkpoint (epoch 50). There is no memorization plateau followed by a generalization jump.
+
+**Evidence:** train_acc = val_acc ≈ 0.90+ at epoch 50, rising to train_acc = 1.0, val_acc = 0.996 by epoch 5000. The "grokking delay" as detected by the code is 0 epochs. Final validation accuracy: 99.6% (3 errors from 800 instances). Weight decay = 0.1 was applied throughout.
+
+**What it means:** Grokking requires a task where no surface pattern is sufficient — the model is forced to memorize first because generalization requires discovering hidden algebraic structure (e.g., Fourier components of a cyclic group in modular arithmetic). XWorld shape classes are the opposite: each class has a visually distinctive raw waveform signature that is directly detectable at the sequence level. A burst event and a declining oscillator look completely different as sequences of 64 numbers. The transformer picks this up immediately. The absence of grokking tells us something real about the nature of the shape classes: they are detectable by direct temporal pattern matching, not by abstract algebraic inference.
+
+---
+
+### Finding 65: Post-training embeddings form an address book, not a manifold — class separations are equidistant
+
+**Claim:** The transformer's CLS embeddings place the 8 shape classes in approximately equidistant corners of the 64-dim space (pairwise distances compressed to the range 10.3–13.1, spread of 2.8). There is no continuous geometry between the classes.
+
+**Evidence:** Pairwise centroid distances: min = 10.27 (eco_cycle↔seasonal), max = 13.06 (irregular_osc↔declining_osc), mean ≈ 11.5, range = 2.8. By comparison, in Chronos space (nb20–22) and 6-feature space (nb23) the ratio of max/min distance is typically 3–5x; here it is 1.27x — extremely compressed. PCA of 64-dim embeddings: the 8 classes separate cleanly but with roughly equal spacing; no continuous arc or manifold is visible.
+
+**What it means:** The transformer learned to classify, not to encode similarity. The CLS token learned to route each input to one of 8 corners — an "address book" — rather than learning a similarity geometry where nearby classes are nearby in embedding space. This is a property of cross-entropy training with balanced classes: the optimal solution is to push all classes to maximally separated locations, which tends toward equidistance in high-dimensional spaces. A contrastive or triplet loss would force the model to encode within-class and between-class similarity explicitly — that experiment would produce a more informative embedding space.
+
+---
+
+### Finding 66: Transformer and 6-feature fingerprint have opposite opinions about inter-class geometry — Spearman ρ = −0.31
+
+**Claim:** The pairwise centroid distances between the 8 shape classes in transformer embedding space are negatively rank-correlated with those in 6-feature fingerprint space (Spearman ρ = −0.31, p = 0.11). The two receptors agree that the 8 classes are distinct, but disagree on which classes are structurally similar.
+
+**Evidence:** Transformer closest pair: eco_cycle↔seasonal (10.27). 6-feature closest pair: trend↔integrated_trend. Transformer most distant pair: irregular_osc↔declining_osc (13.06). In 6-feature space these two classes are the most frequent confusion pair (nb23 F57 — highest boundary crossing rate). The only confusion pairs from the transformer's 3 validation errors: eco_cycle→seasonal (1x) and trend↔integrated_trend (2x) — which happen to be the TOP 2 closest pairs in the 6-feature fingerprint. The two representations agree on which confusions happen but disagree on why.
+
+**What it means:** Both receptors separate all 8 classes (transformer 99.6% accuracy; 6-feature fingerprint achieves class purity in nb23). The separations are robust. But the geometry between the classes — which pairs are similar, which are distant — is entirely receptor-dependent. The transformer sees: irregular_osc and declining_osc are maximally different (raw waveforms: one is noisy asymmetric, the other is amplitude-decaying sinusoidal). The 6-feature fingerprint sees: these two are easily confused (summary statistics overlap). This is the thunder hypothesis made concrete: the 8 class boundaries are in the world (three independent receptors all find them), but the manifold between the classes is in the measurement. The structure of similarity is not a property of the series themselves — it depends on what aspect of the series the receptor is sensitive to.
