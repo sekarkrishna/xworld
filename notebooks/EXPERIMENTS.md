@@ -927,3 +927,30 @@ Chronos HDBSCAN ARI vs UCR labels: **0.742** — highest ARI of any sub-cluster 
 
 ### Findings
 Findings 43–46 added to FINDINGS.md. Total findings: 46.
+
+---
+
+## 2026-04-25 — Session: Nb29–31 (Architectural decision + 9th class + full corpus audit)
+
+### Notebooks completed this session
+- nb29: Absolute fingerprint vs 9th class architectural decision
+- nb30: 9th class corpus search and gate calibration
+- nb31: Full 17-dataset corpus audit (8-class vs 9-class)
+
+### Dataset caching system
+Introduced `notebooks/data_utils.py`: 3-tier resolution (local → GitHub raw → original source). All datasets now cached in `notebooks/data/` and committed to GitHub. No more full re-downloads each session.
+
+### nb29 — Absolute fingerprint experiment
+Tested absolute fingerprint (|slope|, |baseline_delta|) as an alternative to adding a 9th class. Result: declining_osc ↔ trend/integrated_trend distance shrinks 31% (4.42 → 3.06). Structural risk outweighs the gain (WGMS correctly routes to integrated_trend under absolute, but basin geometry cost is too high). Decision: keep signed fingerprint, add 9th class.
+
+### nb30 — 9th class: declining_monotonic_trend
+Gate: lag1 > 0.93, ZC < 0.05, slope < −0.005. Accepted: PIOMAS annual mean (lag1=0.966, cryosphere), World Bank forest cover (lag1=0.998, land-use). Rejected: March snow cover (lag1=0.549 — informative control). Synthetic centroid: lag1=1.000, ZC=0.016, slope=−0.054, BD=−3.137. Mirror of integrated_trend.
+
+### nb31 — Full corpus audit
+17 datasets loaded. Exactly 3 reclassifications: WGMS, PIOMAS, forest_cover → eco_cycle → declining_monotonic (all predicted). Zero unexpected reclassifications. 14 original-class datasets unchanged. HDBSCAN 5 clusters at n=17 (declining_monotonic trio clusters together). 9-class system passes stability audit.
+
+### Findings
+Findings 77–88 added to FINDINGS.md. Total findings: 88.
+
+### Status
+9-class corpus work complete. Ready for Phase 3: connect shape classes to physical system feedback structure.
