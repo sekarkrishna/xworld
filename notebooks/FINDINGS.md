@@ -955,3 +955,53 @@ The TD features disagreed on: zero_crossings (temperature=0.302 vs sea_level=0.1
 **Evidence:** n=17 datasets: atmospheric chemistry (keeling seasonal/trend, CH4, CO2), climate (temperature, ENSO, NAO, PDO, ocean heat), finance (VIX), ecology (lynx_hare not in this corpus, but eco_cycle class present), cryosphere (arctic/antarctic sea ice, PIOMAS), epidemiology (COVID), land-use (forest cover), glaciology (WGMS). 3 correct reclassifications to declining_monotonic. 0 incorrect reclassifications. Pre-existing misclassifications unchanged.
 
 **What it means:** The 9-class expansion is complete. The corpus has been audited. The taxonomy is stable. Ready for Phase 3: connecting shape classes to physical system feedback structure.
+
+---
+
+### Finding 89: 8/9 ODEs land in their predicted shape class — the fingerprint detects feedback structure
+
+**Claim:** Integrating the natural ODE for each shape class and running the 6-feature fingerprint should yield the correct class assignment. 8 of 9 do.
+
+**Evidence:** oscillator (simple harmonic ✓), declining_osc (damped harmonic impulse response ✓), seasonal (two-frequency superposition ✓), burst (Gaussian pulse ✓), trend (constant drift ✓), integrated_trend (Langevin positive drift ✓), declining_monotonic (Langevin negative drift ✓), irregular_osc (Rössler chaotic attractor ✓). eco_cycle fails (see F91).
+
+**What it means:** The fingerprint features are not arbitrary — they encode physically meaningful quantities. Each ODE class maps to a distinct region of feature space. The shape class taxonomy has a basis in differential equation theory.
+
+---
+
+### Finding 90: γ sweep — overdamped harmonic reads as burst, not declining_monotonic; declining_osc requires zero-displacement initial condition
+
+**Claim:** Increasing damping γ from 0 to 3×critical in the damped harmonic oscillator (starting from x(0)=1) transitions oscillator → eco_cycle → burst. The predicted declining_osc or declining_monotonic transition never occurs.
+
+**Evidence:** γ sweep of 40 values (γ/2ω from 0 to 3.0): only 1 step at oscillator (γ≈0), 1 step at eco_cycle (γ/2ω≈0.08), then burst for all γ/2ω from 0.16 to 3.0. Explanation: starting from x(0)=1, ẋ(0)=0, the damped harmonic produces a smooth monotone decay (high lag1, low ZC, positive skewness) — identical fingerprint to burst. The GREEN'S FUNCTION solution (x(0)=0, ẋ(0)=ω) does produce declining_osc (✓ at ω=4, γ=0.4). Initial conditions determine shape class, not just ODE parameters.
+
+**What it means:** Burst and declining_osc are related — both involve damped harmonic dynamics. The difference is the initial condition: displacement (x₀≠0) → burst profile; velocity impulse (ẋ₀=ω) → declining_osc profile. A physical oscillator hit by a displacement vs an oscillator kicked into motion look identical in their equations but different in fingerprint space. The burst class is broader than "spike event" — it captures any localised high-amplitude decay.
+
+---
+
+### Finding 91: eco_cycle has no simple ODE basis — the class is noise-dependent, not a distinct attractor
+
+**Claim:** Lotka-Volterra predator-prey (prey series) does NOT land in the eco_cycle class. The eco_cycle class is defined by noise level + harmonic content, not by ecological dynamics.
+
+**Evidence:** LV prey series: skewness=+0.48, classifies as oscillator. eco_cycle centroid: skewness=−0.135. The centroids for eco_cycle and oscillator are the closest pair in 9-class space (ZC: 0.093 vs 0.096, lag1: 0.931 vs 0.945). Without noise (σ=0), the harmonic superposition sin(ωt)+0.4sin(2ωt) classifies as oscillator. With noise σ=0.12, it crosses into eco_cycle. The class is noise-dependent.
+
+**What it means:** The class name "eco_cycle" is physically misleading — LV predator-prey has positive-skewed prey spikes (OPPOSITE sign from the eco_cycle centroid). The class should be described as "noisy oscillation with second harmonic content." It is not a distinct dynamical attractor but a noise-displaced region of the oscillator basin. This is the only class in the 9-class taxonomy without a clean ODE basis.
+
+---
+
+### Finding 92: ODE parameters map onto fingerprint features with near-perfect Spearman correlation
+
+**Claim:** The three principal ODE parameters (ω, γ, drift a) map cleanly onto the fingerprint features they theoretically control.
+
+**Evidence:** ρ(ω, ZC) = 0.998; ρ(γ, lag1) = +0.943 (damping INCREASES lag1 — heavy damping → smooth monotone decay → high autocorrelation; oscillations reduce lag1 via phase transitions); ρ(drift a, slope) = 1.000; ρ(drift a, baseline_delta) = 0.751.
+
+**What it means:** The 6-feature fingerprint is a structured projection of ODE parameter space. zero_crossings ≈ f(ω). lag1_autocorr ≈ g(γ). slope ≈ h(drift). Each feature reads one dimension of the dynamical system's parameterisation.
+
+---
+
+### Finding 93: Rössler chaotic attractor classifies as irregular_osc — the class captures deterministic chaos
+
+**Claim:** The Rössler attractor (genuinely chaotic 3D ODE) classifies as irregular_osc across all tested windows.
+
+**Evidence:** 12/12 windows (80 time units each, starting times 80–190) classify as irregular_osc. Features: lag1=0.50–0.66, ZC=0.25–0.31. Distance from centroid: 4.62–7.8 (wide class). Rössler is the only deterministic chaotic ODE in the set; all others are either linear, nonlinear limit cycles, or stochastic.
+
+**What it means:** The irregular_osc class captures both stochastically noisy oscillation AND deterministic chaos. The shared fingerprint property: intermediate lag1 (no long-range coherence, but not white noise) + high ZC. The class is better described as "signals with intermediate autocorrelation and high zero-crossing rate" rather than "irregular oscillation." Chaos and noise are fingerprint-indistinguishable at this feature resolution.

@@ -954,3 +954,22 @@ Findings 77–88 added to FINDINGS.md. Total findings: 88.
 
 ### Status
 9-class corpus work complete. Ready for Phase 3: connect shape classes to physical system feedback structure.
+
+---
+
+## 2026-04-25 — nb32 (Phase 3 opener: ODE basis)
+
+### Hypothesis
+Each shape class is the fingerprint of a specific ODE / feedback structure.
+
+### Result: 8/9 correct
+Simple harmonic → oscillator. Damped harmonic impulse response → declining_osc. Forced harmonic → seasonal. Gaussian pulse → burst. Constant drift → trend. Langevin ±drift → integrated_trend / declining_monotonic. Rössler attractor → irregular_osc. Lotka-Volterra prey → oscillator (eco_cycle fail).
+
+### Key surprises
+- γ sweep goes to burst (not declining_osc/declining_monotonic): overdamped harmonic from displacement x₀=1 reads as burst; declining_osc requires velocity initial condition.
+- eco_cycle has no ODE basis: LV has positive skewness, eco_cycle centroid has negative skewness. The class is noise-dependent.
+- ρ(γ, lag1) = +0.943: higher damping → HIGHER autocorrelation (smooth decay > oscillatory).
+- Rössler (deterministic chaos) classifies as irregular_osc — chaos ≈ stochastic noise in fingerprint space.
+
+### Findings
+F89–F93 added. Total findings: 93.
