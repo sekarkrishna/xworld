@@ -1,9 +1,11 @@
 # UI / app code — separate concern, not part of research repo
 xworld_ui/
 
-# Data — regenerates from notebook runs
+# Data — regenerates from notebook runs (top-level only)
 data/
 datasets/
+# Except the shared dataset cache committed to the repo
+!notebooks/data/
 
 # Python
 __pycache__/
