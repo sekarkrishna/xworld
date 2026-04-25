@@ -973,3 +973,85 @@ Simple harmonic → oscillator. Damped harmonic impulse response → declining_o
 
 ### Findings
 F89–F93 added. Total findings: 93.
+
+---
+
+## 2026-04-25 — nb33 (Parallel convergent experiment: Blackjack embedding)
+
+### Motivation
+Side experiment to triangulate the XWorld claim that structural rule-governed systems compress into navigable geometric embeddings. Blackjack chosen because: (a) state space is small and exactly enumerable (200 decision states), (b) optimal policy is analytically known — clean binary ground truth for verification.
+
+### Setup
+Standard Blackjack MDP (infinite deck). States: (player_sum 12–21) × (usable_ace T/F) × (dealer_upcard 2–11) = 200 states. Exact V* and optimal policy via dynamic programming. Spectral embedding of state transition graph under optimal policy.
+
+### Two tests
+- **T1:** Spearman |ρ(V*, best spectral component)| — threshold >0.50 positive, <0.20 negative
+- **T2:** Logistic regression on spectral embedding → optimal action accuracy — threshold >0.70 positive, <0.55 negative
+
+### Exit criterion
+- Definite result (positive or negative on both tests) → return to XWorld main track
+- Ambiguous (mixed, possibly Blackjack too small) → escalate to Poker (nb34), then return
+
+### Results
+
+**NEGATIVE** — both tests failed.
+
+- T1: best |ρ(V*, spectral)| = 0.175 (threshold: >0.50 positive)
+- T2: classifier accuracy = 0.495, below majority baseline 0.550 (threshold: >0.70 positive)
+- T3: ρ(spectral, P(win)) = −0.186 — structural and oracle embeddings unrelated
+
+**Root cause:** The hit-transition graph decomposes into 10 structurally identical subgraphs — one per dealer upcard. Hit transitions are dealer-blind (same card probabilities regardless of du). Spectral embedding cannot distinguish states that differ only in dealer upcard. V* varies heavily across dealer upcards → low correlation. This is a failure of the specific graph encoding (transitions without payoffs), not a failure of the geometric navigation principle.
+
+**Key constraint identified:** A structural embedding must contain the full information — not just one facet. Hit topology encodes player-sum dynamics but not terminal reward structure. XWorld's 6-feature fingerprint encodes both dynamics (lag1, ZC) and boundary structure (slope, baseline_delta, skewness) — it is a full encoding, not partial.
+
+**Not escalating to Poker.** Clean structural explanation for the negative result; ambiguity condition does not apply.
+
+### Findings
+F94–F96 added. Total findings: 96.
+
+---
+
+## 2026-04-25 — nb34 (Phase 3: ODE anomaly resolution)
+
+### Goal
+Close two open anomalies from nb32 in order.
+
+**Part A — eco_cycle anomaly (Finding 91):** LV predator-prey prey classifies as oscillator (skew=+0.476) not eco_cycle (centroid skew=−0.135). What does real lynx-hare classify as? What (harmonic_amplitude × noise) parameter space generates eco_cycle? Is it a genuine dynamical class or a noise artifact?
+
+**Part B — γ sweep IC dependence (Finding 90):** Damped harmonic from displacement IC always goes to burst, not declining_osc. What IC angle boundary separates burst from declining_osc? Can any sweep traverse oscillator → declining_osc → declining_monotonic?
+
+### Pre-run predictions
+- Lynx-hare real data: likely eco_cycle (real populations have noise and harmonic content LV lacks)
+- Phase diagram: eco_cycle is a narrow basin requiring BOTH second-harmonic content AND moderate noise
+- IC angle θ: sharp transition burst→declining_osc around θ≈60–80°; independent of γ
+- Decay sweep: traverses oscillator → declining_osc; declining_monotonic requires d≈1.0
+
+### Results
+
+**Part A — eco_cycle anomaly:**
+
+| Prediction | Result |
+|---|---|
+| Lynx-hare real data → eco_cycle | **WRONG** — Hare → declining_osc (skew=+0.720), Lynx → burst (skew=+0.963). Zero eco_cycle occurrences. |
+| Phase diagram: eco_cycle needs BOTH harmonic AND noise | **WRONG** — noise alone (σ≥0.12) is sufficient; P(eco_cycle)=0.38 at harm=0.0, σ=0.12 |
+| eco_cycle boundary = skewness sign-flip | **CORRECT** — eco_cycle basin = negative-skew region; both routes (noise-only and harmonic-driven) share the same skewness mechanism |
+
+Real lynx-hare skewness (+0.72 to +0.96) is opposite sign to eco_cycle centroid (−0.136). The 21-year window captures one population collapse, not the harmonic-distorted cycle shape. eco_cycle has no real-world anchor in the dataset that named it.
+
+Phase diagram revealed two routes into eco_cycle: (1) harm_amp ∈ [0.2, 0.7] × σ ∈ [0.01, 0.25] (harmonic-driven, peak P=0.98 at harm=0.4, σ=0.01); (2) σ ∈ [0.10, 0.25] without any harmonic content. At harm_amp>0.6 the class becomes seasonal; at σ>0.30 it becomes irregular_osc.
+
+**Part B — IC dependence:**
+
+| Prediction | Result |
+|---|---|
+| Displacement IC (θ=0°) → burst | **WRONG** — at light damping (γ/(2ω)=0.05), θ=0° → eco_cycle (margin=0.012) |
+| Transition near θ≈60–80° | **WRONG** — transition is at θ≈5°; nearly the entire IC range → declining_osc |
+| Heavy damping → burst independent of IC | **CORRECT** — γ/(2ω)=0.12: all burst |
+| Decay sweep reaches declining_monotonic | **WRONG** — d=1.0 → burst; declining_monotonic unreachable from oscillatory ODE |
+
+Three damping regimes identified: light (0.05) — IC-sensitive, sharp 5° transition; medium (0.08) — all declining_osc; heavy (0.12) — all burst. The displacement IC at light damping sits at a 3-way class junction (eco_cycle/declining_osc/oscillator) — multi-class boundary in 6D fingerprint space.
+
+Decay envelope sweep confirmed: oscillator→declining_osc at d≈0.42; declining_osc→burst at d≈0.92. Skewness is the sole changing feature (ZC constant). Confirms declining_monotonic and declining_osc are structurally separate subspaces.
+
+### Findings
+F97–F100 added. Total findings: **100**.
