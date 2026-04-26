@@ -10,7 +10,7 @@ Cross-domain time series shape clustering. The hypothesis: series from completel
 
 ## Where we are
 
-**32 notebooks. 93 findings. 9 shape classes. 17 datasets across 8 unrelated domains.**
+**35 notebooks. 106 findings. 9 shape classes. 17 datasets across 8 unrelated domains.**
 
 Phase 1 and 2 are complete. Phase 3 is underway: connecting shape classes to the differential equations that generate them.
 
@@ -41,7 +41,7 @@ The central result holds: a glacier retreating, Arctic sea ice shrinking, and gl
 | Phase 0 — Foundation | **Complete** (nb01–13) | 6-feature fingerprint; 7 classes across 9 datasets |
 | Phase 1 — Close the line | **Complete** (nb14–24) | Pairwise distances; 8 classes; VIX↔lynx-hare cross-domain match; Chronos zero-shot confirmation |
 | Phase 2 — Learned embeddings | **Complete** (nb25–31) | Grokking null result; 9th class (declining_monotonic); full corpus audit |
-| Phase 3 — The why | **Active** (nb32+) | ODE basis: 8/9 classes derive from a differential equation |
+| Phase 3 — The why | **Active** (nb32+) | ODE basis: 8/9 classes derive from a differential equation; eco_cycle has no ODE or real-world anchor |
 
 ---
 
@@ -56,6 +56,12 @@ The 6-feature fingerprint is a structured projection of ODE parameter space:
 The damped harmonic oscillator (*ẍ + γẋ + ω²x = 0*) transitions through shape classes as γ increases: oscillator → burst. The declining_osc class requires the green's function initial condition — a velocity kick, not a displacement. **Initial conditions determine class, not just ODE parameters.**
 
 Deterministic chaos (Rössler attractor) and stochastic noise are fingerprint-indistinguishable: both land in irregular_osc.
+
+**eco_cycle has no real-world anchor.** The real lynx-hare dataset (the source of the class name) classifies as burst/declining_osc — zero eco_cycle occurrences. eco_cycle is a mathematical waveform region (negative skewness, second-harmonic distortion) that exists in the parameter space but is not produced by actual ecological oscillations. Better name: noisy_asymmetric_oscillator.
+
+**Geometric navigation requires full information encoding.** A Blackjack experiment (nb33) confirmed that a partial structural embedding (hit-transition topology without terminal payoffs) has near-zero correlation with game-theoretic value (|ρ|=0.175). XWorld's 6-feature fingerprint is a full encoding: it captures both dynamics and boundary structure, which is why the geometric space is navigable.
+
+**The 9 classes map to 4 structurally isolated ODE families (nb35).** The complex eigenvalue plane (decay rate α vs frequency ν) splits into 5 class regions, not 3 as predicted — seasonal appears at high frequency (ZC aliasing) and declining_monotonic at low frequency (window aliasing). The boundary between oscillator and burst slopes with frequency (Spearman ρ=−0.917), and irregular_osc is the universal noise attractor for all classes at σ≥0.25.
 
 ---
 
@@ -78,8 +84,8 @@ Deterministic chaos (Rössler attractor) and stochastic noise are fingerprint-in
 
 ## Navigate
 
-- **[Findings](FINDINGS.md)** — 93 discoveries, each with claim, evidence, meaning
+- **[Findings](FINDINGS.md)** — 106 discoveries, each with claim, evidence, meaning
 - **[Milestones](MILESTONES.md)** — roadmap and phase tracking
 - **[Experiments](EXPERIMENTS.md)** — session-by-session log
 - **[Decisions](DECISIONS.md)** — methodological choices and reasons
-- **[Sessions](summary_25APR2026_nb32.md)** — most recent session summary
+- **[Sessions](summary_26APR2026_nb35.md)** — most recent session summary

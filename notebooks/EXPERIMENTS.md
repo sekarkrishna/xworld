@@ -4,6 +4,39 @@ Chronological record of what was tried, what happened, and why each direction wa
 
 ---
 
+## 2026-04-26 — nb35 (Phase 3: ODE eigenvalue map)
+
+### Goal
+Map all 9 shape classes to regions of the complex eigenvalue plane. For each point (α, ν) — decay rate and frequency — generate the Green's function solution x(t)=exp(α·t)·sin(2π·ν·t) and run the 9-class fingerprint classifier. Supplement with real axis (ν→0), first-order stochastic space, and noise injection.
+
+### Pre-run predictions
+- Main grid: 3 regions — oscillator (α≈0, ν∈[1.5,4.5]), declining_osc (moderate α<0), burst (large |α| or low ν). eco_cycle and seasonal will NOT appear.
+- Boundary shape: α_crit(ν) slopes — higher ν tolerates more decay.
+- Real axis (ν→0): trend at α=0, burst at α≈−1.
+- First-order space: trend/integrated_trend/declining_monotonic tile cleanly by drift sign.
+- Noise injection: oscillator → eco_cycle (σ=0.12) → irregular_osc (σ=0.30), same path for all starting points.
+
+### Results
+
+**Main grid (2107 points):** 5 classes, not 3. Oscillator (7.4%), declining_osc (12.8%), burst (49.2%), PLUS seasonal (9.5%) at high ν and declining_monotonic (12.1%) at low ν. Two unexpected appearances:
+- **Seasonal at ν>4, α=0:** Single-frequency sine at high frequency matches seasonal centroid better than oscillator (ZC aliasing).
+- **Declining_monotonic at ν<1.0:** <1 cycle over window fingerprinted as monotone decline (window aliasing — periodic but undetectably so).
+
+**Boundary:** ρ(ν, α_burst) = −0.917. Prediction CONFIRMED. α_crit shifts from −2.4 at ν=1.4 to −3.2 at ν=6.0.
+
+**Real axis:** integrated_trend dominates (α∈[0,−2.3]); eco_cycle at α∈[−2.3,−3.8]; declining_monotonic at α<−3.8. Burst never appears. Prediction completely wrong.
+
+**First-order space:** declining_monotonic 49%, integrated_trend 47%, trend 1%. Trend requires quadratic acceleration not linear drift.
+
+**Noise injection:** Three different paths. Oscillator → eco_cycle → irregular_osc (confirmed). Burst → declining_osc → seasonal → irregular_osc (no eco_cycle route). Universal convergence at σ≈0.25.
+
+**4-family taxonomy confirmed:** 9 classes in 4 structurally isolated families — 2nd-order linear / 1st-order stochastic+curvature / two-frequency superposition / noise attractor.
+
+### Findings
+F101–F106 added. Total findings: **106**.
+
+---
+
 ## 2026-04-19 — Session 13: Declining oscillator necessary conditions (Notebook 28)
 
 ### Goal

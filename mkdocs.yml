@@ -41,6 +41,9 @@ nav:
   - Experiments: EXPERIMENTS.md
   - Decisions: DECISIONS.md
   - Sessions:
+      - "26 Apr 2026 (nb35)": summary_26APR2026_nb35.md
+      - "25 Apr 2026 (nb34)": summary_26APR2026_nb34.md
+      - "25 Apr 2026 (nb33)": summary_26APR2026_nb33.md
       - "25 Apr 2026 (nb32)": summary_25APR2026_nb32.md
       - "25 Apr 2026 (nb29-31)": summary_25APR2026_nb29-31.md
       - "19 Apr 2026 (nb28)": summary_19APR2026_nb28.md
