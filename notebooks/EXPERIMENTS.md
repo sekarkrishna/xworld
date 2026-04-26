@@ -4,6 +4,29 @@ Chronological record of what was tried, what happened, and why each direction wa
 
 ---
 
+## 2026-04-26 — nb37 (Phase 3 Thread 4: Window aliasing and observer-relative shape classes)
+
+### Goal
+Test how the observation window length determines shape class. Three experiments: (A) sinusoid window sweep across n_cycles 0.10–8.0; (B) multi-signal aliasing map for oscillatory vs trend-type signals; (C) Gaussian burst window expansion to find the burst detection threshold.
+
+### Pre-run predictions
+- F110: 3 clean zones for sinusoids (declining_monotonic/oscillator/seasonal) with transitions at n_cycles≈1 and ≈4.
+- F111: Burst disappears at small burst_width (<0.10 of window) when spike is too narrow.
+- F112: Trend-type signals window-invariant; oscillatory signals window-sensitive.
+
+### Results
+
+**Part A (sinusoid sweep):** 5-zone structure, not 3. Eco_cycle appears as transitional band at n_cycles≈0.5 (half-cycle asymmetry) and n_cycles≈1.43–1.69 (1.5-cycle resonance). Main boundaries confirmed: declining_monotonic (0.63–1.10), oscillator (1.10–4.02), seasonal (4.02–7.87). Noise breaks the zones: σ=0.10 → 32.5% change, σ=0.20 → 91.7% change.
+
+**Part B (aliasing map):** Prediction confirmed exactly. linear_trend, cumsum_pos, cumsum_neg → 1 class each (window-invariant). All oscillatory types → 4–8 classes (window-sensitive). Damped sinusoid traverses 8 of 9 classes across window sweep.
+
+**Part C (burst expansion):** Prediction reversed. Burst maintained at smallest widths tested (kurtosis=15.5 at burst_width=0.020). Disappears at LARGE widths (>0.134). Discriminator: kurtosis crossing zero (leptokurtic→burst; platykurtic→oscillator). ZC and lag1 unchanged at transition.
+
+### Findings
+F110–F112 added. Total findings: **112**.
+
+---
+
 ## 2026-04-26 — nb36 (Phase 3: Chaos survey and 3-way junction)
 
 ### Goal

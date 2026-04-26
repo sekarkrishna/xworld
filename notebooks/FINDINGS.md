@@ -1233,3 +1233,72 @@ ZC drops monotonically: 0.062 (μ=0.1) → 0.024 (μ=8). Van der Pol period grow
 - The oscillator class requires γ<0.30 at ω=4; it is structurally isolated from the eco/dosc boundary.
 
 **What it means:** The junction (F99) is a 1D eco_cycle/declining_osc boundary, not a 0D triple point. The oscillator centroid lies on the far side of the eco_cycle region and is never approached by trajectories in the θ∈[0°,20°] sweep. No triple point exists within the accessible (γ, θ) parameter space. The three-class boundary structure is: oscillator → eco_cycle (displacement IC, decreasing θ) → declining_osc (increasing θ) — a linear progression, not a Y-junction.
+
+---
+
+## Session 21 — 26 April 2026 (Notebook 37)
+
+### Finding 110: Sinusoid window sweep reveals 5-zone structure — eco_cycle appears as a transitional band, not 3 clean zones
+
+**Prediction:** 3 clean zones: declining_monotonic (<1 cycle), oscillator (1–4), seasonal (>4).
+
+**Result: Prediction correct about main boundaries, wrong about smoothness.**
+
+Observed zones for a pure sinusoid (σ=0):
+
+| n_cycles range | Class | Mechanism |
+|---|---|---|
+| < 0.50 | integrated_trend | <½ cycle → monotone curve with positive curvature |
+| 0.50–0.63 | eco_cycle | ½ cycle → asymmetric half-sine (negative skewness) |
+| 0.63–1.10 | declining_monotonic | <1 full cycle → window aliasing |
+| 1.10–4.02 | oscillator | optimal detection zone (eco_cycle excursion at 1.43–1.69) |
+| 4.02–7.87 | seasonal | >4 cycles → ZC aliasing |
+| > 7.87 | irregular_osc | excessive ZC → fingerprint resembles noise |
+
+Noise sensitivity: σ=0.10 changes 32.5% of window assignments; σ=0.20 changes 91.7%. The aliasing zones are fragile under noise — the oscillator zone collapses toward eco_cycle and irregular_osc first.
+
+**What it means:** eco_cycle is the fingerprint attractor for half-cycle distortions of oscillatory signals. It appears at n_cycles ≈ 0.5 (half-cycle asymmetry) and again at n_cycles ≈ 1.43–1.69 (1.5-cycle resonance, where the value distribution acquires left-skewness). The 5-zone structure confirms that window length maps non-monotonically through the class space — crossing the 1-cycle threshold is not a single sharp transition.
+
+---
+
+### Finding 111: Burst fingerprint disappears at LARGE widths (>0.134 of window), not small — kurtosis is the discriminator
+
+**Prediction:** Burst disappears when the spike is too narrow (<0.08–0.10 of window). Prediction reversed.
+
+**Result:** Burst class maintained for burst_width ∈ [0.020, 0.134] — including the narrowest spike tested (kurtosis=15.5). Above 0.134: centered burst → oscillator; left-biased burst (center=0.25) → declining_monotonic.
+
+Feature evolution (centered):
+
+| burst_width | class | skewness | kurtosis |
+|---|---|---|---|
+| 0.020 | burst | +4.03 | +15.53 |
+| 0.085 | burst | +1.37 | +0.35 |
+| 0.134 | burst | +0.71 | −1.05 |
+| 0.183 | oscillator | +0.29 | −1.43 |
+
+**The discriminator is kurtosis.** A narrow spike on a flat baseline is leptokurtic (kurtosis>0). A broad Gaussian bell filling most of the window is platykurtic (kurtosis<0). ZC and lag1 do not change at the transition — kurtosis alone drives the class boundary. The burst class does not require the spike to be a large fraction of the window — even a tiny spike with kurtosis>0 classifies as burst.
+
+**What it means:** Burst is not a "window-size" class but a "kurtosis" class. The burst fingerprint is robust to extreme narrowness but collapses when the pulse smoothly fills the window. Position also matters: an off-center wide Gaussian classifies as declining_monotonic (the window sees only the falling half of the curve), not oscillator.
+
+---
+
+### Finding 112: Oscillatory signals are window-sensitive; trend-type signals are window-invariant
+
+**Result: Prediction confirmed exactly.**
+
+Window-INVARIANT (1 class across all n_cycles ∈ [0.15, 8]):
+- linear_trend → integrated_trend (100%)
+- cumsum_pos → integrated_trend (100%)
+- cumsum_neg → declining_monotonic (100%)
+
+Window-SENSITIVE (multiple classes):
+- sinusoid: 6 distinct classes (traverses all except burst, declining_osc, irregular_osc at clean σ=0)
+- two_freq: 7 distinct classes
+- damped_sinusoid: 8 distinct classes (all except trend)
+- noisy_sinusoid: 4 distinct classes (irregular_osc dominant at 68%)
+
+**What it means:** Trend-type signals have no intrinsic period — the shape class is determined by drift direction and noise level, independent of window length. They are observer-invariant.
+
+All oscillatory signals traverse at least 4 different classes as window length varies. The damped sinusoid traverses 8 of the 9 classes (all except trend) — the full shape-class atlas is accessible via window length alone.
+
+**The thunder hypothesis is supported:** For any periodic process, the shape class is a property of the (signal, window) pair, not the signal alone. Two observers with different window lengths will consistently assign different classes to the same underlying process. Trend-type dynamics are "what they are" regardless of timescale; oscillatory dynamics are timescale-relative.

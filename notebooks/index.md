@@ -10,7 +10,7 @@ Cross-domain time series shape clustering. The hypothesis: series from completel
 
 ## Where we are
 
-**36 notebooks. 109 findings. 9 shape classes. 17 datasets across 8 unrelated domains.**
+**37 notebooks. 112 findings. 9 shape classes. 17 datasets across 8 unrelated domains.**
 
 Phase 1 and 2 are complete. Phase 3 is underway: connecting shape classes to the differential equations that generate them.
 
@@ -65,6 +65,8 @@ Deterministic chaos (Rössler attractor) and stochastic noise are fingerprint-in
 
 **Van der Pol limit cycles never reach irregular_osc (nb36, F108).** Nonlinearity alone is insufficient — stochastic forcing is required to enter the irregular_osc basin. At large μ, the relaxation oscillator period exceeds the window length → window aliasing into declining_monotonic (same mechanism as F101). The path to irregular_osc is through noise, not nonlinearity.
 
+**Shape classes are observer-relative for periodic signals (nb37, F112).** Trend-type signals (trend, integrated_trend, declining_monotonic) are window-invariant — they classify identically regardless of how long the observation window is. All oscillatory signals are window-sensitive: a pure sinusoid traverses 6 different shape classes as the window length varies from 0.1 to 8 cycles. The thunder hypothesis is supported: for periodic dynamics, the class depends on the (signal, observer) pair, not the signal alone.
+
 ---
 
 ## The corpus
@@ -86,8 +88,8 @@ Deterministic chaos (Rössler attractor) and stochastic noise are fingerprint-in
 
 ## Navigate
 
-- **[Findings](FINDINGS.md)** — 109 discoveries, each with claim, evidence, meaning
+- **[Findings](FINDINGS.md)** — 112 discoveries, each with claim, evidence, meaning
 - **[Milestones](MILESTONES.md)** — roadmap and phase tracking
 - **[Experiments](EXPERIMENTS.md)** — session-by-session log
 - **[Decisions](DECISIONS.md)** — methodological choices and reasons
-- **[Sessions](summary_26APR2026_nb36.md)** — most recent session summary
+- **[Sessions](summary_26APR2026_nb37.md)** — most recent session summary
