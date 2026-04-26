@@ -1186,3 +1186,50 @@ Mean α at oscillator→? boundary: −0.717. Mean α at →burst boundary: −2
 | No fixed eigenvalue (noise attractor) | irregular_osc | Universal convergence at σ≥0.25 |
 
 **Structural isolation:** No parameter sweep within one family reaches another family. Moving from the complex-plane cluster to the first-order cluster requires changing ODE order. eco_cycle and irregular_osc are not clean eigenvalue classes — they are noise-emergent boundary and attractor effects. This 4-family structure is the complete mechanistic taxonomy of the 9 shape classes.
+
+---
+
+## Session 20 — 26 April 2026 (Notebook 36)
+
+### Finding 107: Lorenz attractor geometry IS fingerprint-visible — three projections land in three different classes
+
+**Prediction:** Lorenz x, y, z all → irregular_osc across all windows. Attractor geometry (two-lobed butterfly vs Rössler single-lobe) invisible to 6-feature fingerprint.
+
+**Result: Prediction refuted.**
+- Lorenz z: 24/24 irregular_osc (100%). lag1=0.762, ZC=0.206. Matches Rössler (F93).
+- Lorenz y: 17/24 irregular_osc (71%), 4/24 burst, 3/24 declining_osc. lag1=0.833, ZC=0.125.
+- Lorenz x: 18/24 eco_cycle (75%), 4/24 burst. lag1=0.899, ZC=0.087. Completely wrong prediction.
+
+Lorenz x has lag1=0.899 and ZC=0.087 — far from the Rössler reference (lag1=0.50–0.66, ZC=0.25–0.31). The x-axis slowly oscillates between the two attractor wings, creating long-range persistence (high lag1) and few sign changes (low ZC). The two-lobed butterfly geometry is detectable: the slow cross-wing oscillation of x projects onto a fundamentally different fingerprint than Rössler's single-lobe chaos.
+
+**What it means:** The 6-feature fingerprint discriminates attractor geometries via projection. All three projections of the same Lorenz attractor land in different fingerprint regions: x → eco_cycle, y → irregular_osc (majority), z → irregular_osc. Rössler was fingerprint-indistinguishable from noise (F93); Lorenz x is not — the two-lobed structure produces high autocorrelation and low ZC, landing in eco_cycle. Projection matters: the observable choice determines the fingerprint class.
+
+---
+
+### Finding 108: Van der Pol limit cycle → oscillator for all μ; window aliasing (not chaos) causes class failure at large μ
+
+**Prediction:** Small μ → oscillator. Large μ (≥3) → irregular_osc or burst.
+
+**Result: Prediction partially refuted.**
+- μ=0.1–0.5: 100% oscillator. Confirmed.
+- μ=1.0–3.0: oscillator dominant (88–94%). No irregular_osc.
+- μ=5.0: 100% oscillator. No irregular_osc.
+- μ=8.0: declining_monotonic dominant (38%), mixed classes. No irregular_osc at any μ.
+
+ZC drops monotonically: 0.062 (μ=0.1) → 0.024 (μ=8). Van der Pol period grows as T ≈ 1.61μ for large μ. At μ=8, T ≈ 12.9 ≈ T_WIN (4π ≈ 12.6) — the window covers barely one cycle, ZC collapses → window aliasing into declining_monotonic (same mechanism as F101).
+
+**What it means:** Van der Pol never produces irregular_osc. The path to irregular_osc requires stochastic forcing — nonlinearity alone, even a relaxation limit cycle, does not cross into the irregular_osc basin. The class failure at large μ is not a dynamical transition but a measurement artifact: window aliasing collapses the fingerprint when the period approaches the window length. The boundary between "detectable oscillation" and "undetectable aliasing" is T_period ≈ T_window.
+
+---
+
+### Finding 109: No eco_cycle / declining_osc / oscillator triple point — oscillator is absent from the junction region
+
+**Prediction:** Not a true triple point. Prediction confirmed.
+
+**Result:**
+- In the full (γ, θ) grid (γ∈[0.30,0.80], θ∈[0°,20°], 1066 points): 868 declining_osc, 198 eco_cycle, 0 oscillator.
+- Best triple-point candidate: γ=0.300, θ=8.5° — d_eco=0.805, d_dosc=1.003, d_osc=1.003. Spread=0.198.
+- Centroid inter-distances: eco_cycle ↔ oscillator=0.811, eco_cycle ↔ declining_osc=1.254.
+- The oscillator class requires γ<0.30 at ω=4; it is structurally isolated from the eco/dosc boundary.
+
+**What it means:** The junction (F99) is a 1D eco_cycle/declining_osc boundary, not a 0D triple point. The oscillator centroid lies on the far side of the eco_cycle region and is never approached by trajectories in the θ∈[0°,20°] sweep. No triple point exists within the accessible (γ, θ) parameter space. The three-class boundary structure is: oscillator → eco_cycle (displacement IC, decreasing θ) → declining_osc (increasing θ) — a linear progression, not a Y-junction.

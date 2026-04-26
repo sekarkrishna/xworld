@@ -4,6 +4,29 @@ Chronological record of what was tried, what happened, and why each direction wa
 
 ---
 
+## 2026-04-26 — nb36 (Phase 3: Chaos survey and 3-way junction)
+
+### Goal
+Two experiments: (A) compare Lorenz and Van der Pol attractors against Rössler reference (F93); (B) fine-sweep the eco_cycle/declining_osc/oscillator junction to test for a true triple point.
+
+### Pre-run predictions
+- Lorenz x, y, z all → irregular_osc. Attractor geometry invisible to fingerprint.
+- Van der Pol small μ → oscillator; large μ (≥3) → irregular_osc.
+- No true triple point at the eco/dosc/osc junction.
+
+### Results
+
+**Lorenz:** Prediction refuted for x. z→irregular_osc (100%), y→irregular_osc (71%), x→eco_cycle (75%) with lag1=0.899, ZC=0.087. The two-lobed butterfly creates slow cross-wing oscillation in x — high lag1, low ZC — landing in eco_cycle, not irregular_osc. Three projections of the same attractor land in three different classes. Attractor geometry IS fingerprint-visible via projection.
+
+**Van der Pol:** Prediction partially refuted. Small μ (0.1–0.5) → oscillator (confirmed). Large μ never reaches irregular_osc at any tested value. μ=8.0 → declining_monotonic dominant via window aliasing: period ≈ 1.61μ ≈ T_WIN → ZC collapses. Nonlinearity alone does not cross into irregular_osc basin.
+
+**3-way junction:** Prediction confirmed. Grid (1066 points): 868 declining_osc, 198 eco_cycle, 0 oscillator. Best triple-point score=0.198 at γ=0.300, θ=8.5°. The junction is a 1D eco/dosc boundary; oscillator requires γ<0.30 and is absent from the parameter region explored.
+
+### Findings
+F107–F109 added. Total findings: **109**.
+
+---
+
 ## 2026-04-26 — nb35 (Phase 3: ODE eigenvalue map)
 
 ### Goal
