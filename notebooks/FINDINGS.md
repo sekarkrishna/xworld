@@ -1302,3 +1302,61 @@ Window-SENSITIVE (multiple classes):
 All oscillatory signals traverse at least 4 different classes as window length varies. The damped sinusoid traverses 8 of the 9 classes (all except trend) — the full shape-class atlas is accessible via window length alone.
 
 **The thunder hypothesis is supported:** For any periodic process, the shape class is a property of the (signal, window) pair, not the signal alone. Two observers with different window lengths will consistently assign different classes to the same underlying process. Trend-type dynamics are "what they are" regardless of timescale; oscillatory dynamics are timescale-relative.
+
+---
+
+## Session 22 — 26 April 2026 (Notebook 38)
+
+### Finding 113: All four oscillatory classes have similar observability zone widths (~2.5 cycles); irregular_osc is effectively window-invariant at 96%
+
+**Prediction:** eco_cycle has the narrowest observability zone. Prediction wrong.
+
+**Result:** All four periodic classes cluster at 30–36% self-recognition, each with ~2.5-cycle-wide observability zones.
+
+| Class | Self-recognition | Observability zone | Zone width |
+|---|---|---|---|
+| trend | 100% | all n_cycles | ∞ (invariant) |
+| integrated_trend | 100% | all n_cycles | ∞ (invariant) |
+| declining_monotonic | 100% | all n_cycles | ∞ (invariant) |
+| burst | 100% | all n_cycles | ∞ (kurtosis-driven, F111) |
+| irregular_osc | 96% | [0.15, 8.00] | ~8 cycles (noise-dominated) |
+| declining_osc | 36% | [2.54, 5.32] | 2.78 cycles |
+| oscillator | 33% | [1.14, 3.93] | 2.79 cycles |
+| eco_cycle | 30% | [1.14, 3.63] | 2.49 cycles |
+| seasonal | 30% | [4.03, 6.51] | 2.48 cycles (narrowest) |
+
+The ~30% self-recognition rate reflects zone width (~2.5 cycles) / sweep range (7.85 cycles). All four periodic classes are equally window-sensitive. irregular_osc is the only window-sensitive class that is effectively window-invariant — noise dominates at all n_cycles, making it the universal attractor regardless of observation scale.
+
+**What it means:** There is no "most fragile" periodic class. All oscillatory classes require 2–3 full cycles in the observation window for reliable self-identification, and no more than 5–6 before aliasing into seasonal or irregular_osc. The observability constraint is universal, not class-specific.
+
+---
+
+### Finding 114: Corpus robustness audit — 12/17 datasets robustly classified; CO2_seasonal is the clearest window-awarded case
+
+Empirical observability zones applied to estimated n_cycles for each corpus dataset:
+
+| Verdict | Datasets |
+|---|---|
+| INVARIANT (8) | CO2_trend, CH4_trend, Ocean_heat, Sea_level, PIOMAS_ice, Glaciers, Forest_cover, COVID |
+| NOISE-ROBUST (3) | NAO, PDO, VIX (irregular_osc, 96% self-recognition, no dominant period) |
+| EARNED (1) | Sunspot (n_cycles≈2.0, oscillator zone [1.14, 3.93]) |
+| BORDERLINE (4) | ENSO (n_cycles≈0.29), Global_temp (n_cycles≈1.0), Arctic_sea_ice (n_cycles≈2.0, zone starts at 2.54), Antarctic_sea_ice (same) |
+| WINDOW-AWARDED (1) | CO2_seasonal (n_cycles≈3.0, below seasonal zone [4.03, 6.51]) |
+
+**CO2_seasonal:** At a 3-year window, n_cycles=3.0 falls below the seasonal observability zone (minimum 4.03 cycles). A 4+ year window is required for robust seasonal classification; at 3 years, the signal classifies as oscillator.
+
+**Sea ice datasets:** At a 24-month window (n_cycles=2.0), both sea ice datasets are just below the declining_osc zone (starts at 2.54). A 30-month window would place them firmly in the zone.
+
+**What it means:** 12/17 corpus classifications are robust (71%). The 5 borderline/awarded datasets all involve periodic or quasi-periodic signals where the analyst's window choice is load-bearing. The note to future corpus analyses: for periodic datasets, document window length and verify n_cycles ≥ class minimum.
+
+---
+
+### Finding 115: The XWorld central claim is observer-invariant for trend and noise dynamics; observer-relative for periodic oscillations
+
+The corpus robustness audit establishes two regimes:
+
+**Observer-invariant (12/17):** The 6 monotone-decline and trend datasets (CO2 trend, CH4 trend, ocean heat, sea level, PIOMAS ice, glaciers, forest cover, COVID) classify identically regardless of observation window. The cross-domain shape match between glacier retreat and stock market spikes (declining_monotonic and burst) — the central XWorld claim — rests entirely on these window-invariant classes. This core result is observer-independent.
+
+**Observer-relative (5/17):** Periodic datasets (CO2 seasonal, sea ice) and quasi-periodic datasets (ENSO, temperature) are window-sensitive. The class assigned depends on the analyst's observation window. Both assignments can be "correct" for their own timescale.
+
+**Thunder hypothesis — final assessment:** The ODE structure (F106) is observer-independent: the differential equations that generate each shape class do not change with the observer. What changes is which region of the 6D feature space the observation maps to. The map is observer-relative; the territory is not. The XWorld hypothesis ("the domain is the costume, the dynamic is real") holds for the 12 window-invariant datasets — those are the datasets where the shape class is truly about the world, not the measuring instrument.

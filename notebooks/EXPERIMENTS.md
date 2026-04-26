@@ -4,6 +4,29 @@ Chronological record of what was tried, what happened, and why each direction wa
 
 ---
 
+## 2026-04-26 — nb38 (Phase 3 Thread 4 synthesis: Corpus robustness audit)
+
+### Goal
+Apply the window-aliasing results (nb37) to the full corpus. (A) Measure self-recognition rates for each class across n_cycles sweep. (B) Map all 17 datasets to observability zones and assign robustness verdicts.
+
+### Pre-run predictions
+- F113: trend/integrated_trend/declining_monotonic → 100%; eco_cycle narrowest zone, lowest self-recognition.
+- F114: ENSO is clearest window-awarded case.
+- F115: 14/17 datasets classified robustly.
+
+### Results
+
+**Part A (self-recognition):** trend/IT/DM/burst all 100%. irregular_osc 96% (effectively invariant). All four periodic classes cluster at 30–36% with ~2.5-cycle zones. eco_cycle NOT the narrowest — seasonal (2.48 cycle-units) edges it by 0.01. Predictions F113/F114 partly wrong.
+
+**Part B (audit):** NaN-handling bug initially misclassified NAO/PDO/VIX as WINDOW-AWARDED; corrected to NOISE-ROBUST. Final corrected: INVARIANT=8, NOISE-ROBUST=3, EARNED=1, BORDERLINE=4, WINDOW-AWARDED=1 (CO2_seasonal). Clearest window-awarded case is CO2_seasonal (n_cycles=3.0, below seasonal zone starting at 4.03), not ENSO. Sea ice datasets are BORDERLINE (n_cycles=2.0, zone starts at 2.54). Total robust: 12/17 (71%). Predictions F114/F115 were approximately right about the count but wrong about which datasets.
+
+**Thread 4 synthesis:** The XWorld central claim is observer-invariant for 12/17 datasets (trend, noise, monotone decline). Observer-relative for 5 periodic/quasi-periodic datasets. The ODE territory (F106) is observer-independent; the fingerprint map from observation to class is observer-relative for periodic signals.
+
+### Findings
+F113–F115 added. Total findings: **115**.
+
+---
+
 ## 2026-04-26 — nb37 (Phase 3 Thread 4: Window aliasing and observer-relative shape classes)
 
 ### Goal

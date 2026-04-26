@@ -10,7 +10,7 @@ Cross-domain time series shape clustering. The hypothesis: series from completel
 
 ## Where we are
 
-**37 notebooks. 112 findings. 9 shape classes. 17 datasets across 8 unrelated domains.**
+**38 notebooks. 115 findings. 9 shape classes. 17 datasets across 8 unrelated domains.**
 
 Phase 1 and 2 are complete. Phase 3 is underway: connecting shape classes to the differential equations that generate them.
 
@@ -67,6 +67,8 @@ Deterministic chaos (Rössler attractor) and stochastic noise are fingerprint-in
 
 **Shape classes are observer-relative for periodic signals (nb37, F112).** Trend-type signals (trend, integrated_trend, declining_monotonic) are window-invariant — they classify identically regardless of how long the observation window is. All oscillatory signals are window-sensitive: a pure sinusoid traverses 6 different shape classes as the window length varies from 0.1 to 8 cycles. The thunder hypothesis is supported: for periodic dynamics, the class depends on the (signal, observer) pair, not the signal alone.
 
+**Corpus robustness audit (nb38): 12/17 datasets classified robustly.** All four periodic classes have similar observability zones (~2.5 cycles wide). Trend/noise/burst classes are window-invariant (100% self-recognition). CO2_seasonal is the main window-awarded case (requires a 4+ year window, not 3). Arctic/Antarctic sea ice are borderline. The XWorld central claim holds for its 12 window-invariant datasets — the ODE territory is observer-independent; only the fingerprint map is observer-relative.
+
 ---
 
 ## The corpus
@@ -88,8 +90,8 @@ Deterministic chaos (Rössler attractor) and stochastic noise are fingerprint-in
 
 ## Navigate
 
-- **[Findings](FINDINGS.md)** — 112 discoveries, each with claim, evidence, meaning
+- **[Findings](FINDINGS.md)** — 115 discoveries, each with claim, evidence, meaning
 - **[Milestones](MILESTONES.md)** — roadmap and phase tracking
 - **[Experiments](EXPERIMENTS.md)** — session-by-session log
 - **[Decisions](DECISIONS.md)** — methodological choices and reasons
-- **[Sessions](summary_26APR2026_nb37.md)** — most recent session summary
+- **[Sessions](summary_26APR2026_nb38.md)** — most recent session summary
