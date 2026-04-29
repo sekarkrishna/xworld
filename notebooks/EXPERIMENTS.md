@@ -4,6 +4,37 @@ Chronological record of what was tried, what happened, and why each direction wa
 
 ---
 
+## 2026-04-29 — nb39 (Thunder Hypothesis Phase 3 Test: TDA and RQA as independent measurement systems)
+
+### Goal
+Test whether the 9-class shape taxonomy is a receptor artifact (specific to the 6-feature fingerprint) or a constraint structure (recoverable by any reasonable measurement). Apply two measurement systems from completely different mathematical frameworks to the canonical 9-class generators and compare discriminative power (ARI) against the 6-feature fingerprint.
+
+**Part A — TDA (persistent homology):** Delay-embed each time series (τ=4, dim=3) into a 56-point 3D point cloud. Compute H0 and H1 persistent homology with ripser. Key feature: H1_max persistence (loop prominence — high for periodic attractors, near-zero for trends).
+
+**Part B — RQA:** Compute the recurrence matrix in phase space (adaptive threshold at 10% recurrence rate). Extract determinism (DET), laminarity (LAM), entropy (ENTR). DET measures regularity of diagonal return patterns; LAM measures slow-drift vertical structures.
+
+**Part C — Cluster test:** 100 instances per class from all 9 generators. Cluster TDA, RQA, TDA+RQA, and 6-feature feature sets independently with UMAP+HDBSCAN. Compare ARI.
+
+### Pre-run predictions
+- **F116:** H1_max ratio periodic/aperiodic > 3x. TDA ARI < 0.5 — recovers periodic/aperiodic split but cannot separate within ODE families.
+- **F117:** DET highest for seasonal/oscillator; LAM highest for trend-type. RQA ARI < 0.5. Trend-family LAM values are similar across trend/integrated_trend/declining_monotonic.
+- **F118:** TDA+RQA ARI < 0.65. Gap from 6-feature fingerprint = receptor-dependent component. Missing discriminators are orientation-sensitive (slope sign, skewness, baseline_delta). Conclusion: 4 ODE families are observer-independent; 9 classes within families are partially receptor artifacts.
+
+### Results
+
+**Part A (TDA):** H1_max ratio = 2.9x (predicted >3x — just below threshold). More importantly: trend-family has H1≈0 (integrated_trend=0.000, declining_monotonic=0.000, trend=0.013); all 6 other classes have H1_max ≥ 1.28. The surprise: irregular_osc (1.32) and burst (1.47) have strong H1 — noisy/transient signals create loops in phase space. TDA detects trend-family vs all-others cleanly, but cannot separate within the non-trend group.
+
+**Part B (RQA):** LAM cleanly separates trend-family (0.95–0.99) from all others (0.61–0.74) — prediction confirmed. DET ranking was wrong: integrated_trend has highest DET (0.497), not seasonal. DET range is only 0.32–0.50, a poor discriminator. LAM is the key RQA axis.
+
+**Part C (cluster test):** Fingerprint ARI=0.410, TDA+RQA ARI=0.415 — essentially tied (receptor gap = −0.004). Both methods over-segment (n_clusters=40). Per-class: trend is 100% pure under TDA+RQA; eco_cycle is 17% dominant with 36% noise (hardest for TDA+RQA). The fingerprint fails differently. Multiple independent methods reach the same overall discriminative power — the taxonomy is not privileged to the fingerprint.
+
+**Thunder hypothesis revised conclusion:** The trend-family/all-others boundary is the most robust observer-independent division (detected by both H1≈0 and LAM≈1.0 independently). The 9-class taxonomy is real (multiple independent frameworks converge on similar ARI) but framework-relative at the within-family level (each method has different blind spots).
+
+### Findings
+F116–F118 added. Total findings: **118**.
+
+---
+
 ## 2026-04-26 — nb38 (Phase 3 Thread 4 synthesis: Corpus robustness audit)
 
 ### Goal

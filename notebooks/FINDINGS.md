@@ -1360,3 +1360,87 @@ The corpus robustness audit establishes two regimes:
 **Observer-relative (5/17):** Periodic datasets (CO2 seasonal, sea ice) and quasi-periodic datasets (ENSO, temperature) are window-sensitive. The class assigned depends on the analyst's observation window. Both assignments can be "correct" for their own timescale.
 
 **Thunder hypothesis — final assessment:** The ODE structure (F106) is observer-independent: the differential equations that generate each shape class do not change with the observer. What changes is which region of the 6D feature space the observation maps to. The map is observer-relative; the territory is not. The XWorld hypothesis ("the domain is the costume, the dynamic is real") holds for the 12 window-invariant datasets — those are the datasets where the shape class is truly about the world, not the measuring instrument.
+
+---
+
+## 2026-04-29 — Notebook 39 (Thunder Hypothesis Phase 3 Test: TDA and RQA)
+
+### Finding 116: TDA H1_max distinguishes the trend family (H1≈0) from all other classes, but cannot separate within the non-trend group; irregular_osc and burst have strong H1 contrary to prediction
+
+**Prediction:** H1_max ratio periodic/aperiodic > 3x. TDA reveals periodic/aperiodic split but conflates within-family.
+
+**Result: Prediction approximately correct but the boundary is different from predicted.**
+
+| Class | H1_max (mean) | H1_count |
+|---|---|---|
+| oscillator | 2.180 | 1.32 |
+| seasonal | 1.600 | 8.42 |
+| eco_cycle | 1.326 | 9.66 |
+| declining_osc | 1.281 | 18.24 |
+| irregular_osc | 1.316 | 7.88 |
+| burst | 1.468 | 7.36 |
+| trend | 0.013 | 1.48 |
+| integrated_trend | 0.000 | 1.00 |
+| declining_monotonic | 0.000 | 1.00 |
+
+The overall periodic/aperiodic ratio = 2.9x (just below the predicted 3x threshold). The grouping was wrong: `irregular_osc` (H1=1.32) and `burst` (H1=1.47) have H1_max comparable to the oscillatory classes. Noisy signals create many short-lived loops in phase space; transient signals create brief loops. The actual TDA boundary is **trend-family vs all-others**: integrated_trend and declining_monotonic have exactly zero H1 (monotone arcs make no loops); trend has near-zero H1 (0.013). All other 6 classes have H1_max ≥ 1.28.
+
+**What it means:** TDA detects the most fundamental structural boundary — whether a trajectory closes into loops or drifts open. Orientation (up vs down) is topology-blind. The 3-class ODE family split that TDA recovers: (1) monotone drift (H1≈0), (2) everything else (H1≥1.3). Within the non-trend group, TDA can partially separate oscillator (highest H1_max=2.18) but cannot resolve eco_cycle, declining_osc, irregular_osc, and burst — all have similar H1_max (1.28–1.47).
+
+---
+
+### Finding 117: RQA laminarity (LAM) cleanly separates the trend family; determinism (DET) is a poor class discriminator, contrary to prediction
+
+**Prediction:** DET highest for seasonal/oscillator. LAM highest for trend-type. Both trends confirmed for LAM; DET ranking was wrong.
+
+**Result: LAM prediction confirmed. DET prediction reversed.**
+
+| Class | DET | LAM |
+|---|---|---|
+| integrated_trend | 0.497 | **0.994** |
+| declining_monotonic | 0.494 | **0.994** |
+| trend | 0.456 | **0.953** |
+| oscillator | 0.460 | 0.738 |
+| eco_cycle | 0.410 | 0.734 |
+| declining_osc | 0.455 | 0.651 |
+| seasonal | 0.421 | 0.614 |
+| irregular_osc | 0.349 | 0.663 |
+| burst | 0.318 | 0.671 |
+
+**LAM (confirmed):** The three trend classes have LAM = 0.95–0.99; all 6 others have LAM = 0.61–0.74. LAM gap ≈ 0.28, well above class standard deviations. This is a clean, reliable separator. The mechanism: monotone drift creates long unbroken vertical lines in the recurrence plot (the system revisits nearby states for extended runs); oscillatory signals break these runs when the trajectory moves away from the basin.
+
+**DET (prediction reversed):** integrated_trend has the highest DET (0.497), not seasonal. The DET range across all 9 classes is only 0.317–0.497 — a spread of 0.18 compared to LAM's spread of 0.61–0.994. DET alone barely separates burst (0.318) from integrated_trend (0.497). The prediction that DET would rank highest for regular periodic signals was wrong: monotone drifts also generate long diagonal runs (the slowly-drifting trajectory has high determinism).
+
+**What it means:** RQA's discriminative power comes almost entirely from LAM. The trend-family/non-trend boundary is as clean in RQA (LAM axis) as in TDA (H1 axis) — but they are measuring the same structural boundary from different angles.
+
+---
+
+### Finding 118: TDA+RQA combined achieves the same ARI as the 6-feature fingerprint; the predicted receptor-dependent gap does not appear; the thunder hypothesis requires revision
+
+**Prediction:** TDA+RQA ARI < 0.65, with fingerprint significantly higher (~0.85). Receptor gap ≈ 0.3+.
+
+**Result: Prediction wrong. ARI fingerprint=0.410, TDA+RQA=0.415. Receptor gap ≈ 0 (−0.004).**
+
+| Method | ARI | n_clusters | noise% |
+|---|---|---|---|
+| 6-feature fingerprint | 0.410 | 40 | 7% |
+| TDA only | 0.185 | 48 | 5% |
+| RQA only | 0.297 | 41 | 8% |
+| TDA + RQA combined | **0.415** | 40 | 13% |
+
+Both methods over-segment (40 clusters for 9 classes), so the ARI comparison is confounded. But the equality itself is the finding: under the same UMAP+HDBSCAN conditions, TDA+RQA reaches the same cluster structure as the fingerprint. This means the two feature spaces contain equivalent discriminative information at the resolution of this clustering setup.
+
+**Per-class analysis reveals where the two frameworks differ:**
+- trend: 100% pure under TDA+RQA (unique H1≈0 + LAM≈1.0 makes it perfectly isolable)
+- eco_cycle: only 17% dominant cluster with 36% noise under TDA+RQA (no unique TDA/RQA signature)
+- The 6-feature fingerprint fails differently: skewness and slope sign separate eco_cycle cleanly but confuse other classes in different places
+
+**Revised thunder hypothesis:**
+The prediction was that the fingerprint would be privileged — that its orientation-sensitive features (slope, skewness, baseline_delta) give it a discriminative edge that topology cannot match. This was wrong. The correct statement:
+
+1. **Both frameworks recover the same overall cluster structure (ARI ≈ 0.41)** — the 9-class taxonomy is not unique to the fingerprint.
+2. **The strongest observer-independent boundary is trend-family vs all-others** (H1≈0 for trend-family; LAM≈1.0 for trend-family) — this is detected by TDA and RQA independently and cleanly.
+3. **Within-group discrimination is framework-specific:** TDA cannot separate oscillator from irregular_osc (both have H1≈1.3–2.2); fingerprint separates them via skewness and ZC. RQA cannot separate trend from declining_monotonic (both LAM≈0.99); fingerprint separates them via slope sign. Each framework has its own blind spots.
+4. **The 9-class taxonomy is real in the sense that multiple independent frameworks recover comparable cluster structure.** It is receptor-relative in the sense that which specific pairs are easily separated depends on the measurement frame.
+
+**What it means:** The thunder hypothesis final form: the dynamic structure (loop vs drift, regular vs chaotic) is in the world. The taxonomy is in the measurement. Both statements are simultaneously true. The 4-family boundary (drift / periodic / two-frequency / noise) is observer-independent. The 9-class boundary is a specific carving of the within-family space that is framework-relative but not arbitrary — multiple frameworks carve it similarly, just with different strengths and blind spots.
