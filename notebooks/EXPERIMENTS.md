@@ -4,6 +4,37 @@ Chronological record of what was tried, what happened, and why each direction wa
 
 ---
 
+## 2026-04-29 — nb40 (The eco_cycle Verdict: Distinct Attractor or Noise-Displaced Oscillator?)
+
+### Goal
+Deliver a definitive verdict on eco_cycle: should it remain a first-class shape category? The class has accumulated four prior strikes (no ODE basis, no real-world anchor, noise-sufficient generation, weakest TDA+RQA purity). Three tests form the verdict:
+
+**Part A — Noise continuum:** Sweep pure oscillator + noise from σ=0 to 0.5. Is the oscillator→eco_cycle transition sharp (real attractor boundary) or gradual (noise-displaced overlap)?
+
+**Part B — Harmonic phase diagram:** 2D sweep of harmonic_amplitude × noise_σ. Does eco_cycle require the 2nd harmonic, or does noise alone produce it?
+
+**Part C — Retire test:** Remove eco_cycle from the centroid classifier. Where do eco_cycle instances land? Does any corpus dataset change class? Does 8-class ARI hold?
+
+### Pre-run predictions
+- **F119:** Gradual transition (no step-change). eco_cycle is a noise-displaced intermediate, not a distinct attractor.
+- **F120:** >90% of eco_cycle instances reassign to oscillator under 8-class system. Zero of the 17 corpus datasets change class.
+- **F121:** eco_cycle should be demoted to a transition-zone descriptor. The 8-class system is equally discriminative for all corpus datasets.
+
+### Results
+
+**Part A (Noise continuum):** Entry into eco_cycle is smooth — fraction rises from 3% at σ=0 to a peak of 53% at σ=0.167 with no single large step. Max adjacent-step change = 0.240 (mean = 0.045), but this occurs on the exit side (eco_cycle→irregular_osc at σ≈0.208), not the entry. No sharp basin boundary on the oscillator side.
+
+**Part B (Phase diagram):** Noise alone (harm=0) peaks at 70% eco_cycle at σ=0.15 — confirming F98. Harmonic content is not required but shifts the peak: harm=0.4 produces 92% eco_cycle at σ=0. At harm>0.6 the class becomes seasonal; at σ>0.30 it becomes irregular_osc regardless of harmonic.
+
+**Part C (Retire test):** 58% absorbed by oscillator (predicted >90%), 27.5% to declining_osc, 8% to seasonal, 6% to irregular_osc. The three-way split is informative — eco_cycle occupies a boundary region between three classes, not a subdivision of oscillator alone. 9-class ARI = 0.720 vs 8-class ARI = 0.682 (Δ = −0.038). Zero corpus datasets change class.
+
+**Verdict:** All eight criteria met. eco_cycle is retired as a first-class shape category. The 8-class taxonomy is adopted from nb40 onward. eco_cycle is retained as a transition-zone label for the noise-harmonic intermediate region.
+
+### Findings
+F119–F121 added. Total findings: **121**.
+
+---
+
 ## 2026-04-29 — nb39 (Thunder Hypothesis Phase 3 Test: TDA and RQA as independent measurement systems)
 
 ### Goal

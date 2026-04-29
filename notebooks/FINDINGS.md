@@ -4,6 +4,58 @@ Cumulative record of what has been discovered, in the order it was discovered. E
 
 ---
 
+## 2026-04-29 — Notebook 40 (The eco_cycle Verdict)
+
+### F119 — The oscillator → eco_cycle → irregular_osc transition is gradual; no sharp attractor boundary exists
+
+**Claim:** eco_cycle has no sharp basin boundary on the oscillator side. It is a statistical intermediate region between the oscillator and irregular_osc attractors, not a distinct third attractor.
+
+**Evidence:** Noise sweep (σ=0 to 0.50, 25 steps, 100 instances each). eco_cycle fraction rises from 3% at σ=0 to a peak of 53% at σ=0.167 smoothly, with no single step dominant on the entry side. Max adjacent-step change = 0.240 (mean = 0.045), but this occurs on the *exit* side — eco_cycle falling 43%→19% as irregular_osc takes over at σ≈0.208. Entry is gradual; exit is faster (noise overwhelms harmonic structure) but also not a discontinuity.
+
+**What it means:** A distinct attractor would have a sharp entry boundary — a critical σ where signals suddenly snap into the basin. No such boundary exists for eco_cycle. Signals do not enter eco_cycle; they pass through it as noise displaces them from the oscillator toward irregular_osc.
+
+---
+
+### F120 — eco_cycle instances split across three absorbing classes under 8-class system; zero corpus datasets affected
+
+**Claim:** eco_cycle occupies a three-way boundary region in the 6-feature space between oscillator, declining_osc, and irregular_osc. Retiring it does not affect any of the 17 corpus datasets.
+
+**Evidence (Part C):** 200 eco_cycle generator instances reclassified under the 8-class centroid system (eco_cycle removed): oscillator 58%, declining_osc 27.5%, seasonal 8%, irregular_osc 6%. Prediction of >90% oscillator absorption was overconfident — the multi-target split is itself evidence that eco_cycle does not belong to a single neighboring class. 9-class ARI = 0.720 vs 8-class ARI = 0.682 (Δ = −0.038). Zero of the 17 corpus datasets were ever classified as eco_cycle (confirmed in nb31).
+
+**Evidence (Part B — phase diagram):** Without any harmonic content (harm=0), noise alone peaks at 70% eco_cycle at σ=0.15. At harm=0.4, σ=0.00 produces 92% eco_cycle. eco_cycle is accessible from two independent routes (noise-driven and harmonic-driven), both routing through the same negative-skewness region.
+
+**What it means:** eco_cycle is not a subdivision of the oscillator basin. It is a low-discriminability region near the convergence of three class centroids. Removing it costs only 0.038 ARI and does not reclassify any real-world dataset.
+
+---
+
+### F121 — Verdict: eco_cycle is retired as a first-class shape category; the XWorld taxonomy becomes 8 classes
+
+**Claim:** eco_cycle fails all eight criteria for a defensible shape class. It is demoted to a transition-zone descriptor.
+
+**Evidence (cumulative):**
+
+| Criterion | Weight | Verdict |
+|---|---|---|
+| ODE basis | High | No — noise-required (nb32, F88) |
+| Real-world anchor | High | No — lynx-hare classifies as burst/declining_osc (nb34, F97) |
+| Noise independence | Medium | No — noise alone (σ≥0.12) is sufficient (nb34, F98; nb40 Part B) |
+| Sharp basin boundary | High | No — entry is gradual (nb40 Part A, F119) |
+| Single absorbing class | High | No — splits across 3 classes (nb40 Part C, F120) |
+| Corpus impact | High | None — zero datasets affected (nb40 Part C3) |
+| ARI penalty | Medium | Small — Δ=−0.038 (nb40 Part C2) |
+| TDA+RQA purity | Medium | 17% dominant cluster, weakest of all 9 classes (nb39, F118) |
+
+**The 8-class taxonomy (adopted from nb40 onward):**
+oscillator · seasonal · declining_osc · irregular_osc · burst · trend · integrated_trend · declining_monotonic
+
+Each retained class has: (a) an ODE or generative basis, (b) at least one real-world corpus anchor, (c) independent measurement support (TDA+RQA dominant cluster purity >40%).
+
+eco_cycle is retained as a **transition-zone label**: a signal that sits in the harmonic-distorted, noise-intermediate region between oscillator and irregular_osc can be described as "oscillator/eco_cycle boundary," but eco_cycle does not compete for corpus class assignments.
+
+**What it means:** The taxonomy contraction from 9 to 8 classes is the first time a shape category has been retired on cumulative evidence. It establishes the criteria for what a defensible class requires: ODE basis, real-world anchor, noise-independent existence, sharp basin, and independent-receptor support.
+
+---
+
 ## Session 1–2 — 23–24 March 2026
 
 ### Finding 1: Cross-domain shape clustering works
