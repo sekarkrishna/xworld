@@ -4,6 +4,31 @@ Chronological record of what was tried, what happened, and why each direction wa
 
 ---
 
+## 2026-04-30 — nb43 (Scale Inflection Test: does d_min plateau for single-process signals?)
+
+### Goal
+Test whether d_min stabilises once a window captures enough cycles of the dominant process, and whether multi-process signals fail to plateau. The tidal gauge (single dominant process: M2 semi-diurnal, period 12.42h) should produce a flat d_min curve above the cycle-capture threshold. The thermistor (competing HVAC, solar, occupancy processes) should remain variable across scales.
+
+**Part A — Tidal scale scan:** 22 log-spaced window lengths from 6h (sub-cycle) to 8760h (full year). Measure d_min at each scale. Dominant process: gravitational (M2, 12.42h).
+
+**Part B — Thermistor scale scan:** Same approach, 6h to ~480h. Dominant cycle: diurnal (~24h from solar+HVAC), competing with occupancy and weather.
+
+**Part C — Scale stability:** CV(d_min, windows ≥ 24h) for each signal. Class assignment entropy across scales. Single-process predicts CV < 0.15; multi-process predicts CV > 0.30.
+
+### Pre-run predictions
+- **F128:** Tidal d_min < 1.5 for all windows ≥ 12.5h; CV(d_min, ≥24h) < 0.15.
+- **F129:** Thermistor d_min does not plateau; CV(d_min, ≥24h) > 0.30.
+- **F130:** Steepest d_min drop for tidal near 12.5h (M2 period); for thermistor near 24h.
+
+### Results
+
+[To be filled after running nb43.]
+
+### Findings
+F128–F130 added. Total findings: **[TBD]**.
+
+---
+
 ## 2026-04-30 — nb42 (Dominant Process Test: does d_min track physical process coherence?)
 
 ### Goal

@@ -4,6 +4,38 @@ Cumulative record of what has been discovered, in the order it was discovered. E
 
 ---
 
+## 2026-04-30 — Notebook 43 (Scale Inflection Test)
+
+### F128 — [Tidal scale scan — to be filled after nb43 run]
+
+**Prediction:** d_min < 1.5 for all windows ≥ 12.5h (one M2 cycle); CV(d_min, ≥24h) < 0.15.
+
+**Evidence:** [TBD — NOAA CO-OPS tidal, 22 log-spaced window lengths 6h–8760h, from local cache]
+
+**What it means:** [TBD — if confirmed: single-process signals show scale-invariant d_min once the window exceeds one dominant cycle, a direct signature of process purity]
+
+---
+
+### F129 — [Thermistor scale scan — to be filled after nb43 run]
+
+**Prediction:** Thermistor d_min does not plateau; CV(d_min, ≥24h) > 0.30.
+
+**Evidence:** [TBD — Intel Lab thermistor hourly, same scale scan, from local cache]
+
+**What it means:** [TBD — if confirmed: multi-process signals have inherently unstable fingerprints across scales; the scale-CV is a new measurable proxy for process coherence]
+
+---
+
+### F130 — [Scale inflection point — to be filled after nb43 run]
+
+**Prediction:** Steepest d_min drop near the dominant cycle period (12.5h for tidal, ~24h for thermistor).
+
+**Evidence:** [TBD — derivative of d_min curve across scale scan for both signals]
+
+**What it means:** [TBD — if confirmed: the inflection point is an empirical estimate of the dominant process period, recoverable from classification geometry alone]
+
+---
+
 ## 2026-04-30 — Notebook 42 (Dominant Process Test)
 
 ### F125 — Tidal gauge → seasonal at d=0.724 — the cleanest classification in the corpus; scale-consistent at 1-week / 1-month / 1-year
