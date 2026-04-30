@@ -22,10 +22,14 @@ Test whether d_min stabilises once a window captures enough cycles of the domina
 
 ### Results
 
-[To be filled after running nb43.]
+**Part A (Tidal scale scan):** Sub-cycle windows (6–11h, <1 M2 cycle): d_min=6.7–12.0, classes = trend/irregular_osc fragments. Sharp drop at 16h (1.29 cycles): d=1.512, class=seasonal. All 21 windows ≥ 16h → seasonal (21/21). CV(d_min, ≥24h) = 0.163 (plateau real but slightly above 0.15 threshold). d_min range 0.573–1.058, mean 0.829. Steepest drop at 11h (near M2 12.42h).
+
+**Part B (Thermistor scale scan):** CV(d_min, ≥24h) = 0.303. 4 distinct classes in ≥24h windows (oscillator, burst, declining_osc, irregular_osc). Dominant class (burst) only 60% of windows. Steepest drop at 7h — no localized inflection near 24h diurnal period; the signal decreases gradually as each successive process enters the window.
+
+**Part C (Scale stability):** Tidal: n_distinct_classes=1, dominant_frac=100%. Thermistor: n_distinct_classes=4, dominant_frac=60%. The scale-CV (0.163 vs 0.303) and class diversity (1 vs 4) together provide a quantitative multi-process multiplicity score from the scale-scan curve alone.
 
 ### Findings
-F128–F130 added. Total findings: **[TBD]**.
+F128–F130 added. Total findings: **130**.
 
 ---
 
