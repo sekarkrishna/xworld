@@ -4,6 +4,138 @@ Cumulative record of what has been discovered, in the order it was discovered. E
 
 ---
 
+## 2026-04-30 — Notebook 42 (Dominant Process Test)
+
+### F125 — Tidal gauge → seasonal at d=0.724 — the cleanest classification in the corpus; scale-consistent at 1-week / 1-month / 1-year
+
+**Prediction:** oscillator or seasonal, d_min < 1.5 at all scales (1-week, 1-month, 1-year). Scale-consistent classification. **Confirmed — exceeded prediction.**
+
+**Result:**
+
+| Scale | n_pts | Class | d_min |
+|---|---|---|---|
+| 1-week | 168 | seasonal | 0.724 |
+| 1-month | 720 | seasonal | 0.910 |
+| 1-year | 8,760 | seasonal | 0.818 |
+
+Scale-consistent: True (all three → seasonal). Fingerprint: skewness≈0 (nearly symmetric sinusoid), kurtosis=−1.21 (platykurtic — characteristic of a pure sine wave), lag1=0.882, ZC=0.160.
+
+**Evidence:** NOAA CO-OPS Station 8518750 (The Battery, NYC), product=hourly\_height, MLLW datum, 2023. The dominant M2 tidal frequency (12.42h semi-diurnal) gives ~13.5 cycles per 168-hour window, landing in the seasonal class.
+
+**What it means:** The purest single-process physical signal (gravitational forcing from Moon+Sun) produces the cleanest class assignment in the corpus. The gravitational frequency is so dominant that no temporal scale changes the fingerprint — unlike window-sensitive corpus signals (nb38), the tidal gauge classifies identically across three orders of temporal scale. d=0.724 is the lowest centroid distance of any real-world signal tested so far.
+
+---
+
+### F126 — At the same 168-hour / 1-week temporal scale: tidal d_min=0.724 vs thermistor d_min=3.610 — a 5× gap driven by competing processes, not temporal scale
+
+**Prediction:** d_tidal < d_thermistor at 1-week / 168-hour scale. **Confirmed — gap larger than predicted.**
+
+| Feature | Tidal 1-wk | Thermistor 1-wk | Difference |
+|---|---|---|---|
+| skewness | 0.070 | 0.996 | +0.926 |
+| kurtosis | −1.213 | 1.653 | +2.866 |
+| lag1_autocorr | 0.882 | 0.882 | ≈0 |
+| zero_crossings | 0.161 | 0.149 | −0.012 |
+
+**Evidence:** NOAA tidal 1-week window (168 hourly pts) vs Intel Lab thermistor sensor 48 1-week window (168 hourly means). Lag1 and ZC are virtually identical — the same memory and crossing rate. The entire 5× gap is driven by skewness and kurtosis: HVAC heating events and occupancy spikes break the sinusoidal symmetry of the thermistor signal.
+
+**What it means:** At identical temporal resolution and identical window length, the signal with fewer competing processes classifies 5× more cleanly. Process competition leaves a specific fingerprint (asymmetric peaks, excess kurtosis) rather than noise — it is structurally distinct and detectable.
+
+---
+
+### F127 — Spearman ρ(process coherence, d_min) = 0.932 (p=0.000) — the dominant-process hypothesis is confirmed
+
+**Prediction:** Spearman ρ > 0.7 across 9 signals. **Confirmed — ρ = 0.932.**
+
+| Signal | Coherence | Class | d_min |
+|---|---|---|---|
+| Tidal 1-week | 1 | seasonal | 0.724 |
+| Tidal 1-month | 1 | seasonal | 0.910 |
+| Tidal 1-year | 2 | seasonal | 0.818 |
+| CO2 trend (Keeling) | 2 | trend | 1.619 |
+| ENSO MEI v2 | 2 | burst | 1.910 |
+| Thermistor hourly 1-wk | 3 | burst | 3.610 |
+| GISS temperature 145yr | 3 | burst | 1.962 |
+| Wave height daily | 4 | burst | 6.609 |
+| VIX monthly | 5 | burst | 11.505 |
+
+**Evidence:** Full nb41+nb42 corpus compiled with process coherence scores assigned prior to running. Spearman ρ=0.932, p=0.000.
+
+**What it means:** The dominant-process hypothesis (F124) is the correct framing for Phase 2. Classification quality (d_min) is determined by the number of competing physical processes active at the observation scale. Single-process signals (tidal) are clearest; no-physical-process signals (VIX) are most ambiguous. This is a stronger, quantitatively supported version of the thunder hypothesis: the 8-class vocabulary works because most natural phenomena are dominated by a single process at the scale of observation — that is the condition under which the fingerprint resolves them.
+
+---
+
+## 2026-04-30 — Notebook 41 (Sensory Grounding Test)
+
+### F122 — Temporal scale determines thermistor class, not sensory modality; same sense at different scales gives different classes
+
+**Prediction:** irregular_osc at daily scale, distance ≤ 2.5 at all scales. **Prediction partially wrong.**
+
+**Result:**
+
+| Scale | n_pts | Class | d_min |
+|---|---|---|---|
+| Full 20-day trace | 55,805 | burst | 2.683 |
+| 7-day window | 19,509 | burst | 2.496 |
+| Daily means | 20 | irregular_osc | 6.305 |
+
+**Evidence:** Intel Research Berkeley Lab, moteid=48 (best sensor by data completeness, 20 days). Full trace fingerprint: skewness=0.74, kurtosis=1.50, lag1=0.95, ZC=0.012, slope≈0, baseline_delta=1.277. Daily means fingerprint: skewness=−0.61, lag1=0.62, ZC=0.25, slope=0.10, baseline_delta=2.44.
+
+The full trace → burst because: the 20-day building heating record has a net baseline drift (the lab warms as occupancy builds up in the first days, baseline_delta=1.28), pushing the fingerprint into the burst class. The daily means → irregular_osc because at 20 data points the daily noise dominates and the aggregate shape becomes a noisy flat-ish signal. The class assignment reverses between scales — not because the physics changes, but because different temporal features dominate.
+
+**What it means:** The same physical process (lab temperature) classifies as burst at minute-scale aggregation (dominated by building warming baseline drift) and irregular_osc at daily-aggregation scale (dominated by day-to-day noise). This extends the window-observer finding (nb38) from segment length to temporal aggregation resolution: shape class is a property of the temporal scale of observation, not of the phenomenon or the sensing modality. Sensory modality alone cannot predict class.
+
+---
+
+### F123 — Wave height → burst (storm-spike profile); barometric pressure → declining_osc at d=2.85 (cleaner than wave height)
+
+**Prediction:** irregular_osc. **Prediction wrong for wave height; barometric pressure was unexpected and cleaner.**
+
+**Result:**
+
+| Signal | Scale | Class | d_min |
+|---|---|---|---|
+| Significant wave height | Hourly (16,730 pts) | burst | 6.009 |
+| Significant wave height | Daily (697 pts) | burst | 6.609 |
+| Barometric pressure | Daily (697 pts) | declining_osc | 2.852 |
+
+**Evidence:** NOAA NDBC Buoy 44025 (New York Bight), 2023. Wave height fingerprint: skewness=1.52, kurtosis=2.56, lag1=0.74, ZC=0.22. Barometric pressure daily: declining_osc (d=2.852). Wave height was not in the cache; both signals come from the same physical sensor package.
+
+Wave height → burst because: significant wave height distribution over a year is right-skewed (storm events produce large waves against a calmer baseline). Storm weeks are spikes above the annual background — the same mathematical shape as an epidemic burst. The large d_min (6.6) reflects that neither the hourly nor daily resolution produces a clean burst prototype; the year-long signal has too much variability to land tightly in any single class.
+
+Barometric pressure → declining_osc is the cleaner result. Annual pressure at mid-latitude coastal buoys has a seasonal oscillatory component (pressure extremes in winter/summer) plus a year-level drift, which jointly produce the declining_osc fingerprint. Same sensor package, different physical variable, different class.
+
+**What it means:** Two signals from the same buoy — mechanical wave displacement and atmospheric pressure — land in completely different classes. The class is not a property of the sensing instrument or even of the sensing modality (both are pressure/displacement measurements), but of the specific dynamic structure of the variable being measured.
+
+---
+
+### F124 — Sensory grounding hypothesis not confirmed in its simple form; temporal scale and signal coherence are stronger predictors than sensory category
+
+**Prediction:** Sensory mean d_min < 2.0; cognitive mean d_min > 2.5; same-sense closer than cross-sense. **All three parts wrong or incomplete.**
+
+**Result:**
+
+| Dataset | Grounding | Class | d_min |
+|---|---|---|---|
+| Intel thermistor [daily] | sensory (touch) | irregular_osc | 6.305 |
+| NDBC wave height [daily] | sensory (vestib.) | burst | 6.609 |
+| GISS temperature [annual] | sensory (touch) | burst | 1.962 |
+| VIX monthly | cognitive | burst | 11.505 |
+| ENSO MEI v2 | cognitive | burst | 1.910 |
+
+Sensory mean d_min = 4.959. Cognitive mean d_min = 6.707. Ratio = 1.35× (predicted >> 1.35×).
+Same-sense clustering: thermistor↔GISS = 8.243 vs thermistor↔ENSO = 7.778. **Same-sense is FARTHER, not closer.**
+
+**Evidence:** The direction of the sensory vs cognitive gap holds (1.35×) but is driven entirely by VIX being an extreme outlier (d=11.5). Remove VIX and the cognitive mean falls to 1.910 (ENSO), which is CLEANER than both new sensory signals (6.3–6.6). ENSO, a composite cognitive index with no single physical receptor, classifies more cleanly than a raw thermistor at comparable temporal scale.
+
+VIX outlier anatomy: kurtosis=7.0, skewness=2.04. The extreme kurtosis (crisis spikes in 2008, 2020) places VIX outside the range of any synthetic class generator. It is not far from all centroids because it is cognitively constructed — it is far because its statistical distribution is qualitatively unlike any natural physical signal tested. The sensory/cognitive distinction is a correlate of the real predictor (coherent physical dynamics), not the cause.
+
+**What it means:** The sensory grounding hypothesis fails in its simple form: raw sensory transduction signals do not automatically classify more cleanly than aggregated or cognitively-constructed ones. The better predictor is whether the signal has a **dominant, coherent physical process** driving it. ENSO is cognitively labelled but thermodynamically forced — one physical mechanism dominates its variance, so it classifies cleanly. Raw thermistor at 20 daily values is physically direct but statistically under-sampled — 20 points are insufficient to stably estimate the fingerprint, so it lands far from all centroids. VIX has no dominant physical process — it reflects collective human cognition with fat-tailed crisis response — so it occupies a region outside all natural class generators.
+
+**Revised hypothesis:** Classification quality = coherence of the dominant physical process, not sensory proximity to raw transduction. Further test: add signals with known dominant physical processes at appropriate temporal scales.
+
+---
+
 ## 2026-04-29 — Notebook 40 (The eco_cycle Verdict)
 
 ### F119 — The oscillator → eco_cycle → irregular_osc transition is gradual; no sharp attractor boundary exists

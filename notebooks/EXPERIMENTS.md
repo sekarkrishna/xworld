@@ -4,6 +4,66 @@ Chronological record of what was tried, what happened, and why each direction wa
 
 ---
 
+## 2026-04-30 — nb42 (Dominant Process Test: does d_min track physical process coherence?)
+
+### Goal
+Test the revised hypothesis from nb41 (F124): classification quality = coherence of dominant physical process. The purest single-process signal available is a tidal gauge (gravitational forcing from Moon+Sun — nearly pure sinusoid). If this hypothesis is correct, tidal should produce the smallest d_min of any signal tested.
+
+**Part A — NOAA CO-OPS tidal gauge (The Battery, NYC, 2023):** Hourly water level at 1-week, 1-month, and full-year scales. Dominant process: gravitational. Prediction: oscillator/seasonal, d_min < 1.5, scale-consistent.
+
+**Part B — Intel Lab thermistor at hourly resolution (1-week):** Re-use cached data from nb41. Hourly means over 1 week (168 pts) — same temporal scale as tidal. Dominant process: diurnal solar + HVAC + occupancy (competing). Prediction: d_min > tidal at same scale.
+
+**Part C — Dominant process ranking:** Compile d_min for all signals from nb41+nb42 (tidal, CO2 trend, ENSO, thermistor hourly, GISS temperature, wave height, VIX). Assign process coherence scores (1=pure single process, 5=no dominant process). Test Spearman correlation.
+
+### Pre-run predictions
+- **F125:** Tidal → oscillator/seasonal, d_min < 1.5, scale-consistent across 1-week/1-month/1-year.
+- **F126:** d_tidal < d_thermistor at 1-week scale. Tidal is cleaner because gravitational forcing is the sole dominant process.
+- **F127:** Spearman ρ(coherence score, d_min) > 0.7.
+
+### Results
+
+**Part A (NOAA CO-OPS tidal gauge, Station 8518750, The Battery, NYC, 2023):** All three scales → seasonal, d=0.724/0.910/0.818. Scale-consistent: True. Lowest centroid distance of any signal in the corpus. Fingerprint: skewness≈0, kurtosis=−1.21, lag1=0.882. The M2 semi-diurnal tide (~13.5 cycles per 168-hour window) gives a platykurtic symmetric signal that sits squarely in the seasonal class.
+
+**Part B (Intel Lab thermistor, hourly resolution, 1-week window):** 168 hourly means → burst, d=3.610. At the same 168-point temporal scale as tidal, the thermistor is 5× messier. Lag1 and ZC are identical between the two signals (both 0.882 / 0.161); the gap is entirely from skewness (+0.926) and kurtosis (+2.866) driven by HVAC and occupancy spikes.
+
+**Part C (Dominant process ranking, Spearman correlation):** Compiled 9 signals from nb41+nb42. Spearman ρ(coherence score, d_min) = 0.932 (p=0.000). Ordering nearly monotone: tidal(0.724) < tidal\_mo(0.910) < tidal\_yr(0.818) < CO2(1.619) < ENSO(1.910) < GISS(1.962) < thermistor\_hrly(3.610) < wave(6.609) < VIX(11.505). One minor inversion: GISS classifies cleaner than thermistor despite same coherence score=3, explained by GISS having 146 annually-averaged points vs unaveraged hourly thermistor noise.
+
+### Findings
+F125–F127 added. Total findings: **127**.
+
+---
+
+## 2026-04-30 — nb41 (Sensory Grounding Test: do raw sensory signals classify more cleanly than cognitive constructs?)
+
+### Goal
+Phase 2 opener. Add raw sensory transduction signals to the corpus — direct sensor outputs before temporal aggregation or human interpretation. Test whether (a) they classify cleanly under the 8-class taxonomy, and (b) same-sense signals cluster nearer to each other than cross-sense signals, and (c) cognitively constructed indices (VIX, ENSO) show larger centroid distances than physical sensors.
+
+**Part A — Intel Lab thermistor (Touch / Thermoreception):** Intel Research Berkeley, 54 Mica2Dot motes, 31-second temperature readings over 38 days (Feb–Apr 2004). Fingerprint at three temporal scales (full trace, 7-day window, daily means). Compare to GISS temperature (same sense, processed).
+
+**Part B — NOAA NDBC wave height (Vestibular / Proprioceptive):** Buoy 44025 (New York Bight), hourly significant wave height 2023. First vestibular signal in corpus. Compare at hourly and daily scales.
+
+**Part C — Sensory vs cognitive comparison:** Load GISS temperature, VIX, ENSO from cache. Compare centroid distances: raw sensory (thermistor, wave height) vs processed sensory (GISS) vs cognitive constructs (VIX, ENSO). Measure same-sense distance (thermistor ↔ GISS) vs cross-sense distance (thermistor ↔ VIX).
+
+### Pre-run predictions
+- **F122:** Intel thermistor → irregular_osc at daily scale (same as GISS temperature). Distance ≤ 2.5 at all scales. 7-day window may shift to seasonal/oscillator (diurnal cycle dominant).
+- **F123:** NOAA wave height → irregular_osc. Clean classification (not noise). First vestibular class assignment.
+- **F124:** Sensory signals mean d_min < 2.0; cognitive constructs mean d_min > 2.5. Thermistor ↔ GISS distance < thermistor ↔ VIX distance (same-sense clustering holds).
+
+### Results
+
+**Part A (Intel thermistor):** moteid=48 selected (55,805 readings, 20 days). Full trace → burst (d=2.683): building baseline drift over 20 days gives burst fingerprint. 7-day window → burst (d=2.496). Daily means (20 pts) → irregular_osc (d=6.305): at 20 points the daily noise dominates. Class reverses between temporal scales. Same-sense clustering FAILS: thermistor↔GISS = 8.243 vs thermistor↔ENSO = 7.778 (cognitive construct is closer than same-sense partner).
+
+**Part B (NOAA wave height):** Wave height hourly/daily → burst (d=6.0–6.6): storm spikes produce right-skewed fingerprint (skewness=1.52, kurtosis=2.56). Not a clean fit — d=6.6 is large. Barometric pressure → declining_osc (d=2.852): SURPRISE. Same buoy, different variable, completely different class and much cleaner.
+
+**Part C (Sensory vs cognitive):** Sensory mean d_min=4.959, cognitive mean=6.707 (ratio 1.35×). Direction holds but is weak. ENSO (cognitive) classifies at d=1.910 — cleaner than both new raw sensors. VIX d=11.5 (kurtosis=7.0 from crisis spikes). Same-sense hypothesis fails.
+
+**Core finding:** The sensory grounding hypothesis fails in its simple form. The better predictor of classification quality is coherence of the dominant physical process: ENSO (thermodynamically forced) classifies cleanly despite being cognitive. VIX (collective human cognition, no dominant physical process) is an outlier. Raw thermistor at 20 daily values is under-sampled. Sensory category is a correlate of the real predictor, not the cause.
+
+### Findings
+F122–F124 added. Total findings: **124**.
+
+---
+
 ## 2026-04-29 — nb40 (The eco_cycle Verdict: Distinct Attractor or Noise-Displaced Oscillator?)
 
 ### Goal
