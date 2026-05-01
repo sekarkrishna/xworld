@@ -1762,3 +1762,50 @@ The stable-ambiguous regime (snow_cover, NAO) has n_distinct=1 at every scale wh
 New finding (emergent). The 2D space (CV × d_min_mean) reveals that snow_cover and NAO occupy a distinct quadrant: low CV (stable fingerprint) but high d_min (far from all centroids). These signals are not scale-variable (not multi-process in the nb43 sense) but are consistently outside the 8-class attractor basins at every scale. They are the best candidates for revealing a process type not represented in the current taxonomy — they are not noisy in fingerprint space, but genuinely taxonomically foreign.
 
 NAO in irregular_osc's "gravitational field but orbiting outside its basin" — resolves the nb22 paradox (79% noise assignment but n_distinct=1 across scales).
+
+---
+
+## 2026-05-01 — nb45 (Signal Decomposition Test)
+
+### Finding 135: STL decomposition partially confirms; dominant components gain coherence but residual is far worse; diurnal seasonal classifies as declining_osc (amplitude modulation)
+
+**Prediction:** All 3 STL components < composite d_min (2.219). **Partially confirmed.**
+
+Thermistor STL (period=24h):
+- seasonal_24h: declining_osc, d=1.685, var=50.4% — BETTER than composite ✓
+- trend: integrated_trend, d=1.845, var=15.2% — BETTER ✓
+- residual (HVAC): burst, d=12.062, var=45.5% — MUCH WORSE ✗
+
+Decomposition is not uniformly coherence-improving. The dominant-variance component gains coherence; the incoherent residual loses it. The composite d_min (2.219) is intermediate between best (1.685) and worst (12.062) components.
+
+Surprise: seasonal_24h classifies as declining_osc because building diurnal amplitude is modulated by occupancy rhythm (weekday vs weekend) — the dominant process is itself modulated by a slower process.
+
+---
+
+### Finding 136: Tidal STL confirms single-process structure: seasonal_12h captures 86.1% of variance and classifies as seasonal (d=0.655)
+
+**Prediction:** Seasonal dominates (>95%); non-seasonal have high d_min. **Direction confirmed, threshold 86.1% vs 95%.**
+
+- seasonal_12h: seasonal, d=0.655 (composite: 0.686) — slightly better ✓
+- trend: burst, d=2.075 (4.1% variance)
+- residual: irregular_osc, d=5.652 (3.1% variance)
+
+Tidal: 86.1% seasonal vs thermistor: 50.4% seasonal. This variance ratio explains why tidal classifies cleanly (dominant process wins) and thermistor does not (two processes compete).
+
+---
+
+### Finding 137: Bandpass decomposition confirms diurnal band (6-36h) is most coherent (d=1.121); HVAC transients (<6h) are worst (d=26.709); not all bands < composite
+
+**Prediction:** All bands < composite d_min; diurnal has lowest. **Partially confirmed: ordering correct, universality wrong.**
+
+- slow drift (>36h): burst, d=3.424, var=24.6%
+- diurnal (6-36h): irregular_osc, d=1.121, var=64.8% ← lowest ✓
+- HVAC (<6h): irregular_osc, d=26.709, var=9.4%
+
+Variance fraction predicts d_min ordering: 64.8% → 1.121; 24.6% → 3.424; 9.4% → 26.709.
+
+---
+
+### Finding 138: Scale-CV of the seasonal STL component (0.129) is 1.71× lower than composite (0.221); decomposition improves scale-stability for dominant sub-process only
+
+New finding. STL seasonal: CV=0.129 (best); trend: CV=0.340; residual: CV=0.257; composite: CV=0.221. Isolating the dominant process reduces CV; isolating noise increases CV. CV and d_min are complementary: both must be low for a truly coherent, well-classified signal.

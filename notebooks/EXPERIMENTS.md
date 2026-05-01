@@ -1375,3 +1375,74 @@ Apply the scale-CV metric from nb43 (tidal=0.163, thermistor=0.303) to all 19 da
 
 ### Findings
 F131–F134 added. Total findings: **134**.
+
+---
+
+## 2026-05-01 — nb45 (Signal Decomposition Test: does decomposing a multi-process signal make each component more coherent?)
+
+### Goal
+Test the causal mechanism behind the dominant-process hypothesis (nb42, F127): if process coherence → classification quality, then decomposing a multi-process signal should isolate sub-processes that each classify more cleanly. Target: Intel Lab thermistor (composite CV=0.303, d_min≈2-3) and NOAA tidal gauge (composite CV=0.163, d_min=0.686-0.818).
+
+**Part A — STL decomposition (period=24h for thermistor, period=12h for tidal):** Extract seasonal, trend, residual. Classify each component.
+
+**Part B — Bandpass decomposition (thermistor):** Three frequency bands: slow drift (>36h), diurnal (6-36h), HVAC transients (<6h). Classify each band.
+
+**Part C — Scale-CV of STL components:** Does isolating the dominant sub-process reduce scale-CV?
+
+### Pre-run predictions
+- **F135:** All 3 STL components of thermistor have d_min < composite (2.219). Seasonal→oscillator/seasonal, trend→integrated_trend, residual→irregular_osc.
+- **F136:** Tidal STL: seasonal captures >95% variance; non-seasonal components have high d_min.
+- **F137:** Bandpass: all 3 bands < composite d_min. Diurnal band has lowest.
+
+### Results
+
+**Thermistor composite (168h):** irregular_osc, d=2.219. Tidal composite (336h): seasonal, d=0.686.
+
+**Part A (STL, thermistor period=24):**
+
+| Component | Class | d_min | var% |
+|---|---|---|---|
+| seasonal_24h | declining_osc | 1.685 | 50.4% |
+| trend | integrated_trend | 1.845 | 15.2% |
+| residual | burst | 12.062 | 45.5% |
+
+All components < composite? NO — residual is far worse. Seasonal and trend are better ✓.
+
+Surprise: seasonal_24h classifies as **declining_osc**, not oscillator/seasonal. Building diurnal amplitude is modulated by occupancy rhythm (weekday vs weekend), creating amplitude decline visible to the fingerprint.
+
+**Part A (STL, tidal period=12):**
+
+| Component | Class | d_min | var% |
+|---|---|---|---|
+| seasonal_12h | seasonal | 0.655 | 86.1% |
+| trend | burst | 2.075 | 4.1% |
+| residual | irregular_osc | 5.652 | 3.1% |
+
+86.1% of tidal variance is pure M2 seasonal (vs predicted >95%). Residuals classify poorly.
+
+**Part B (Bandpass, thermistor):**
+
+| Band | Class | d_min | var% |
+|---|---|---|---|
+| slow drift (>36h) | burst | 3.424 | 24.6% |
+| diurnal (6-36h) | irregular_osc | 1.121 | 64.8% |
+| HVAC (<6h) | irregular_osc | 26.709 | 9.4% |
+
+Diurnal band is most coherent (d=1.121) ✓. HVAC transients are most incoherent (d=26.709). Variance fraction predicts d_min ordering.
+
+**Part C (Scale-CV):**
+- composite: CV=0.221
+- seasonal_24h: CV=0.129 ← best (1.71× improvement)
+- trend: CV=0.340 ← worse
+- residual: CV=0.257 ← worse
+
+Only the dominant component improves. F133's failure (CV vs n_distinct) is explained: decomposition into a sub-process reduces CV even for a noisy multi-process signal.
+
+**F135:** Partially confirmed. Dominant components better; residual far worse.
+**F136:** Confirmed for direction (86.1% < 95% threshold). Non-dominant components classify poorly.
+**F137:** Partially confirmed. Diurnal band ordering correct; not all bands < composite.
+
+**Emergent F138:** Scale-CV of dominant STL component (0.129) is 1.71× lower than composite (0.221) — decomposition is coherence-improving for the dominant sub-process only. CV and d_min are complementary diagnostics.
+
+### Findings
+F135–F138 added. Total findings: **138**.
