@@ -1869,3 +1869,47 @@ New finding. Commutativity is 100%, verified across 28 symmetric class pairs wit
 ### Finding 144: T[irregular_osc, irregular_osc] = seasonal — the only non-idempotent diagonal; noise averaging reduces amplitude variance to produce a regular oscillation
 
 New finding. Mixing two independent irregular_osc signals (purity 0.62 for seasonal output) produces a seasonal class. Mechanism: the irregular_osc generator applies random amplitude modulation (`sin(f*t) * uniform(.3,.8)`). Two independent modulations averaged together reduce amplitude variance (law of large numbers in feature space), producing a smoother oscillation that the fingerprint reads as seasonal. The self-composition of the noise class is the regular class.
+
+---
+
+### Finding 145: Oscillator centroid (not declining_osc) is nearest to the grand centroid; distances span 0.886 (oscillator) to 3.102 (burst)
+
+**Prediction:** declining_osc NOT nearest. **Confirmed.**
+
+Grand centroid = origin in standardised feature space (by construction). Nearest class: oscillator (0.886), declining_osc: 2nd (1.386), irregular_osc=1.917, seasonal=2.004, trend=2.513, declining_monotonic=2.534, integrated_trend=2.617, burst=3.102. Oscillator is the most "average" class — its feature vector deviates least from the global mean across all 8 classes.
+
+---
+
+### Finding 146: Oscillator dominates the Voronoi convex hull (77.5%); declining_osc is 2nd at 15.5% — not the largest basin
+
+**Prediction:** declining_osc >20% and largest. **Refuted: oscillator=77.5%, declining_osc=15.5%.**
+
+The oscillator centroid's proximity to the origin dominates random convex combinations of the 8 centroids. Paradox: oscillator has the largest basin but only 18% of empirical off-diagonal compositions; declining_osc has 15.5% of the basin but 43% of compositions. Voronoi geometry does NOT predict empirical composition outcomes.
+
+---
+
+### Finding 147: Centroid-midpoint prediction accuracy = 45.3% (29/64); off-diagonal = 37.5%; NOT >60%
+
+**Prediction:** >60%. **Refuted.**
+
+The centroid-midpoint model correctly predicts 29/64 pairs. It systematically over-predicts oscillator (12 wrong-oscillator errors where empirical=declining_osc). Linear feature interpolation is a poor model of the signal mixing mechanism.
+
+---
+
+### Finding 148: DCO-output pair centroid-midpoint accuracy = 44% (11/25); NOT >80%
+
+**Prediction:** >80%. **Refuted.**
+
+For the 25 pairs that empirically produce declining_osc, only 11 have their centroid midpoint in the declining_osc basin. The remaining 14 midpoints fall in oscillator or other basins. Centroid interpolation systematically misassigns declining_osc composition pairs.
+
+---
+
+### Finding 149: Grand centroid paradox — the class with the largest Voronoi basin (oscillator, 77.5%) is not the empirical composition attractor (declining_osc, 43%)
+
+New finding. Oscillator's 77.5% basin share and its status as nearest class to the origin completely fail to predict its empirical composition dominance (only 18% off-diagonal). The centroid Voronoi geometry and empirical signal mixing are decoupled. Composition attractor identity cannot be read from the static geometry of class centroids.
+
+---
+
+### Finding 150: The zscore-after-mixing nonlinearity is the source of declining_osc attractor dominance
+
+New finding. Centroid-midpoint errors concentrate where the empirical output is declining_osc: 12/35 errors are "predicts oscillator, empirical=declining_osc." For uncorrelated unit-variance signals, zscore(0.5*A + 0.5*B) amplifies slope and baseline_delta by ~√2 and compresses skewness and kurtosis by ~1/√2 relative to the centroid midpoint. This nonlinear shift moves many pairs from the oscillator Voronoi basin (which captures the linear midpoint) into the declining_osc basin (which captures the zscore-modulated midpoint). The declining_osc centroid at (skew=+0.20, kurtosis=+0.01, lag1=−0.42, ZC=+0.82, slope=−0.61, BD=−0.81) is positioned to capture these compressed-skewness, amplified-slope signals.

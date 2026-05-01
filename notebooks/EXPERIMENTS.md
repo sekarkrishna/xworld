@@ -1510,3 +1510,61 @@ Derive an empirical composition table T[i][j]: what class results from mixing tw
 
 ### Findings
 F139–F144 added. Total findings: **144**.
+
+---
+
+## 2026-05-01 — nb47 (Composition Attractor Geometry: why does declining_osc dominate signal mixing?)
+
+### Goal
+Map the feature-space geometry behind declining_osc's 43% dominance in the nb46 composition table. Three candidate explanations: (1) declining_osc centroid is near the geometric centre of the 8-class simplex, (2) declining_osc has a large Voronoi basin, (3) linear centroid interpolation predicts the composition table well. All three tested in the standardised 6D feature space.
+
+**Part A — Centroid geometry:** Distance of each class centroid from the grand centroid (=origin in standardised space). Identify the most "central" class.
+
+**Part B — Voronoi basin sizes (Dirichlet sampling):** N=100,000 random convex combinations of the 8 centroids, classified. Basin fraction = fraction in each Voronoi cell.
+
+**Part C — Mixing paths:** For each of the 28 symmetric pairs, linearly interpolate between centroids at 21 steps (α=0 to 1). Record which basin each step falls in.
+
+**Part D — Centroid-midpoint prediction:** For each of the 64 pairs, classify 0.5*ctrd_i + 0.5*ctrd_j. Compare to empirical table from nb46. Accuracy test.
+
+### Pre-run predictions
+- **F145:** declining_osc centroid NOT nearest to grand centroid.
+- **F146:** declining_osc has largest Voronoi basin (>20%) in convex hull.
+- **F147:** Centroid-midpoint prediction >60% accuracy.
+- **F148:** DCO-output pairs: midpoint in DCO basin for >80%.
+
+### Results
+
+**Part A (Centroid distances to grand centroid):**
+- Grand centroid = origin (by construction of StandardScaler)
+- Nearest: **oscillator** (0.886); declining_osc: 2nd (1.386); burst: furthest (3.102)
+- F145 confirmed: declining_osc NOT nearest.
+
+**Part B (Voronoi basin sizes, N=100k Dirichlet):**
+- **Oscillator: 77.5%** — massively dominates. declining_osc: 15.5%; trend: 4.2%; all others <2%.
+- F146 refuted: declining_osc is NOT the largest basin; oscillator is.
+- Key paradox: oscillator has largest Voronoi basin (77.5%) but only 18% of off-diagonal compositions.
+
+**Part C (Mixing paths):**
+- Midpoint prediction accuracy (28 symmetric pairs): 11/28 = 39.3%.
+- Midpoint class distribution: oscillator dominates (39.3%), declining_osc only 17.9%.
+- Many pairs where empirical T[i][j]=DCO have midpoint in oscillator basin.
+
+**Part D (Full 64-pair prediction):**
+- Overall: 29/64 = **45.3%** (F147 refuted: not >60%)
+- Off-diagonal: 21/56 = 37.5%
+- DCO pairs: 11/25 = **44.0%** (F148 refuted: not >80%)
+- Error pattern: model predicts oscillator 12× where empirical = declining_osc.
+
+**Core finding:** The Voronoi geometry (centroid interpolation) systematically predicts oscillator, but empirical mixing produces declining_osc. The composition attractor is NOT explained by centroid geometry. It must be explained by the nonlinear zscore step after mixing.
+
+**F145:** Confirmed. oscillator nearest (0.886), declining_osc 2nd (1.386).
+**F146:** Refuted. oscillator=77.5% (largest), declining_osc=15.5%.
+**F147:** Refuted. 45.3%, not >60%.
+**F148:** Refuted. 44% DCO accuracy, not >80%.
+
+**Emergent F149:** Grand centroid paradox — oscillator has the largest Voronoi basin (77.5%) but is NOT the empirical composition attractor. The centroid geometry is decoupled from the empirical composition table.
+
+**Emergent F150:** The zscore-after-mixing nonlinearity is the source of declining_osc attractor dominance. Reducing feature magnitudes by ~1/√2 (for uncorrelated signals) shifts many midpoints from the oscillator basin into the declining_osc basin. 12 of the centroid-midpoint errors are "predicts oscillator, empirical is declining_osc."
+
+### Findings
+F145–F150 added. Total findings: **150**.
