@@ -1809,3 +1809,63 @@ Variance fraction predicts d_min ordering: 64.8% → 1.121; 24.6% → 3.424; 9.4
 ### Finding 138: Scale-CV of the seasonal STL component (0.129) is 1.71× lower than composite (0.221); decomposition improves scale-stability for dominant sub-process only
 
 New finding. STL seasonal: CV=0.129 (best); trend: CV=0.340; residual: CV=0.257; composite: CV=0.221. Isolating the dominant process reduces CV; isolating noise increases CV. CV and d_min are complementary: both must be low for a truly coherent, well-classified signal.
+
+---
+
+### Finding 139: Off-diagonal composition is dominated by declining_osc (43%), not irregular_osc (7%); diagonal is 7/8 idempotent; composition table is perfectly commutative
+
+**Prediction:** Off-diagonal >50% irregular_osc; diagonal idempotent; composition approximately commutative. **Partially refuted: dominant off-diagonal class wrong; commutativity stronger than predicted.**
+
+- Diagonal: 7/8 idempotent (88%). Exception: T[irregular_osc, irregular_osc] = seasonal.
+- Off-diagonal: declining_osc dominates (24/56 = 43%); oscillator=18%; integrated_trend=11%; seasonal=11%; irregular_osc only 7%.
+- Commutativity: T[i][j] = T[j][i] for all 28 symmetric pairs (100%). Perfect symmetry despite independently generated signals.
+
+Declining_osc is the composition attractor — a large basin that captures mixed signals from structurally distinct classes. Irregular_osc is not the universal noise class under composition.
+
+---
+
+### Finding 140: No grokking in token-level composition task — immediate generalisation; val accuracy reaches 84.6% at step 200 then oscillates under weight decay
+
+**Prediction:** No grokking (simultaneous train/val rise). **Confirmed with nuance: no memorisation gap, but val oscillates 53.8–84.6% under weight decay rather than rising smoothly.**
+
+- Train acc → 100% at step 200. Val acc = 84.6% simultaneously.
+- Val oscillates between 53.8% and 84.6% throughout 50k steps; final = 69.2%.
+- No memorisation→generalisation gap detected.
+- 9/13 test pairs correct at 100%; 4 fail: (burst, oscillator) and (oscillator, integrated_trend) (both symmetric pairs).
+
+Weight decay reshapes the embedding but cannot improve on the failed pairs — their composition rule conflicts with the structure the model extracts.
+
+---
+
+### Finding 141: Post-training token embeddings have Spearman ρ=+0.399 vs fingerprint distances — improvement over nb25 address-book geometry (ρ=−0.31)
+
+**Prediction:** ρ > 0.0 (composition task forces dynamic-similarity structure). **Confirmed: ρ=+0.399, p=0.035.**
+
+- nb25 classification task: ρ = −0.31 (address-book geometry — arbitrary positions).
+- nb46 composition task: ρ = +0.399 (p=0.035) — compositional structure correlates with fingerprint distances.
+- Closest embedding pair: trend/integrated_trend (0.047), consistent with fingerprint (both have high lag1, low ZC, strong directional features).
+- Furthest: integrated_trend/irregular_osc (0.134), also among the most fingerprint-distant pairs.
+
+The composition task induces fingerprint-aligned representations; the classification task does not.
+
+---
+
+### Finding 142: Dominant-disorder rule (more coherent class wins) predicts only 32% of off-diagonal composition pairs — declining_osc wins regardless of input coherence
+
+**Prediction:** >50% accuracy for dominant-disorder rule. **Refuted: 32% (below chance baseline of predicting declining_osc for all pairs).**
+
+- Dominant-disorder rule (T[i][j] = class with lower d_min): 18/56 = 32%.
+- The rule fails because it assumes the output class must be one of the two inputs. In reality, the mixed signal develops its own basin identity — most commonly declining_osc.
+- Declining_osc is not more coherent than the inputs; it is the composition attractor regardless of input coherence.
+
+---
+
+### Finding 143: Composition is perfectly commutative — T[i][j]=T[j][i] for all 28 symmetric pairs
+
+New finding. Commutativity is 100%, verified across 28 symmetric class pairs with 500 independent samples each. Non-trivial: signals are independently generated with different random seeds, and the fingerprint is a nonlinear function of the mixed signal. The zscore mixing operation (zscore(0.5*A + 0.5*B)) preserves class symmetry exactly.
+
+---
+
+### Finding 144: T[irregular_osc, irregular_osc] = seasonal — the only non-idempotent diagonal; noise averaging reduces amplitude variance to produce a regular oscillation
+
+New finding. Mixing two independent irregular_osc signals (purity 0.62 for seasonal output) produces a seasonal class. Mechanism: the irregular_osc generator applies random amplitude modulation (`sin(f*t) * uniform(.3,.8)`). Two independent modulations averaged together reduce amplitude variance (law of large numbers in feature space), producing a smoother oscillation that the fingerprint reads as seasonal. The self-composition of the noise class is the regular class.

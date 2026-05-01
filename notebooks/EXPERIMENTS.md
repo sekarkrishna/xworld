@@ -1446,3 +1446,67 @@ Only the dominant component improves. F133's failure (CV vs n_distinct) is expla
 
 ### Findings
 F135–F138 added. Total findings: **138**.
+
+---
+
+## 2026-05-01 — nb46 (Shape Composition Grokking: does the 8-class composition table have learnable algebraic structure?)
+
+### Goal
+Derive an empirical composition table T[i][j]: what class results from mixing two shape-class signals (zscore(0.5*A + 0.5*B))? Then train a token-level transformer on (class_A, class_B) → T[A][B] using the Power et al. (2022) grokking protocol (heavy weight decay, 80/20 pair split). If T has latent algebraic structure, grokking should occur — the model first memorises training pairs, then suddenly generalises to held-out pairs.
+
+**Part A — Composition table (500 samples/pair, 64 pairs):** Each mixed signal zscored and classified. Majority class = T[i][j].
+
+**Part B — Table structure analysis:** Diagonal idempotence, off-diagonal class distribution, commutativity (T[i][j] vs T[j][i]), dominant-disorder prediction (T[i][j] = class with lower d_min).
+
+**Part C — Token-level grokking (PyTorch):** 8-class embedding + 2-layer transformer, 128-dim, 4 heads. AdamW, lr=1e-3, weight_decay=1.0. 50,000 steps. Dataset: 3000 instances per pair × 64 pairs = 192,000 total. Split: 51 train pairs / 13 test pairs. Grokking criterion: train_acc ≥ 99% first, then val_acc jumps ≥ 20pp after delay.
+
+**Part D — Embedding analysis:** Post-training token embedding pairwise distances vs 6-feature fingerprint centroid distances. Spearman ρ comparison to nb25 address-book geometry (ρ = −0.31).
+
+### Pre-run predictions
+- **F139:** The 8×8 composition table T[i][j] has an idempotent diagonal (T[i][i] = class_i for all 8 classes) and an off-diagonal dominated by irregular_osc (>50% of the 56 off-diagonal pairs). Signal mixing of two structurally distinct processes produces noise-like superpositions.
+- **F140:** Grokking does NOT occur — both train and val accuracy rise simultaneously because the composition table is dominated by a simple discoverable rule (diagonal → idempotent; off-diagonal → irregular_osc), mirroring nb25's classification finding.
+- **F141:** Post-training token embeddings have Spearman ρ > 0.0 between embedding pairwise distances and 6-feature fingerprint distances — improvement over nb25's ρ = −0.31, because the composition task forces dynamic similarity into the embedding.
+- **F142:** The dominant-disorder rule (T[i][j] = class with lower d_min) correctly predicts T[i][j] for >50% of off-diagonal pairs.
+
+### Results
+
+**Part A (Composition table, 500 samples/pair):**
+```
+        BUR   OSC   SEA   TRE   INT   IRR   DCO   DCM
+ BUR:   BUR   DCO   DCO   INT   INT   DCO   DCO   DCM
+ OSC:   DCO   OSC   DCO   TRE   TRE   SEA   DCO   DCO
+ SEA:   DCO   DCO   SEA   OSC   OSC   SEA   DCO   DCO
+ TRE:   INT   TRE   OSC   TRE   INT   SEA   OSC   IRR
+ INT:   INT   TRE   OSC   INT   INT   OSC   OSC   IRR
+ IRR:   DCO   SEA   SEA   SEA   OSC   SEA   DCO   DCO
+ DCO:   DCO   DCO   DCO   OSC   OSC   DCO   DCO   DCO
+ DCM:   DCM   DCO   DCO   IRR   IRR   DCO   DCO   DCM
+```
+
+**Part B (Table structure analysis):**
+- Diagonal idempotent: 7/8 (88%). Exception: T[IRR,IRR]=seasonal (not irregular_osc).
+- Off-diagonal class distribution: **declining_osc dominates (43%)**, not irregular_osc (only 7%); oscillator=18%, integrated_trend=11%, seasonal=11%, trend=7%, irregular_osc=7%, declining_monotonic=4%.
+- Commutativity: **100% symmetric** (T[i][j]=T[j][i] for all 28 pairs).
+- Dominant-disorder prediction (T[i][j] = class with lower d_min): **32% accuracy** (well below 50% — rule is wrong).
+
+**Part C (Token-level grokking, 50k steps, weight_decay=1.0):**
+- Train acc → 100% at step 200 (immediate). Val acc = 84.6% at step 200.
+- Val oscillates 53.8%–84.6% throughout training under weight decay. Final val = 69.2%.
+- Grokking NOT detected (no memorisation→generalisation gap). Immediate generalisation.
+- 9/13 test pairs classify at 100%; 4 fail (burst×oscillator and oscillator×integrated_trend both symmetric pairs): these are the most compositionally novel pairs.
+
+**Part D (Embedding analysis):**
+- Spearman ρ(embedding, fingerprint) = **+0.399** (p=0.035). Strong improvement over nb25 ρ=−0.31.
+- Embedding distances small and compressed (0.047–0.134); trend/integrated_trend closest (0.047).
+
+**F139:** Partially refuted. Diagonal 7/8 idempotent ✓. Off-diagonal dominated by **declining_osc (43%)**, not irregular_osc (only 7%) ✗. Commutativity confirmed (100%) ✓.
+**F140:** Confirmed — no grokking; but dynamics more complex than "joint immediate rise": train hits 100% at step 200, val oscillates between 53.8–84.6% under weight decay.
+**F141:** Confirmed — ρ=+0.399 (p=0.035), vs nb25 ρ=−0.31.
+**F142:** Refuted — dominant-disorder rule only 32% accurate (declining_osc wins regardless of input coherence).
+
+**Emergent F143:** Composition is perfectly commutative (T[i][j]=T[j][i] for all 28 symmetric pairs, 100%). Non-trivial: signals are independently generated; the fingerprint is nonlinear. The symmetry emerges from the zscore mixing operation preserving class identity symmetrically.
+
+**Emergent F144:** T[irregular_osc, irregular_osc] = seasonal — the only non-idempotent diagonal entry. Explanation: averaging two independently amplitude-modulated oscillations reduces amplitude variance (law of large numbers in feature space), making the mixture look like a regular seasonal signal.
+
+### Findings
+F139–F144 added. Total findings: **144**.
