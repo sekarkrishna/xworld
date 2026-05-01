@@ -1718,3 +1718,47 @@ What each receptor resolves cleanly is different: TDA sees loop-vs-drift but is 
 **The final statement:**
 
 The question was never whether the 9 classes are real. It was whether this particular vocabulary for them is privileged. nb39 answers: no receptor is privileged. Three completely independent measurement systems carve the same terrain with the same overall resolution. The terrain is not the vocabulary. The terrain is real. The vocabulary is the receptor's contribution.
+
+---
+
+## 2026-05-01 — nb44 (Full Corpus Scale Scan)
+
+### Finding 131: Scale-CV separates the corpus into three regimes; sea ice is scale-stable; NAO prediction wrong
+
+**Prediction:** Astronomically-forced signals (keeling_seasonal, sunspot, tidal) have CV < 0.25; VIX and NAO have CV > 0.40. **Partially confirmed.**
+
+Three regimes:
+
+| Regime | CV | d_min | Members |
+|---|---|---|---|
+| Scale-stable, well-classified | < 0.12 | < 3 | keeling_seasonal(0.033), arctic_sea_ice(0.066), tidal(0.072), antarctic_sea_ice(0.075), ENSO(0.086), keeling_trend(0.086), sea_level(0.100), sunspot(0.121) |
+| Scale-stable, ambiguous | < 0.12 | > 10 | snow_cover(0.011,d=27.2), NAO(0.057,d=13.1) |
+| Scale-variable | > 0.23 | — | PDO(0.232), temperature(0.261), ocean_heat(0.295), WGMS(0.344), wave_height(0.425), PIOMAS(0.505), VIX(0.762), COVID(0.951) |
+
+Surprise: Arctic/antarctic sea ice rank as the 4th and 7th most scale-stable signals (CV=0.066–0.075), classifying as seasonal at every window length from 57 to 566 months. The annual glacial cycle amplitude (~12 million km²) overwhelms the long-term decline at all scales. NAO is scale-stable (CV=0.057) but consistently far from all centroids (d=13.1) — "stable ambiguity" not "stable process."
+
+Note: Initial run produced d_min_full=447 for sea ice and CV=2.952 for PDO due to -9999 and 99.99 fill values in raw data. Corrected by filtering extent>0 and |pdo|<90.
+
+---
+
+### Finding 132: Scale-CV ordering reproduces nb42 coherence ranking for 4 overlap signals; Spearman ρ=0.833
+
+**Prediction:** Spearman ρ ≥ 0.80. **Confirmed (ρ=0.833, p=0.167).**
+
+keeling_trend=enso(0.086) < temperature(0.261) < vix(0.762). The automated scale-CV measure reproduces the manually assigned process-coherence scores from nb42 (where ρ(coherence, d_min)=0.932 across 9 signals).
+
+---
+
+### Finding 133: CV and class multiplicity are uncorrelated (ρ=0.297); stable-ambiguous signals break the link
+
+**Prediction:** Spearman ρ(CV, n_distinct_classes) > 0.70. **Not confirmed (ρ=0.297, p=0.217).**
+
+The stable-ambiguous regime (snow_cover, NAO) has n_distinct=1 at every scale while being poorly classified. Low CV predicts fingerprint stability, not single-process dominance. The two are the same for well-classified signals but diverge for signals outside the taxonomy.
+
+---
+
+### Finding 134: The 2D diagnostic (CV × d_min_mean) identifies the taxonomy's boundary — stable-ambiguous signals are "taxonomically foreign"
+
+New finding (emergent). The 2D space (CV × d_min_mean) reveals that snow_cover and NAO occupy a distinct quadrant: low CV (stable fingerprint) but high d_min (far from all centroids). These signals are not scale-variable (not multi-process in the nb43 sense) but are consistently outside the 8-class attractor basins at every scale. They are the best candidates for revealing a process type not represented in the current taxonomy — they are not noisy in fingerprint space, but genuinely taxonomically foreign.
+
+NAO in irregular_osc's "gravitational field but orbiting outside its basin" — resolves the nb22 paradox (79% noise assignment but n_distinct=1 across scales).

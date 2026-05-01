@@ -1308,3 +1308,70 @@ Decay envelope sweep confirmed: oscillator→declining_osc at d≈0.42; declinin
 
 ### Findings
 F97–F100 added. Total findings: **100**.
+
+---
+
+## 2026-05-01 — nb44 (Full Corpus Scale Scan: does scale-CV generalise across the 17+ dataset corpus?)
+
+### Goal
+Apply the scale-CV metric from nb43 (tidal=0.163, thermistor=0.303) to all 19 datasets in the extended corpus. For each dataset: log-spaced growing-window scan (series[:L]) from max(32, N//10) to N; CV(d_min, windows ≥ N//4); n_distinct_classes, dominant_class_frac, d_min_full.
+
+**Part A — Load all corpus datasets:** 17 canonical corpus datasets (from nb31) + snow_cover (nb24) + tidal_nyc + wave_height (nb41).
+
+**Part B — Scale scan:** 20 log-spaced windows per dataset.
+
+**Part C — Process coherence table:** Sort by CV, compare to nb42's 9-signal coherence ranking.
+
+### Pre-run predictions
+- **F131:** Astronomically-forced signals (keeling_seasonal, sunspot, tidal) have CV < 0.25; VIX and NAO have CV > 0.40.
+- **F132:** Scale-CV ordering of the 4 nb42-overlap signals (keeling_trend < ENSO < temperature < VIX) reproduced, Spearman ρ ≥ 0.80.
+- **F133:** Spearman ρ(CV, n_distinct_classes) > 0.70.
+
+### Results
+
+**Data quality fixes:** Arctic/antarctic sea ice raw data contains -9999 fill values; PDO contains 99.99 fill values. Both required filtering before scan (extent>0; |pdo|<90). Initial run produced d_min_full=447 for sea ice (skewness=-16.8, kurtosis=279) and CV=2.952 for PDO — both artifacts of fill values corrupting the zscore.
+
+**Final scale-CV ranking (19 datasets):**
+
+| Rank | Dataset | CV | n_distinct | d_min_full | Class (full) |
+|---|---|---|---|---|---|
+| 1 | snow_cover | 0.011 | 1 | 27.194 | irregular_osc |
+| 2 | keeling_seasonal | 0.033 | 1 | 0.920 | seasonal |
+| 3 | nao | 0.057 | 1 | 13.078 | irregular_osc |
+| 4 | arctic_sea_ice | 0.066 | 1 | 1.088 | seasonal |
+| 5 | ch4_trend* | 0.071 | 2 | 12.005 | burst |
+| 6 | tidal_nyc | 0.072 | 1 | 0.818 | seasonal |
+| 7 | antarctic_sea_ice | 0.075 | 1 | 0.816 | seasonal |
+| 8 | enso | 0.086 | 2 | 1.908 | burst |
+| 9 | keeling_trend | 0.086 | 2 | 1.619 | trend |
+| 10 | sea_level | 0.100 | 3 | 1.538 | trend |
+| 11 | sunspot | 0.121 | 2 | 1.710 | burst |
+| 12 | pdo | 0.232 | 2 | 2.268 | irregular_osc |
+| 13 | temperature | 0.261 | 3 | 1.885 | burst |
+| 14 | ocean_heat | 0.295 | 4 | 2.059 | trend |
+| 15 | wgms_cumulative | 0.344 | 1 | 2.182 | declining_monotonic |
+| 16 | wave_height | 0.425 | 1 | 6.009 | burst |
+| 17 | piomas_annual | 0.505 | 1 | 4.381 | declining_monotonic |
+| 18 | vix | 0.762 | 1 | 13.939 | burst |
+| 19 | covid | 0.951 | 3 | 14.043 | burst |
+
+*ch4_trend: known parsing issue (reading average_unc column instead of deseasonalized), inherited from nb31.
+
+**Three regimes emerge:**
+1. Scale-stable + well-classified (CV<0.12, d_min<3): keeling_seasonal, arctic/antarctic sea ice, tidal, ENSO, keeling_trend, sea_level, sunspot
+2. Scale-stable + ambiguous (CV<0.12, d_min>10): snow_cover, NAO — consistently classified but far from all centroids
+3. Scale-variable (CV>0.23): PDO through COVID
+
+**Surprises:**
+- Sea ice (arctic/antarctic) is the 4th/7th most scale-stable signal — annual glacial cycle dominates fingerprint at every window
+- NAO is scale-stable (CV=0.057), not scale-variable as predicted — it's consistently irregular_osc but far from centroid ("orbiting outside the basin")
+- PDO after fill-value correction: CV=0.232 (moderate), irregular_osc — reasonable
+
+**F131:** Partially confirmed. Extremes correct (keeling_seasonal low; VIX, COVID high). NAO prediction wrong — it's stable, not variable.
+**F132:** Confirmed — Spearman ρ=0.833 for 4 overlap signals.
+**F133:** Not confirmed — ρ=0.297. Stable-ambiguous signals (snow_cover, NAO) have n_distinct=1 despite being poorly classified.
+
+**Emergent finding (F134):** The 2D diagnostic (CV × d_min_mean) identifies "taxonomically foreign" signals — stable-ambiguous quadrant (low CV + high d_min). These signals don't change character with scale but never fit any class. Best candidates for revealing unrepresented process types.
+
+### Findings
+F131–F134 added. Total findings: **134**.
