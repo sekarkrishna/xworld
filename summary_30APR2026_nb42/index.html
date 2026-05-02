@@ -1,0 +1,1717 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Cross-domain time series shape clustering — does a glacier melting and a turtle breathing share the same numerical signature?">
+      
+      
+      
+      
+        <link rel="prev" href="../summary_30APR2026_nb43/">
+      
+      
+        <link rel="next" href="../summary_30APR2026_nb41/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>30 Apr 2026 (nb42) - XWorld Research Log</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#session-summary-30-april-2026-nb42" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="XWorld Research Log" class="md-header__button md-logo" aria-label="XWorld Research Log" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            XWorld Research Log
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              30 Apr 2026 (nb42)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="XWorld Research Log" class="md-nav__button md-logo" aria-label="XWorld Research Log" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    XWorld Research Log
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FINDINGS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Findings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MILESTONES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milestones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EXPERIMENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Experiments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DECISIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sessions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sessions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_02MAY2026_nb48/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 May 2026 (nb48)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_01MAY2026_nb47/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 May 2026 (nb47)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_01MAY2026_nb46/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 May 2026 (nb46)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_01MAY2026_nb44_nb45/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 May 2026 (nb44_nb45)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30APR2026_nb43/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Apr 2026 (nb43)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Apr 2026 (nb42)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Apr 2026 (nb42)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#notebook-42-dominant-process-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notebook 42 — Dominant Process Test
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#experiment-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Experiment design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#predictions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Predictions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Results
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part-a-noaa-co-ops-tidal-gauge-the-battery-nyc-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part A — NOAA CO-OPS tidal gauge (The Battery, NYC, 2023)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-b-thermistor-hourly-1-week-same-168-pt-scale-as-tidal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part B — Thermistor hourly 1-week (same 168-pt scale as tidal)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-c-dominant-process-ranking-full-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part C — Dominant process ranking (full corpus)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Findings
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-means-revised-hypothesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it means — revised hypothesis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errors-encountered-and-fixed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errors encountered and fixed
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-experiment-candidates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next experiment candidates
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30APR2026_nb41/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Apr 2026 (nb41)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_29APR2026_nb40/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Apr 2026 (nb40)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_29APR2026_nb39/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Apr 2026 (nb39)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb38/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb38)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb37/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb37)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb36/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb36)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb35/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb35)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb34/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb34)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb33/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb33)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_25APR2026_nb32/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25 Apr 2026 (nb32)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_25APR2026_nb29-31/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25 Apr 2026 (nb29-31)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb28/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb28)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb27)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb26/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb26)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb25/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb25)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb24)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb23)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb22)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30MAR2026_nb20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Mar 2026 (nb20)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_28MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_24MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="session-summary-30-april-2026-nb42">Session Summary — 30 April 2026 (nb42)</h1>
+<h2 id="notebook-42-dominant-process-test">Notebook 42 — Dominant Process Test</h2>
+<p><strong>Session goal:</strong> Test the revised hypothesis from nb41 F124: classification quality (centroid distance d_min) tracks the coherence of the dominant physical process, not sensory category.</p>
+<p><strong>The test:</strong> Add the purest single-process signal available — a tidal gauge (gravitational forcing from Moon+Sun) — and compare its d_min to signals with competing processes at the same temporal scale.</p>
+<hr />
+<h2 id="experiment-design">Experiment design</h2>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Dominant process</th>
+<th>Coherence score</th>
+<th>Expected d_min</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tidal gauge (1-wk/1-mo/1-yr)</td>
+<td>Gravitational (Moon+Sun)</td>
+<td>1</td>
+<td>&lt; 1.5</td>
+</tr>
+<tr>
+<td>CO2 trend (Keeling)</td>
+<td>Anthropogenic emissions</td>
+<td>2</td>
+<td>&lt; 2.0</td>
+</tr>
+<tr>
+<td>ENSO MEI v2</td>
+<td>Pacific thermodynamic oscillation</td>
+<td>2</td>
+<td>≈ 1.9 (confirmed nb41)</td>
+</tr>
+<tr>
+<td>Thermistor hourly (1-wk)</td>
+<td>Diurnal solar + HVAC + occupancy</td>
+<td>3</td>
+<td>2.0–4.0</td>
+</tr>
+<tr>
+<td>Wave height daily</td>
+<td>Wind-sea + swell + storm surge</td>
+<td>4</td>
+<td>&gt; 4.0 (confirmed nb41)</td>
+</tr>
+<tr>
+<td>VIX monthly</td>
+<td>Collective cognition (no physics)</td>
+<td>5</td>
+<td>&gt; 10 (confirmed nb41)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="predictions">Predictions</h2>
+<ul>
+<li><strong>F125:</strong> Tidal → oscillator or seasonal, d_min &lt; 1.5, same class at all temporal scales</li>
+<li><strong>F126:</strong> d_tidal &lt; d_thermistor at 1-week / 168-hour scale</li>
+<li><strong>F127:</strong> Spearman ρ(coherence score, d_min) &gt; 0.7 across all 9 signals</li>
+</ul>
+<hr />
+<h2 id="results">Results</h2>
+<h3 id="part-a-noaa-co-ops-tidal-gauge-the-battery-nyc-2023">Part A — NOAA CO-OPS tidal gauge (The Battery, NYC, 2023)</h3>
+<table>
+<thead>
+<tr>
+<th>Scale</th>
+<th>n_pts</th>
+<th>Class</th>
+<th>d_min</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1-week</td>
+<td>168</td>
+<td>seasonal</td>
+<td><strong>0.724</strong></td>
+</tr>
+<tr>
+<td>1-month</td>
+<td>720</td>
+<td>seasonal</td>
+<td><strong>0.910</strong></td>
+</tr>
+<tr>
+<td>1-year</td>
+<td>8,760</td>
+<td>seasonal</td>
+<td><strong>0.818</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Scale-consistent: <strong>True</strong> — all three scales → seasonal. This is the lowest centroid distance of any real-world signal in the corpus. Fingerprint: skewness≈0, kurtosis=−1.21 (pure-sine platykurtosis), lag1=0.882, ZC=0.160.</p>
+<h3 id="part-b-thermistor-hourly-1-week-same-168-pt-scale-as-tidal">Part B — Thermistor hourly 1-week (same 168-pt scale as tidal)</h3>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Tidal</th>
+<th>Thermistor</th>
+<th>Diff</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>skewness</td>
+<td>0.070</td>
+<td>0.996</td>
+<td>+0.926</td>
+</tr>
+<tr>
+<td>kurtosis</td>
+<td>−1.213</td>
+<td>1.653</td>
+<td>+2.866</td>
+</tr>
+<tr>
+<td>lag1_autocorr</td>
+<td>0.882</td>
+<td>0.882</td>
+<td>≈0</td>
+</tr>
+<tr>
+<td>zero_crossings</td>
+<td>0.161</td>
+<td>0.149</td>
+<td>−0.012</td>
+</tr>
+</tbody>
+</table>
+<p>Thermistor → burst, d=<strong>3.610</strong> (5× messier). Lag1 and ZC are identical — the 5× gap is entirely skewness+kurtosis from HVAC and occupancy spikes.</p>
+<h3 id="part-c-dominant-process-ranking-full-corpus">Part C — Dominant process ranking (full corpus)</h3>
+<table>
+<thead>
+<tr>
+<th>Signal</th>
+<th>Coherence</th>
+<th>Class</th>
+<th>d_min</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tidal 1-week</td>
+<td>1</td>
+<td>seasonal</td>
+<td>0.724</td>
+</tr>
+<tr>
+<td>Tidal 1-month</td>
+<td>1</td>
+<td>seasonal</td>
+<td>0.910</td>
+</tr>
+<tr>
+<td>Tidal 1-year</td>
+<td>2</td>
+<td>seasonal</td>
+<td>0.818</td>
+</tr>
+<tr>
+<td>CO2 trend (Keeling)</td>
+<td>2</td>
+<td>trend</td>
+<td>1.619</td>
+</tr>
+<tr>
+<td>ENSO MEI v2</td>
+<td>2</td>
+<td>burst</td>
+<td>1.910</td>
+</tr>
+<tr>
+<td>Thermistor hourly 1-wk</td>
+<td>3</td>
+<td>burst</td>
+<td>3.610</td>
+</tr>
+<tr>
+<td>GISS temperature 145yr</td>
+<td>3</td>
+<td>burst</td>
+<td>1.962</td>
+</tr>
+<tr>
+<td>Wave height daily</td>
+<td>4</td>
+<td>burst</td>
+<td>6.609</td>
+</tr>
+<tr>
+<td>VIX monthly</td>
+<td>5</td>
+<td>burst</td>
+<td>11.505</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Spearman ρ = 0.932, p = 0.000</strong> — hypothesis confirmed, well above the ρ &gt; 0.7 prediction.</p>
+<hr />
+<h2 id="findings">Findings</h2>
+<p><strong>F125 (confirmed, exceeded):</strong> Tidal gauge → seasonal d=0.724 at 1-week; scale-consistent across 1-week/1-month/1-year. Lowest d_min in corpus.</p>
+<p><strong>F126 (confirmed):</strong> d_tidal = 0.724 &lt; d_thermistor = 3.610 at same 168-hour scale. Gap driven by skewness+kurtosis from competing HVAC/occupancy processes, not temporal scale.</p>
+<p><strong>F127 (confirmed, exceeded):</strong> Spearman ρ = 0.932 across 9 signals. The dominant-process hypothesis is the correct framing for Phase 2.</p>
+<p>Total findings after nb42: <strong>127</strong></p>
+<hr />
+<h2 id="what-it-means-revised-hypothesis">What it means — revised hypothesis</h2>
+<blockquote>
+<p><strong>Classification quality (d_min) is determined by the number of competing physical processes active at the observation scale, and by whether the dominant process has had sufficient time to average over noise.</strong></p>
+</blockquote>
+<p>This is the Phase 2 anchor finding. The 8-class vocabulary works precisely because most natural phenomena are dominated by a single process at the scale of observation. VIX fails (d=11.5) not because it is cognitive but because it has <em>no</em> dominant process. Tidal succeeds (d=0.724) not because it is physical but because it has <em>one</em>.</p>
+<hr />
+<h2 id="errors-encountered-and-fixed">Errors encountered and fixed</h2>
+<ol>
+<li><strong>NOAA CO-OPS 400 Bad Request:</strong> URL used <code>product=water_level&amp;interval=h</code> — wrong product name. Fixed to <code>product=hourly_height</code>.</li>
+<li><strong>CO2 CSV ValueError:</strong> <code>header=None</code> caused the header row ("deseasonalized") to be parsed as data. Fixed by using <code>pd.read_csv(io.BytesIO(raw_co2), comment='#')</code> — pandas auto-reads the header after skipping <code>#</code>-prefixed comment lines.</li>
+</ol>
+<hr />
+<h2 id="next-experiment-candidates">Next experiment candidates</h2>
+<ol>
+<li><strong>nb43 — Multi-scale dominant process:</strong> For a signal with two competing processes (e.g. tidal + storm surge), can we identify the scale at which the secondary process becomes visible (d_min inflection)?</li>
+<li><strong>nb44 — Synthetic process competition:</strong> Programmatically add noise processes to the pure tidal signal. Measure d_min as a function of noise amplitude. Gives a calibration curve: "x% competing noise = y increase in d_min."</li>
+<li><strong>nb45 — Grokking experiment:</strong> Train a transformer on the 8-class synthetic corpus. Watch for grokking transition. Probe whether post-grokking representations are domain-agnostic (cf. F117, grokking transfer hypothesis).</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://www.linkedin.com/in/sekarkrishna/" target="_blank">Krishnamoorthy Sankaran</a> &copy; 2026
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

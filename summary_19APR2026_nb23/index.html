@@ -1,0 +1,1777 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Cross-domain time series shape clustering — does a glacier melting and a turtle breathing share the same numerical signature?">
+      
+      
+      
+      
+        <link rel="prev" href="../summary_19APR2026_nb24/">
+      
+      
+        <link rel="next" href="../summary_19APR2026_nb22/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>19 Apr 2026 (nb23) - XWorld Research Log</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#session-summary-19-april-2026-notebook-23" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="XWorld Research Log" class="md-header__button md-logo" aria-label="XWorld Research Log" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            XWorld Research Log
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              19 Apr 2026 (nb23)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="XWorld Research Log" class="md-nav__button md-logo" aria-label="XWorld Research Log" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    XWorld Research Log
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FINDINGS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Findings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MILESTONES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milestones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EXPERIMENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Experiments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DECISIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sessions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sessions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_02MAY2026_nb48/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 May 2026 (nb48)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_01MAY2026_nb47/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 May 2026 (nb47)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_01MAY2026_nb46/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 May 2026 (nb46)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_01MAY2026_nb44_nb45/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 May 2026 (nb44_nb45)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30APR2026_nb43/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Apr 2026 (nb43)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30APR2026_nb42/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Apr 2026 (nb42)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30APR2026_nb41/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Apr 2026 (nb41)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_29APR2026_nb40/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Apr 2026 (nb40)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_29APR2026_nb39/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Apr 2026 (nb39)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb38/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb38)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb37/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb37)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb36/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb36)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb35/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb35)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb34/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb34)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb33/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb33)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_25APR2026_nb32/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25 Apr 2026 (nb32)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_25APR2026_nb29-31/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25 Apr 2026 (nb29-31)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb28/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb28)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb27)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb26/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb26)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb25/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb25)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb24)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb23)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb23)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-was-done" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What was done
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-a-arithmetic-latent-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part A: Arithmetic Latent Space
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part A: Arithmetic Latent Space">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key results
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-b-xworld-shape-classes-under-distortion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part B: XWorld Shape Classes Under Distortion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part B: XWorld Shape Classes Under Distortion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feature-profile-of-canonical-instances" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature profile of canonical instances
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boundary-crossing-rates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundary crossing rates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stability-ranking-boundary-crossing-rate-any-distortion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stability ranking (boundary crossing rate, any distortion)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#crossing-topology-where-distorted-instances-go" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Crossing topology (where distorted instances go)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-main-structural-finding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The main structural finding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prediction-accuracy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prediction accuracy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#open-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Open questions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#findings-this-session-5357-5-new-findings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Findings this session: 53–57 (5 new findings)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#total-findings-to-date-57" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Total findings to date: 57
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notebooks-completed-0122-nb22-pending-re-run-23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notebooks completed: 01–22 (nb22 pending re-run), 23
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb22)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30MAR2026_nb20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Mar 2026 (nb20)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_28MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_24MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="session-summary-19-april-2026-notebook-23">Session Summary — 19 April 2026 (Notebook 23)</h1>
+<h2 id="what-was-done">What was done</h2>
+<p><strong>Notebook 23: Latent Arithmetic Space + XWorld Shape Distortion</strong></p>
+<p>Two-part experiment connecting the arithmetic embedding ideas from today's theoretical session to XWorld's shape classes.</p>
+<hr />
+<h2 id="part-a-arithmetic-latent-space">Part A: Arithmetic Latent Space</h2>
+<p>Trained two arithmetic nets on +−×÷ examples up to n=1000:
+- <strong>Raw encoder</strong>: input = n/1000 (1D scalar)
+- <strong>Structured encoder</strong>: input = [log(n)/log(1000), n/1000, n%2, frac(log10(n))] (4D)</p>
+<p>Both trained with MSE + inverse-consistency + commutativity losses. 50k training examples. 40 epochs.</p>
+<h3 id="key-results">Key results</h3>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>True</th>
+<th>Raw err%</th>
+<th>Structured err%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>27 + 48</td>
+<td>75</td>
+<td>3.6%</td>
+<td>14.6%</td>
+</tr>
+<tr>
+<td>489 + 578</td>
+<td>1067</td>
+<td>0.1%</td>
+<td>0.0%</td>
+</tr>
+<tr>
+<td>50k + 70k</td>
+<td>120k</td>
+<td>4.1%</td>
+<td>32.0%</td>
+</tr>
+<tr>
+<td>400 × 300</td>
+<td>120k</td>
+<td>98.8%</td>
+<td>98.6%</td>
+</tr>
+<tr>
+<td>10k ÷ 50</td>
+<td>200</td>
+<td>4540%</td>
+<td>4918%</td>
+</tr>
+</tbody>
+</table>
+<p>Raw encoder outperformed structured on addition extrapolation. Both failed completely on multiplication and division extrapolation.</p>
+<p>PCA of structured encoder: ×10 shifts in PC1 = −0.73 (1→10), −1.22 (10→100), −5.05 (100→1000). Non-uniform — linear geometry, not logarithmic.</p>
+<hr />
+<h2 id="part-b-xworld-shape-classes-under-distortion">Part B: XWorld Shape Classes Under Distortion</h2>
+<p>8 synthetic shape classes, 50 instances each. 4 distortion types: time_reverse, amplitude_flip, noise (σ=0.1/0.3/0.7), time_warp (factor=0.7/1.4).</p>
+<h3 id="feature-profile-of-canonical-instances">Feature profile of canonical instances</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>skewness</th>
+<th>lag1</th>
+<th>zero_cross</th>
+<th>baseline_delta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>burst</td>
+<td>1.177</td>
+<td>0.976</td>
+<td>0.036</td>
+<td>−0.135</td>
+</tr>
+<tr>
+<td>oscillator</td>
+<td>−0.151</td>
+<td>0.955</td>
+<td>0.092</td>
+<td>−0.516</td>
+</tr>
+<tr>
+<td>irregular_osc</td>
+<td>0.276</td>
+<td>0.832</td>
+<td>0.127</td>
+<td>−0.756</td>
+</tr>
+<tr>
+<td>trend</td>
+<td>0.090</td>
+<td>0.998</td>
+<td>0.018</td>
+<td>+3.135</td>
+</tr>
+<tr>
+<td>integrated_trend</td>
+<td>−0.007</td>
+<td>1.000</td>
+<td>0.016</td>
+<td>+3.139</td>
+</tr>
+</tbody>
+</table>
+<p>Note: trend and integrated_trend are nearly identical in all 6 features — the two classes are adjacent in feature space.</p>
+<h3 id="boundary-crossing-rates">Boundary crossing rates</h3>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>amplitude_flip</th>
+<th>time_reverse</th>
+<th>noise</th>
+<th>time_warp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>oscillator</td>
+<td>0%</td>
+<td>0%</td>
+<td>59%</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>burst</td>
+<td>100%</td>
+<td>0%</td>
+<td>41%</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>trend</td>
+<td>100%</td>
+<td>100%</td>
+<td>34%</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>integrated_trend</td>
+<td>100%</td>
+<td>100%</td>
+<td>69%</td>
+<td>4%</td>
+</tr>
+<tr>
+<td>seasonal</td>
+<td>100%</td>
+<td>100%</td>
+<td>67%</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>declining_osc</td>
+<td>100%</td>
+<td>100%</td>
+<td>54%</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>irregular_osc</td>
+<td>18%</td>
+<td>4%</td>
+<td><strong>1.3%</strong></td>
+<td><strong>83%</strong></td>
+</tr>
+<tr>
+<td>eco_cycle</td>
+<td>18%</td>
+<td>16%</td>
+<td>59%</td>
+<td>29%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="stability-ranking-boundary-crossing-rate-any-distortion">Stability ranking (boundary crossing rate, any distortion)</h3>
+<ol>
+<li>oscillator — 0.254 (most robust)</li>
+<li>irregular_osc — 0.274</li>
+<li>burst — 0.317</li>
+<li>eco_cycle — 0.383</li>
+<li>trend — 0.431</li>
+<li>declining_osc — 0.517</li>
+<li>seasonal — 0.571</li>
+<li>integrated_trend — 0.594 (most fragile)</li>
+</ol>
+<h3 id="crossing-topology-where-distorted-instances-go">Crossing topology (where distorted instances go)</h3>
+<ul>
+<li>trend → seasonal, irregular_osc</li>
+<li>integrated_trend → seasonal, trend</li>
+<li>seasonal → integrated_trend, irregular_osc</li>
+<li>declining_osc → irregular_osc, eco_cycle</li>
+<li>burst → irregular_osc, eco_cycle</li>
+<li>oscillator → irregular_osc, eco_cycle</li>
+<li><strong>irregular_osc is the central sink</strong> — receives distorted instances from 5 of 7 other classes</li>
+</ul>
+<hr />
+<h2 id="the-main-structural-finding">The main structural finding</h2>
+<p>The 8 shape classes split into two groups:</p>
+<p><strong>Directionally-defined</strong> (trend, integrated_trend, seasonal, declining_osc): class identity depends on slope sign and baseline_delta sign. Amplitude-flip and time-reversal = 100% boundary crossing. Tightest clusters in natural feature space (baseline spread 0.07–0.64) but most fragile attractors.</p>
+<p><strong>Shape-defined</strong> (oscillator, burst, irregular_osc, eco_cycle): class identity is orientation-invariant. Amplitude-flip and time-reversal = 0–18% crossing. Looser natural clusters but robust attractors.</p>
+<p><strong>Contrast with Chronos (nb21 Finding 52):</strong> Chronos is invariant to amplitude-flip and time-reversal for ALL 8 classes. The 6-feature fingerprint is NOT. This means Chronos encodes shape-defined features only; the 6-feature fingerprint encodes both directional and shape features. The two representations are complementary, not interchangeable.</p>
+<p><strong>irregular_osc as feature-space attractor:</strong> Noise barely affects irregular_osc (1.3% crossing) because chaotic amplitude variability is its defining feature. Time_warp destroys it (83%) because timescale is the one structural property it depends on. irregular_osc is the central attractor of the feature space — the default state when structure is partially destroyed.</p>
+<hr />
+<h2 id="prediction-accuracy">Prediction accuracy</h2>
+<table>
+<thead>
+<tr>
+<th>Prediction</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Structured encoder extrapolates better than raw</td>
+<td>WRONG — raw encoder outperforms on addition extrapolation</td>
+</tr>
+<tr>
+<td>Trend classes most stable, burst most fragile</td>
+<td>WRONG — exact opposite. Oscillator most stable, integrated_trend most fragile</td>
+</tr>
+<tr>
+<td>σ=0.1 noise preserves all classes</td>
+<td>WRONG — eco_cycle and oscillator cross at high rates even at low noise</td>
+</tr>
+<tr>
+<td>×10 = uniform shift in PCA space</td>
+<td>WRONG — shift grows with n (linear geometry, not log)</td>
+</tr>
+</tbody>
+</table>
+<p>All four main predictions were wrong. This is the most informative session in terms of overturned assumptions.</p>
+<hr />
+<h2 id="open-questions">Open questions</h2>
+<ol>
+<li><strong>Why did all predictions invert?</strong> The inversion pattern is systematic: the tightest classes are the most fragile; the loosest are the most robust. Is this a general principle of attractor basins?</li>
+<li><strong>Chronos vs 6-feature divergence on directionality</strong> — should the 6-feature fingerprint be made orientation-invariant (use |slope|, |baseline_delta|)? Would that collapse the 8 classes or refine them?</li>
+<li><strong>irregular_osc as sink</strong> — does this reflect something real about the XWorld datasets, or is it an artefact of synthetic class generation?</li>
+<li><strong>Arithmetic</strong>: what loss function would force log-space geometry? Multiplicative consistency loss: <code>predict(a*b, b, '/') ≈ a</code> applied during training?</li>
+</ol>
+<hr />
+<h2 id="findings-this-session-5357-5-new-findings">Findings this session: 53–57 (5 new findings)</h2>
+<h2 id="total-findings-to-date-57">Total findings to date: 57</h2>
+<h2 id="notebooks-completed-0122-nb22-pending-re-run-23">Notebooks completed: 01–22 (nb22 pending re-run), 23</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://www.linkedin.com/in/sekarkrishna/" target="_blank">Krishnamoorthy Sankaran</a> &copy; 2026
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

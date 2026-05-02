@@ -1,0 +1,1695 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Cross-domain time series shape clustering — does a glacier melting and a turtle breathing share the same numerical signature?">
+      
+      
+      
+      
+        <link rel="prev" href="../EXPERIMENTS/">
+      
+      
+        <link rel="next" href="../summary_02MAY2026_nb48/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Decisions - XWorld Research Log</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#xworld-settled-decisions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="XWorld Research Log" class="md-header__button md-logo" aria-label="XWorld Research Log" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            XWorld Research Log
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Decisions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="XWorld Research Log" class="md-nav__button md-logo" aria-label="XWorld Research Log" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    XWorld Research Log
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FINDINGS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Findings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MILESTONES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milestones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EXPERIMENTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Experiments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-xworld-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What XWorld is
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature representation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#normalisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalisation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keeling-co2-treated-as-two-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keeling CO2 treated as two datasets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clustering-umap-hdbscan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clustering: UMAP + HDBSCAN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observed-shape-taxonomy-empirical-as-of-2026-03-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observed shape taxonomy (empirical, as of 2026-03-28)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#observed-shape-taxonomy-empirical-as-of-2026-03-24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observed shape taxonomy (empirical, as of 2026-03-24)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scoring-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scoring / validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#download-strategy-for-ucr-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Download strategy for UCR datasets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#temperature-source-berkeley-earth-as-primary-nasa-giss-as-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Temperature source — Berkeley Earth as primary, NASA GISS as fallback
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nasa-giss-temperature-do-not-force-delete-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NASA GISS temperature — do not force-delete cache
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#noaa-keeling-csv-force-numeric-before-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NOAA Keeling CSV — force numeric before filtering
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pandas-2x-compatibility-fillna" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pandas 2.x compatibility — fillna
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sessions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sessions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_02MAY2026_nb48/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 May 2026 (nb48)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_01MAY2026_nb47/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 May 2026 (nb47)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_01MAY2026_nb46/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 May 2026 (nb46)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_01MAY2026_nb44_nb45/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 May 2026 (nb44_nb45)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30APR2026_nb43/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Apr 2026 (nb43)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30APR2026_nb42/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Apr 2026 (nb42)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30APR2026_nb41/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Apr 2026 (nb41)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_29APR2026_nb40/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Apr 2026 (nb40)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_29APR2026_nb39/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29 Apr 2026 (nb39)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb38/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb38)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb37/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb37)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb36/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb36)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb35/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb35)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb34/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb34)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_26APR2026_nb33/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26 Apr 2026 (nb33)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_25APR2026_nb32/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25 Apr 2026 (nb32)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_25APR2026_nb29-31/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25 Apr 2026 (nb29-31)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb28/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb28)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb27/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb27)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb26/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb26)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb25/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb25)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb24/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb24)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb23)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026_nb22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026 (nb22)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_19APR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Apr 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30MAR2026_nb20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Mar 2026 (nb20)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_30MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_28MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_24MAR2026/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24 Mar 2026
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="xworld-settled-decisions">XWorld — Settled Decisions</h1>
+<p>Methodological choices that have been made and why. Update here when a decision is revisited.</p>
+<hr />
+<h2 id="what-xworld-is">What XWorld is</h2>
+<p>A cross-domain time series shape clustering experiment. The central hypothesis: series from completely unrelated domains (epidemiology, astronomy, ecology, climate, cardiology) share underlying dynamic shapes that are mathematically similar — and that this similarity is detectable and clusters across domain boundaries.</p>
+<p>Inspired by the philosophical question explored in <code>random_chats_x_world.txt</code>: does a glacier melting and a turtle breathing share the same numerical signature? Can you read the nature of a system from the shape of its ripple?</p>
+<hr />
+<h2 id="feature-representation">Feature representation</h2>
+<p><strong>Decision:</strong> 5 features extracted per time series after z-score normalisation.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>What it captures</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>skewness</code></td>
+<td>Asymmetry of the distribution</td>
+</tr>
+<tr>
+<td><code>kurtosis</code></td>
+<td>Tail heaviness / peakedness</td>
+</tr>
+<tr>
+<td><code>lag1_autocorr</code></td>
+<td>Short-term memory, periodicity proxy</td>
+</tr>
+<tr>
+<td><code>zero_crossings</code></td>
+<td>Oscillation frequency</td>
+</tr>
+<tr>
+<td><code>slope</code></td>
+<td>Directional drift (linear trend)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why these:</strong> They separate the three main shape families we care about — directional bursts (high slope, low zero_crossings), oscillatory (high zero_crossings, low slope), and slow drifts (moderate slope, high autocorr). Kept deliberately minimal to avoid overfitting to specific domains.</p>
+<hr />
+<h2 id="normalisation">Normalisation</h2>
+<p><strong>Decision:</strong> Z-score normalise each series before feature extraction.</p>
+<p><strong>Why:</strong> We are comparing shape, not magnitude. A COVID wave in India and Norway have very different case counts but the same dynamic shape. Normalising removes amplitude so only the temporal pattern remains.</p>
+<hr />
+<h2 id="keeling-co2-treated-as-two-datasets">Keeling CO2 treated as two datasets</h2>
+<p><strong>Decision:</strong> Decompose Keeling into <code>keeling_seasonal</code> and <code>keeling_trend</code>.</p>
+<p><strong>Why:</strong> The raw series contains two genuinely different dynamics superimposed — a ~1ppm seasonal oscillation and a long-run rising trend. They have different shapes and should be allowed to cluster differently.</p>
+<hr />
+<h2 id="clustering-umap-hdbscan">Clustering: UMAP + HDBSCAN</h2>
+<p><strong>Decision:</strong> UMAP for dimensionality reduction, HDBSCAN for density clustering.</p>
+<p><strong>Why UMAP over PCA:</strong> Preserves local structure — series that are close in feature space stay close in the embedding. PCA optimises for global variance which can compress meaningful local shape differences.</p>
+<p><strong>Why HDBSCAN over k-means:</strong> Number of shape clusters is unknown a priori. HDBSCAN finds clusters of arbitrary shape and handles noise explicitly (label <code>-1</code>).</p>
+<p><strong>Current parameters (as of 2026-03-24):</strong>
+- UMAP: <code>n_neighbors=15, min_dist=0.1, n_components=2, random_state=42</code>
+- HDBSCAN: <code>min_cluster_size=8, min_samples=3, metric='euclidean'</code></p>
+<p><strong>Parameter history:</strong>
+- <code>min_cluster_size=3</code> → 76 micro-clusters, 31% noise, COVID majority was noise. Too fragmented.
+- <code>min_cluster_size=15</code> → cleaner macro clusters, but temperature (26 points) physically cannot form a cluster and goes 100% noise.
+- <code>min_cluster_size=8</code> → allows small but cohesive datasets (≥8 points) to form their own cluster.</p>
+<hr />
+<h2 id="observed-shape-taxonomy-empirical-as-of-2026-03-28">Observed shape taxonomy (empirical, as of 2026-03-28)</h2>
+<p>Six shape classes from 5-feature clustering, refined by 6-feature analysis:</p>
+<table>
+<thead>
+<tr>
+<th>Shape class</th>
+<th>Datasets</th>
+<th>Primary discriminators</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Right-skewed burst (with residue)</td>
+<td>covid_first_wave, covid_second_wave</td>
+<td>skewness≈0.95, lag1≈0.95, zc≈0.02, baseline_delta≈+0.4–0.6</td>
+</tr>
+<tr>
+<td>Permanent accumulation</td>
+<td>keeling_trend</td>
+<td>baseline_delta=3.1, lag1=1.0, skewness≈0, slope&gt;&gt;0 — most isolated cluster</td>
+</tr>
+<tr>
+<td>Moderate dynamics — lower memory</td>
+<td>temperature, lynx_hare, keeling_seasonal</td>
+<td>No feature extremes; baseline_delta spans −0.3 to +1.0</td>
+</tr>
+<tr>
+<td>Moderate dynamics — higher memory</td>
+<td>streamflow (log)</td>
+<td>lag1≈0.70, baseline_delta≈+0.2</td>
+</tr>
+<tr>
+<td>Spike dynamics</td>
+<td>ecg</td>
+<td>kurtosis extreme; baseline_delta≈−0.15</td>
+</tr>
+<tr>
+<td>Slow periodic / burst-like</td>
+<td>sunspot_cycle</td>
+<td>Joins COVID cluster in 6-feature space — high autocorr, right-skewed, low zc, baseline_delta≈0</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key update from notebook 11:</strong> COVID waves are event-WITH-memory (baseline_delta=+0.61, not ≈0). The epidemic plateaued above its starting level — endemic floor persisted. The original "burst returns to baseline" hypothesis was wrong.</p>
+<p><strong>Key update from notebook 11:</strong> baseline_delta is independent of slope for non-monotone series. COVID: slope≈0, delta=+0.61. These diverge completely for burst shapes.</p>
+<hr />
+<h2 id="observed-shape-taxonomy-empirical-as-of-2026-03-24">Observed shape taxonomy (empirical, as of 2026-03-24)</h2>
+<p>Six shape classes identified across 8 datasets. No single feature drives all separations — the combination matters.</p>
+<table>
+<thead>
+<tr>
+<th>Shape class</th>
+<th>Datasets</th>
+<th>Primary discriminators</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Right-skewed burst</td>
+<td>covid_first_wave, covid_second_wave</td>
+<td>skewness≈0.95, lag1≈0.95, zc≈0.02</td>
+</tr>
+<tr>
+<td>Symmetric steady climb</td>
+<td>keeling_trend</td>
+<td>skewness≈0, lag1=1.0, zc≈0.01</td>
+</tr>
+<tr>
+<td>Moderate dynamics</td>
+<td>temperature, lynx_hare</td>
+<td>No feature extremes — all moderate</td>
+</tr>
+<tr>
+<td>Left-skewed periodic</td>
+<td>keeling_seasonal</td>
+<td>skewness=-0.16, flat kurtosis</td>
+</tr>
+<tr>
+<td>Right-skewed slow periodic</td>
+<td>sunspot_cycle</td>
+<td>skewness=0.49, lower zc</td>
+</tr>
+<tr>
+<td>Spike dynamics</td>
+<td>ecg</td>
+<td>kurtosis=15.165 — uniquely extreme</td>
+</tr>
+<tr>
+<td>Mod. dynamics — lower memory</td>
+<td>temperature, lynx_hare</td>
+<td>lag1≈0.50–0.68, kurtosis&lt;0, zc≈0.17–0.28</td>
+</tr>
+<tr>
+<td>Mod. dynamics — higher memory</td>
+<td>streamflow (log)</td>
+<td>lag1≈0.70, kurtosis≈-0.3, zc≈0.22</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key finding:</strong> "Moderate dynamics" is a genuine shape region (not a catch-all), with internal sub-structure resolved by <code>lag1_autocorr</code>. Catchment buffering (streamflow) produces slightly higher memory than interannual climate/ecological variability (temperature, lynx_hare).</p>
+<p><strong>Preprocessing note:</strong> Log-transform discharge before feature extraction. Raw discharge is log-normal; flood spikes inflate skewness (2.09) and kurtosis (6.93) out of the moderate range. <code>np.log1p()</code> collapses the tail while preserving all temporal dynamics.</p>
+<p>Key lesson: "directional" and "periodic" are not single shape classes. Skewness subdivides directional; kurtosis and zc subdivide periodic.</p>
+<h2 id="scoring-validation">Scoring / validation</h2>
+<p><strong>Decision:</strong> Use COVID first wave majority (real, non-noise) cluster as the directional-burst reference. Test predictions against it.</p>
+<p><strong>Why COVID first wave:</strong> 202 countries, all showing the same basic burst shape — the largest and cleanest directional dataset. A natural anchor for the "directional burst" cluster.</p>
+<p><strong>Important:</strong> Always skip cluster <code>-1</code> (noise) when determining the reference cluster and when determining each dataset's majority cluster. Noise is not a shape.</p>
+<hr />
+<h2 id="download-strategy-for-ucr-datasets">Download strategy for UCR datasets</h2>
+<p><strong>Decision:</strong> Use <code>urllib.request</code> not <code>requests</code> for timeseriesclassification.com.</p>
+<p><strong>Why:</strong> <code>requests</code> silently receives HTML (possibly a redirect or bot-detection page) with HTTP 200, which passes the status check but fails at zip extraction. <code>urllib</code> behaves consistently with <code>curl</code>. Always validate with <code>zipfile.is_zipfile()</code> before extracting.</p>
+<hr />
+<h2 id="temperature-source-berkeley-earth-as-primary-nasa-giss-as-fallback">Temperature source — Berkeley Earth as primary, NASA GISS as fallback</h2>
+<p><strong>Decision:</strong> Primary source is Berkeley Earth S3 (<code>berkeley-earth-temperature.s3.amazonaws.com/Global/Land_and_Ocean_summary.txt</code>). NASA GISS is tried as fallback. Parse cell auto-detects format (<code>%</code> comments = Berkeley Earth, <code>Year</code>/<code>J-D</code> header = NASA).</p>
+<p><strong>Why:</strong> NASA GISS (<code>data.giss.nasa.gov</code>) goes down periodically. Berkeley Earth provides equivalent global land-ocean anomaly data, same shape, same 1850s-present range, publicly hosted on S3 (more reliable). The two datasets are highly correlated — the 20-yr window shape features will be indistinguishable for the purposes of this experiment.</p>
+<hr />
+<h2 id="nasa-giss-temperature-do-not-force-delete-cache">NASA GISS temperature — do not force-delete cache</h2>
+<p><strong>Decision:</strong> Use the same <code>if not dest.exists()</code> guard as all other datasets. Do not unconditionally delete and re-download.</p>
+<p><strong>Why:</strong> NASA GISS is occasionally unreachable. The original notebook 07 forced a fresh download every run (<code>dest.unlink()</code>) to pick up updates, but that causes a hard failure when the server is down. The data changes slowly enough that a cached copy is fine.</p>
+<hr />
+<h2 id="noaa-keeling-csv-force-numeric-before-filtering">NOAA Keeling CSV — force numeric before filtering</h2>
+<p><strong>Decision:</strong> After <code>pd.read_csv(..., comment='#', header=None)</code>, coerce <code>year</code>, <code>month</code>, <code>average</code> to numeric with <code>pd.to_numeric(..., errors='coerce')</code> and <code>dropna()</code> before any comparison.</p>
+<p><strong>Why:</strong> The NOAA file contains a stray non-comment header row with string values. Without coercion, <code>co2['average'] &gt; 0</code> raises <code>TypeError: '&gt;' not supported between instances of 'str' and 'int'</code> in pandas 2.x (stricter type enforcement). Coercing to numeric first turns the stray row into NaN, which <code>dropna()</code> removes cleanly.</p>
+<hr />
+<h2 id="pandas-2x-compatibility-fillna">pandas 2.x compatibility — fillna</h2>
+<p><strong>Decision:</strong> Use <code>.bfill().ffill()</code> chained on the Series, not <code>fillna(method='bfill')</code>.</p>
+<p><strong>Why:</strong> The <code>method</code> keyword argument was removed from <code>fillna()</code> in pandas 2.x. Raises <code>TypeError</code> at runtime. Direct <code>.bfill()</code> / <code>.ffill()</code> methods are the correct replacement and work across all pandas versions.</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      <a href="https://www.linkedin.com/in/sekarkrishna/" target="_blank">Krishnamoorthy Sankaran</a> &copy; 2026
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.expand", "toc.integrate", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
