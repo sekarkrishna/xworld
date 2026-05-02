@@ -1568,3 +1568,63 @@ Map the feature-space geometry behind declining_osc's 43% dominance in the nb46 
 
 ### Findings
 F145–F150 added. Total findings: **150**.
+
+---
+
+## 2026-05-02 — nb48 (Zscore Mixing Nonlinearity: which features deviate, and how)
+
+### Goal
+Pin down the mechanism behind nb47's 45% midpoint-prediction accuracy and the missing 55% the zscore step accounts for. For each of the 64 (i,j) class pairs, compute the *mean actual feature vector* over 500 mixed samples and compare it to the centroid midpoint `0.5 * (ctrd_i + ctrd_j)` in standardised 6D space. Test theory: mixing two unit-variance signals then zscoring should compress higher moments (skew ~×1/√2, kurt ~×0.5) and amplify linear features (slope/BD ~×√2).
+
+**Part A** — per-feature mean deviation (actual − midpoint) across 64 pairs.
+**Part B** — Pearson ρ(actual, midpoint) and no-intercept slope per feature.
+**Part C** — composition-table accuracy: classify centroid midpoint vs actual mean feature, vs empirical T[i,j].
+**Part D** — does the deviation point toward declining_osc (DCO) or away from oscillator (OSC)?
+
+### Pre-run predictions
+- **F151:** skew/kurt compressed (slope <1, ρ>0.90).
+- **F152:** slope/BD amplified (slope >1, ρ>0.90); lag1/ZC linear (slope ≈1, ρ>0.90).
+- **F153:** actual-feature accuracy >65% (vs 45.3% midpoint).
+- **F154:** all 25 DCO-output pairs are closer to DCO centroid than midpoint (100%).
+
+### Results
+
+**Part A (mean deviation per feature):**
+| Feature | Mean dev | MAE dev |
+|---|---|---|
+| skewness | −0.20 | 0.49 |
+| kurtosis | **+0.63** | 0.72 |
+| lag1_autocorr | **−0.52** | 0.60 |
+| zero_crossings | **+0.74** | 0.76 |
+| slope | +0.01 | 0.20 |
+| baseline_delta | −0.01 | 0.20 |
+
+**Part B (per-feature linearity):**
+| Feature | ρ | Slope (actual/midpt) | Predicted |
+|---|---|---|---|
+| skewness | +0.24 | 0.21 | 0.707 |
+| kurtosis | +0.34 | 0.26 | 0.50 |
+| lag1_autocorr | −0.04 | −0.13 | 1.00 |
+| zero_crossings | +0.24 | 0.42 | 1.00 |
+| **slope** | **+0.984** | **1.25** | 1.414 |
+| **baseline_delta** | **+0.982** | **1.27** | 1.414 |
+
+**Part C (accuracy):** centroid midpoint = 29/64 (45.3%), **actual mean = 62/64 (96.9%)**. 33 prediction changes, all improvements (none degrade).
+
+**Part D (direction of deviation):** all 64 pairs farther from OSC than midpoint = **54/64 = 84.4%**. All 64 pairs closer to DCO than midpoint = 24/64 = 37.5%. DCO-pairs closer to DCO than midpoint = 16/25 = 64.0%.
+
+**Core finding:** the zscore-after-mix nonlinearity does not pull mixtures *toward* declining_osc — it pushes them *away from oscillator*. With actual mean features, the empirical composition table (96.9% reproducible) collapses to a near-trivial classification problem. The 45→97% gap is entirely due to nonlinear feature-extraction, not embedding geometry.
+
+**F151:** Partial. Direction confirmed (skew/kurt slopes <1.0), but compression is *more* extreme than predicted (slope 0.21 vs 0.71; 0.26 vs 0.50). ρ <0.5 — these features are not just rescaled, they are nonlinearly remapped.
+**F152:** Partial. Slope/BD confirmed (ρ ≈ 0.98, slope ≈ 1.26 close to √2). Lag1/ZC refuted — they are *nonlinear* (ρ < 0.25).
+**F153:** Confirmed and far exceeded. 96.9% vs prediction of >65%.
+**F154:** Refuted. Only 64% of DCO pairs closer to DCO than midpoint, not 100%.
+
+**Emergent F155:** zscore mixing systematically depletes the oscillator Voronoi basin (84% of pairs land farther from OSC after the nonlinearity). Combined with F149 (OSC owns 77.5% Voronoi volume), this resolves the grand centroid paradox: OSC is the geometric attractor under linear interpolation, but the zscore step is a directed flow *away from* OSC.
+
+**Emergent F156:** Two distinct feature regimes. Linear functionals (slope, baseline_delta) follow theory tightly (ρ > 0.98). Nonlinear functionals (skew, kurt, lag1, ZC) fail theory entirely (ρ < 0.35). The midpoint model in nb47 succeeded only because slope/BD gave it 45%; the rest required simulation.
+
+**Emergent F157:** Three features carry feature-specific *additive* bias (intercept, not just scale): kurtosis +0.63, ZC +0.74, lag1 −0.52. Mixing makes signals more leptokurtic, more sign-changing, and less autocorrelated than either constituent on average. A linear-with-intercept correction `actual ≈ a·midpoint + b` would substantially outperform pure scaling.
+
+### Findings
+F151–F157 added. Total findings: **157**.
