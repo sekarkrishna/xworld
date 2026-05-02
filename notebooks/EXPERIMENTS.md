@@ -1628,3 +1628,62 @@ Pin down the mechanism behind nb47's 45% midpoint-prediction accuracy and the mi
 
 ### Findings
 F151–F157 added. Total findings: **157**.
+
+---
+
+## 2026-05-02 — nb49 (Closed-form composition predictor: can the simulation be replaced by 6 (a,b) pairs?)
+
+### Goal
+Test whether the per-feature linear correction `actual_k ≈ a_k · midpt_k + b_k` (fitted on nb48 data) recovers most of nb48's 96.9% simulation accuracy. Goal: convert simulation → closed-form, retaining ≥90% accuracy. Thread 1 of the May-2026 plan.
+
+**Part A** — recompute mean_actual and midpoints (8×8×6 each).
+**Part B** — fit per-feature OLS with intercept; report (a, b, R²).
+**Part C** — apply closed-form prediction to all 64 pairs; classify; ablate (slope+BD only, nonlinear-4 only, all 6).
+**Part D** — residual-error analysis: which empirical classes does the closed-form fail on, and which pairs are "still broken" vs raw nb47?
+
+### Pre-run predictions
+- F158: slope/BD R² > 0.95.
+- F159: skew/kurt/lag1/ZC R² < 0.30.
+- F160: full closed-form ≥ 90% accuracy.
+- F161: slope+BD-only ≥ 60%.
+- F162: residual errors concentrate on declining_osc / irregular_osc.
+
+### Results
+
+**Part B (per-feature linear fit):**
+| Feature | a | b | R² |
+|---|---|---|---|
+| skewness | 0.211 | −0.204 | 0.057 |
+| kurtosis | 0.257 | +0.626 | 0.116 |
+| lag1_autocorr | −0.129 | −0.525 | 0.002 |
+| zero_crossings | 0.415 | +0.743 | 0.056 |
+| **slope** | **1.254** | +0.006 | **0.967** |
+| **baseline_delta** | **1.266** | −0.010 | **0.964** |
+
+**Part C (composition-table accuracy):**
+- Raw midpoint (nb47): 45.3%.
+- Closed-form, slope+BD only: **70.3%**.
+- Closed-form, nonlinear-4 only: 56.2%.
+- Closed-form, all 6: **56.2%** (worse than slope+BD alone).
+- Simulation (nb48): 96.9%.
+
+**Part D (residual errors):** Errors concentrate on every class *except* oscillator:
+- seasonal 8/8, integrated_trend 7/7, irregular_osc 4/4, declining_monotonic 3/3, trend 4/5, burst 1/1, **oscillator 1/11 (9%)**.
+- 14 pairs fixed by linear correction, 7 new errors introduced, 21 still broken.
+
+**F158:** Confirmed. slope R² 0.967, BD R² 0.964.
+**F159:** Confirmed and starker than expected. lag1 R² 0.002 (essentially no linear relationship). All four under 0.12.
+**F160:** **Refuted.** Closed-form maxes at 70.3% (slope+BD only). Adding the 4 nonlinear features under linear correction drops accuracy to 56.2% — a 14-point degradation from including more features.
+**F161:** Confirmed. Slope+BD-only = 70.3%, exceeds 60% prediction.
+**F162:** Reframed. Errors are not concentrated on nonlinear classes — they are concentrated on everything except oscillator. The closed-form predictor inherits nb47's oscillator bias.
+
+**Emergent F163:** Adding the 4 nonlinear features under linear correction *degrades* accuracy by 14 points. For a misspecified model, feature ablation is not optional — high-variance residuals from poorly-fit features (R² < 0.12) push predictions in misleading directions under L2 classification.
+
+**Emergent F164:** The closed-form recovers 58% of simulation accuracy (70.3% / 96.9%). The other 42% is the irreducible joint-nonlinear contribution — not capturable by any per-feature linear model.
+
+**Emergent F165:** 21 of 28 closed-form errors were also wrong under raw midpoint. These are pairs no per-feature linear model can classify; they need cross-feature joint information. A multivariate `actual = M·midpt + c` model is the natural next-step test (deferred — left as candidate epilogue).
+
+**Closing the composition arc:** nb46 → 43% attractor. nb47 → 45% geometry ceiling. nb48 → 97% simulation, 84% OSC depletion. nb49 → 70% closed-form ceiling. The composition attractor is irreducibly a property of the feature-extraction *operator*, not the feature-space *geometry*. Thread 1 closes negatively but informatively.
+
+### Findings
+F158–F165 added. Total findings: **165**.

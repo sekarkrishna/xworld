@@ -110,27 +110,64 @@ The burst class (COVID) exists because of exponential growth followed by resourc
 ---
 
 ## Current status
-**Active phase:** Phase 2b complete — Notebook 21 complete (31 March 2026)
-**Last updated:** 31 March 2026
-**Total findings:** 52 (see FINDINGS.md)
-**Notebooks completed:** 01–21
+**Active phase:** Phase 3 substantially complete; entering composition-mechanics epilogue + cross-receiver audit
+**Last updated:** 02 May 2026
+**Total findings:** 157 (see FINDINGS.md)
+**Notebooks completed:** 01–48
+
+**Recent arcs:**
+- Arc 1 — Cartography (nb01–31): 9-class taxonomy stable across 17-dataset corpus.
+- Arc 2 — Mechanism (nb32–38): ODE parameter space → fingerprint manifold; eco_cycle is noise-driven.
+- Arc 3 — Thunder hypothesis (nb39–43): TDA, RQA, and fingerprint achieve same ARI. Gross structure is observer-independent (4 families); 9-class vocabulary is observer-relative.
+- Arc 4 — Composition mechanics (nb44–48): zscore-after-mix nonlinearity expels mixtures from oscillator basin (84%); actual mean features predict composition table at 96.9%; centroid-midpoint geometry fails (45.3%). The composition attractor is a property of the feature-extraction *operator*, not of feature-space *geometry*.
 
 ---
 
 ## Next session — pick up here
 
-**Notebook 21 complete. 8th shape class confirmed. Open questions for nb22:**
+**Plan agreed 02 May 2026.** Three threads in sequence:
 
-Key results from nb21:
-- Arctic sea ice = 8th shape class: "declining oscillator" (pure cluster, 100%)
-- Ocean heat + sea_level share a cluster — "clean integrated trend" defined by measurement smoothness
-- CH4 + keeling_trend share a cluster — clean monotonic generalises across molecules
-- Chronos invariant to time-reversal and amplitude-flip for ALL classes; sensitive to speed only for periodic classes
-- cl7 (VIX + ENSO + temperature) = irregular oscillation with positive amplitude asymmetry
+### Thread 1 — Close out composition (nb49, low effort, ~1 notebook)
 
-**Open questions for nb22+:**
-1. **More "declining oscillator" datasets** — confirm Arctic sea ice class with similar systems: Greenland ice sheet mass, global snow cover extent, permafrost active layer depth
-2. **Why is Chronos time-direction invariant?** — A reversed trend looks the same as the original to Chronos. Is this a training data artifact, or does it reflect genuine shape equivalence?
-3. **cl7 positive-asymmetry class** — test with datasets known to have positive skew: commodity prices, river flood events, volcanic activity indices
-4. **Audio / whale calls** — predator-prey vocalizations as time series
-5. **Video / amoeba chemotaxis** — new extraction pipeline (highest effort, highest payoff)
+**Question:** F157 predicted that a linear-with-intercept correction `actual ≈ a·midpoint + b` would dramatically outperform pure scaling. Fit the 6 (a,b) pairs from nb48 data, apply to centroid midpoints to predict actual mean features, then classify and compare to empirical composition table.
+
+**Goal:** turn nb48's simulation-based 96.9% predictor into a closed-form predictor. If a 6-parameter linear correction recovers ≥90% accuracy, you have a usable analytical model of mixture-fingerprint deviation — useful for any future arithmetic-on-shapes work.
+
+**Predictions:**
+- Linear-with-intercept on slope/baseline_delta alone: ≥85% accuracy (these had ρ ≈ 0.98 in nb48).
+- Full 6-feature linear correction: ≥90% accuracy.
+- Residuals concentrate on lag1/ZC pairs where ρ < 0.25 (the genuinely nonlinear features).
+
+### Thread 2 — Embedding-midpoint failure mode (nb50–51, medium effort, 1–2 notebooks)
+
+**Question:** The latent-arithmetic and grokking-transfer hypotheses both rest on embedding-space midpoints being meaningful. nb46–48 showed that *6-feature centroid midpoints* fail at this in the synthetic-shape domain. Do learned embeddings (nb45 transformer, Chronos) implicitly approximate `mean_actual` (avoiding the failure), or do they inherit the same midpoint trap?
+
+**Approach:**
+- nb50: re-derive composition table using nb45 transformer embeddings and Chronos embeddings on the same 64 pair set (i.e., classify mixed signals using each embedding's nearest-class metric).
+- nb51: compare embedding-space centroid midpoints to embedding-space actual mean activations on the 64 pairs. Report midpoint accuracy vs actual-mean accuracy for each receiver.
+
+**Predictions (to be sharpened in the notebook):**
+- Chronos: midpoint and actual-mean both ≥80% (smoother, less geometry-dependent).
+- 6-feature: midpoint 45%, actual 97% (already known, baseline).
+- Transformer (from nb25): midpoint accuracy ≈ 6-feature, since the equidistant address-book embedding has no meaningful midpoints.
+
+This bridges Arc 4 back to the grokking-transfer thread that has been waiting in memory since April.
+
+### Thread 3 — Audio / whale calls (nb52+, medium effort, on the futures list)
+
+**Question:** Direct test of Phase 3's strongest claim — predator-prey vocalisations should land near lynx_hare regardless of acoustic medium.
+
+**Approach:** NOAA or Cornell Lab labelled cetacean / songbird audio → amplitude envelope or call-rate series at behavioural timescale → 6-feature fingerprint → classify against existing 9-class system.
+
+**Pre-commitment prediction:** cetacean foraging calls (with prey acoustic indicators) land in eco_cycle. Solo predator vocalisation series (no prey signal) land in burst or irregular_osc. Prey-rich songbird flock data lands in seasonal or eco_cycle.
+
+This is the cleanest cross-modality test left — every receptor so far has been numerical / statistical. Switching domain to acoustic biology is the strongest available test of the receiver-vs-world question.
+
+---
+
+## Deferred / longer-horizon
+
+- **Mirror distortions / invariance battery** (medium effort) — robustness map alongside taxonomy. nb23 hinted at directional vs shape-defined classes; this would systematise it.
+- **Phase 3b — physical structure → shape class** (large) — predict class from feedback-loop count, conservation laws, forcing-function entropy *before* measurement. The original Phase 3 destination.
+- **Video / amoeba chemotaxis** (largest, on futures list) — new extraction pipeline; highest payoff, multiple sessions before first data point.
+- **Grokking transfer experiment** (large, in memory) — trigger by Thread 2 results; design depends on whether learned embeddings preserve composition geometry.
