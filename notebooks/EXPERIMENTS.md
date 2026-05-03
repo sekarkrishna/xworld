@@ -1687,3 +1687,43 @@ Test whether the per-feature linear correction `actual_k ≈ a_k · midpt_k + b_
 
 ### Findings
 F158–F165 added. Total findings: **165**.
+
+---
+
+## 2026-05-03 — nb50 (Embedding Midpoint Composition Test)
+
+### Goal
+Thread 2 of the May-2026 plan. Test whether the nb46 transformer's class embeddings (128-d) encode composition structure geometrically. Three methods compared: (1) embedding midpoint `(tok_emb[i]+tok_emb[j])/2` → nearest class, (2) transformer forward pass on all 64 pairs, (3) simulation oracle (nb48 baseline). The question: does the composition training task force composable geometry into the embedding space, or does composition knowledge live only in the attention mechanism?
+
+### Pre-run predictions
+- F166: Embedding midpoint ≈ 45–55%
+- F167: Forward-pass accuracy >80% over all 64 pairs
+- F168: Gap (forward pass − midpoint) ≥ 20pp
+- F169: ρ(embedding, comp impurity) > ρ(embedding, fingerprint) = 0.399
+
+### Results
+
+| Method | Accuracy | Correct |
+|---|---|---|
+| 6f centroid midpoint (nb47) | 45.3% | 29/64 |
+| Closed-form linear (nb49) | 70.3% | 45/64 |
+| **Embedding midpoint (nb50)** | **32.8%** | **21/64** |
+| **Transformer forward pass (nb50)** | **93.8%** | **60/64** |
+| Simulation oracle (nb48) | 96.9% | 62/64 |
+
+**F166:** Refuted — embedding midpoint is 32.8%, *worse* than the 6f midpoint baseline (45.3%). Prediction was 45–55%; actual is 12.5pp lower. Midpoints collapse to burst (17/64 predicted vs 1/64 empirical).
+
+**F167:** Confirmed — forward pass on all 64 pairs = 93.8%. Beats the 70.3% closed-form ceiling, approaches simulation oracle.
+
+**F168:** Confirmed and far exceeded — gap = +60.9pp (predicted ≥20pp). The largest geometry-vs-mechanism gap in the project.
+
+**F169:** Refuted — ρ(embedding, comp impurity) = +0.175, p=0.37 (not significant). ρ(embedding, fingerprint) = +0.399, unchanged from nb46. Composition training restructured attention weights, not embedding geometry.
+
+**Emergent F170:** Embedding midpoints collapse to burst (17/64). Burst occupies the geometric hub of the 128-d embedding space — averaging any two class embeddings tends to land nearest to it.
+
+**Emergent F171:** 60.9pp gap. Transformer attention = composition (93.8% ≈ simulation's 96.9%). Geometry = nothing (32.8% < 6f midpoint).
+
+**Emergent F172:** 128-d learned embeddings are *less* composable by interpolation than the 6-d fingerprint space. Higher dimensionality and nonlinear class-boundary encoding actively hurt geometric composition.
+
+### Findings
+F166–F172 added. Total findings: **172**.
