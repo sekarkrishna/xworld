@@ -1727,3 +1727,49 @@ Thread 2 of the May-2026 plan. Test whether the nb46 transformer's class embeddi
 
 ### Findings
 F166–F172 added. Total findings: **172**.
+
+---
+
+## 2026-05-03 — nb51 (Chronos Embedding Composition Test)
+
+### Goal
+Thread 2 closer. Same midpoint/actual-mean test as nb50 but using Chronos-T5-Small (512-d, 46M params, pretrained on 27B time-series points). Does massive pretraining give Chronos richer geometric composition structure than the task-trained transformer?
+
+### Pre-run predictions
+- F173: ρ(Chronos, fingerprint) > 0.399
+- F174: Chronos midpoint ≈ 40–55%
+- F175: Chronos actual-mean < 96.9%
+- F176: actual-mean > midpoint
+
+### Results
+
+| Method | Accuracy |
+|---|---|
+| Chronos emb midpoint (nb51) | **26.6%** |
+| Transformer emb midpoint (nb50) | 32.8% |
+| Chronos actual-mean (nb51) | **37.5%** |
+| 6f centroid midpoint (nb47) | 45.3% |
+| Closed-form linear (nb49) | 70.3% |
+| Transformer forward pass (nb50) | 93.8% |
+| Simulation oracle (nb48) | 96.9% |
+
+**F173:** Refuted. ρ=+0.304, p=0.115 (not significant; lower than task-trained transformer's 0.399). Chronos geometry doesn't match 6f fingerprint space — closest pairs are oscillator↔seasonal (very far in 6f).
+
+**F174:** Refuted. 26.6% — worst of all methods. More pretraining makes geometric midpoints *worse*.
+
+**F175:** Confirmed trivially. 37.5% << 96.9%, but striking how low.
+
+**F176:** Confirmed. +10.9pp gap (much narrower than 6f's 51.6pp).
+
+**Emergent F177:** Chronos actual-mean (37.5%) < 6f midpoint (45.3%). Cross-receiver disagreement: Chronos over-predicts IRR (23x vs 4x empirical). The empirical composition table is 6f-relative — different receiver → different table. Observer-relativity at composition level.
+
+**Emergent F178:** ρ(Chronos, comp impurity) = -0.233 (p=0.23). Chronos geometry is orthogonal (slightly negative) to composition structure.
+
+**Emergent F179:** No embedding space achieves >50% via midpoints. Composition structure lives in mixing operator (simulation) or attention mechanism (transformer), not in geometry.
+
+### Thread 2 conclusion
+
+Grokking-transfer hypothesis revision required: post-grokking representations encode composition rules in attention weights, not in embedding geometry. Embedding midpoints are not reliable proxies for composition outcomes in any tested space.
+
+### Findings
+F173–F179 added. Total findings: **179**.
