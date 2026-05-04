@@ -1773,3 +1773,58 @@ Grokking-transfer hypothesis revision required: post-grokking representations en
 
 ### Findings
 F173–F179 added. Total findings: **179**.
+
+---
+
+## 2026-05-04 — nb52 (Audio Time Series: Predator-Prey Vocalizations)
+
+### Goal
+Thread 3 opener. First non-numerical receiver test. Two timescales:
+- **Signal scale (~seconds):** Synthesize representative killer whale call types (N-type FM sweep, S-type harmonic sinusoid, click train). Extract Hilbert amplitude envelope → 64-pt fingerprint → classify.
+- **Ecological scale (~decades):** SRKW annual census (1976–2023, CWR data) and Fraser River Chinook salmon escapement (1975–2022, DFO data). Does the predator-prey pair fingerprint as eco_cycle (like lynx_hare), or does human pressure shift the shape class?
+- **Windowing:** SRKW in three phases (growth, crash-recovery, decline). Does phase determine class?
+
+### Pre-run predictions
+- F180: N-type call → oscillator or seasonal
+- F181: S-type call → eco_cycle or irregular_osc
+- F182: Click train → burst or declining_osc
+- F183: SRKW full → NOT eco_cycle
+- F184: Chinook full → declining_osc or declining_monotonic
+- F185: SRKW growth ≠ SRKW decline (different classes)
+- F186: Signal-scale class ≠ ecological-scale class
+
+### Results
+
+| Dataset | Class | d_nearest |
+|---|---|---|
+| N-type (FM sweep) envelope | oscillator | 1.573 |
+| S-type (harmonic) envelope | **oscillator** (predicted eco_cycle) | 1.715 |
+| Click train envelope | **irregular_osc** (predicted burst), d=9.381 | 9.381 |
+| SRKW full (1976–2023) | declining_osc | 1.823 |
+| Chinook full (1975–2022) | declining_osc | 2.082 |
+| SRKW growth (1976–1995) | trend | 3.453 |
+| SRKW crash-recovery (1996–2010) | seasonal | 3.943 |
+| SRKW decline (2011–2023) | declining_monotonic | 6.705 |
+
+**F180:** Confirmed. N-type FM sweep → oscillator (lag1=0.995, ZC=0.031, kurtosis=−1.50).
+
+**F181:** Refuted. S-type harmonic → oscillator (not eco_cycle). Gaussian amplitude envelope produces the same platykurtic arch as the FM sweep after Hilbert extraction. Harmonic content is invisible to amplitude envelopes at 64-pt resolution.
+
+**F182:** Refuted. Click train → irregular_osc with d=9.381 — taxonomically foreign. Exponentially accelerating pulse density creates irregular amplitude overlap; fits no corpus class.
+
+**F183:** Confirmed. SRKW → declining_osc, not eco_cycle. d_eco=2.042.
+
+**F184:** Confirmed. Chinook → declining_osc. Predator and prey co-classified.
+
+**F185:** Confirmed. growth=trend, crash-recovery=seasonal, decline=declining_monotonic. But all three windows have high distances (>3.4) — short ecological series (13–20 years) fingerprint unreliably.
+
+**F186:** Confirmed. Signal: {oscillator, irregular_osc}. Ecological: {declining_osc}. Zero overlap.
+
+**Emergent F187:** Both smooth call types converge to oscillator after Hilbert envelope extraction. Carrier frequency, harmonic content, and modulation type are invisible. Any smooth bell-shaped modulation → platykurtic arch → oscillator. Burst requires sharp isolated peak (high kurtosis), which smooth envelopes cannot produce.
+
+**Emergent F188:** Declining_osc class now spans: arctic_sea_ice, antarctic_sea_ice (cryosphere), SRKW (apex predator), Chinook (prey). All four are externally-stressed oscillatory systems. Declining_osc is a cross-domain fingerprint of external stress on a periodic system.
+
+**5/7 confirmed.**
+
+### Findings
+F180–F188 added. Total findings: **188**.
